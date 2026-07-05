@@ -1,45 +1,45 @@
-There are many options for teams to build and deploy cloud native and containerized applications on Azure. Let's understand which scenarios and use cases are best suited for Azure Container Apps and how it compares to other container options on Azure. Listen to a developer's view of Azure Container Instances. 
+Azure でクラウド ネイティブなアプリケーションやコンテナー化されたアプリケーションを構築・デプロイする方法は、チームにとって数多くあります。どのようなシナリオや利用ケースが Azure Container Apps に最適なのか、Azure の他のコンテナー関連の選択肢とどう違うのかを理解しましょう。Azure Container Instances についての開発者の視点を聞いてみてください。
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=f33ea4b6-2c00-4b85-8875-e7193921f8cd]
 
-### Things to know about Azure Container Apps
+### Azure Container Apps について知っておくべきこと
 
-[Azure Container Apps](/azure/container-apps/overview) is a serverless platform that allows you to maintain less infrastructure and save costs while running containerized applications. Instead of worrying about server configuration, container orchestration, and deployment details, Container Apps provides all the up-to-date server resources required to keep your applications stable and secure.
+[Azure Container Apps](/azure/container-apps/overview) は、コンテナー化されたアプリケーションを実行しながら、管理するインフラを減らしてコストを節約できるサーバーレス プラットフォームです。サーバーの構成、コンテナーのオーケストレーション、デプロイの詳細を気にする代わりに、Container Apps がアプリケーションを安定かつ安全に保つために必要な最新のサーバー リソースをすべて提供してくれます。
 
-Common uses of Azure Container Apps include:
+Azure Container Apps の一般的な用途には、次のものがあります。
 
-- Deploying API endpoints
-- Hosting background processing jobs
-- Handling event-driven processing
-- Running microservices
+- API エンドポイントのデプロイ
+- バックグラウンド処理ジョブのホスト
+- イベント ドリブン処理の実行
+- マイクロサービスの実行
 
-Applications built on Azure Container Apps can dynamically scale based on the following characteristics:
+Azure Container Apps 上に構築されたアプリケーションは、次の特性に基づいて動的にスケールできます。
 
-- HTTP traffic
-- Event-driven processing
-- CPU or memory load
-- Any KEDA-supported scaler
+- HTTP トラフィック
+- イベント ドリブン処理
+- CPU またはメモリの負荷
+- KEDA がサポートする任意のスケーラー
 
-### Things to consider when using Azure Container Apps 
+### Azure Container Apps を使う際に考慮すべきこと
 
-Azure Container Apps enables you to build serverless microservices and jobs based on containers. Distinctive features of Container Apps include:
+Azure Container Apps では、コンテナーをベースにしたサーバーレスのマイクロサービスとジョブを構築できます。Container Apps の特徴的な機能は次のとおりです。
 
-- Optimized for running general purpose containers, especially for applications that span many microservices deployed in containers.
-- Powered by Kubernetes and open-source technologies like Dapr, KEDA, and envoy.
-- Supports Kubernetes-style apps and microservices with features like service discovery and traffic splitting.
-- Enables event-driven application architectures by supporting scale based on traffic and pulling from event sources like queues, including scale to zero.
-- Supports running on demand, scheduled, and event-driven jobs.
+- 汎用コンテナーの実行に最適化されており、特にコンテナーにデプロイされた多数のマイクロサービスにまたがるアプリケーションに向いています。
+- Kubernetes と、Dapr、KEDA、envoy などのオープンソース技術を基盤としています。
+- サービス検出やトラフィック分割などの機能により、Kubernetes スタイルのアプリとマイクロサービスをサポートします。
+- トラフィックに基づくスケールや、キューなどのイベント ソースからのプル (ゼロへのスケールを含む) をサポートし、イベント ドリブンなアプリケーション アーキテクチャを実現します。
+- オンデマンド、スケジュール、イベント ドリブンの各ジョブの実行をサポートします。
 
-Azure Container Apps doesn't provide direct access to the underlying Kubernetes APIs. If you would like to build Kubernetes-style applications and don't require direct access to all the native Kubernetes APIs and cluster management, Container Apps provides a fully managed experience based on best-practices. For these reasons, many teams prefer to start building container microservices with Azure Container Apps.
+Azure Container Apps は、基盤となる Kubernetes API への直接アクセスは提供しません。Kubernetes スタイルのアプリケーションを構築したいが、ネイティブの Kubernetes API 全体への直接アクセスやクラスター管理までは必要ないという場合、Container Apps はベスト プラクティスに基づくフル マネージドな体験を提供してくれます。こうした理由から、多くのチームがコンテナー マイクロサービスの構築を Azure Container Apps から始めることを選んでいます。
 
-#### Compare container management solutions
+#### コンテナー管理ソリューションの比較
 
-Azure offers several container platforms for different scenarios. Azure Container Instances (ACI) is best for isolated, short-lived tasks. Azure Container Apps (ACA) serves serverless microservices. Azure Kubernetes Service (AKS) provides full Kubernetes control for complex orchestration needs. 
+Azure は、シナリオに応じた複数のコンテナー プラットフォームを提供しています。Azure Container Instances (ACI) は、分離された短時間のタスクに最適です。Azure Container Apps (ACA) はサーバーレスのマイクロサービスに向いています。Azure Kubernetes Service (AKS) は、複雑なオーケストレーションのニーズに応える完全な Kubernetes の制御を提供します。
 
-| Feature | Azure Container Apps (ACA) | Azure Kubernetes Service (AKS) |
+| 機能 | Azure Container Apps (ACA) | Azure Kubernetes Service (AKS) |
 | --- | --- | --- |
-| Overview | ACA is a serverless container platform that simplifies the deployment and management of microservices-based applications by abstracting away the underlying infrastructure. | AKS simplifies deploying a managed Kubernetes cluster in Azure by offloading the operational overhead to Azure. It’s suitable for complex applications that require orchestration. |
-| Deployment | ACA provides a PaaS experience with quick deployment and management capabilities. | AKS offers more control and customization options for Kubernetes environments, making it suitable for complex applications and microservices. |
-| Management | ACA builds upon AKS and offers a simplified PaaS experience for running containers. | AKS provides a more granular control over the Kubernetes environment, suitable for teams with Kubernetes expertise. |
-| Scalability | ACA supports both HTTP-based autoscaling and event-driven scaling, making it ideal for applications that need to respond quickly to changes in demand. | AKS offers horizontal pod autoscaling and cluster autoscaling, providing robust scalability options for containerized applications. |
-| Use Cases | ACA is designed for microservices and serverless applications that benefit from rapid scaling and simplified management. | AKS is best for complex, long-running applications. These applications require full Kubernetes features and tight integration with other Azure services. |
+| 概要 | ACA は、基盤インフラを抽象化することで、マイクロサービス ベースのアプリケーションのデプロイと管理を簡素化するサーバーレス コンテナー プラットフォームです。 | AKS は、運用上の負担を Azure に任せることで、Azure でのマネージド Kubernetes クラスターのデプロイを簡素化します。オーケストレーションが必要な複雑なアプリケーションに適しています。 |
+| デプロイ | ACA は、迅速なデプロイと管理機能を備えた PaaS 体験を提供します。 | AKS は Kubernetes 環境に対するより多くの制御とカスタマイズの選択肢を提供し、複雑なアプリケーションやマイクロサービスに適しています。 |
+| 管理 | ACA は AKS を基盤とし、コンテナー実行のための簡素化された PaaS 体験を提供します。 | AKS は Kubernetes 環境へのよりきめ細かな制御を提供し、Kubernetes の専門知識を持つチームに適しています。 |
+| スケーラビリティ | ACA は HTTP ベースの自動スケールとイベント ドリブンのスケールの両方をサポートし、需要の変化に素早く対応する必要があるアプリケーションに最適です。 | AKS は水平ポッド自動スケーリングとクラスター自動スケーリングを提供し、コンテナー化されたアプリケーションに堅牢なスケーラビリティの選択肢をもたらします。 |
+| 利用ケース | ACA は、迅速なスケーリングと簡素化された管理の恩恵を受けるマイクロサービスとサーバーレス アプリケーション向けに設計されています。 | AKS は、複雑で長時間稼働するアプリケーションに最適です。これらのアプリケーションは、Kubernetes の全機能と他の Azure サービスとの緊密な統合を必要とします。 |

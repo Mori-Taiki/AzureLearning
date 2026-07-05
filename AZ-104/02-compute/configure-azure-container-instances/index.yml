@@ -3,8 +3,8 @@ uid: learn.wwl.configure-azure-container-instances
 metadata:
   adobe-target: true
   prefetch-feature-rollout: true
-  title: Configure Azure Container Instances
-  description: "Learn how to configure Azure Container Instances including container groups."
+  title: Azure Container Instances の構成
+  description: "コンテナー グループを含む、Azure Container Instances の構成方法を学びます。"
   ms.date: 06/23/2026
   author: wwlpublish
   ms.author: robbarefoot
@@ -14,20 +14,20 @@ metadata:
   - N/A
   ms.service: azure-container-instances
   ai-usage: ai-assisted
-title: Configure Azure Container Instances
-summary: Learn how to configure Azure Container Instances including container groups.
+title: Azure Container Instances の構成
+summary: コンテナー グループを含む、Azure Container Instances の構成方法を学びます。
 abstract: |
-  In this module, you learn how to:
+  このモジュールでは、次のことを学びます。
 
-  -   Identify when to use containers versus virtual machines.
+  -   コンテナーと仮想マシンをいつ使い分けるかを判断する。
 
-  -   Identify the features and usage cases of Azure Container Instances.
+  -   Azure Container Instances の機能と利用ケースを把握する。
 
-  -   Implement Azure container groups.
+  -   Azure コンテナー グループを実装する。
 prerequisites: |
-  -   Working knowledge of containerization concepts and terminology.
+  -   コンテナー化の概念と用語に関する実務知識。
 
-  -   Familiarity with cloud computing and experience with the Azure portal.
+  -   クラウド コンピューティングに関する基本知識と、Azure portal の使用経験。
 iconUrl: /training/achievements/azure-container-instance-configure.svg
 levels:
 - intermediate

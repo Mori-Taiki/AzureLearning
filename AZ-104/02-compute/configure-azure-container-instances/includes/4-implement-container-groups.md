@@ -1,54 +1,54 @@
-The top-level resource in Azure Container Instances is the **container group**. A [container group](/azure/container-instances/container-instances-container-groups) is a collection of containers that get scheduled on the same host machine. The containers share a lifecycle, resources, local network, and storage volumes.
+Azure Container Instances の最上位リソースは**コンテナー グループ**です。[コンテナー グループ](/azure/container-instances/container-instances-container-groups)とは、同じホスト マシン上にスケジュールされるコンテナーの集まりです。グループ内のコンテナーは、ライフサイクル、リソース、ローカル ネットワーク、ストレージ ボリュームを共有します。
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=cea8e224-f2f1-4e42-b393-67ecef90c7a7]
 
-### Things to know about container groups
+### コンテナー グループについて知っておくべきこと
 
-Let's review some of details about container groups for Azure Container Instances.
+Azure Container Instances のコンテナー グループの詳細を確認しましょう。
 
-- A container group is similar to a pod in Kubernetes. A pod typically has a 1:1 mapping with a container, but a pod can contain multiple containers. The containers in a multi-container pod can share related resources.
+- コンテナー グループは、Kubernetes のポッドに似ています。ポッドは通常コンテナーと 1:1 で対応しますが、複数のコンテナーを含むこともできます。複数コンテナーのポッド内のコンテナーは、関連リソースを共有できます。
 
-- Azure Container Instances allocates resources to a multi-container group by adding together the resource requests of all containers in the group. Resources can include items such as CPUs, memory, and GPUs.
+- Azure Container Instances は、グループ内のすべてのコンテナーのリソース要求を合計して、複数コンテナー グループにリソースを割り当てます。リソースには、CPU、メモリ、GPU などが含まれます。
 
-- There are three common ways to deploy a multi-container group.
-  
-  - **Azure Resource Manager template**. JSON-based infrastructure as code, ideal when deploying alongside other Azure resources.
+- 複数コンテナー グループのデプロイには、よく使われる方法が 3 つあります。
 
-  - **Bicep**. Microsoft's recommended infrastructure as code language, more concise than Azure Resource Manager templates. Bicep includes full IntelliSense support.
-  
-  - **YAML files**. Container-focused format, ideal for deployments that include only container instances.
+  - **Azure Resource Manager テンプレート**: JSON ベースの Infrastructure as Code で、他の Azure リソースと一緒にデプロイする場合に最適です。
 
-- Container groups can share an external-facing IP address, one or more ports on the IP address, and a DNS label with an FQDN.
-   
-   - **External client access**. You must expose the port on the IP address and from the container to enable external clients to reach a container in your group.
-   
-   - **Port mapping**. Port mapping isn't supported because containers in a group share a port namespace.
-   
-   - **Deleted groups**. When a container group is deleted, its IP address and FQDN are released.
+  - **Bicep**: Microsoft が推奨する Infrastructure as Code 言語で、Azure Resource Manager テンプレートより簡潔です。Bicep は完全な IntelliSense サポートを備えています。
 
-#### Configuration example
+  - **YAML ファイル**: コンテナーに特化した形式で、コンテナー インスタンスのみを含むデプロイに最適です。
 
-Consider the following example of a multi-container group with two containers.
+- コンテナー グループは、外部向け IP アドレス、その IP アドレス上の 1 つ以上のポート、および FQDN 付きの DNS ラベルを共有できます。
 
-:::image type="content" source="../media/container-groups-ea19ee6b.png" alt-text="Diagram that depicts an Azure Container Instances multi-container group that has two containers." border="false":::
+   - **外部クライアントからのアクセス**: 外部クライアントがグループ内のコンテナーに到達できるようにするには、IP アドレス上とコンテナー側の両方でポートを公開する必要があります。
 
-The multi-container group has the following characteristics and configuration:
+   - **ポート マッピング**: グループ内のコンテナーはポートの名前空間を共有するため、ポート マッピングはサポートされません。
 
-- The container group is scheduled on a single host machine, and is assigned a DNS name label.
-- The container group exposes a single public IP address with one exposed port.
-- One container in the group listens on port 80. The other container listens on port 1433.
-- The group includes two Azure Files file shares as volume mounts. Each container in the group mounts one of the file shares locally.
+   - **削除されたグループ**: コンテナー グループを削除すると、その IP アドレスと FQDN は解放されます。
 
-### Things to consider when using container groups
+#### 構成例
 
-Multi-container groups are useful when you want to divide a single functional task into a few container images. Different teams can deliver the images, and the images can have separate resource requirements.
+2 つのコンテナーを持つ複数コンテナー グループの例を見てみましょう。
 
-Consider the following scenarios for working with multi-container groups. Think about what options can support your internal apps for the online retailer.
+:::image type="content" source="../media/container-groups-ea19ee6b.png" alt-text="2 つのコンテナーを持つ Azure Container Instances の複数コンテナー グループを描いた図。" border="false":::
 
-- **Consider web app updates**. Support updates to your web apps by implementing a multi-container group. One container in the group serves the web app and another container pulls the latest content from source control.
+この複数コンテナー グループには、次の特徴と構成があります。
 
-- **Consider log data collection**. Use a multi-container group to capture logging and metrics data about your app. Your application container outputs logs and metrics. A logging container collects the output data and writes the data to long-term storage.
+- コンテナー グループは単一のホスト マシン上にスケジュールされ、DNS 名ラベルが割り当てられています。
+- コンテナー グループは、1 つの公開ポートを持つ単一のパブリック IP アドレスを公開しています。
+- グループ内の一方のコンテナーはポート 80 で、もう一方のコンテナーはポート 1433 でリッスンしています。
+- グループには、ボリューム マウントとして 2 つの Azure Files ファイル共有が含まれています。グループ内の各コンテナーは、どちらか一方のファイル共有をローカルにマウントしています。
 
-- **Consider app monitoring**. Enable monitoring for your app with a multi-container group. A monitoring container periodically makes a request to your application container to ensure your app is running and responding correctly. The monitoring container raises an alert if it identifies possible issues with your app.
+### コンテナー グループを使う際に考慮すべきこと
 
-- **Consider front-end and back-end support**. Create a multi-container group to hold your front-end container and back-end container. The front-end container can serve a web app. The back-end container can run a service to retrieve data.
+複数コンテナー グループは、1 つの機能的なタスクをいくつかのコンテナー イメージに分割したい場合に便利です。イメージは別々のチームが提供でき、それぞれ異なるリソース要件を持てます。
+
+複数コンテナー グループを使う次のシナリオを検討してください。オンライン小売業者の社内アプリを支えるには、どの選択肢が使えそうか考えてみましょう。
+
+- **Web アプリの更新を考慮する**: 複数コンテナー グループを実装して、Web アプリの更新に対応します。グループ内の 1 つのコンテナーが Web アプリを提供し、別のコンテナーがソース管理から最新コンテンツを取得します。
+
+- **ログ データの収集を考慮する**: 複数コンテナー グループを使って、アプリのログとメトリックのデータを収集します。アプリケーション コンテナーがログとメトリックを出力し、ログ収集コンテナーがその出力データを集めて長期ストレージに書き込みます。
+
+- **アプリの監視を考慮する**: 複数コンテナー グループでアプリの監視を実現します。監視コンテナーがアプリケーション コンテナーへ定期的にリクエストを送り、アプリが正常に動作・応答していることを確認します。監視コンテナーは、アプリに問題の可能性を見つけるとアラートを発します。
+
+- **フロントエンドとバックエンドの構成を考慮する**: フロントエンド コンテナーとバックエンド コンテナーを収める複数コンテナー グループを作成します。フロントエンド コンテナーは Web アプリを提供し、バックエンド コンテナーはデータを取得するサービスを実行できます。
