@@ -1,45 +1,43 @@
 ---
-Azure Files offers two industry-standard file system protocols for mounting Azure file shares: the Server Message Block (SMB) protocol and the Network File System (NFS) protocol. Azure file shares don't support both the SMB and NFS protocols on the same file share, although you can create SMB and NFS Azure file shares within the same storage account.
+Azure Files は、Azure ファイル共有をマウントするために、業界標準の 2 つのファイル システム プロトコルを提供しています。サーバー メッセージ ブロック (SMB) プロトコルとネットワーク ファイル システム (NFS) プロトコルです。同じファイル共有で SMB と NFS の両方のプロトコルを使うことはできませんが、同じストレージ アカウント内に SMB と NFS の Azure ファイル共有をそれぞれ作成することはできます。
 
-## Types of Azure file shares
+## Azure ファイル共有の種類
 
-Azure Files supports two storage tiers: premium and standard. Standard file shares are created in general purpose (GPv2) storage accounts, while premium file shares are created in FileStorage storage accounts. The two storage tiers have the attributes described in the following table.
+Azure Files は、Premium と Standard の 2 つのストレージ層をサポートします。Standard のファイル共有は汎用 (GPv2) ストレージ アカウントに、Premium のファイル共有は FileStorage ストレージ アカウントに作成されます。2 つのストレージ層の属性を次の表に示します。
 
-| Storage tier | Performance | Storage account type | Redundancy options | Billing model | Use cases |
+| ストレージ層 | パフォーマンス | ストレージ アカウントの種類 | 冗長性の選択肢 | 課金モデル | 利用ケース |
 | --- | --- | --- | --- | --- | --- |
-| **Premium** | SSD-backed, consistent low latency | FileStorage | LRS, ZRS | Provisioned (pay for capacity reserved) | High-performance workloads requiring low latency |
-| **Transaction Optimized** | HDD-backed, standard performance | General-purpose v2 (GPv2) | LRS, GRS, RA-GRS, ZRS, GZRS, RA-GZRS | Pay-as-you-go | High-transaction workloads, frequently accessed data |
-| **Hot** | HDD-backed, standard performance | General-purpose v2 (GPv2) | LRS, GRS, RA-GRS, ZRS, GZRS, RA-GZRS | Pay-as-you-go | General-purpose team shares and collaborative workloads |
-| **Cool** | HDD-backed, standard performance | General-purpose v2 (GPv2) | LRS, GRS, RA-GRS, ZRS, GZRS, RA-GZRS | Pay-as-you-go | Cost-efficient online archive and backup scenarios |
+| **Premium** | SSD ベース、一貫した低遅延 | FileStorage | LRS、ZRS | プロビジョニング済み (予約した容量に対して支払い) | 低遅延を必要とする高パフォーマンス ワークロード |
+| **トランザクション最適化** | HDD ベース、標準的なパフォーマンス | 汎用 v2 (GPv2) | LRS、GRS、RA-GRS、ZRS、GZRS、RA-GZRS | 従量課金 | トランザクションの多いワークロード、アクセス頻度の高いデータ |
+| **ホット** | HDD ベース、標準的なパフォーマンス | 汎用 v2 (GPv2) | LRS、GRS、RA-GRS、ZRS、GZRS、RA-GZRS | 従量課金 | 汎用のチーム共有と共同作業のワークロード |
+| **クール** | HDD ベース、標準的なパフォーマンス | 汎用 v2 (GPv2) | LRS、GRS、RA-GRS、ZRS、GZRS、RA-GZRS | 従量課金 | コスト効率の良いオンライン アーカイブとバックアップのシナリオ |
 
 > [!NOTE]
-> Transaction Optimized, Hot, and Cool are all Standard (HDD-based) tiers with different pricing structures optimized for specific access patterns. Premium tier uses SSD storage with provisioned billing (you pay for the capacity you reserve), while Standard tiers use pay-as-you-go billing.
+> トランザクション最適化、ホット、クールはいずれも Standard (HDD ベース) の層で、特定のアクセス パターンに合わせて最適化された異なる価格体系を持ちます。Premium 層は SSD ストレージとプロビジョニング課金 (予約した容量に対する支払い) を使い、Standard の各層は従量課金を使います。
 
 
-## Types of authentication
+## 認証の種類
 
-There are three main authentications methods that Azure Files supports.
+Azure Files がサポートする主な認証方法は 3 つあります。
 
-| Authentication method | Description |
+| 認証方法 | 説明 |
 | --- | --- |
-| Identity-based authentication over SMB | [SMB identity-based authentication](/azure/storage/files/storage-files-active-directory-overview#supported-authentication-scenarios) supports three Active Directory sources: On-premises AD DS, Microsoft Entra Domain Services, and Microsoft Entra Kerberos. Once your Active Directory source is selected, assign Azure RBAC roles to users who need access to the file share. |
-| Access key | An access key is an older and less flexible option. An Azure storage account has two access keys that can be used when making a request to the storage account, including to Azure Files. Access keys are static and provide full control access to Azure Files. Access keys should be secured and not shared with users, because they bypass all access control restrictions. A best practice is to avoid sharing storage account keys and use identity-based authentication whenever possible. |
-| A Shared Access Signature (SAS) token | SAS is a dynamically generated Uniform Resource Identifier (URI) that's based on the storage access key. SAS provides restricted access rights to an Azure storage account. Restrictions include allowed permissions, start and expiry time, allowed IP addresses from where requests can be sent, and allowed protocols. With Azure Files, a SAS token is only used to provide REST API access from code.|
+| SMB 経由の ID ベース認証 | [SMB の ID ベース認証](/azure/storage/files/storage-files-active-directory-overview#supported-authentication-scenarios)は、オンプレミス AD DS、Microsoft Entra Domain Services、Microsoft Entra Kerberos という 3 つの Active Directory ソースをサポートします。Active Directory ソースを選択したら、ファイル共有へのアクセスが必要なユーザーに Azure RBAC ロールを割り当てます。 |
+| アクセス キー | アクセス キーは、より古く柔軟性の低い選択肢です。Azure ストレージ アカウントには、Azure Files を含むストレージ アカウントへのリクエストで使える 2 つのアクセス キーがあります。アクセス キーは静的で、Azure Files へのフル コントロール アクセスを提供します。アクセス キーはすべてのアクセス制御の制限をバイパスするため、安全に管理し、ユーザーと共有すべきではありません。ベスト プラクティスは、ストレージ アカウント キーの共有を避け、可能な限り ID ベース認証を使うことです。 |
+| 共有アクセス署名 (SAS) トークン | SAS は、ストレージ アクセス キーに基づいて動的に生成される URI (Uniform Resource Identifier) です。SAS は、Azure ストレージ アカウントへの制限付きのアクセス権を提供します。制限には、許可するアクセス許可、開始時刻と有効期限、リクエストの送信元として許可する IP アドレス、許可するプロトコルが含まれます。Azure Files では、SAS トークンはコードからの REST API アクセスを提供する場合にのみ使われます。|
 
-## Creating SMB Azure file shares (classic)
+## SMB Azure ファイル共有の作成 (クラシック)
 
-Classic Azure file shares live inside a storage account, so they follow the same limits as that account. You can choose between two storage tiers: SSD (premium) and HDD (standard).
+クラシックな Azure ファイル共有はストレージ アカウントの中にあるため、そのアカウントと同じ制限に従います。ストレージ層は SSD (Premium) と HDD (Standard) の 2 つから選べます。
 
-SSD file shares are great when you need fast, consistent performance with low latency—usually in the single digit milliseconds. HDD shares are more budget friendly and work well for general purpose storage.
+SSD のファイル共有は、通常 1 桁ミリ秒の低遅延で、高速かつ一貫したパフォーマンスが必要な場合に最適です。HDD の共有はより手頃な価格で、汎用のストレージに適しています。
 
-If you need SMB access, make sure to create your file share inside a storage account. SMB file shares let you pick from several access tiers, including transaction optimized, hot, and cool.
+SMB でのアクセスが必要な場合は、ストレージ アカウントの中にファイル共有を作成してください。SMB ファイル共有では、トランザクション最適化、ホット、クールなど、複数のアクセス層から選べます。
 
-:::image type="content" source="../media/configure-classic-files.png" alt-text="Screenshot of creating a file share showing access tier choices.":::
+:::image type="content" source="../media/configure-classic-files.png" alt-text="アクセス層の選択肢が表示されたファイル共有の作成画面のスクリーンショット。":::
 
 > [!NOTE]
-> When connecting over SMB, don’t forget that traffic uses port 445. Many ISPs block port 445 outbound, which is the most common connectivity issue when mounting Azure file shares from on-premises environments. 
+> SMB で接続する際は、トラフィックがポート 445 を使うことを忘れないでください。多くの ISP はポート 445 の送信をブロックしており、これがオンプレミス環境から Azure ファイル共有をマウントする際の最も一般的な接続問題です。
 
 > [!Important]
-> [File shares (preview)](/azure/storage/files/create-file-share) are now generally available that don't require an Azure storage account. This option provides simplified management for scenarios where you only need file shares without other storage services. 
-
-
+> Azure ストレージ アカウントを必要としない[ファイル共有 (プレビュー)](/azure/storage/files/create-file-share) が一般提供になりました。この選択肢は、他のストレージ サービスは不要でファイル共有だけが欲しいシナリオで、管理を簡素化してくれます。

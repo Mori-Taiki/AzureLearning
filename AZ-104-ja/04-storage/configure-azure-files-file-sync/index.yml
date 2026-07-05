@@ -3,8 +3,8 @@ uid: learn.wwl.configure-azure-files-file-sync
 metadata:
   adobe-target: true
   prefetch-feature-rollout: true
-  title: Configure Azure Files
-  description: "Learn how to configure Azure Files for cloud file shares."
+  title: Azure Files の構成
+  description: "クラウドのファイル共有のための Azure Files の構成方法を学びます。"
   ms.date: 06/23/2026
   author: wwlpublish
   ms.author: robbarefoot
@@ -14,17 +14,17 @@ metadata:
   - N/A
   ms.service: azure-file-storage
   ai-usage: ai-assisted
-title: Configure Azure Files
-summary: Learn how to configure Azure Files and Azure File Sync.
+title: Azure Files の構成
+summary: Azure Files と Azure File Sync の構成方法を学びます。
 abstract: |
-  In this module, you learn how to:
+  このモジュールでは、次のことを学びます。
 
-  -   Identify storage for file shares versus blob data.
+  -   ファイル共有と BLOB データのそれぞれに適したストレージを特定する。
 
-  -   Configure Azure file shares and file share snapshots.
+  -   Azure ファイル共有とファイル共有スナップショットを構成する。
 
-  -   Identify features and use cases of Azure File Sync.
-prerequisites: None
+  -   Azure File Sync の機能と利用ケースを把握する。
+prerequisites: なし
 iconUrl: /training/achievements/azure-file-sync-configure.svg
 levels:
 - intermediate

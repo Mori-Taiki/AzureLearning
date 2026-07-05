@@ -1,43 +1,41 @@
-Azure Administrators are familiar with Azure Files and the Azure File Sync agent. They know how to implement fully managed file shares in the cloud by using industry standard protocols. They understand how to use Azure File Sync to cache Azure Files shares on an on-premises Windows Server or cloud virtual machine.
+Azure 管理者は、Azure Files と Azure File Sync エージェントに精通しています。業界標準のプロトコルを使って、クラウドでフル マネージドなファイル共有を実装する方法を知っています。Azure File Sync を使って、Azure Files 共有をオンプレミスの Windows Server やクラウドの仮想マシンにキャッシュする方法も理解しています。
 
-In this module, you learned when to use Azure Files and how the service compares to Azure Blob Storage. You also reviewed Azure Files features such as snapshots and soft delete. You learned how Azure File Sync can be used with on-premises data stores. You also were introduced to Azure Storage Explorer.
+このモジュールでは、Azure Files を使うべき場面と、Azure Blob Storage との違いを学びました。スナップショットや論理的な削除といった Azure Files の機能も確認しました。Azure File Sync をオンプレミスのデータ ストアとどう組み合わせられるかを学び、Azure Storage Explorer も紹介しました。
 
-**The main takeaways for this module are:**
+**このモジュールの要点は次のとおりです。**
 
-- Azure Files provides the SMB and NFS protocols, client libraries, and a REST interface that allows access from anywhere to stored files.
+- Azure Files は、SMB と NFS のプロトコル、クライアント ライブラリ、そして保存されたファイルへどこからでもアクセスできる REST インターフェイスを提供します。
 
-- Azure Files is ideal to lift and shift an application to the cloud that already uses the native file system APIs. Share data between the app and other applications running in Azure.
+- Azure Files は、ネイティブのファイル システム API を既に使っているアプリケーションをクラウドへリフト アンド シフトするのに最適です。そのアプリと、Azure で動く他のアプリケーションとの間でデータを共有できます。
 
-- Azure Files offers two industry-standard file system protocols for mounting Azure file shares: the Server Message Block (SMB) protocol and the Network File System (NFS) protocol.
+- Azure Files は、Azure ファイル共有をマウントするために、業界標準の 2 つのファイル システム プロトコル、サーバー メッセージ ブロック (SMB) プロトコルとネットワーク ファイル システム (NFS) プロトコルを提供します。
 
-- Azure Files offers two types of file shares: standard and premium. The premium tier stores data on modern solid-state drives (SSDs), while the standard tier uses hard disk drives (HDDs).
+- Azure Files には、Standard と Premium の 2 種類のファイル共有があります。Premium 層は最新のソリッドステート ドライブ (SSD) にデータを保存し、Standard 層はハード ディスク ドライブ (HDD) を使います。
 
-- File share snapshots capture a point-in-time, read-only copy of your data.
+- ファイル共有スナップショットは、データのある時点の読み取り専用コピーを取得します。
 
-- Soft delete allows you to recover your deleted file share.
+- 論理的な削除を使うと、削除したファイル共有を復元できます。
 
-- Azure Storage Explorer is a standalone application that makes it easy to work with stored data on Windows, macOS, and Linux. 
+- Azure Storage Explorer は、Windows、macOS、Linux で保存データを簡単に扱えるスタンドアロン アプリケーションです。
 
-- Azure File Sync enables you to cache file shares on an on-premises Windows Server or cloud virtual machine. 
+- Azure File Sync を使うと、ファイル共有をオンプレミスの Windows Server やクラウドの仮想マシンにキャッシュできます。
 
-## Learn more with Copilot
+## Copilot でさらに学ぶ
 
-Copilot can assist you in configuring Azure infrastructure solutions. Copilot can compare, recommend, explain, and research products and services where you need more information. Open a Microsoft Edge browser and choose Copilot (top right) or navigate to copilot.microsoft.com. Take a few minutes to try these prompts and extend your learning with Copilot.
+Copilot は、Azure インフラストラクチャ ソリューションの構成を支援してくれます。より詳しい情報が必要な製品やサービスについて、Copilot に比較、推奨、解説、調査を頼めます。Microsoft Edge ブラウザーを開いて右上の Copilot を選ぶか、copilot.microsoft.com にアクセスしてください。少し時間を取って次のプロンプトを試し、Copilot で学びを深めましょう。
 
 - What are Azure Files and how are they different from Azure blob storage?
 
 - What are some common configuration and administration tasks for Azure Files?
 
-## Learn more with documentation
+## ドキュメントでさらに学ぶ
 
-- [Azure Files documentation](/azure/storage/files/). This page is your starting point for all things related to Azure Files. 
+- [Azure Files のドキュメント](/azure/storage/files/)。Azure Files に関するあらゆる情報の出発点となるページです。
 
-- [Azure File Sync documentation](/azure/storage/file-sync/). This page is your starting point for all things related to Azure File Sync. 
-  
-## Learn more with self-paced training
+- [Azure File Sync のドキュメント](/azure/storage/file-sync/)。Azure File Sync に関するあらゆる情報の出発点となるページです。
 
-- [Implement a hybrid file server infrastructure](/training/modules/implement-hybrid-file-server-infrastructure/). In this module, you learn to deploy Azure File Sync and use Storage Migration Services to migrate file servers to Azure.
+## 自習型トレーニングでさらに学ぶ
 
-- [Guided Project - Azure Files and Azure Blobs](/training/modules/guided-project-azure-files-azure-blobs/). In this module, you practice storing business data securely by using Azure Blob Storage and Azure Files. The lab combines both learning and practical experience. 
+- [ハイブリッド ファイル サーバー インフラストラクチャを実装する](/training/modules/implement-hybrid-file-server-infrastructure/)。このモジュールでは、Azure File Sync のデプロイと、Storage Migration Service を使ったファイル サーバーの Azure への移行を学びます。
 
-
+- [ガイド付きプロジェクト - Azure Files と Azure BLOB](/training/modules/guided-project-azure-files-azure-blobs/)。このモジュールでは、Azure Blob Storage と Azure Files を使ってビジネス データを安全に保存する練習を行います。このラボは、学習と実践の両方を組み合わせています。

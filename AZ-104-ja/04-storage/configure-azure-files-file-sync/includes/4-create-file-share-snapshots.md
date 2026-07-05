@@ -1,27 +1,25 @@
-Azure Files provides the capability to take share [snapshots of file shares](/azure/storage/files/storage-snapshots-files). Share snapshots provide point-in-time copies of your Azure file shares that protect against accidental deletion and enable recovery from application errors. 
+Azure Files には、ファイル共有の[スナップショット](/azure/storage/files/storage-snapshots-files)を取得する機能があります。共有スナップショットは、Azure ファイル共有のある時点のコピーを提供し、誤削除からの保護やアプリケーション エラーからの復旧を可能にします。
 
-:::image type="content" source="../media/file-share-snapshot-cbda2136.png" alt-text="Screenshot of a file share snapshot that shows the snapshot name and date it was created."::: 
+:::image type="content" source="../media/file-share-snapshot-cbda2136.png" alt-text="スナップショットの名前と作成日が表示されている、ファイル共有スナップショットのスクリーンショット。":::
 
-## Things to know about file share snapshots
-* Snapshots are incremental, read-only point-in-time copies at the share level.
-* To reduce time and cost only captures from the last snapshot.
-* Same experience for SMB and NFS shares in all Azure public regions.
-* Snapshot adds a unique timestamp to the share URI.
-* Uses the shares redundancy settings.
-* Up to 200 snapshots per file share for low-RPO recovery points.
-* Snapshots persist until deleted. Deleting the share deletes all snapshots.
-* Azure Backup can lease snapshots to help prevent accidental deletion.
-* Restore a file, folder, or full share; full restore requires only the latest snapshot.
+## ファイル共有スナップショットについて知っておくべきこと
+* スナップショットは、共有レベルの増分・読み取り専用のポイントインタイム コピーです。
+* 時間とコストを削減するため、前回のスナップショット以降の差分だけを取得します。
+* Azure のすべてのパブリック リージョンで、SMB 共有と NFS 共有で同じ体験が得られます。
+* スナップショットは、共有の URI に一意のタイムスタンプを付加します。
+* 共有の冗長性設定をそのまま使います。
+* 低 RPO の復旧ポイントとして、ファイル共有ごとに最大 200 個のスナップショットを保持できます。
+* スナップショットは削除されるまで残ります。共有を削除すると、すべてのスナップショットも削除されます。
+* Azure Backup はスナップショットをリースして、誤削除の防止に役立てられます。
+* ファイル、フォルダー、または共有全体を復元できます。共有全体の復元には最新のスナップショットだけが必要です。
 
-### Things to consider when using file share snapshots
-File share snapshots can help you protect and recover your data. As you review the benefits, consider where snapshots fit into your Azure Files setup.
+### ファイル共有スナップショットを使う際に考慮すべきこと
+ファイル共有スナップショットは、データの保護と復旧に役立ちます。利点を確認しながら、自分の Azure Files の構成のどこにスナップショットが当てはまるか考えてみてください。
 
-| Benefit | Description |
+| 利点 | 説明 |
 | --- | --- |
-| Protect against application error and data corruption | File-share workloads constantly read and write data. If a misconfiguration, bad deployment, or software bug overwrites or corrupts data, a snapshot lets you roll the share back to a known-good point in time. Take a snapshot before releasing new code so you have a clean restore point if something goes wrong. |
-| Protect against accidental deletions or unintended changes | If a file is changed, snapshots give you a quick way to restore an earlier version. Use snapshots to roll back to the last good copy when something unexpected happens. |
-| Support backup and recovery | Create snapshots on a schedule to build a backup history for your file share. Keeping prior versions makes it easier to meet audit needs and recover data after mistakes or a broader outage. |
+| アプリケーション エラーやデータ破損からの保護 | ファイル共有のワークロードは、絶えずデータを読み書きしています。構成ミス、不具合のあるデプロイ、ソフトウェアのバグでデータが上書きされたり破損したりした場合、スナップショットがあれば、正常だった時点まで共有をロールバックできます。新しいコードのリリース前にスナップショットを取得しておけば、問題が起きたときのきれいな復元ポイントになります。 |
+| 誤削除や意図しない変更からの保護 | ファイルが変更されてしまっても、スナップショットがあれば以前のバージョンを素早く復元できます。想定外のことが起きたら、スナップショットを使って最後の正常なコピーにロールバックしてください。 |
+| バックアップと復旧のサポート | スケジュールでスナップショットを作成して、ファイル共有のバックアップ履歴を築けます。以前のバージョンを保持しておくと、監査の要件を満たしやすくなり、ミスや大きな障害の後のデータ復旧も容易になります。 |
 
-For automated snapshot creation or integration with existing scripts, PowerShell and Azure CLI provide programmatic access to snapshot operations. Both tools support adding metadata to snapshots and can be scheduled through Azure Automation, GitHub Actions, or any continuous integration system. 
-
-
+スナップショットの自動作成や既存スクリプトとの統合には、PowerShell と Azure CLI がスナップショット操作へのプログラムによるアクセスを提供します。どちらのツールもスナップショットへのメタデータの追加をサポートしており、Azure Automation、GitHub Actions、任意の継続的インテグレーション システムからスケジュール実行できます。

@@ -1,22 +1,22 @@
-Azure Files offers fully managed file shares in the cloud that are accessible via industry standard protocols. Azure File Sync is a service that allows you to cache several Azure Files shares on an on-premises Windows Server or cloud virtual machine.
+Azure Files は、業界標準のプロトコルでアクセスできる、クラウド上のフル マネージドなファイル共有を提供します。Azure File Sync は、複数の Azure Files 共有を、オンプレミスの Windows Server またはクラウドの仮想マシンにキャッシュできるサービスです。
 
-In this module, your company has a large repository of organizational documents. Offices are located in different geographical regions, and users need the most current versions of the documents. You're researching how to implement Azure Files shares to provide a central location for the documents. 
+このモジュールでは、あなたの会社には組織のドキュメントの大規模なリポジトリがあります。オフィスは異なる地理的リージョンにあり、ユーザーはドキュメントの最新バージョンを必要としています。あなたは、ドキュメントの一元的な保管場所を提供するために、Azure Files 共有をどう実装するかを調査しています。
 
-## Learning objectives
+## 学習の目標
 
-In this module, you learn how to:
+このモジュールでは、次のことを学びます。
 
-- Identify storage for file shares.
-- Compare file shares to blob storage.
-- Configure Azure file shares, file share snapshots, and soft delete.
-- Use Azure Storage Explorer to access your file share. 
+- ファイル共有のためのストレージを特定する。
+- ファイル共有と BLOB ストレージを比較する。
+- Azure ファイル共有、ファイル共有スナップショット、論理的な削除を構成する。
+- Azure Storage Explorer を使ってファイル共有にアクセスする。
 
-## Skills measured
+## 評価されるスキル
 
-The content in the module helps you prepare for [Exam AZ-104: Microsoft Azure Administrator](/credentials/certifications/resources/study-guides/az-104). 
+このモジュールの内容は、[試験 AZ-104: Microsoft Azure Administrator](/credentials/certifications/resources/study-guides/az-104) の準備に役立ちます。
 
 
-## Prerequisites
+## 前提条件
 
-- Familiarity with shared file systems. 
-- Familiarity with navigating the Azure portal. 
+- 共有ファイル システムに関する基本知識。
+- Azure portal の操作に関する基本知識。

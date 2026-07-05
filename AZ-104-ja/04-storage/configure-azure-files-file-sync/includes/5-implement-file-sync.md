@@ -1,33 +1,31 @@
-Azure Files offers [soft delete for file shares](/azure/storage/files/storage-files-prevent-file-share-deletion?toc=%2Fazure%2Fstorage%2Ffile-sync). Soft delete lets you recover deleted files and file shares.
+Azure Files には、[ファイル共有の論理的な削除](/azure/storage/files/storage-files-prevent-file-share-deletion?toc=%2Fazure%2Fstorage%2Ffile-sync)があります。論理的な削除を使うと、削除されたファイルやファイル共有を復元できます。
 
-:::image type="content" source="../media/files-enable-soft-delete-new-ui.png" alt-text="Illustration that depicts how to enable soft delete on an Azure file share." border="false":::
+:::image type="content" source="../media/files-enable-soft-delete-new-ui.png" alt-text="Azure ファイル共有で論理的な削除を有効にする方法を描いた図。" border="false":::
 
-### Things to know about soft delete for Azure Files
+### Azure Files の論理的な削除について知っておくべきこと
 
-Let's take a look at the characteristics of soft delete for Azure Files. 
+Azure Files の論理的な削除の特徴を見てみましょう。
 
-- Soft delete for file shares is enabled at the storage account level.
+- ファイル共有の論理的な削除は、ストレージ アカウント レベルで有効にします。
 
-- Soft delete transitions content to a soft deleted state instead of being permanently erased.
+- 論理的な削除では、コンテンツは完全に消去される代わりに、論理的に削除された状態へ移行します。
 
-- Soft delete lets you configure the retention period. The retention period is the amount of time that soft deleted file shares are stored and available for recovery. 
+- 論理的な削除では、保持期間を構成できます。保持期間とは、論理的に削除されたファイル共有が保管され、復元可能な状態にある期間のことです。
 
-- Soft delete provides a retention period between 1 and 365 days. 
+- 論理的な削除の保持期間は、1 日から 365 日の範囲で設定できます。
 
-- Soft delete can be enabled on either new or existing file shares. 
+- 論理的な削除は、新規・既存のどちらのファイル共有でも有効にできます。
 
-### Things to consider when using soft delete for Azure Files
+### Azure Files の論理的な削除を使う際に考慮すべきこと
 
-There are many advantages to using soft delete for Azure Files. Consider the following scenarios, and think about how you can use soft delete.
+Azure Files の論理的な削除には多くの利点があります。次のシナリオを検討し、論理的な削除をどう活用できるか考えてみてください。
 
-- **Recover from accidental data loss**. You can recover deleted or corrupted data with soft delete.
+- **誤操作によるデータ損失からの復旧**: 論理的な削除を使えば、削除されたデータや破損したデータを復元できます。
 
-- **Upgrade scenarios**. Use soft delete to restore to a known good state after a failed upgrade attempt.
+- **アップグレードのシナリオ**: アップグレードに失敗した後、既知の正常な状態へ復元するために論理的な削除を使えます。
 
-- **Ransomware protection**. Use soft delete to recover data without paying ransom to cybercriminals.
+- **ランサムウェアからの保護**: サイバー犯罪者に身代金を払うことなくデータを復旧するために、論理的な削除を使えます。
 
-- **Long-term retention**. Use soft delete to comply with data retention requirements.
+- **長期保持**: データ保持の要件に準拠するために、論理的な削除を使えます。
 
-- **Business continuity**. Use soft delete to prepare your infrastructure to be highly available for critical workloads.
-
-
+- **事業継続性**: 重要なワークロード向けにインフラの高可用性を確保する備えとして、論理的な削除を使えます。

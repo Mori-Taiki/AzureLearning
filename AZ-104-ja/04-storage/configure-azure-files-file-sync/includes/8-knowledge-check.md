@@ -1,8 +1,8 @@
 
-Your company maintains a large document repository. You're implementing Azure Files shares to provide a central location for the documents. Users at offices in different geographical regions need access to the latest versions of the documents. You're configuring Azure File Sync to keep the information up to date across multiple offices.
+あなたの会社は、大規模なドキュメント リポジトリを維持しています。ドキュメントの一元的な保管場所を提供するために、Azure Files 共有を実装しています。異なる地理的リージョンのオフィスのユーザーは、ドキュメントの最新バージョンにアクセスする必要があります。複数のオフィス間で情報を最新に保つために、Azure File Sync を構成しています。
 
-One scenario you're working to resolve involves the manufacturing division. They're running dedicated software in their warehouse to keep track of product stock. The software needs to run on machines in the warehouse, but the management team wants to access the stock data from the main office. Limited bandwidth in the warehouse is causing issues when accessing cloud based solutions. You proposed using cloud tiering, soft delete, and snapshots.
+解決に取り組んでいるシナリオのひとつは、製造部門に関するものです。製造部門では、製品在庫を追跡するための専用ソフトウェアを倉庫で動かしています。このソフトウェアは倉庫内のマシンで動作する必要がありますが、経営チームは本社から在庫データにアクセスしたいと考えています。倉庫の帯域幅が限られているため、クラウドベースのソリューションへのアクセスに問題が生じています。あなたは、クラウド階層化、論理的な削除、スナップショットの利用を提案しました。
 
-### Answer the following questions
+### 次の質問に答えてください
 
-Choose the best response for each question.
+各質問に対して最も適切な回答を選んでください。

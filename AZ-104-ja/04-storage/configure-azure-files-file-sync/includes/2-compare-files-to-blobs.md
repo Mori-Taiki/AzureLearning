@@ -1,48 +1,47 @@
-[Azure Files](/azure/storage/files/storage-files-introduction) offers fully managed file shares in the cloud. You can access Azure file shares by using the Server Message Block (SMB), Network File System (NFS), and HTTP protocols. Clients can connect to Azure file shares from Windows, Linux, and macOS devices.
+[Azure Files](/azure/storage/files/storage-files-introduction) は、クラウド上のフル マネージドなファイル共有を提供します。Azure ファイル共有には、サーバー メッセージ ブロック (SMB)、ネットワーク ファイル システム (NFS)、HTTP の各プロトコルでアクセスできます。クライアントは、Windows、Linux、macOS のデバイスから Azure ファイル共有に接続できます。
 
-### Things to know about Azure Files
+### Azure Files について知っておくべきこと
 
-Here are some characteristics of Azure files: 
+Azure Files の特徴をいくつか挙げます。
 
-- **Serverless deployment**. An Azure file share is a PaaS offering of a fully managed file share that doesn't require any infrastructure. You don't need to take care of any VMs, operating systems, or updates.
+- **サーバーレスのデプロイ**: Azure ファイル共有は、インフラを一切必要としない、フル マネージドなファイル共有の PaaS です。VM、オペレーティング システム、更新の面倒を見る必要はありません。
 
-- **Almost unlimited storage**. A single Azure file share can store up to 100 tebibytes (TiB) of files, and a file can be up to 4 TiB in size. The files are organized in a hierarchical folder structure in the same way as on on-premises file servers.
+- **ほぼ無制限のストレージ**: 1 つの Azure ファイル共有には最大 100 テビバイト (TiB) のファイルを保存でき、1 ファイルは最大 4 TiB のサイズにできます。ファイルは、オンプレミスのファイル サーバーと同じように、階層的なフォルダー構造で整理されます。
 
-- **Data encryption**. The data on an Azure file share is encrypted at rest in an Azure datacenter and in transit on a network.
+- **データの暗号化**: Azure ファイル共有のデータは、Azure データセンターでの保存時にも、ネットワーク上の転送中にも暗号化されます。
 
-- **Access from anywhere**. By default, clients can access Azure file shares from anywhere if they have internet connectivity.
+- **どこからでもアクセス**: 既定では、クライアントはインターネット接続さえあれば、どこからでも Azure ファイル共有にアクセスできます。
 
-- **Integration into an existing environment**. You can control access to Azure file shares by using Microsoft Entra identities or AD DS identities that are synced to Microsoft Entra ID. This helps ensure that users can have the same experience accessing an Azure file share as when they access an on-premises file server.
+- **既存環境への統合**: Azure ファイル共有へのアクセスは、Microsoft Entra の ID、または Microsoft Entra ID に同期された AD DS の ID を使って制御できます。これにより、オンプレミスのファイル サーバーにアクセスするのと同じ感覚で、ユーザーが Azure ファイル共有にアクセスできるようになります。
 
-- **Previous versions and backups**. You can create Azure file share snapshots that integrate with the Previous Versions feature in File Explorer. You can also use Azure Backup to back up Azure file shares.
+- **以前のバージョンとバックアップ**: エクスプローラーの [以前のバージョン] 機能と統合される、Azure ファイル共有のスナップショットを作成できます。Azure Backup を使って Azure ファイル共有をバックアップすることもできます。
 
-- **Data redundancy**. Azure file share data replicates to multiple locations in the same Azure datacenter or across many Azure datacenters. The replication setting of the Azure storage account that includes the file share controls the data redundancy.
+- **データの冗長性**: Azure ファイル共有のデータは、同じ Azure データセンター内の複数の場所、または複数の Azure データセンターにまたがってレプリケートされます。データの冗長性は、ファイル共有を含む Azure ストレージ アカウントのレプリケーション設定によって制御されます。
 
-### Things to consider when using Azure Files
+### Azure Files を使う際に考慮すべきこと
 
-There are many common scenarios for using Azure Files. As you review the following suggestions, think about how Azure Files can provide solutions for your organization.
+Azure Files には多くの一般的なシナリオがあります。次の提案を確認しながら、Azure Files が自分の組織にどんなソリューションを提供できるか考えてみてください。
 
-- **Consider replacement and supplement options**. Replace or supplement traditional on-premises file servers or NAS devices by using Azure Files.
+- **置き換えと補完の選択肢を考慮する**: Azure Files を使って、従来のオンプレミス ファイル サーバーや NAS デバイスを置き換えたり補完したりできます。
 
-- **Consider global access**. Directly access Azure file shares by using most operating systems, such as Windows, macOS, and Linux, from anywhere in the world.
+- **グローバルなアクセスを考慮する**: Windows、macOS、Linux などほとんどのオペレーティング システムから、世界中のどこからでも Azure ファイル共有に直接アクセスできます。
 
-- **Consider lift and shift support**. _Lift and shift_ applications to the cloud with Azure Files for apps that expect a file share to store file application or user data.
+- **リフト アンド シフトのサポートを考慮する**: アプリケーションやユーザーのデータの保存にファイル共有を前提とするアプリなら、Azure Files を使ってクラウドへ「リフト アンド シフト」できます。
 
-- **Consider using Azure File Sync**. Replicate Azure file shares to Windows Servers by using Azure File Sync. You can replicate on-premises or in the cloud for performance and distributed caching of the data where it's being used. We take a closer look at Azure File Sync in a later unit.
+- **Azure File Sync の利用を考慮する**: Azure File Sync を使って、Azure ファイル共有を Windows Server にレプリケートできます。データが使われる場所でのパフォーマンスと分散キャッシュのために、オンプレミスでもクラウドでもレプリケートできます。Azure File Sync については、後のユニットで詳しく見ていきます。
 
-- **Consider shared applications**. Store shared application settings such as configuration files in Azure Files.
+- **共有アプリケーションを考慮する**: 構成ファイルなど、共有するアプリケーション設定を Azure Files に保存できます。
 
-- **Consider diagnostic data**. Use Azure Files to store diagnostic data such as logs, metrics, and crash dumps in a shared location.
+- **診断データを考慮する**: ログ、メトリック、クラッシュ ダンプといった診断データを共有の場所に保存するために Azure Files を使えます。
 
-- **Consider tools and utilities**. Azure Files is a good option for storing tools and utilities that are needed for developing or administering Azure VMs or cloud services.
+- **ツールとユーティリティを考慮する**: Azure Files は、Azure VM やクラウド サービスの開発・管理に必要なツールやユーティリティの保存に適した選択肢です。
 
-## Compare Azure Files to Azure Blob Storage
+## Azure Files と Azure Blob Storage を比較する
 
-It's important to understand when to use Azure Files to store data in file shares rather than using Azure Blob Storage to store data as blobs. The following table compares different features of these services and common implementation scenarios.
+データを BLOB として Azure Blob Storage に保存するのではなく、ファイル共有として Azure Files に保存すべきなのはどんなときかを理解しておくことが重要です。次の表は、これらのサービスの機能と一般的な実装シナリオを比較しています。
 
-| Azure Files (file shares) | Azure Blob Storage (blobs) |
+| Azure Files (ファイル共有) | Azure Blob Storage (BLOB) |
 | --- | --- |
-| Azure Files provides the SMB and NFS protocols, client libraries, and a REST interface that allows access from anywhere to stored files. | Azure Blob Storage provides client libraries and a REST interface that allows unstructured data to be stored and accessed at a massive scale in block blobs. |
-| - Files in an Azure Files share are true directory objects. <br> - Data in Azure Files is accessed through file shares across multiple virtual machines. | - Blobs in Azure Blob Storage are a flat namespace. <br> - Blob data in Azure Blob Storage is accessed through a container. |
-| _**Azure Files** is ideal to lift and shift an application to the cloud that already uses the native file system APIs. Share data between the app and other applications running in Azure._ <br><br> _Azure Files is a good option when you want to store development and debugging tools that need to be accessed from many virtual machines._ | _**Azure Blob Storage** is ideal for applications that need to support streaming and random-access scenarios._ <br><br> _Azure Blob Storage is a good option when you want to be able to access application data from anywhere._ |
-
+| Azure Files は、SMB と NFS のプロトコル、クライアント ライブラリ、そして保存されたファイルへどこからでもアクセスできる REST インターフェイスを提供します。 | Azure Blob Storage は、非構造化データをブロック BLOB として大規模に保存・アクセスできる、クライアント ライブラリと REST インターフェイスを提供します。 |
+| - Azure Files 共有内のファイルは、本物のディレクトリ オブジェクトです。 <br> - Azure Files のデータには、複数の仮想マシンをまたいでファイル共有経由でアクセスします。 | - Azure Blob Storage の BLOB はフラットな名前空間です。 <br> - Azure Blob Storage の BLOB データには、コンテナー経由でアクセスします。 |
+| _**Azure Files** は、ネイティブのファイル システム API を既に使っているアプリケーションをクラウドへリフト アンド シフトするのに最適です。そのアプリと、Azure で動く他のアプリケーションとの間でデータを共有できます。_ <br><br> _Azure Files は、多くの仮想マシンからアクセスする必要のある開発・デバッグ用のツールを保存したい場合に良い選択肢です。_ | _**Azure Blob Storage** は、ストリーミングとランダム アクセスのシナリオをサポートする必要があるアプリケーションに最適です。_ <br><br> _Azure Blob Storage は、アプリケーションのデータにどこからでもアクセスできるようにしたい場合に良い選択肢です。_ |
