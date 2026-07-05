@@ -1,6 +1,6 @@
 
-Your company uses an Azure storage account for storing large numbers of images, audio, and video.
+あなたの会社は、大量の画像、オーディオ、ビデオの保存に Azure ストレージ アカウントを使っています。
 
-### Answer the following questions
+### 次の質問に答えてください
 
-Choose the best response for each question.
+各質問に対して最も適切な回答を選んでください。

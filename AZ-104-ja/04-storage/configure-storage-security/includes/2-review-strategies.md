@@ -1,38 +1,38 @@
-Administrators use different strategies to ensure their data is secure. Common approaches include encryption, authentication, authorization, and user access control with credentials, file permissions, and private signatures. Azure Storage offers a suite of security capabilities based on common strategies to help you secure your data.
+管理者は、データを安全に保つためにさまざまな戦略を使います。一般的なアプローチには、暗号化、認証、認可、そして資格情報・ファイルのアクセス許可・プライベートな署名によるユーザー アクセス制御があります。Azure Storage は、こうした一般的な戦略に基づく一連のセキュリティ機能を提供し、データの保護を支援します。
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=f0ef7956-ecdf-43cb-82e5-d0f9cb34bf3c]
 
-> [!NOTE] 
-> The video refers to Active Directory, which is now branded as Microsoft Entra ID. 
+> [!NOTE]
+> このビデオでは Active Directory と呼ばれていますが、現在は Microsoft Entra ID というブランドになっています。
 
-### Things to know about Azure Storage security strategies
+### Azure Storage のセキュリティ戦略について知っておくべきこと
 
-Let's look at some characteristics of Azure Storage security. As you go through this module, consider defense in depth. How can you apply storage security features to this concept? 
+Azure Storage のセキュリティの特徴を見てみましょう。このモジュールを進めながら、多層防御について考えてみてください。ストレージのセキュリティ機能をこの考え方にどう当てはめられるでしょうか。
 
-:::image type="content" source="../media/storage-defense.png" alt-text="Diagram showing storage defense in depth features." border="false":::
+:::image type="content" source="../media/storage-defense.png" alt-text="ストレージの多層防御の機能を示す図。" border="false":::
 
-- **Encryption at rest**. Storage Service Encryption (SSE) with a 256-bit Advanced Encryption Standard (AES) cipher encrypts all data written to Azure Storage. When you read data from Azure Storage, Azure Storage decrypts the data before returning it. This process incurs no extra charges and doesn't degrade performance. Encryption at rest includes encrypting virtual hard disks (VHDs) with Azure Disk Encryption. This encryption uses BitLocker for Windows images, and uses dm-crypt for Linux. 
+- **保存時の暗号化**: 256 ビットの高度暗号化標準 (AES) 暗号によるストレージ サービス暗号化 (SSE) が、Azure Storage に書き込まれるすべてのデータを暗号化します。Azure Storage からデータを読み取るとき、Azure Storage はデータを返す前に復号します。この処理に追加料金はかからず、パフォーマンスも低下しません。保存時の暗号化には、Azure Disk Encryption による仮想ハード ディスク (VHD) の暗号化も含まれます。この暗号化は、Windows イメージには BitLocker を、Linux には dm-crypt を使います。
 
-- **Encryption in transit**. You can configure your storage account to only accept requests from secure connections by setting the **Secure transfer required** property for the storage account. Existing accounts should explicitly disallow TLS 1.0 and 1.1, which are deprecated. 
+- **転送中の暗号化**: ストレージ アカウントの **[安全な転送が必須]** プロパティを設定すると、セキュリティで保護された接続からのリクエストだけを受け付けるように構成できます。既存のアカウントでは、非推奨となった TLS 1.0 と 1.1 を明示的に拒否すべきです。
 
-- **Encryption models**. Azure supports various encryption models, including server-side encryption that uses service-managed keys, customer-managed keys in Key Vault, or customer-managed keys on customer-controlled hardware. With client-side encryption, you can manage and store keys on-premises or in another secure location.
+- **暗号化モデル**: Azure は、サービス マネージド キーを使うサーバー側暗号化、Key Vault のカスタマー マネージド キー、顧客が管理するハードウェア上のカスタマー マネージド キーなど、さまざまな暗号化モデルをサポートします。クライアント側暗号化なら、キーをオンプレミスや別の安全な場所で管理・保管できます。
 
-- **Authorize requests**. For optimal security, Microsoft recommends using Microsoft Entra ID with managed identities to authorize requests against blob, queue, and table data, whenever possible. Authorization with Microsoft Entra ID and managed identities provides superior security and ease of use over Shared Key authorization.
+- **リクエストの認可**: 最適なセキュリティのために、Microsoft は可能な限り、BLOB、キュー、テーブルのデータへのリクエストの認可に、マネージド ID と組み合わせた Microsoft Entra ID を使うことを推奨しています。Microsoft Entra ID とマネージド ID による認可は、共有キーによる認可よりも優れたセキュリティと使いやすさを提供します。
 
-- **RBAC**. RBAC ensures that resources in your storage account are accessible only when you want them to be, and to only those users or applications whom you grant access. Assign RBAC roles scoped to an Azure storage account.
+- **RBAC**: RBAC により、ストレージ アカウント内のリソースには、意図したときに、アクセスを許可したユーザーやアプリケーションだけがアクセスできるようになります。Azure ストレージ アカウントをスコープとする RBAC ロールを割り当てます。
 
-- **Storage analytics**. Azure Storage Analytics performs logging for a storage account. You can use this data to trace requests, analyze usage trends, and diagnose issues with your storage account.
+- **ストレージ分析**: Azure Storage Analytics は、ストレージ アカウントのログを記録します。このデータを使って、リクエストの追跡、利用傾向の分析、ストレージ アカウントの問題の診断ができます。
 
 > [!TIP]
-> The Microsoft [storage cloud security benchmark](/security/benchmark/azure/baselines/storage-security-baseline) provides recommendations on how you can secure your cloud storage solutions.
+> Microsoft の[ストレージのクラウド セキュリティ ベンチマーク](/security/benchmark/azure/baselines/storage-security-baseline)には、クラウド ストレージ ソリューションを保護する方法についての推奨事項があります。
 
-### Things to consider when using authorization security
+### 認可のセキュリティを使う際に考慮すべきこと
 
-Review the following strategies for authorizing requests to Azure Storage. Think about what security strategies would work for your Azure Storage.
+Azure Storage へのリクエストを認可するための次の戦略を確認しましょう。自分の Azure Storage にはどのセキュリティ戦略が合うか考えてみてください。
 
-| Authorization strategy | Description |
+| 認可の戦略 | 説明 |
 | --- | --- |
-| **Microsoft Entra ID** | Microsoft Entra ID is Microsoft's cloud-based identity and access management service. With Microsoft Entra ID, you can assign fine-grained access to users, groups, or applications by using role-based access control. |
-| **Shared Key** | Access is authorized with an account access key. The key can be the primary or secondary access key. To enforce Entra ID authorization, disable the Shared Key at the storage account level. |
-| **Shared access signatures** | A SAS delegates access to a particular resource in your Azure storage account with specified permissions and for a specified time interval. |
-| **Anonymous access to containers and blobs** | Anonymous public access is disabled by default on new storage accounts. Microsoft recommends keeping anonymous access disabled for accounts containing sensitive data. |
+| **Microsoft Entra ID** | Microsoft Entra ID は、Microsoft のクラウドベースの ID およびアクセス管理サービスです。Microsoft Entra ID では、ロールベースのアクセス制御を使って、ユーザー、グループ、アプリケーションにきめ細かなアクセスを割り当てられます。 |
+| **共有キー** | アカウントのアクセス キーでアクセスを認可します。キーはプライマリでもセカンダリでもかまいません。Entra ID による認可を強制するには、ストレージ アカウント レベルで共有キーを無効にします。 |
+| **共有アクセス署名** | SAS は、指定したアクセス許可と期間で、Azure ストレージ アカウント内の特定のリソースへのアクセスを委任します。 |
+| **コンテナーと BLOB への匿名アクセス** | 新しいストレージ アカウントでは、匿名のパブリック アクセスは既定で無効です。Microsoft は、機微なデータを含むアカウントでは匿名アクセスを無効のままにしておくことを推奨しています。 |

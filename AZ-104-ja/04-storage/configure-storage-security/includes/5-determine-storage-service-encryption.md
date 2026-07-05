@@ -1,31 +1,31 @@
-Azure Storage encryption for data at rest protects your data by ensuring your organizational security and compliance commitments are met. The encryption and decryption processes happen automatically. Because your data is secured by default, you don't need to modify your code or applications.
+保存データに対する Azure Storage の暗号化は、組織のセキュリティとコンプライアンスの要件を確実に満たすことでデータを保護します。暗号化と復号の処理は自動的に行われます。データは既定で保護されるため、コードやアプリケーションを変更する必要はありません。
 
-When you create a storage account, Azure generates two 512-bit storage account access keys for that account. These keys can be used to authorize access to data in your storage account via Shared Key authorization, or via SAS tokens that are signed with the shared key.
+ストレージ アカウントを作成すると、Azure はそのアカウント用に 2 つの 512 ビットのストレージ アカウント アクセス キーを生成します。これらのキーは、共有キーによる認可、または共有キーで署名された SAS トークンを介した、ストレージ アカウント内のデータへのアクセスの認可に使えます。
 
-Microsoft recommends that you use Azure Key Vault to manage your access keys, and that you regularly rotate and regenerate your keys. Azure Key Vault supports automatic key rotation policies, allowing you to define rotation schedules (for example, every 90 days) that rotate keys automatically. You can also manually rotate your keys when needed.
+Microsoft は、アクセス キーの管理に Azure Key Vault を使い、キーを定期的にローテーション・再生成することを推奨しています。Azure Key Vault は自動キー ローテーション ポリシーをサポートしており、ローテーションのスケジュール (たとえば 90 日ごと) を定義して自動的にキーをローテーションできます。必要に応じて手動でローテーションすることもできます。
 
-### Things to know about Azure Storage encryption
+### Azure Storage の暗号化について知っておくべきこと
 
-Examine the following characteristics of Azure Storage encryption.
+Azure Storage の暗号化の特徴を確認しましょう。
 
-- Data is automatically encrypted before written to Azure storage. 
+- データは、Azure Storage への書き込み前に自動的に暗号化されます。
 
-- Data is automatically decrypted when retrieved.
+- データは、取得時に自動的に復号されます。
 
-- Azure Storage encryption, encryption at rest, decryption, and key management are transparent to users.
+- Azure Storage の暗号化、保存時の暗号化、復号、キー管理は、ユーザーからは透過的です。
 
-- All data written to Azure Storage is encrypted through 256-bit advanced encryption standard (AES) encryption. AES is one of the strongest block ciphers available.
+- Azure Storage に書き込まれるすべてのデータは、256 ビットの高度暗号化標準 (AES) 暗号化で暗号化されます。AES は、利用できるブロック暗号の中で最も強力なもののひとつです。
 
-- Azure Storage encryption is enabled for all new and existing storage accounts and can't be disabled. 
+- Azure Storage の暗号化は、新規・既存を問わずすべてのストレージ アカウントで有効になっており、無効にできません。
 
-## Configure Azure Storage encryption
+## Azure Storage の暗号化を構成する
 
-In the Azure portal, you configure Azure Storage encryption by specifying the encryption type. You can manage the keys yourself, or you can have the keys managed by Microsoft. Consider how you might implement Azure Storage encryption for your storage security.
+Azure portal では、暗号化の種類を指定して Azure Storage の暗号化を構成します。キーは自分で管理することも、Microsoft に管理させることもできます。自分のストレージのセキュリティのために、Azure Storage の暗号化をどう実装できるか考えてみてください。
 
-:::image type="content" source="../media/secure-encryption-e3b68445.png" alt-text="Screenshot that shows Azure Storage encryption, including keys managed by Microsoft and customer-managed keys." border="false":::
+:::image type="content" source="../media/secure-encryption-e3b68445.png" alt-text="Microsoft が管理するキーとカスタマー マネージド キーを含む、Azure Storage の暗号化を示すスクリーンショット。" border="false":::
 
-- **Infrastructure encryption**. [Infrastructure encryption](/azure/storage/common/infrastructure-encryption-enable) can be enabled for the entire storage account, or for an encryption scope within an account. When infrastructure encryption is enabled for a storage account or an encryption scope, data is encrypted twice—once at the service level and once at the infrastructure level—with two different encryption algorithms and two different keys.
+- **インフラストラクチャ暗号化**: [インフラストラクチャ暗号化](/azure/storage/common/infrastructure-encryption-enable)は、ストレージ アカウント全体に対しても、アカウント内の暗号化スコープに対しても有効にできます。ストレージ アカウントまたは暗号化スコープでインフラストラクチャ暗号化を有効にすると、データはサービス レベルとインフラストラクチャ レベルで 1 回ずつ、異なる 2 つの暗号化アルゴリズムと 2 つのキーを使って二重に暗号化されます。
 
-- **Platform-managed keys**. Platform-managed keys (PMKs) are encryption keys generated, stored, and managed entirely by Azure. Customers don't interact with PMKs. The keys used for Azure Data Encryption-at-Rest, for instance, are PMKs by default.
+- **プラットフォーム マネージド キー**: プラットフォーム マネージド キー (PMK) は、Azure が生成、保管、管理をすべて行う暗号化キーです。顧客が PMK を操作することはありません。たとえば、Azure の保存データ暗号化に使われるキーは、既定で PMK です。
 
-- **Customer-managed keys**. Customer managed keys (CMK), on the other hand, are keys read, created, deleted, updated, and/or administered by one or more customers. Keys stored in a customer-owned key vault or hardware security module (HSM) are CMKs. Bring Your Own Key (BYOK) is a CMK scenario in which a customer imports (brings) keys from an outside storage location. This topic is discussed in more detail on the next page. 
+- **カスタマー マネージド キー**: 一方、カスタマー マネージド キー (CMK) は、1 つ以上の顧客が読み取り、作成、削除、更新、管理を行うキーです。顧客所有のキー コンテナーやハードウェア セキュリティ モジュール (HSM) に保管されているキーは CMK です。Bring Your Own Key (BYOK) は、顧客が外部の保管場所からキーをインポートする (持ち込む) CMK のシナリオです。このトピックについては、次のページで詳しく説明します。

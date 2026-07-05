@@ -1,29 +1,29 @@
-For your Azure Storage security solution, you can use Azure Key Vault to manage your encryption keys. The Azure Key Vault APIs can be used to generate encryption keys. You can also create your own encryption keys and store them in a key vault. 
+Azure Storage のセキュリティ ソリューションでは、暗号化キーの管理に Azure Key Vault を使えます。暗号化キーの生成には Azure Key Vault の API を使えます。独自の暗号化キーを作成してキー コンテナーに保管することもできます。
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=f73714f6-e3a7-41f5-8c3c-84d15da1f0cc]
 
-### Things to know about customer-managed keys
+### カスタマー マネージド キーについて知っておくべきこと
 
-Consider the following characteristics of customer-managed keys.
+カスタマー マネージド キーの特徴を確認しましょう。
 
-- By creating your own keys (referred to as _customer-managed_ keys), you have more flexibility and greater control.
+- 独自のキー (「カスタマー マネージド」キーと呼ばれます) を作成することで、より高い柔軟性とコントロールが得られます。
 
-- You can create, disable, audit, rotate, and define access controls for your encryption keys.
+- 暗号化キーの作成、無効化、監査、ローテーション、アクセス制御の定義ができます。
 
-- Customer-managed keys can be used with Azure Storage encryption. You can use a new key or an existing key vault and key. The Azure storage account and the key vault must be in the same region, but they can be in different subscriptions.
+- カスタマー マネージド キーは Azure Storage の暗号化と組み合わせて使えます。新しいキーを使うことも、既存のキー コンテナーとキーを使うこともできます。Azure ストレージ アカウントとキー コンテナーは同じリージョンにある必要がありますが、サブスクリプションは異なってもかまいません。
 
-- Customer-managed keys are stored in a customer-owned Azure Key Vault or Azure Key Vault Managed HSM. Managed HSM provides FIPS 140-2 Level 3 validation for organizations with the highest compliance requirements.
+- カスタマー マネージド キーは、顧客所有の Azure Key Vault または Azure Key Vault Managed HSM に保管されます。Managed HSM は、最高レベルのコンプライアンス要件を持つ組織向けに FIPS 140-2 レベル 3 の検証を提供します。
 
-## Configure customer-managed keys
+## カスタマー マネージド キーを構成する
 
-In the Azure portal, you can configure customer-managed encryption keys. You can create your own keys, or you can have the keys managed by Microsoft. Consider how you might use Azure Key Vault to create your own customer-managed encryption keys.
+Azure portal で、カスタマー マネージドの暗号化キーを構成できます。独自のキーを作成することも、Microsoft にキーを管理させることもできます。Azure Key Vault を使って独自のカスタマー マネージド暗号化キーをどう作成できるか考えてみてください。
 
-:::image type="content" source="../media/customer-keys-b24acc48.png" alt-text="Screenshot that shows how to create a customer-managed key." border="false":::
+:::image type="content" source="../media/customer-keys-b24acc48.png" alt-text="カスタマー マネージド キーの作成方法を示すスクリーンショット。" border="false":::
 
-- **Encryption type**: Choose how the encryption key is managed: by Microsoft or by yourself (customer).
+- **暗号化の種類**: 暗号化キーの管理方法を、Microsoft によるものか、自分 (顧客) によるものかで選びます。
 
-- **Encryption key**: Specify an encryption key by entering a URI, or select a key from an existing key vault.
+- **暗号化キー**: URI を入力して暗号化キーを指定するか、既存のキー コンテナーからキーを選択します。
 
 
 > [!TIP]
-> Expand your understanding of storage security in the [*Plan and implement security for storage*](/training/modules/security-storage/) training module.
+> 「[*ストレージのセキュリティを計画して実装する*](/training/modules/security-storage/)」トレーニング モジュールで、ストレージ セキュリティの理解を深めましょう。

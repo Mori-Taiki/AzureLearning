@@ -1,29 +1,29 @@
-A [shared access signature (SAS)](/azure/storage/common/storage-sas-overview) is a uniform resource identifier (URI) that grants restricted access rights to Azure Storage resources. SAS is a secure way to share your storage resources without compromising your account keys.
+[共有アクセス署名 (SAS)](/azure/storage/common/storage-sas-overview) は、Azure Storage のリソースへの制限付きのアクセス権を付与する URI (Uniform Resource Identifier) です。SAS は、アカウント キーを危険にさらすことなく、ストレージ リソースを共有できる安全な方法です。
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=af7a0353-0641-4579-bada-8d98c31d8100]
 
-You can provide a SAS to clients who shouldn't have access to your storage account key. By distributing a SAS URI to these clients, you grant them access to a resource for a specified period of time. You'd typically use a SAS for a service where users read and write their data to your storage account. 
+ストレージ アカウント キーへのアクセスを持たせるべきでないクライアントに、SAS を提供できます。それらのクライアントに SAS の URI を配布することで、指定した期間だけリソースへのアクセスを付与できます。SAS は通常、ユーザーが自分のデータをあなたのストレージ アカウントに読み書きするサービスで使います。
 
-- A *user delegation SAS* is secured with Microsoft Entra credentials and also by the permissions specified for the SAS. A user delegation SAS is supported for Blob Storage and Data Lake Storage,
+- *ユーザー委任 SAS* は、Microsoft Entra の資格情報と、SAS に指定されたアクセス許可の両方で保護されます。ユーザー委任 SAS は、Blob Storage と Data Lake Storage でサポートされます。
 
-- An *account-level SAS* to allow access to anything that a service-level SAS can allow, plus other resources and abilities. For example, you can use an account-level SAS to allow the ability to create file systems.
+- *アカウント レベルの SAS* は、サービス レベルの SAS で許可できるすべてに加えて、その他のリソースや操作へのアクセスを許可できます。たとえば、アカウント レベルの SAS を使えば、ファイル システムを作成する権限を許可できます。
 
-- A *service-level SAS* to allow access to specific resources in a storage account. You'd use this type of SAS, for example, to allow an app to retrieve a list of files in a file system, or to download a file.
+- *サービス レベルの SAS* は、ストレージ アカウント内の特定のリソースへのアクセスを許可します。たとえば、アプリにファイル システム内のファイル一覧の取得やファイルのダウンロードを許可する場合に、この種類の SAS を使います。
 
-- A *stored access policy* can provide another level of control when you use a service-level SAS on the server side. You can group SASs and provide other restrictions by using a stored access policy.
+- *保存されているアクセス ポリシー*は、サーバー側でサービス レベルの SAS を使う際の、もう一段のコントロールを提供できます。保存されているアクセス ポリシーを使って、SAS をグループ化し、追加の制限をかけられます。
 
 
-### Recommendations for managing risks
+### リスク管理の推奨事項
 
-Let's look at some recommendations that can help mitigate risks when working with a SAS.
+SAS を扱う際のリスクの緩和に役立つ推奨事項を見てみましょう。
 
-| Recommendation | Description |
+| 推奨事項 | 説明 |
 | --- | --- |
-| **Always use HTTPS for creation and distribution** | If a SAS is passed over HTTP and intercepted, an attacker can intercept and use the SAS. These _man-in-the-middle_ attacks can compromise sensitive data or allow for data corruption by the malicious user. |
-| **Reference stored access policies where possible** | Stored access policies give you the option to revoke permissions without having to regenerate the Azure storage account keys. Set the storage account key expiration date far in the future. |
-| **Set near-term expiry times for an unplanned SAS** | If a SAS is compromised, you can mitigate attacks by limiting the SAS validity to a short time. This practice is important if you can't reference a stored access policy. Near-term expiration times also limit the amount of data that can be written to a blob by limiting the time available to upload to it. |
-| **Require clients automatically renew the SAS** | Require your clients to renew the SAS well before the expiration date. By renewing early, you allow time for retries if the service providing the SAS is unavailable. |
-| **Plan carefully for the SAS start time** | If you set the start time for a SAS to now, then due to clock skew (differences in current time according to different machines), failures might be observed intermittently for the first few minutes. In general, set the start time to at least 15 minutes in the past. Or, don't set a specific start time, which causes the SAS to be valid immediately in all cases. The same conditions generally apply to the expiry time. You might observe up to 15 minutes of clock skew in either direction on any request. For clients that use a REST API version earlier than 2012-02-12, the maximum duration for a SAS that doesn't reference a stored access policy is 1 hour. Any policies that specify a longer term fail. |
-| **Define minimum access permissions for resources** | A security best practice is to provide a user with the minimum required privileges. If a user only needs read access to a single entity, then grant them read access to that single entity, and not read/write/delete access to all entities. This practice also helps lessen the damage if a SAS is compromised because the SAS has less power in the hands of an attacker. |
-| **Validate data written by using a SAS** | When a client application writes data to your Azure storage account, keep in mind there can be problems with the data. If your application requires validated or authorized data, validate the data after written, but before used. This practice also protects against corrupt or malicious data being written to your account, either by a user who properly acquired the SAS, or by a user exploiting a leaked SAS. |
-| **Don't assume a SAS is always the correct choice** | In some scenarios, the risks associated with a particular operation against your Azure storage account outweigh the benefits of using a SAS. For such operations, create a middle-tier service that writes to your storage account after performing business rule validation, authentication, and auditing. Also, sometimes it's easier to manage access in other ways. If you want to make all blobs in a container publicly readable, you can make the container Public, rather than providing a SAS to every client for access. |
+| **作成と配布には常に HTTPS を使う** | SAS が HTTP で渡されて傍受されると、攻撃者はその SAS を横取りして使えてしまいます。こうした「中間者」攻撃により、機微なデータが漏えいしたり、悪意のあるユーザーによってデータが破損されたりするおそれがあります。 |
+| **可能な限り、保存されているアクセス ポリシーを参照する** | 保存されているアクセス ポリシーを使えば、Azure ストレージ アカウント キーを再生成しなくてもアクセス許可を取り消せます。ストレージ アカウント キーの有効期限は、十分先の日付に設定してください。 |
+| **計画外の SAS には短期の有効期限を設定する** | SAS が漏えいした場合でも、SAS の有効期間を短くしておけば攻撃を緩和できます。保存されているアクセス ポリシーを参照できない場合、この対策は重要です。短期の有効期限は、BLOB へのアップロードに使える時間を制限することで、書き込まれるデータ量の抑制にもつながります。 |
+| **クライアントに SAS の自動更新を求める** | 有効期限より十分前に SAS を更新するようクライアントに求めてください。早めに更新しておけば、SAS を提供するサービスが利用できない場合の再試行の時間を確保できます。 |
+| **SAS の開始時刻は慎重に計画する** | SAS の開始時刻を「今」に設定すると、クロック スキュー (マシンごとの現在時刻の差) により、最初の数分間は断続的に失敗が観測されることがあります。一般的には、開始時刻を少なくとも 15 分過去に設定してください。あるいは開始時刻を指定しなければ、SAS はどの環境でも即座に有効になります。同じことは概して有効期限にも当てはまります。どのリクエストでも、どちらの方向にも最大 15 分のクロック スキューが観測される可能性があります。2012-02-12 より前のバージョンの REST API を使うクライアントでは、保存されているアクセス ポリシーを参照しない SAS の最大有効期間は 1 時間です。それより長い期間を指定するポリシーは失敗します。 |
+| **リソースへの最小限のアクセス許可を定義する** | ユーザーに必要最小限の権限だけを与えるのがセキュリティのベスト プラクティスです。ユーザーが単一のエンティティへの読み取りアクセスだけを必要としているなら、その単一のエンティティへの読み取りアクセスを付与し、すべてのエンティティへの読み取り/書き込み/削除アクセスは付与しないでください。この対策は、SAS が漏えいした場合の被害の軽減にも役立ちます。攻撃者の手に渡っても、SAS でできることが少ないからです。 |
+| **SAS で書き込まれたデータを検証する** | クライアント アプリケーションがあなたの Azure ストレージ アカウントにデータを書き込むとき、そのデータに問題がある可能性を念頭に置いてください。検証済みまたは認可済みのデータが必要なアプリケーションでは、データの書き込み後、使用前に検証してください。この対策は、正当に SAS を取得したユーザーによるものであれ、漏えいした SAS を悪用するユーザーによるものであれ、破損した、あるいは悪意のあるデータがアカウントに書き込まれることへの防御にもなります。 |
+| **SAS が常に正解だと思い込まない** | シナリオによっては、Azure ストレージ アカウントに対する特定の操作に伴うリスクが、SAS を使う利点を上回ることがあります。そのような操作では、ビジネス ルールの検証、認証、監査を行ったうえでストレージ アカウントに書き込む中間層のサービスを作成してください。また、他の方法でアクセスを管理するほうが簡単な場合もあります。コンテナー内のすべての BLOB をパブリックに読み取り可能にしたいなら、アクセスのためにすべてのクライアントに SAS を提供するのではなく、コンテナーをパブリックにすればよいのです。 |

@@ -3,8 +3,8 @@ uid: learn.wwl.configure-storage-security
 metadata:
   adobe-target: true
   prefetch-feature-rollout: true
-  title: Configure Azure Storage Security
-  description: "Learn how to configure common Azure Storage security features like storage access signatures."
+  title: Azure Storage セキュリティの構成
+  description: "ストレージのアクセス署名など、Azure Storage の一般的なセキュリティ機能の構成方法を学びます。"
   ms.date: 06/23/2026
   author: wwlpublish
   ms.author: robbarefoot
@@ -14,19 +14,19 @@ metadata:
   - N/A
   ms.service: azure-storage
   ai-usage: ai-assisted
-title: Configure Azure Storage security
-summary: Learn how to configure common Azure Storage security features like storage access signatures.
+title: Azure Storage セキュリティの構成
+summary: ストレージのアクセス署名など、Azure Storage の一般的なセキュリティ機能の構成方法を学びます。
 abstract: |
-  In this module, you learn how to:
+  このモジュールでは、次のことを学びます。
 
-  -   Configure a shared access signature (SAS), including the uniform resource identifier (URI) and SAS parameters.
+  -   URI (Uniform Resource Identifier) と SAS のパラメーターを含む、共有アクセス署名 (SAS) を構成する。
 
-  -   Configure Azure Storage encryption.
+  -   Azure Storage の暗号化を構成する。
 
-  -   Implement customer-managed keys.
+  -   カスタマー マネージド キーを実装する。
 
-  -   Recommend opportunities to improve Azure Storage security.
-prerequisites: None
+  -   Azure Storage のセキュリティを改善する方法を提案する。
+prerequisites: なし
 iconUrl: /training/achievements/storage-security-configure.svg
 levels:
 - intermediate

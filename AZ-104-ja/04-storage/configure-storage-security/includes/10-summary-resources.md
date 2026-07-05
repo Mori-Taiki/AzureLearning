@@ -1,31 +1,31 @@
-Azure Administrators must be familiar with how to configure storage security.
+Azure 管理者は、ストレージのセキュリティの構成方法に精通していなければなりません。
 
-In this module, you examined several options for securing Azure Storage. You discovered how to configure shared access signatures (SAS), including the uniform resource identifier (URI) and SAS parameters. You reviewed how to implement customer-managed keys and define stored access policies to configure Azure Storage encryption. You explored opportunities for improving your Azure Storage security solution.
+このモジュールでは、Azure Storage を保護するためのいくつかの選択肢を確認しました。URI (Uniform Resource Identifier) と SAS のパラメーターを含む、共有アクセス署名 (SAS) の構成方法を学びました。Azure Storage の暗号化を構成するための、カスタマー マネージド キーの実装と、保存されているアクセス ポリシーの定義の方法を確認しました。Azure Storage のセキュリティ ソリューションを改善する方法も探りました。
 
-## Learn more with Copilot
+## Copilot でさらに学ぶ
 
-Copilot can assist you in configuring Azure infrastructure solutions. Copilot can compare, recommend, explain, and research products and services where you need more information. Open a Microsoft Edge browser and choose Copilot (top right) or navigate to copilot.microsoft.com. Take a few minutes to try these prompts and extend your learning with Copilot.
+Copilot は、Azure インフラストラクチャ ソリューションの構成を支援してくれます。より詳しい情報が必要な製品やサービスについて、Copilot に比較、推奨、解説、調査を頼めます。Microsoft Edge ブラウザーを開いて右上の Copilot を選ぶか、copilot.microsoft.com にアクセスしてください。少し時間を取って次のプロンプトを試し、Copilot で学びを深めましょう。
 
 - What are the different ways to secure Azure storage? Provide usage case examples.
 
 - How do I configure an Azure Shared Access Signature?
 
-## Learn more with documentation
+## ドキュメントでさらに学ぶ
 
-- Grant [limited access to Azure Storage resources with shared access signatures](/azure/storage/common/storage-dotnet-shared-access-signature-part-1).
+- [共有アクセス署名で Azure Storage のリソースへの限定的なアクセスを付与する](/azure/storage/common/storage-dotnet-shared-access-signature-part-1)。
 
-- Read about [Azure Storage encryption for data at rest](/azure/storage/common/storage-service-encryption).
+- [保存データに対する Azure Storage の暗号化](/azure/storage/common/storage-service-encryption)について読む。
 
-- Create a [SAS for your Azure storage account](/rest/api/storageservices/create-account-sas).
+- [Azure ストレージ アカウントの SAS](/rest/api/storageservices/create-account-sas) を作成する。
 
-- Create a [service-level SAS](/rest/api/storageservices/create-service-sas).
+- [サービス レベルの SAS](/rest/api/storageservices/create-service-sas) を作成する。
 
-- Construct a [user delegation SAS](/rest/api/storageservices/create-user-delegation-sas#construct-a-user-delegation-sas).
+- [ユーザー委任 SAS](/rest/api/storageservices/create-user-delegation-sas#construct-a-user-delegation-sas) を構築する。
 
-- Use [customer-managed keys for Azure Storage encryption](/azure/storage/common/customer-managed-keys-overview).
+- [Azure Storage の暗号化にカスタマー マネージド キーを使う](/azure/storage/common/customer-managed-keys-overview)。
 
-## Learn more with self-paced training
+## 自習型トレーニングでさらに学ぶ
 
-- Secure your [Azure storage account](/training/modules/secure-azure-storage-account/).
+- [Azure ストレージ アカウント](/training/modules/secure-azure-storage-account/)を保護する。
 
-- Implement [Azure Storage security](/training/modules/security-storage/).
+- [Azure Storage のセキュリティ](/training/modules/security-storage/)を実装する。
