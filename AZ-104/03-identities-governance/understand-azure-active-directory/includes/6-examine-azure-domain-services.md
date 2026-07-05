@@ -1,28 +1,28 @@
 
 
-今日、ほとんどの組織では、基幹業務 (LOB) アプリケーションがドメイン メンバーであるコンピューターやデバイスにデプロイされています。これらの組織は認証に AD DS ベースの資格情報を使い、グループ ポリシーで管理しています。これらのアプリを Azure で動かすことを検討する際、重要な課題のひとつが、アプリへの認証サービスをどう提供するかです。このニーズを満たすには、ローカル インフラと Azure IaaS の間にサイト間の仮想プライベート ネットワーク (VPN) を実装するか、ローカルの AD DS のレプリカ ドメイン コントローラーを Azure の仮想マシン (VM) としてデプロイするかを選べます。これらのアプローチには、追加のコストと管理の手間がかかることがあります。また、この 2 つのアプローチの違いとして、前者では認証トラフィックが VPN を通過するのに対し、後者ではレプリケーション トラフィックが VPN を通過し、認証トラフィックはクラウド内にとどまります。
+In most organizations today, line-of-business (LOB) applications are deployed on computers and devices that are domain members. These organizations use AD DS–based credentials for authentication, and Group Policy manages them. When you consider moving these apps to run in Azure, one key issue is how to provide authentication services to these apps. To satisfy this need, you can choose to implement a site-to-site virtual private network (VPN) between your local infrastructure and the Azure IaaS, or you can deploy replica domain controllers from your local AD DS as virtual machines (VMs) in Azure. These approaches can entail additional costs and administrative effort. Additionally, the difference between these two approaches is that with the first option, authentication traffic will cross the VPN, while in the second option, replication traffic will cross the VPN and authentication traffic stays in the cloud.
 
-Microsoft は、これらのアプローチの代替として Microsoft Entra Domain Services を提供しています。Microsoft Entra ID P1 または P2 レベルの一部として動作するこのサービスは、グループ ポリシー管理、ドメイン参加、Kerberos 認証といったドメイン サービスを Microsoft Entra テナントに提供します。これらのサービスはローカルにデプロイされた AD DS と完全な互換性があるため、クラウドに追加のドメイン コントローラーをデプロイ・管理することなく利用できます。
+Microsoft provides Microsoft Entra Domain Services as an alternative to these approaches. This service, which runs as part of the Microsoft Entra ID P1 or P2 tier, provides domain services such as Group Policy management, domain joining, and Kerberos authentication to your Microsoft Entra tenant. These services are fully compatible with locally deployed AD DS, so you can use them without deploying and managing additional domain controllers in the cloud.
 
-:::image type="content" source="../media/azure-active-directory-virtual-network-340081c4.png" alt-text="Microsoft Entra Domain Services の概要を示す図。":::
+:::image type="content" source="../media/azure-active-directory-virtual-network-340081c4.png" alt-text="Diagram that shows the Microsoft Entra Domain Services Overview.":::
 
 
-Microsoft Entra ID はローカルの AD DS と統合できるため、Microsoft Entra Connect を実装すると、ユーザーはオンプレミスの AD DS と Microsoft Entra Domain Services の両方で組織の資格情報を利用できます。ローカルに AD DS をデプロイしていない場合でも、Microsoft Entra Domain Services をクラウド専用サービスとして使うことを選べます。これにより、オンプレミスにもクラウドにもドメイン コントローラーを 1 台もデプロイすることなく、ローカルにデプロイされた AD DS と同様の機能を持てます。たとえば、組織は Microsoft Entra テナントを作成して Microsoft Entra Domain Services を有効にし、オンプレミスのリソースと Microsoft Entra テナントの間に仮想ネットワークをデプロイできます。この仮想ネットワークに対して Microsoft Entra Domain Services を有効にすれば、オンプレミスのすべてのユーザーとサービスが Microsoft Entra ID のドメイン サービスを利用できます。
+Because Microsoft Entra ID can integrate with your local AD DS, when you implement Microsoft Entra Connect, users can utilize organizational credentials in both on-premises AD DS and in Microsoft Entra Domain Services. Even if you don’t have AD DS deployed locally, you can choose to use Microsoft Entra Domain Services as a cloud-only service. This enables you to have similar functionality of locally deployed AD DS without having to deploy a single domain controller on-premises or in the cloud. For example, an organization can choose to create a Microsoft Entra tenant and enable Microsoft Entra Domain Services, and then deploy a virtual network between its on-premises resources and the Microsoft Entra tenant. You can enable Microsoft Entra Domain Services for this virtual network so that all on-premises users and services can use domain services from Microsoft Entra ID.
 
-Microsoft Entra Domain Services は、組織に次のような利点をもたらします。
+Microsoft Entra Domain Services provides several benefits for organizations, such as:
 
- -  管理者がドメイン コントローラーの管理、更新、監視を行う必要がありません。
- -  管理者が Active Directory のレプリケーションをデプロイ・管理する必要がありません。
- -  Microsoft Entra ID が管理するドメインには、Domain Admins や Enterprise Admins のグループを持つ必要がありません。
+ -  Administrators don't need to manage, update, and monitor domain controllers.
+ -  Administrators don't need to deploy and manage Active Directory replication.
+ -  There’s no need to have Domain Admins or Enterprise Admins groups for domains that Microsoft Entra ID manages.
 
-Microsoft Entra Domain Services の実装を選ぶ場合は、このサービスの現在の制限を把握しておく必要があります。制限には次のものがあります。
+If you choose to implement Microsoft Entra Domain Services, you need to be aware of the service's current limitations. These include:
 
- -  基本のコンピューター Active Directory オブジェクトのみがサポートされます。
- -  Microsoft Entra Domain Services のドメインのスキーマは拡張できません。
- -  組織単位 (OU) の構造はフラットで、入れ子の OU は現在サポートされていません。
- -  組み込みのグループ ポリシー オブジェクト (GPO) があり、コンピューター アカウントとユーザー アカウント用に存在します。
- -  組み込みの GPO を OU に対して適用することはできません。また、Windows Management Instrumentation フィルターやセキュリティ グループのフィルター処理も使えません。
+ -  Only the base computer Active Directory object is supported.
+ -  It’s not possible to extend the schema for the Microsoft Entra Domain Services domain.
+ -  The organizational unit (OU) structure is flat and nested OUs aren't currently supported.
+ -  There’s a built-in Group Policy Object (GPO), and it exists for computer and user accounts.
+ -  It’s not possible to target OUs with built-in GPOs. Additionally, you can't use Windows Management Instrumentation filters or security-group filtering.
 
-Microsoft Entra Domain Services を使えば、LDAP、NTLM、Kerberos の各プロトコルを使うアプリケーションを、オンプレミスのインフラからクラウドへ自由に移行できます。また、クラウドにドメイン コントローラーを置いたりローカル インフラへの VPN を用意したりしなくても、Microsoft SQL Server や Microsoft SharePoint Server などのアプリケーションを VM 上で使ったり、Azure IaaS にデプロイしたりできます。
+By using Microsoft Entra Domain Services, you can freely migrate applications that use LDAP, NTLM, or the Kerberos protocols from your on-premises infrastructure to the cloud. You can also use applications such as Microsoft SQL Server or Microsoft SharePoint Server on VMs or deploy them in the Azure IaaS, without needing domain controllers in the cloud or a VPN to local infrastructure.
 
-Microsoft Entra Domain Services は Azure portal で有効化できます。このサービスは、ディレクトリのサイズに基づいて時間単位で課金されます。
+You can enable Microsoft Entra Domain Services by using the Azure portal. This service charges per hour based on the size of your directory.

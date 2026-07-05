@@ -1,30 +1,29 @@
-このモジュールでは、Azure App Service プランと、それが Azure App Service でアプリケーションを実行するためのコンピューティング リソースをどう定義するかを学びました。プランには、リージョン、仮想マシン インスタンスの数、仮想マシン インスタンスのサイズを指定して構成できます。App Service プランの価格レベルは、機能とコストを決めます。価格レベルには、開発・テスト用の Free と Shared のプランがあります。ミッション クリティカルなワークロード向けの Isolated プランもあります。
+In this module, you learned about Azure App Service plans and how they're used to define the compute resources for running applications in Azure App Service. These plans can be configured with a specific region, number of virtual machine instances, and size of virtual machine instances. The pricing tier of the App Service plan determines the features and cost. Pricing tiers include Free and Shared plans for development and testing purposes. Pricing tiers also include Isolated plans for mission-critical workloads.
 
-Azure App Service のスケーリングについても学びました。スケールアップは、価格レベルの変更によって CPU、メモリ、ディスク領域を増やす方法です。スケールアウトは、アプリケーションを実行する仮想マシン インスタンスの数を増やす方法です。自動スケールを使うと、アプリケーションへの負荷に基づいてリソース数を自動調整できます。自動スケールは、メトリック ベースまたは時間ベースのルールで構成できます。
+You learned about scaling in Azure App Service. Scale up involves increasing the CPU, memory, and disk space by changing the pricing tier. Scale out increases the number of virtual machine instances running the application. Autoscaling allows you to automatically adjust the number of resources based on the load on your application. Autoscale can be configured with metric-based or time-based rules.
 
-このモジュールの要点は次のとおりです。
+The main takeaways from this module are:
+- Azure App Service plans are used to define the compute resources for running web applications in Azure App Service.
+- The pricing tier of the App Service plan determines the features and cost, with options ranging from Free and Shared plans to Isolated plans.
+- Scaling in Azure App Service can be done through scale up (changing the pricing tier) or scale out (increasing the number of virtual machine instances).
+- Autoscaling allows for automatic adjustment of resources based on application load, with metric-based and time-based rules.
 
-- Azure App Service プランは、Azure App Service で Web アプリケーションを実行するためのコンピューティング リソースを定義します。
-- App Service プランの価格レベルが機能とコストを決め、Free や Shared のプランから Isolated プランまでの選択肢があります。
-- Azure App Service のスケーリングは、スケールアップ (価格レベルの変更) またはスケールアウト (仮想マシン インスタンス数の増加) で行えます。
-- 自動スケールにより、メトリック ベースと時間ベースのルールを使って、アプリケーションの負荷に基づいたリソースの自動調整ができます。
+## Learn more with Copilot
 
-## Copilot でさらに学ぶ
+Copilot can assist you in configuring Azure infrastructure solutions. Copilot can compare, recommend, explain, and research products and services where you need more information. Open a Microsoft Edge browser and choose Copilot (top right) or navigate to copilot.microsoft.com. Take a few minutes to try these prompts and extend your learning with Copilot.
 
-Copilot は、Azure インフラストラクチャ ソリューションの構成を支援してくれます。より詳しい情報が必要な製品やサービスについて、Copilot に比較、推奨、解説、調査を頼めます。Microsoft Edge ブラウザーを開いて右上の Copilot を選ぶか、copilot.microsoft.com にアクセスしてください。少し時間を取って次のプロンプトを試し、Copilot で学びを深めましょう。
-
-- In Microsoft Azure, what are app service pricing plans? Provide examples of when to use each plan.
+- In Microsoft Azure, what are app service pricing plans? Provide examples of when to use each plan. 
 
 - In Microsoft Azure, what does scale in and scale out mean? How do I determine when to scale an application?
 
-## ドキュメントでさらに学ぶ
+## Learn more with documentation
 
-- [Azure App Service プラン](/azure/app-service/overview-hosting-plans)。App Service プランの概要を説明する記事です。
+- [Azure App Service plans](/azure/app-service/overview-hosting-plans). This article provides an overview of App Service plans. 
 
-- [Azure で App Service プランを管理する](/azure/app-service/app-service-plan-manage)。App Service プランの作成と管理の方法を示すガイドです。
+- [Manage an App Service plan in Azure](/azure/app-service/app-service-plan-manage). This guide shows how to create and manage an App Service plan.
 
-- [Azure App Service でアプリをスケールアップする](/azure/app-service/manage-scale-up)。Azure App Service でアプリをスケールする方法を示す記事です。
+- [Scale up an app in Azure App Service](/azure/app-service/manage-scale-up). This article shows you how to scale your app in Azure App Service. 
 
-## 自習型トレーニングでさらに学ぶ
+## Learn more with self-paced training
 
-- [Azure App Service でアプリをスケーリングする](/training/modules/scale-apps-app-service/)。App Service での自動スケールの動作を学びます。自動スケールの要因の特定、自動スケールの有効化、自動スケール条件の作成を学びます。
+- [Scale apps in Azure App Service](/training/modules/scale-apps-app-service/). Learn how autoscale operates in App Service. Learn to identify autoscale factors, enable autoscale, and create autoscale conditions.

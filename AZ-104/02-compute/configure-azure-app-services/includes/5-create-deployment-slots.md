@@ -1,29 +1,29 @@
-Web アプリ、Linux 上の Web アプリ、モバイル バックエンド、または API アプリを Azure App Service にデプロイする際、既定の運用 (production) スロットの代わりに、独立したデプロイ スロットを使えます。
+When you deploy your web app, web app on Linux, mobile backend, or API app to Azure App Service, you can use a separate deployment slot instead of the default production slot.
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=f88e06a9-2871-4953-920e-3fcc1f618b64]
 
-### デプロイ スロットについて知っておくべきこと
+### Things to know about deployment slots
 
-デプロイ スロットの特徴を詳しく見てみましょう。
+Let's take a closer look at the characteristics of deployment slots.
 
-- デプロイ スロットは、それぞれ独自のホスト名を持つ、実際に稼働するアプリです。
+- Deployment slots are live apps that have their own hostnames.
 
-- デプロイ スロットは、App Service の Standard、Premium、Isolated v2 の価格レベルで利用できます。デプロイ スロットを使うには、アプリがこれらのレベルのいずれかで動作している必要があります。
+- Deployment slots are available in the Standard, Premium, and Isolated v2 App Service pricing tiers. Your app needs to be running in one of these tiers to use deployment slots.
 
-- Standard、Premium、Isolated の各レベルで、利用できるデプロイ スロットの数は異なります。
+- The Standard, Premium, and Isolated tiers offer different numbers of deployment slots.
 
-- アプリのコンテンツと構成要素は、運用スロットを含む 2 つのデプロイ スロット間でスワップできます。
+- App content and configuration elements can be swapped between two deployment slots, including the production slot.
 
-:::image type="content" source="../media/deployment-slots-5b3660cc.png" alt-text="Azure portal でデプロイ スロットを操作する方法を示すスクリーンショット。":::
+:::image type="content" source="../media/deployment-slots-5b3660cc.png" alt-text="Screenshot that shows how to work with deployment slots in the Azure portal.":::
 
-### デプロイ スロットを使う際に考慮すべきこと
+### Things to consider when using deployment slots
 
-App Service アプリでデプロイ スロットを使う利点はいくつもあります。次の利点を確認し、自分の App Service の実装にどう役立つか考えてみてください。
+There are several advantages to using deployment slots with your App Service app. Review the following benefits and think about how they can support your App Service implementation.
 
-- **検証を考慮する**: 運用スロットの内容とスワップする前に、ステージングのデプロイ スロットでアプリの変更を検証できます。
+- **Consider validation**. You can validate changes to your app in a staging deployment slot before swapping the app changes with the content in the production slot.
 
-- **ダウンタイムの削減を考慮する**: アプリをまずスロットにデプロイしてから運用にスワップすることで、すべてのインスタンスの準備が整った状態を保証できます。この方法なら、アプリのデプロイ時のダウンタイムをなくせます。トラフィックの切り替えはシームレスで、スワップ操作によってリクエストが失われることはありません。スワップ前の検証が不要な場合は、**自動スワップ**を構成すればワークフロー全体を自動化できます。
+- **Consider reductions in downtime**. Deploying an app to a slot first and swapping it into production ensures that all instances are ready. This option eliminates downtime when you deploy your app. The traffic redirection is seamless, and no requests are dropped because of swap operations. The entire workflow can be automated by configuring **Auto swap** when preswap validation isn't needed.
 
-- **既知の正常なサイトへの復元を考慮する**: スワップ後、それまでステージングだったスロットには、以前の運用アプリが入っています。運用スロットにスワップした変更が想定どおりでなかった場合、同じスワップをすぐに実行すれば「最後に正常だったサイト」に戻せます。
+- **Consider restoring to last known good site**. After a swap, the slot with the previously staged app now has the previous production app. If the changes swapped into the production slot aren't as you expected, you can perform the same swap immediately to return to your "last known good site."
 
-- **自動スワップを考慮する**: 自動スワップは、コールド スタートなし・顧客へのダウンタイムなしでアプリを継続的にデプロイしたい Azure Pipelines のシナリオを効率化します。あるスロットから運用への自動スワップを有効にすると、そのスロットにコードの変更をプッシュするたびに、App Service はソース スロットでアプリをウォームアップしたうえで自動的に運用へスワップします。
+- **Consider Auto swap**. Auto swap streamlines Azure Pipeline scenarios where you want to deploy your app continuously with zero cold starts and zero downtime for app customers. When Auto swap is enabled from a slot into production, every time you push your code changes to that slot, App Service automatically swaps the app into production after it's warmed up in the source slot. 

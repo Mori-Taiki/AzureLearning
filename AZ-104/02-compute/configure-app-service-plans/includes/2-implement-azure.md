@@ -1,36 +1,36 @@
-App Service プランは、Web アプリケーションを実行するためのコンピューティング リソースのセットを定義します。このコンピューティング リソースは、従来の Web ホスティングにおけるサーバー ファームに相当します。同じコンピューティング リソース上 (つまり同じ App Service プラン内) で動作するように、1 つ以上のアプリケーションを構成できます。
+An App Service plan defines a set of compute resources for a web application to run. The compute resources are analogous to a server farm in conventional web hosting. One or more applications can be configured to run on the same computing resources (or in the same App Service plan).
 
-## App Service プランについて知っておくべきこと
+## Things to know about App Service plans
 
-仮想マシンとともに App Service プランを実装して使う方法を詳しく見てみましょう。
+Let's take a closer look at how to implement and use an App Service plan with your virtual machines.
 
-- あるリージョンに App Service プランを作成すると、指定したリージョンにそのプラン用のコンピューティング リソース一式が作成されます。プランに配置したアプリケーションはすべて、プランで定義されたコンピューティング リソース上で動作します。
+- When you create an App Service plan in a region, a set of compute resources is created for the plan in the specified region. Any applications that you place into the plan run on the compute resources defined by the plan.
 
-- 各 App Service プランでは、次の設定を定義します。
-   - **オペレーティング システム**: Linux または Windows。
-   - **リージョン**: App Service プランのリージョン。米国西部、インド中部、北ヨーロッパなど。
-   - **価格レベル**: 利用できる App Service の機能と、プランの料金を決めます。App Service プランで選択できる価格レベルは、作成時に選んだオペレーティング システムによって異なります。
-   - **VM インスタンスの数**: プランによって決まります。
-   - **VM インスタンスのサイズ**: CPU、メモリ、リモート ストレージで定義されます。
+- Each App Service plan defines these settings:
+   - **Operating system**: Linux or Windows. 
+   - **Region**: The region for the App Service plan, such as West US, Central India, North Europe, and so on.
+   - **Pricing tier**: Determines what App Service features you get and how much you pay for the plan. The pricing tiers available to your App Service plan depend on the operating system selected at creation time.
+   - **Number of VM instances**: Determined by your plan. 
+   - **Size of VM instances**: Defined by CPU, memory, and remote storage. 
 
-- 増加する負荷を処理するのに十分なリソースがプランに残っている限り、既存のプランに新しいアプリケーションを追加し続けられます。
+- You can continue to add new applications to an existing plan as long as the plan has enough resources to handle the increasing load.
 
 
 
-## App Service プランを使う際に考慮すべきこと
+## Things to consider when using App Service plans
 
-Azure App Service プランでアプリケーションを実行・スケールする際の考慮事項を確認しましょう。ホテルの Web サイトの実行とスケーリングには、どの条件が当てはまりそうか考えてみてください。
+Review the following considerations about using Azure App Service plans to run and scale your applications. Think about what conditions might apply to running and scaling the hotel website.
 
-- **コスト削減を考慮する**: App Service プランが割り当てるコンピューティング リソースに対して料金を支払うため、複数のアプリケーションを同じ App Service プランに配置すればコストを節約できる可能性があります。
+- **Consider cost savings**. Because you pay for the computing resources that your App Service plan allocates, you can potentially save money by placing multiple applications into the same App Service plan.
 
-- **1 つのプランで複数アプリケーションを動かすことを考慮する**: 複数のアプリケーションを支える単一のプランを作成すると、共有する仮想マシン インスタンスの構成と保守が簡単になります。アプリケーションが同じ仮想マシン インスタンスを共有するため、プランのリソースと容量は慎重に管理する必要があります。
+- **Consider multiple applications in one plan**. Create a single plan to support multiple applications, to make it easier to configure and maintain shared virtual machine instances. Because the applications share the same virtual machine instances, you need to carefully manage your plan resources and capacity.
 
-- **プランの容量を考慮する**: 既存のプランに新しいアプリケーションを追加する前に、新しいアプリケーションのリソース要件を把握し、プランの残り容量を確認してください。
+- **Consider plan capacity**. Before you add a new application to an existing plan, determine the resource requirements for the new application and identify the remaining capacity of your plan.
 
    > [!Important]
-   > App Service プランに負荷をかけすぎると、新規・既存のアプリケーションにダウンタイムが発生するおそれがあります。
+   > Overloading an App Service plan can potentially cause downtime for new and existing applications.
 
-- **アプリケーションの分離を考慮する**: 次のような場合は、アプリケーションを新しい App Service プランに分離してください。
-   - アプリケーションが多くのリソースを消費する。
-   - 既存プラン内の他のアプリケーションとは独立して、そのアプリケーションをスケールさせたい。
-   - アプリケーションが別の地理的リージョンのリソースを必要としている。
+- **Consider application isolation**. Isolate your application into a new App Service plan when:
+   - The application is resource-intensive.
+   - You want to scale the application independently from the other applications in the existing plan.
+   - The application needs resource in a different geographical region.

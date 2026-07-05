@@ -1,40 +1,40 @@
-Azure App Service は、Web アプリケーションをホストするための HTTP ベースのサービスです。App Service では、好きな言語で Web アプリを開発できます。このサービスを使えば、Windows ベースと Linux ベースのどちらの環境でも、Web アプリを簡単に実行・スケールできます。
+Azure App Service is an HTTP-based service for hosting web applications. With App Service, you can develop web apps in your favorite language. The service lets you easily run and scale your web apps on Windows and Linux-based environments.
 
-このモジュールでは、Azure App Service の機能と利用ケースを確認しました。Web アプリの作成、保護、バックアップの方法を学び、デプロイ スロットを含むデプロイ設定や、Web アプリのカスタム ドメイン名の構成方法を確認しました。また、Azure Application Insights を使った Web アプリの監視方法も学びました。
+In this module, you reviewed the features and usage cases for Azure App Service. You learned how to create, secure, and back up your web apps. You explored how to configure deployment settings, including deployment slots, and custom domain names for your web apps. You discovered how to use Azure Application Insights to monitor web apps.
 
-## このモジュールの要点
+## The main takeaways for this module
 
-- Azure App Service では、Web、モバイル、API のアプリを開発してデプロイできます。
+- Azure App Service lets you develop and deploy web, mobile, and API apps. 
 
-- Azure App Service の構成設定には、ランタイム スタック、オペレーティング システム、リージョン、App Service プランがあります。
+- Azure App Service configuration settings include runtime stack, operating system, region, and App Service plan.
 
-- デプロイ スロットは、開発、テスト、ステージング、運用など、アプリの異なる段階の管理に役立ちます。
+- Deployment slots help you manage different app stages. For example, development, test, stage, and production.
 
-- 既定の Azure App Service ドメイン名は、組織向けにカスタマイズできます。
+- The default Azure App Service domain name can be customized for your organization.
 
-- Azure Application Insights は、稼働中のアプリケーションを監視できる Azure Monitor の機能です。Application Insights を App Service の構成に統合すると、アプリのパフォーマンスの異常を自動的に検出できます。
+- Azure Application Insights is a feature of Azure Monitor that lets you monitor your live applications. You can integrate Application Insights with your App Service configure to automatically detect performance anomalies in your apps. 
 
-- Application Insights により、アプリのパフォーマンスとユーザビリティを継続的に監視できます。
+- Application Insights lets you continuously monitor the performance and usability of your apps. 
 
-## Copilot でさらに学ぶ
-Copilot は、Azure インフラストラクチャ ソリューションの構成を支援してくれます。より詳しい情報が必要な製品やサービスについて、Copilot に比較、推奨、解説、調査を頼めます。Microsoft Edge ブラウザーを開いて右上の Copilot を選ぶか、copilot.microsoft.com にアクセスしてください。少し時間を取って次のプロンプトを試し、Copilot で学びを深めましょう。
+## Learn more with Copilot
+Copilot can assist you in configuring Azure infrastructure solutions. Copilot can compare, recommend, explain, and research products and services where you need more information. Open a Microsoft Edge browser and choose Copilot (top right) or navigate to copilot.microsoft.com. Take a few minutes to try these prompts and extend your learning with Copilot.
 
 - What are the main tasks to configure an Azure App Service web app?
 
 - What options are available for scaling an Azure App Service web app?
 
-## ドキュメントでさらに学ぶ
+## Learn more with documentation
 
-- [App Service の概要](/azure/app-service/overview)。App Service の概要と、このサービスを使う理由を説明する記事です。
+- [App Service overview](/azure/app-service/overview). This article provides an overview of the App Service and why you would use this service. 
 
-- [App Service アプリを構成する](/azure/app-service/configure-common)。Web アプリ、モバイル バックエンド、API アプリの一般的な設定の構成方法を説明する記事です。
+- [Configure an App Service app](/azure/app-service/configure-common). This article explains how to configure common settings for web apps, mobile back end, or API app. 
 
-- [Azure App Service でステージング環境を設定する](/azure/app-service/deploy-staging-slots)。デプロイ スロットとスワップ操作を扱う記事です。
+- [Set up staging environments in Azure App Service](/azure/app-service/deploy-staging-slots). The article covers deployment slots and swap operations.
 
-## 自習型トレーニングでさらに学ぶ
+## Learn more with self-paced training
 
-- [App Service のデプロイ スロットを使用して、テストとロールバックのために Web アプリのデプロイをステージングする](/training/modules/stage-deploy-app-service-deployment-slots/)。デプロイ スロットを使ってデプロイとロールバックを効率化する方法を学びます。
+- [Stage a web app deployment for testing and rollback by using App Service deployment slots](/training/modules/stage-deploy-app-service-deployment-slots/). Learn to use deployment slots to streamline deployment and roll back.
 
-- [Azure App Service のデプロイ スロットを探る](/training/modules/understand-app-service-deployment-slots/)。スロットのスワップの仕組みと、異なるスロットへのトラフィックのルーティング方法を学びます。
+- [Explore Azure App Service deployment slots](/training/modules/understand-app-service-deployment-slots/). Learn how slot swapping works and how to route traffic to different slots. 
 
-- [Azure App Service で Web アプリケーションをホストする](/training/modules/host-a-web-app-with-azure-app-service/)。Azure App Service のホスト型 Web アプリ プラットフォームで Web サイトを作成する方法を学びます。
+- [Host a web application with Azure App Service](/training/modules/host-a-web-app-with-azure-app-service/). Learn how to create a website through the hosted web app platform in Azure App Service.

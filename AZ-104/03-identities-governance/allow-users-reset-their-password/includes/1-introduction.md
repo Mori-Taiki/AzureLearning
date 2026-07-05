@@ -1,19 +1,19 @@
-あなたは大手小売組織の IT 管理者だとしましょう。組織は、従業員が安全にサインインして SaaS (サービスとしてのソフトウェア) アプリを利用できるように、Microsoft Entra ID の利用を始めました。Microsoft 365 内の組織のリソースへのアクセスにも使われています。現在は従業員のパスワードを手作業でリセットしているため、パスワード リセットの依頼に忙殺されています。従業員が素早く業務に戻れるようにし、自分の作業負荷も減らすために、Microsoft Entra ID のセルフサービス パスワード リセットを評価して導入することにしました。
+Suppose you're an IT administrator for a large retail organization. Your organization starts using Microsoft Entra ID to allow employees to securely sign in and use software as a service (SaaS) apps. It also allows access to the organization's resources in Microsoft 365. You're overwhelmed with password-reset requests because you currently reset employees' passwords manually. To get these employees back to being productive quickly and reduce your workload, you decide to evaluate and set up self-service password reset in Microsoft Entra ID.
 
-このモジュールでは、Azure がこの機能をどのようにサポートしているか、そしてその設定方法を学びます。この機能を利用できるのは有料サブスクリプションだけで、無料および従量課金制のサブスクリプションでは利用できません。
+In this module, you learn how Azure supports this feature and how to set it up. Only paid subscriptions can leverage this, while free and pay-as-you-go can't.
 
-このモジュールを終えると、Microsoft Entra ID でセルフサービス パスワード リセットを構成できるようになります。
+By the end of this module, you'll be able to configure self-service password reset in Microsoft Entra ID.
 
-## 学習の目標
+## Learning objectives
 
-このモジュールでは、次のことを行います。
+In this module, you:
 
-- セルフサービス パスワード リセットを導入すべきかどうかを判断する。
-- 要件を満たすようにセルフサービス パスワード リセットを実装する。
-- 体験をカスタマイズするためにセルフサービス パスワード リセットを構成する。
+- Decide whether to implement self-service password reset.
+- Implement self-service password reset to meet your requirements.
+- Configure self-service password reset to customize the experience.
 
-## 前提条件
+## Prerequisites
 
-- Microsoft Entra ID の基本的な理解
-- Microsoft Entra ID P1 を含むサブスクリプション パッケージを備えた、稼働中の Microsoft Entra テナント
-- 少なくとも認証ポリシー管理者ロールを持つアカウント
+- Basic understanding of Microsoft Entra ID
+- A working Microsoft Entra tenant with a subscription package that includes Microsoft Entra ID P1
+- An account with at least the Authentication Policy Administrator role

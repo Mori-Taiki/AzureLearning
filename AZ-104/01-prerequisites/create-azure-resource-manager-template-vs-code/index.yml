@@ -1,26 +1,26 @@
 ### YamlMime:Module
 uid: learn.azure.create-resource-manager-template-vs-code
 metadata:
-  title: JSON ARM テンプレートを使用して Azure インフラストラクチャをデプロイする
-  description: Visual Studio Code を使用して JSON Azure Resource Manager テンプレートを作成し、インフラストラクチャを一貫性のある信頼できる方法で Azure にデプロイします。
+  title: Deploy Azure infrastructure by using JSON ARM templates
+  description: Write JSON Azure Resource Manager templates by using Visual Studio Code to deploy your infrastructure to Azure consistently and reliably.
   ms.date: 10/20/2025
   author: wwlpublish
   ms.author: cynthist
   ms.topic: module-standard-task-based
   ms.service: azure-resource-manager
-title: JSON ARM テンプレートを使用して Azure インフラストラクチャをデプロイする
-summary: Visual Studio Code を使用して JSON Azure Resource Manager テンプレート (ARM テンプレート) を作成し、インフラストラクチャを一貫性のある信頼できる方法で Azure にデプロイします。
+title: Deploy Azure infrastructure by using JSON ARM templates
+summary: Write JSON Azure Resource Manager templates (ARM templates) by using Visual Studio Code to deploy your infrastructure to Azure consistently and reliably.
 abstract: |
-  このモジュールでは、次のことを行います。
-  - Visual Studio Code を使用して JSON ARM テンプレートを実装する。
-  - リソースを宣言し、リソース、パラメーター、出力を追加してテンプレートに柔軟性を持たせる。
+  In this module, you will:
+  - Implement a JSON ARM template by using Visual Studio Code. 
+  - Declare resources and add flexibility to your template by adding resources, parameters, and outputs.
 prerequisites: |
-  - Azure portal、サブスクリプション、リソース グループ、リソース定義など、Azure に関する基本知識
-  - Azure アカウント。無料アカウントは[こちら](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)から取得できます
-  - [Visual Studio Code](https://code.visualstudio.com?azure-portal=true) がローカルにインストールされていること
-  - 次のいずれか:
-    - 最新の [Azure CLI](/cli/azure/install-azure-cli?azure-portal=true) ツールがローカルにインストールされていること
-    - 最新の [Azure PowerShell](/powershell/azure/install-az-ps?azure-portal=true) がローカルにインストールされていること
+  - Familiarity with Azure, including the Azure portal, subscriptions, resource groups, and resource definitions
+  - An Azure account. You can get a free account [here](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
+  - [Visual Studio Code](https://code.visualstudio.com?azure-portal=true) installed locally
+  - Either:
+    - The latest [Azure CLI](/cli/azure/install-azure-cli?azure-portal=true) tools installed locally
+    - The latest [Azure PowerShell](/powershell/azure/install-az-ps?azure-portal=true) installed locally
 iconUrl: /training/achievements/create-azure-resource-manager-template-vs-code.svg
 ratingEnabled: true
 levels:
@@ -46,3 +46,4 @@ units:
 - learn.azure.create-resource-manager-template-vs-code.7-summary
 badge:
   uid: learn.azure.create-resource-manager-template-vs-code.badge
+

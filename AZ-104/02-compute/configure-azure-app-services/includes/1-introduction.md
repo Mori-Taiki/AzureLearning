@@ -1,29 +1,29 @@
-Azure 管理者は、Web、モバイル、API の各アプリケーションのデプロイと管理を容易にするソリューションに関心を持っています。また、AI 対応のソリューションにも関心があります。
+Azure Administrators are interested in solutions that make it easier to deploy and manage their web, mobile, and API applications. Azure Administrators are interested in solutions that are AI-ready. 
 
-あなたの会社は消費者調査を提供しており、あなたのチームはオンプレミス サーバーを管理しています。管理しているサーバーは、Web サーバーからデータベースまで、会社のインフラ全体を支えています。ハードウェアは老朽化が進み、新しいデータ分析アプリケーションの処理に追いつかなくなりつつあります。会社は、ハードウェアをアップグレードする代わりに、Azure App Service を導入することを決めました。
+Your company provides consumer research, and your team manages the on-premises servers. The servers you administer run the entire company infrastructure from web servers to databases. The hardware is aging and starting to struggle to keep up with some of the new data analysis applications. Rather than upgrade the hardware, the company decided to deploy Azure App Service. 
 
-このモジュールでは、Azure App Service の構成と管理の方法を学びます。構成設定、デプロイ スロット、カスタム ドメイン名について学び、アプリケーションのバックアップ、復元、監視についても学びます。
+In this module, you learn how to configure and manage Azure App Service. You learn about configuration settings, deployment slots, and custom domain names. You learn about application backup, recovery, and monitoring.
 
-このモジュールの目標は、Azure App Service を効果的に使うための知識とスキルを身につけることです。
+The goal of this module is to provide you with the knowledge and skills to effectively use Azure App Services.
 
-## 学習の目標
+## Learning objectives
 
-このモジュールでは、次のことを学びます。
+In this module, you learn how to:
 
-- Azure App Service の機能と利用ケースを把握する。
-- App Service でアプリを作成する。
-- デプロイ設定、特にデプロイ スロットを構成する。
-- App Service アプリを保護する。
-- カスタム ドメイン名を構成する。
-- App Service アプリをバックアップ・復元する。
-- Azure Application Insights を構成する。
+- Identify features and usage cases for Azure App Service.
+- Create an app with App Service.
+- Configure deployment settings, specifically deployment slots.
+- Secure your App Service app.
+- Configure custom domain names.
+- Back up and restore your App Service app.
+- Configure Azure Application Insights.
 
-## 評価されるスキル
+## Skills measured
 
-このモジュールの内容は、[試験 AZ-104: Microsoft Azure Administrator](/certifications/resources/study-guides/az-104) の準備に役立ちます。
+The content in the module helps you prepare for [Exam AZ-104: Microsoft Azure Administrator](/certifications/resources/study-guides/az-104). 
 
-## 前提条件
+## Prerequisites
 
-- サービスを構成できる程度の、Azure portal の実務知識。
+- Working knowledge of the Azure portal, so you can configure the service.
 
-- クラウドベースのサービス、特に Web ホスティング サービスに関する基本知識。
+- Familiarity with cloud-based services, specifically web hosting services. 

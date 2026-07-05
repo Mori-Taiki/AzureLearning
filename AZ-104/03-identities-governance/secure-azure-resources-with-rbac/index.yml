@@ -2,31 +2,31 @@
 uid: learn.secure-azure-resources-with-rbac
 metadata:
   moduleType: standard
-  title: Azure ロールベースのアクセス制御 (Azure RBAC) で Azure リソースを保護する
-  description: Azure ロールベースのアクセス制御を使って、チームの Azure リソースへのアクセスを効果的に管理する方法を学びます。
+  title: Secure your Azure resources with Azure role-based access control (Azure RBAC)
+  description: Learn how to use Azure role-based access control to effectively manage your team's access to Azure resources.
   ms.date: 09/19/2024
   author: rolyon
   ms.author: rolyon
   ms.topic: module
   ms.service: role-based-access-control
-title: Azure ロールベースのアクセス制御 (Azure RBAC) で Azure リソースを保護する
-summary: Azure RBAC を使って Azure のリソースへのアクセスを管理する方法を学びます。
+title: Secure your Azure resources with Azure role-based access control (Azure RBAC)
+summary: Learn how to use Azure RBAC to manage access to resources in Azure.
 abstract: |
-  このモジュールでは、次のことを行います。
-  - 自分自身と他のユーザーのリソースへのアクセスを確認する。
-  - リソースへのアクセスを付与する。
-  - Azure RBAC の変更のアクティビティ ログを確認する。
+  In this module, you will:
+  - Verify access to resources for yourself and others.
+  - Grant access to resources.
+  - View activity logs of Azure RBAC changes.
 prerequisites: |
-  - [有効なサブスクリプション](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)のある Azure アカウント
-  - Azure portal やリソース グループなど、Azure の基本概念に関する知識
+  - An Azure account with an [active subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
+  - Knowledge of basic Azure concepts, such as the Azure portal and resource groups
 iconUrl: /training/achievements/secure-azure-resources-with-rbac.svg
-levels:
+levels: 
 - beginner
-roles:
+roles: 
 - administrator
 - solution-architect
 - security-engineer
-products:
+products: 
 - azure
 - azure-portal
 - entra-id

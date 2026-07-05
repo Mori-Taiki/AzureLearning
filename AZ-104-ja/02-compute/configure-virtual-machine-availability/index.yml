@@ -1,0 +1,54 @@
+### YamlMime:Module
+uid: learn.wwl.configure-virtual-machine-availability
+metadata:
+  title: 仮想マシンの可用性の構成
+  description: "垂直・水平スケーリングを含む、仮想マシンの可用性の構成方法を学びます。"
+  ms.date: 06/23/2026
+  author: wwlpublish
+  ms.author: robbarefoot
+  ms.topic: module
+  ms.collection: N/A
+  ms.custom:
+  - N/A
+  ms.service: azure-virtual-machines
+  ai-usage: ai-assisted
+title: 仮想マシンの可用性の構成
+summary: 垂直・水平スケーリングを含む、仮想マシンの可用性の構成方法を学びます。&nbsp;
+abstract: |
+  このモジュールでは、次のことを学びます。
+
+  -   可用性セットと可用性ゾーンを実装する。
+
+  -   更新ドメインと障害ドメインを実装する。
+
+  -   Azure 仮想マシン スケール セットを実装する。
+
+  -   仮想マシンを自動スケールする。
+prerequisites: |
+  -   Azure 仮想マシンの作成と管理に関する基本知識。
+
+  -   変動するワークロードに応じてインフラ リソースをスケールさせることについての一般的な知識。
+iconUrl: /training/achievements/configure-virtual-machine-availability.svg
+levels:
+- intermediate
+roles:
+- administrator
+products:
+- azure-virtual-machines
+subjects:
+- virtual-machine
+units:
+- learn.wwl.configure-virtual-machine-availability.introduction
+- learn.wwl.configure-virtual-machine-availability.plan-for-maintenance-downtime
+- learn.wwl.configure-virtual-machine-availability.setup-availability-sets
+- learn.wwl.configure-virtual-machine-availability.review-update-fault-domains
+- learn.wwl.configure-virtual-machine-availability.review-availability-zones
+- learn.wwl.configure-virtual-machine-availability.compare-vertical-horizontal-scaling
+- learn.wwl.configure-virtual-machine-availability.implement-scale-sets
+- learn.wwl.configure-virtual-machine-availability.create-scale-sets
+- learn.wwl.configure-virtual-machine-availability.implement-autoscale
+- learn.wwl.configure-virtual-machine-availability.configure-autoscale
+- learn.wwl.configure-virtual-machine-availability.knowledge-check
+- learn.wwl.configure-virtual-machine-availability.summary-resources
+badge:
+  uid: learn.wwl.configure-virtual-machine-availability.badge

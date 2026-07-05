@@ -1,62 +1,64 @@
-Azure App Service プランの価格レベルは、利用できる App Service の機能と、プランの料金を決めます。価格レベルの例としては、Free、Shared、Basic、Standard、Premium、PremiumV2、PremiumV3、Isolated、IsolatedV2 があります。
+The pricing tier of an Azure App Service plan determines what App Service features you get and how much you pay for the plan. Pricing tier examples are: Free, Shared, Basic, Standard, Premium, PremiumV2, PremiumV3, Isolated, and IsolatedV2. 
 
-## App Service プランでのアプリケーションの実行とスケーリングのしくみ
+## How applications run and scale in App Service plans
 
-Azure App Service プランは、App Service アプリケーションのスケール単位です。Azure App Service プランの価格レベルによって、アプリケーションの実行とスケーリングのされ方が変わります。プランが 5 つの仮想マシン インスタンスで動作するよう構成されている場合、プラン内のすべてのアプリケーションが 5 つのインスタンスすべてで動作します。プランが自動スケール用に構成されている場合、プラン内のすべてのアプリケーションが自動スケール設定に基づいて一緒にスケールアウトされます。
+The Azure App Service plan is the scale unit of App Service applications. Depending on the pricing tier for your Azure App Service plan, your applications run and scale in a different manner. If your plan is configured to run five virtual machine instances, then all applications in the plan run on all five instances. If your plan is configured for autoscaling, then all applications in the plan are scaled out together based on the autoscale settings.
 
-価格レベルは 3 つのカテゴリに分けられます。
+The pricing tiers are grouped into three categories:
 
-- **共有コンピューティング**:
-   - 基本の 2 レベルである Free と Shared では、他の顧客のアプリを含む他の App Service アプリと同じ Azure VM 上でアプリが動作します。
-   - これらのレベルでは、共有リソース上で動作する各アプリに CPU クォータが割り当てられ、リソースをスケールアウトすることはできません。
-   - これらのレベルは、開発とテストの用途のみを想定しています。
-- **専用コンピューティング**:
-   - Basic、Standard、Premium、PremiumV2、PremiumV3 の各レベルでは、専用の Azure VM 上でアプリが動作します。
-   - 同じコンピューティング リソースを共有するのは、同じ App Service プラン内のアプリだけです。レベルが上がるほど、スケールアウトに使える VM インスタンスが増えます。
-- **Isolated**:
-   - Isolated と IsolatedV2 のレベルでは、専用の Azure 仮想ネットワーク上で専用の Azure VM が動作します。
-   - このレベルは、コンピューティングの分離に加えてネットワークの分離をアプリに提供します。
-   - このレベルは、最大のスケールアウト能力を提供します。
+- **Shared compute**:
+   - Free and Shared, the two base tiers, run an app on the same Azure VM as other App Service apps, including apps of other customers. 
+   - These tiers allocate CPU quotas to each app that runs on the shared resources, and the resources can't scale out. 
+   - These tiers are intended to be used only for development and testing purposes.
+- **Dedicated compute**: 
+   - The Basic, Standard, Premium, PremiumV2, and PremiumV3 tiers run apps on dedicated Azure VMs. 
+   - Only apps in the same App Service plan have the same compute resources. The higher the tier, the more VM instances that are available to you for scale-out.
+- **Isolated**: 
+   - The Isolated and IsolatedV2 tiers run dedicated Azure VMs on dedicated Azure virtual networks. 
+   - This tier provides network isolation on top of compute isolation to your apps. 
+   - This tier provides the maximum scale-out capabilities.
 
-さまざまな[プランの詳細](/azure/app-service/overview-hosting-plans)の例を示します。
+Here's a sample of different [plan details](/azure/app-service/overview-hosting-plans). 
 
-| 機能 | Free F1 | Basic B1 | Standard S1 | Premium P1V3 | Isolated V2 |
+| Feature | Free F1 | Basic B1 | Standard S1 | Premium P1V3 | Isolated V2 |
 | --- | --- | --- | --- | --- | --- |
-| 用途 | 開発、テスト | 開発、テスト | 運用ワークロード | 高度なスケール、パフォーマンス | ネットワーク分離ワークロード |
-| ステージング スロット | なし | なし | 5 | 20 | 20 |
-| 自動スケール | なし | 手動 | ルール | ルール、Elastic | ルール |
-| スケール インスタンス | なし | 3 | 10 | 30 | 200 |
-| 毎日のバックアップ | なし | なし | 10 | 50 | 50 |
+| Usage | Development, Testing | Development, Testing | Production workloads | Enhanced scale, performance | Network-isolated workloads |
+| Staging slots | N/A | N/A | 5 | 20 | 20 |
+| Auto scale | N/A | Manual | Rules | Rules, Elastic | Rules |
+| Scale instances | N/A | 3 | 10 | 30 | 200 |
+| Daily backups | N/A | N/A | 10 | 50 | 50 |
 
-### Free と Shared
+### Free and Shared
 
-Free と Shared のサービス プランは、他のアプリケーションと同じ Azure 仮想マシン上で動作する基本レベルです。中には他の顧客のアプリケーションもあります。これらのレベルは、開発とテストの用途のみを想定しています。Free と Shared のサービス プランに SLA はありません。Free と Shared のプランは、アプリケーション単位で従量制課金されます。
+The Free and Shared service plans are base tiers that run on the same Azure virtual machines as other applications. Some applications might belong to other customers. These tiers are intended to be used for development and testing purposes only. No SLA is provided for the Free and Shared service plans. Free and Shared plans are metered on a per application basis.
 
 ### Basic
 
-Basic サービス プランは、トラフィック要件が比較的低く、高度な自動スケールやトラフィック管理機能を必要としないアプリケーション向けに設計されています。料金は、実行するインスタンスのサイズと数に基づきます。組み込みのネットワーク負荷分散サポートにより、トラフィックはインスタンス間で自動的に分散されます。Linux ランタイム環境の Basic サービス プランは、Web App for Containers をサポートします。
+The Basic service plan is designed for applications that have lower traffic requirements, and don't need advanced auto scale and traffic management features. Pricing is based on the size and number of instances you run. Built-in network load-balancing support automatically distributes traffic across instances. The Basic service plan with Linux runtime environments supports Web App for Containers.
 
 ### Standard
 
-Standard サービス プランは、運用ワークロードの実行向けに設計されています。料金は、実行するインスタンスのサイズと数に基づきます。組み込みのネットワーク負荷分散サポートにより、トラフィックはインスタンス間で自動的に分散されます。Standard プランには自動スケールが含まれており、トラフィックの需要に合わせて動作中の仮想マシン インスタンス数を自動調整できます。Linux ランタイム環境の Standard サービス プランは、Web App for Containers をサポートします。
+The Standard service plan is designed for running production workloads. Pricing is based on the size and number of instances you run. Built-in network load-balancing support automatically distributes traffic across instances. The Standard plan includes auto scale that can automatically adjust the number of virtual machine instances running to match your traffic needs. The Standard service plan with Linux runtime environments supports Web App for Containers.
 
 ### Premium
 
-Premium サービス プランは、より高いパフォーマンスとスケールを必要とする運用アプリ向けに設計されています。現行の Premium レベルは PremiumV3 で、Dav4 および Ddv4 シリーズの仮想マシンと SSD ストレージを提供します。PremiumV3 は、標準のコンピューティング SKU に加え、メモリ消費の大きいワークロード向けのメモリ最適化 SKU をサポートします。PremiumV3 は、ルールベースの自動スケールと自動スケーリング (automatic scaling) の両方をサポートします。新規デプロイには PremiumV3 が推奨されます。
+The Premium service plan is designed for production apps that need higher performance and scale. PremiumV3 is the current Premium tier, offering Dav4 and Ddv4-series virtual machines and SSD storage. PremiumV3 supports standard compute SKUs and memory-optimized SKUs for high-memory workloads. PremiumV3 supports both rule-based autoscaling and automatic scaling. PremiumV3 is recommended for new deployments.
 
 ### Isolated
 
-Isolated サービス プランは、ネットワーク分離を必要とするミッション クリティカルなワークロードをサポートします。IsolatedV2 が推奨レベルで、より新しいハードウェア、最大 200 インスタンス、プライベート環境、強化されたセキュリティを提供します。パフォーマンスが高く価格体系もシンプルなため、新しいワークロードには IsolatedV2 が推奨されます。
+The Isolated service plan supports mission-critical workloads needing network isolation. IsolatedV2 is the preferred tier offering newer hardware, up to 200 instances, private environments, and enhanced security. IsolatedV2 is recommended for new workloads due to better performance and simpler pricing.
 
-## 実施するタスク: App Service プランを選択する
+## Task to be done: Select an App Service plan
 
-利用可能な App Service プランは Azure portal で確認できます。ハードウェア要件または機能要件に基づいて選択します。ハードウェア面では CPU、メモリ、スケール インスタンスを、機能面ではバックアップ、ステージング スロット、ゾーン冗長を考慮します。
+You can view the available App Service plans in the Azure portal. You can make your choice based on hardware or feature requirements. Hardware considerations include CPU, memory, and scaling instances. Feature considerations include backups, staging slots, and zone redundancy. 
 
 > [!TIP]
-> サービス プランを選ぶ際は、ハードウェアと機能の両方の要件を考慮してください。
+> When selecting a service plan, consider both hardware and feature requirements.
 
-1. Azure portal で **[App Service プラン]** を検索して選択します。
-1. 新しい App Service プランを**作成**します。
-1. **[価格プランを見る]** を選択して、利用可能なプランを確認します。
+1. In the Azure portal search for and select **App Service plans**. 
+1. **Create** a new App Service plan. 
+1. Select **Explore pricing plans** to view the available plans.
 
-:::image type="content" source="../media/appserviceplans.gif" alt-text="ポータルで App Service プランを表示する方法を示すアニメーション画像。":::
+:::image type="content" source="../media/appserviceplans.gif" alt-text="Animated graphic showing how to view app service plans in the portal.":::
+
+

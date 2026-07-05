@@ -1,27 +1,28 @@
-## ラボのシナリオ
+## Lab scenario
 
-あなたの組織は、オンプレミスの Web アプリを Azure に移行しています。Azure 管理者として、次のことを行う必要があります。
-+ PHP ランタイム スタックを使って、Windows サーバー上で動作する Web サイトをホストする。
-+ Azure Web Apps のデプロイ スロットを使う。
+Your organization is migrating on-premises web apps to Azure. As the Azure Administrator you need to:
++ Host web sites running on Windows servers by using the PHP runtime stack. 
++ Use Azure Web Apps deployment slots.
 
-## アーキテクチャ図
+## Architecture diagram
 
-:::image type="content" source="../media/lab-09a.png" alt-text="本文で説明されているアーキテクチャ図。" border="false":::
+:::image type="content" source="../media/lab-09a.png" alt-text="Architecture diagram as explained in the text." border="false":::
 
-## 実践するスキル
+## Job skills
 
-- Azure Web アプリを作成する。
-- ステージングのデプロイ スロットを作成する。
-- Web アプリのデプロイ設定を構成する。
-- ステージングのデプロイ スロットにコードをデプロイする。
-- ステージング スロットをスワップする。
-- Azure Web アプリの自動スケールを構成してテストする。
+- Create an Azure web app.
+- Create a staging deployment slot.
+- Configure Web App deployment settings.
+- Deploy code to the staging deployment slot.
+- Swap the staging slots.
+- Configure and test autoscaling of your Azure web app.
 
 
 > [!NOTE]
-> 想定時間: 20 分。
-> この演習を完了するには、[Azure サブスクリプション](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)が必要です。
+> Estimated time: 20 minutes. 
+> To complete this exercise, you need an [Azure subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-演習を起動して、指示に従ってください。完了したら、学習を続けられるよう、必ずこのページに戻ってきてください。
+Launch the exercise, and follow the instructions. When finished, be sure to return to this page so you can continue learning.
 
-[![演習を起動するボタン。](../media/launch-exercise.png)](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_09a-Implement_Web_Apps.html)
+[![Button to launch exercise.](../media/launch-exercise.png)](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_09a-Implement_Web_Apps.html)
+

@@ -1,20 +1,20 @@
 ### YamlMime:Module
 uid: learn.introduction-to-azure-virtual-machines
 metadata:
-  title: Azure 仮想マシンの概要
-  description: 仮想マシンを作成する前に決めておくべきこと、VM を作成・管理するための選択肢、VM の管理に使う拡張機能とサービスについて学びます。
+  title: Introduction to Azure virtual machines
+  description: Learn about the decisions you make before creating a virtual machine, the options to create and manage the VM, and the extensions and services you use to manage your VM.
   ms.date: 05/19/2023
   author: wwlpublish
   ms.author: cynthist
   ms.topic: module
   ms.service: azure-virtual-machines
-title: Azure 仮想マシンの概要
-summary: 仮想マシンを作成する前に決めておくべきこと、VM を作成・管理するための選択肢、VM の管理に使う拡張機能とサービスについて学びます。
+title: Introduction to Azure virtual machines
+summary: Learn about the decisions you make before creating a virtual machine, the options to create and manage the VM, and the extensions and services you use to manage your VM.
 abstract: |
-  このモジュールでは、次のことを行います。
-  - 仮想マシン作成のためのチェックリストをまとめる
-  - 仮想マシンを作成・管理するための選択肢を説明する
-  - 仮想マシンの管理に利用できるその他のサービスを説明する
+  In this module, you will:
+  - Compile a checklist for creating a virtual machine
+  - Describe the options to create and manage virtual machines
+  - Describe the additional services available to administer virtual machines
 prerequisites: |
   [!INCLUDE [](../../includes/azure-optional-exercise-subscription-prerequisite.md)]
 iconUrl: /training/achievements/intro-to-azure-virtual-machines.svg
@@ -41,3 +41,4 @@ units:
 - learn.introduction-to-azure-virtual-machines.8-summary
 badge:
   uid: learn.introduction-to-azure-virtual-machines.badge
+

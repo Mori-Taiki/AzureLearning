@@ -1,22 +1,24 @@
-このモジュールでは、Microsoft Azure の物理的な構成と管理の構造について学びました。データセンター、可用性ゾーン、リージョンの関係を紹介し、このインフラが高可用性や信頼性といったクラウドの利点をどう支えているかを見てきました。また、Azure の管理インフラストラクチャについても学びました。リソースとリソース グループの関係や、サブスクリプションと管理グループがリソース管理にどう役立つかを確認しました。
+In this module, you learned about the physical and management structure of Microsoft Azure. You were introduced to the relationship between datacenters, availability zones, and regions. You explored how the infrastructure supports the benefits of the cloud, such as high availability and reliability. You also learned about the management infrastructure of Azure. You explored how resources and resource groups are related, and how subscriptions and management groups can help manage resources.
 
-## 学習の目標
+## Learning objectives
 
-これで、次のことができるようになったはずです。
+You should now be able to:
 
- -  Azure のリージョン、リージョン ペア、ソブリン リージョンについて説明する。
- -  可用性ゾーンについて説明する。
- -  Azure のデータセンターについて説明する。
- -  Azure のリソースとリソース グループについて説明する。
- -  サブスクリプションについて説明する。
- -  管理グループについて説明する。
- -  リソース グループ、サブスクリプション、管理グループの階層について説明する。
+ -  Describe Azure regions, region pairs, and sovereign regions.
+ -  Describe Availability Zones.
+ -  Describe Azure datacenters.
+ -  Describe Azure resources and Resource Groups.
+ -  Describe subscriptions.
+ -  Describe management groups.
+ -  Describe the hierarchy of resource groups, subscriptions, and management groups.
 
-## Copilot で探究する
+## Explore with Copilot
 
 > [!TIP]
-> Copilot Chat で次のプロンプトを試してみてください。
+> Try one of these prompts in Copilot Chat:
 >
 > - "Build a concept map that connects regions, Availability Zones, datacenters, resources, resource groups, subscriptions, and management groups."
 > - "Design a subscription and management-group structure for an organization with multiple departments and compliance boundaries."
 > - "Explain region pairs and sovereign regions, then recommend a resiliency approach for a workload with strict data residency requirements."
+
+

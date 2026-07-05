@@ -1,33 +1,33 @@
-可用性ゾーンは、データセンターの障害からアプリケーションとデータを守る高可用性の仕組みです。コンピューティング、ストレージ、ネットワーク、データの各リソースを 1 つのゾーン内にまとめて配置し、他のゾーンにレプリケートすることで、アプリケーション アーキテクチャに高可用性を組み込めます。
+Availability zones are a high-availability offering that protects your applications and data from datacenter failures. You can use availability zones to build high-availability into your application architecture by colocating your compute, storage, networking, and data resources within a zone and replicating in other zones.
 
-Azure リージョン内の 3 つのゾーンにまたがって 3 台以上の仮想マシンを作成するシナリオを考えてみましょう。仮想マシンは実質的に 3 つの障害ドメインと 3 つの更新ドメインに分散されます。Azure プラットフォームは更新ドメインをまたぐこの分散を認識し、異なるゾーンの仮想マシンが同時に更新されないようにします。
+Consider a scenario where you create three or more virtual machines across three zones in an Azure region. Your virtual machines are effectively distributed across three fault domains and three update domains. The Azure platform recognizes this distribution across update domains to make sure that virtual machines in different zones aren't updated at the same time.
 
 
-### 可用性ゾーンについて知っておくべきこと
+### Things to know about availability zones
 
-可用性ゾーンの特徴を確認しましょう。
+Review the following characteristics of availability zones.
 
-- 可用性ゾーンは、Azure リージョン内の一意な物理的場所です。
+- Availability zones are unique physical locations within an Azure region.
 
-- 各ゾーンは、独立した電源、冷却、ネットワークを備えた 1 つ以上のデータセンターで構成されます。
+- Each zone is made up of one or more datacenters that are equipped with independent power, cooling, and networking.
 
-- 回復性を確保するため、有効化されたすべてのリージョンには最低 3 つの独立したゾーンがあります。
+- To ensure resiliency, there's a minimum of three separate zones in all enabled regions.
 
-- リージョン内で可用性ゾーンが物理的に分離されていることで、データセンターの障害からアプリケーションとデータが保護されます。
+- The physical separation of availability zones within a region protects applications and data from datacenter failures.
 
-- ゾーン冗長サービスは、アプリケーションとデータを可用性ゾーン間でレプリケートし、単一障害点から保護します。
+- Zone-redundant services replicate your applications and data across availability zones to protect against single-points-of-failure.
 
-### 可用性ゾーンを使う際に考慮すべきこと
+### Things to consider when using availability zones
 
-可用性ゾーンをサポートする Azure サービスは、2 つのカテゴリに分けられます。
+Azure services that support availability zones are divided into two categories.
 
-| カテゴリ | 説明 | 例 |
+| Category | Description | Examples |
 | --- | --- | --- |
-| **ゾーン サービス** | Azure の「ゾーン」サービスは、各リソースを特定のゾーンに固定します。 | - Azure 仮想マシン <br> - Azure マネージド ディスク  |
-| **ゾーン冗長サービス** | ゾーン冗長の Azure サービスでは、プラットフォームが全ゾーンに自動的にレプリケートします。 | - ゾーン冗長の Azure Storage <br> - Azure SQL Database |
+| **Zonal services** | Azure _zonal_ services pin each resource to a specific zone. | - Azure virtual machines <br> - Azure managed disks  |
+| **Zone-redundant services** | For Azure services that are zone-redundant, the platform replicates automatically across all zones. | - Azure Storage that's zone-redundant <br> - Azure SQL Database |
 
 > [!Note]
-> > 注: Standard IP アドレスは、デプロイ方法に応じて、ゾーン冗長 (高可用性のため推奨)、ゾーン固定 (特定のゾーンに固定)、非ゾーン (リージョン単位) のいずれかとして構成できます。
+> > Note: Standard IP addresses can be configured as zone-redundant (recommended for high availability), zonal (pinned to a specific zone), or non-zonal (regional) depending on your deployment choice.
 
 > [!Tip]
-> Azure で包括的な事業継続性を実現するには、可用性ゾーンと Azure の[リージョン ペア](/azure/virtual-machines/regions#region-pairs)を組み合わせてアプリケーション アーキテクチャを構築してください。
+> To achieve comprehensive business continuity on Azure, build your application architecture with a combination of availability zones and Azure [regional pairs](/azure/virtual-machines/regions#region-pairs).

@@ -1,41 +1,41 @@
-使い始めの段階では、VM などのリソースを作るのに Azure portal が一番簡単です。しかし、特に複数のリソースをまとめて作る必要がある場合、ポータルが最も効率的で速い方法とは限りません。今回のケースでは、最終的にさまざまなタスクをこなす数十台の VM を作ることになります。それを Azure portal で手作業で作るのは、楽しい作業とは言えないでしょう。
+The Azure portal is the easiest way to create resources such as VMs when you're getting started. However, it's not necessarily the most efficient or quickest way to work with Azure, particularly if you need to create several resources together. In our case, we eventually create dozens of VMs to handle different tasks. Creating them manually in the Azure portal wouldn't be a fun task!
 
-Azure でリソースを作成・管理する他の方法を見てみましょう。
+Let's look at some other ways to create and administer resources in Azure:
 
-- Azure Resource Manager テンプレート
+- Azure Resource Manager templates
 - Azure PowerShell
 - Azure CLI
 - Azure REST API
-- Azure クライアント SDK
-- Azure VM 拡張機能
-- Azure Automation サービス
+- Azure Client SDK
+- Azure VM Extensions
+- Azure Automation Services
 
-## Resource Manager テンプレート
+## Resource Manager templates
 
-同じ設定の VM のコピーを作りたいとしましょう。VM イメージを作成して Azure にアップロードし、それを新しい VM の基にするという方法もありますが、この手順は非効率で時間がかかります。Azure には、VM の正確なコピーを作成するためのテンプレートを作る仕組みが用意されています。
+Let's assume you want to create a copy of a VM with the same settings. You could create a VM image, upload it to Azure, and reference it as the basis for your new VM. This process is inefficient and time-consuming. Azure provides you with the option to create a template from which to create an exact copy of a VM.
 
-**Resource Manager テンプレート**は、ソリューションのデプロイに必要なリソースを定義する JSON ファイルです。
+**Resource Manager templates** are JSON files that define the resources you need to deploy for your solution.
 
-VM のリソース テンプレートを作成できます。VM のメニューで、**[オートメーション]** の下にある **[テンプレートのエクスポート]** を選択します。
+You can create a resource template for your VM. From the VM menu, under **Automation** select **Export template**.
 
-![VM の [テンプレートのエクスポート] オプションを示すスクリーンショット。](../media/4-automation-script.png)
+![Screenshot showing Export template option for a VM.](../media/4-automation-script.png)
 
 > [!NOTE]
-> この Learn モジュールのサンドボックスに含まれるリソースのポリシーにより、先ほど作成した VM はエクスポートできません。とはいえ、エクスポートされたテンプレートは編集しやすい JSON ファイルです。
-テンプレートは、後で使うためにダウンロードや保存をすることも、テンプレートを基に新しい VM をすぐにデプロイすることもできます。たとえば、テスト環境でテンプレートから VM を作ってみたものの、オンプレミスのマシンの置き換えとしてはうまくいかないことが分かったとします。その場合、リソース グループを削除すればすべてのリソースが削除されるので、テンプレートを調整してやり直せます。デプロイ済みのリソースに変更を加えたいだけなら、作成に使ったテンプレートを変更して再デプロイします。Resource Manager が、新しいテンプレートに合うようにリソースを変更してくれます。
+> The policies for the resources included in the sandbox for this Learn module prevent you from being able to export the VM you just created; that said, an exported template is an easy-to-edit JSON file. 
+You have the option to download or save a template for later use, or immediately deploy a new VM based on the template. For example, you might create a VM from a template in a test environment, and find it doesn’t quite work to replace your on-premises machine. You can delete the resource group, which deletes all of the resources, tweak the template, and try again. If you only want to make changes to the existing deployed resources, you can change the template used to create it, and redeploy it. Resource Manager will change the resources to match the new template.
 
-意図どおりに動くようになったら、そのテンプレートを使って、ステージングや運用など、インフラの複数のバージョンを簡単に複製できます。VM 名、ネットワーク名、ストレージ アカウント名などのフィールドをパラメーター化しておけば、異なるパラメーターでテンプレートを繰り返し読み込んで、環境ごとにカスタマイズできます。
+After you have it working the way you want it, you can use that template to easily replicate multiple versions of your infrastructure, such as staging and production. You can parameterize fields such as the VM name, network name, storage account name, and so on, and load the template repeatedly, using different parameters to customize each environment.
 
-テンプレートの使い方について詳しくは、「[クイックスタート: ARM テンプレートを使用して Ubuntu Linux 仮想マシンを作成する](/azure/virtual-machines/linux/quick-create-template)」を参照してください。
+For more information about using templates, see [Quickstart: Create an Ubuntu Linux virtual machine using an ARM template](/azure/virtual-machines/linux/quick-create-template).
 
 
 ## Azure CLI
 
-スクリプトやコマンドラインで Azure を操作するための選択肢のひとつが **Azure CLI** です。
+An option for scripting and command-line Azure interaction is the **Azure CLI**.
 
-Azure CLI は、仮想マシンやディスクなどの Azure リソースをコマンドラインから管理するための、Microsoft のクロスプラットフォーム コマンドライン ツールです。Linux、macOS、Windows で利用できるほか、Cloud Shell を使えばブラウザーでも利用できます。
+The Azure CLI is Microsoft's cross-platform command-line tool for managing Azure resources such as virtual machines and disks from the command line. It's available for Linux, macOS, Windows, or in a browser using the Cloud Shell.
 
-たとえば CLI では、`az vm create` コマンドで Azure VM を作成できます。
+For example, from the CLI, you can create an Azure VM with the `az vm create` command.
 
 ```azurecli
 az vm create \
@@ -46,20 +46,20 @@ az vm create \
     --generate-ssh-keys
 ```
 
-Azure CLI は、Ruby や Python など、他のスクリプト言語と組み合わせて使うこともできます。
+The Azure CLI can be used with other scripting languages, like Ruby and Python.
 
-VM の作成と管理について詳しくは、**Manage virtual machines with the Azure CLI tool** モジュールで学べます。
+Learn more about creating and managing VMs in the **Manage virtual machines with the Azure CLI tool** module.
 
-Azure CLI を使った VM の作成について詳しくは、「[クイックスタート: CLI を使用して Linux 仮想マシンを作成する](/azure/virtual-machines/linux/quick-create-cli)」を参照してください。
+For more information about using the Azure CLI to create VMs, see [Quickstart: Create a Linux virtual machine using the CLI](/azure/virtual-machines/linux/quick-create-cli).
 
 ## Azure PowerShell
 
-**Azure PowerShell** は、単発の対話的なタスクや、繰り返し行うタスクの自動化に最適です。
+**Azure PowerShell** is ideal for one-off interactive tasks and/or the automation of repeated tasks.
 
 > [!NOTE]
-> PowerShell は、シェル ウィンドウやコマンド解析などの機能を提供するクロスプラットフォームのシェルです。Azure PowerShell は、Azure 固有のコマンド (**コマンドレット**と呼ばれます) を追加するオプションのアドオン パッケージです。Azure PowerShell のインストールと使い方については、別のトレーニング モジュールで詳しく学べます。
+> PowerShell is a cross-platform shell that provides services like the shell window and command parsing. Azure PowerShell is an optional add-on package that adds the Azure-specific commands (referred to as **cmdlets**). You can learn more about installing and using Azure PowerShell in a separate training module.
 
-たとえば、`New-AzVM` コマンドレットを使うと、Debian ベースの Azure 仮想マシンを新規作成できます。
+For example, you can use the `New-AzVM` cmdlet to create a new Debian-based Azure virtual machine.
 
 ```powershell
 New-AzVm `
@@ -76,36 +76,36 @@ New-AzVm `
     -OpenPorts 22
 ```
 
-ここに示したように、数多くある VM の構成設定に対応するため、さまざまなパラメーターを指定します。ほとんどのパラメーターには妥当な既定値があるので、必須のパラメーターだけ指定すれば済みます。Azure PowerShell での VM の作成と管理について詳しくは、**Automate Azure tasks using scripts with PowerShell** モジュールで学べます。
+As shown here, you supply various parameters to handle the large number of VM configuration settings available. Most of the parameters have reasonable values; you only need to specify the required parameters. Learn more about creating and managing VMs with Azure PowerShell in the **Automate Azure tasks using scripts with PowerShell** module.
 
-PowerShell を使った VM の作成について詳しくは、「[クイックスタート: PowerShell を使用して Linux 仮想マシンを作成する](/azure/virtual-machines/linux/quick-create-powershell)」を参照してください。
+For more information about using PowerShell to create VMs, see [Quickstart: Create a Linux virtual machine using PowerShell](/azure/virtual-machines/linux/quick-create-powershell).
 
 ## Terraform
 
-Azure には Terraform プロバイダーもあるため、Terraform を使って VM を簡単に作成・管理できます。Terraform では、クラウド インフラの定義、プレビュー、デプロイが行えます。Terraform を使う場合、HCL 構文で構成ファイルを作成します。HCL 構文では、Azure などのクラウド プロバイダーと、クラウド インフラを構成する要素を指定できます。構成ファイルを作成したら、実行プランを作成し、デプロイ前にインフラの変更内容をプレビューできます。変更内容を確認したら、実行プランを適用してインフラをデプロイします。
+Azure also has a Terraform provider, so you can easily use Terraform to create and manage your VMs. Terraform enables the definition, preview, and deployment of cloud infrastructure. Using Terraform, you create configuration files using HCL syntax. The HCL syntax allows you to specify the cloud provider - such as Azure - and the elements that make up your cloud infrastructure. After you create your configuration files, you create an execution plan that allows you to preview your infrastructure changes before they're deployed. Once you verify the changes, you apply the execution plan to deploy the infrastructure.
 
-詳しくは、[Azure Terraform プロバイダー](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)と「[クイックスタート: Terraform を使用して VM を作成する](/azure/virtual-machines/linux/quick-create-terraform)」を参照してください。
-## プログラムによる操作 (API)
+For more information, see the [Azure Terraform Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs) and [Quickstart: Use Terraform to create a VM](/azure/virtual-machines/linux/quick-create-terraform).
+## Programmatic (APIs)
 
-一般的に言えば、実行するのが単純なスクリプトで、コマンドライン ツールで完結させたいなら、Azure PowerShell も Azure CLI も良い選択肢です。しかし、VM の作成と管理が、複雑なロジックを持つ大きなアプリケーションの一部になるような、より複雑なシナリオでは、別のアプローチが必要です。
+Generally speaking, both Azure PowerShell and Azure CLI are good options if you have simple scripts to run and want to stick to command-line tools. When it comes to more complex scenarios, where the creation and management of VMs form part of a larger application with complex logic, another approach is needed.
 
-Azure のあらゆる種類のリソースは、プログラムから操作できます。
+You can interact with every type of resource in Azure programmatically.
 
 ### Azure REST API
 
-Azure REST API は、リソースごとに分類された操作を開発者に提供し、VM の作成と管理を可能にします。操作は URI として公開され、対応する HTTP メソッド (`GET`、`PUT`、`POST`、`DELETE`、`PATCH`) とレスポンスを持ちます。
+The Azure REST API provides developers with operations categorized by resource and the ability to create and manage VMs. Operations are exposed as URIs with corresponding HTTP methods (`GET`, `PUT`, `POST`, `DELETE`, and `PATCH`) and a corresponding response.
 
-Azure Compute API を使うと、仮想マシンとそれを支えるリソースにプログラムからアクセスできます。
+The Azure Compute APIs give you programmatic access to virtual machines and their supporting resources.
 
-詳しくは、[Virtual Machines REST API リファレンス](/rest/api/compute/virtual-machines)を参照してください。
+For more information, see the [Virtual Machines REST API reference](/rest/api/compute/virtual-machines).
 
-### Azure クライアント SDK
+### Azure Client SDK
 
-REST API はプラットフォームにも言語にも依存しませんが、開発者はより高いレベルの抽象化を求めることが多いものです。Azure クライアント SDK は Azure REST API をカプセル化しており、開発者が Azure をずっと簡単に操作できるようにします。
+Even though the REST API is platform and language agnostic, most often developers look toward a higher level of abstraction. The Azure Client SDK encapsulates the Azure REST API, making it much easier for developers to interact with Azure.
 
-Azure クライアント SDK は、C# などの .NET 系言語、Java、Node.js、PHP、Python、Ruby、Go といった、さまざまな言語とフレームワークで利用できます。
+The Azure Client SDKs are available for various languages and frameworks, including .NET-based languages such as C#, Java, Node.js, PHP, Python, Ruby, and Go.
 
-`Microsoft.Azure.Management.Fluent` NuGet パッケージを使って Azure VM を作成する C# コードのスニペット例を示します。
+Here's an example snippet of C# code to create an Azure VM using the `Microsoft.Azure.Management.Fluent` NuGet package.
 
 ```csharp
 var azure = Azure
@@ -128,7 +128,7 @@ azure.VirtualMachines.Define(vmName)
     .Create();
 ```
 
-同じ処理を **Azure Java SDK** を使って Java で書いたスニペットは次のとおりです。
+Here's the same snippet in Java using the **Azure Java SDK**.
 
 ```java
 String vmName = "test-wp1-eus-vm";
@@ -146,33 +146,33 @@ VirtualMachine virtualMachine = azure.virtualMachines()
     .create();
 ```
 
-## Azure VM 拡張機能
+## Azure VM extensions
 
-最初のデプロイの後に、仮想マシンに追加のソフトウェアをインストール・構成したいとしましょう。このタスクを特定の構成で、自動的に監視・実行させたいところです。
+Let's assume you want to configure and install more software on your virtual machine after the initial deployment. You want this task to use a specific configuration, monitored and executed automatically.
 
-**Azure VM 拡張機能**は、初期デプロイ後の Azure VM でタスクの構成と自動化を行える小さなアプリケーションです。
+**Azure VM extensions** are small applications that enable you to configure and automate tasks on Azure VMs after initial deployment. 
 
-詳しくは、「[Azure 仮想マシン拡張機能と機能](/azure/virtual-machines/extensions/overview)」を参照してください。
-## Azure Automation サービス
+For more information, see [Azure virtual machine extensions and features](/azure/virtual-machines/extensions/overview).
+## Azure Automation services
 
-時間の節約、ミスの削減、効率の向上は、リモートのインフラを管理するうえで最も大きな運用管理上の課題です。多数のインフラ サービスを抱えているなら、より高いレベルから運用できるように、Azure の上位サービスの利用を検討するとよいでしょう。
+Saving time, reducing errors, and increasing efficiency are some of the most significant operational management challenges faced when managing remote infrastructure. If you have numerous infrastructure services, you might want to consider using higher-level services in Azure to help you operate from a higher level.
 
-**Azure Automation** を使うと、頻繁で時間がかかり、ミスの起きやすい管理タスクを手軽に自動化するためのサービス群を統合できます。これらのサービスには、**プロセス オートメーション**、**構成管理**、**更新の管理**が含まれます。
+**Azure Automation** enables you to integrate services that allow you to automate frequent, time-consuming, and error-prone management tasks with ease. These services include **process automation**, **configuration management**, and **update management**.
 
-- **プロセス オートメーション**: 特定のエラー イベントを監視している VM があるとしましょう。問題が報告されたらすぐに対処して修正したいはずです。プロセス オートメーションを使うと、データセンターで発生しうるイベントに対応できるウォッチャー タスクをセットアップできます。
+- **Process Automation**. Let's assume you have a VM that is monitored for a specific error event. You want to take action, and fix the problem as soon as it's reported. Process automation enables you to set up watcher tasks that can respond to events that may occur in your datacenter.
 
-- **構成管理**: VM で動作するオペレーティング システム向けに提供されるソフトウェア更新プログラムを追跡したい場合もあるでしょう。含めたい更新プログラムや除外したい更新プログラムがあるかもしれません。構成管理を使うと、これらの更新プログラムを追跡し、必要に応じて対処できます。会社の PC、サーバー、モバイル デバイスの管理には **Microsoft Endpoint Configuration Manager** を使います。Configuration Manager によるこの管理は、Azure VM にも広げられます。
+- **Configuration Management**.  Perhaps you want to track software updates that become available for the operating system that runs on your VM. There are specific updates you may want to include or exclude. Configuration management enables you to track these updates, and take action as required. You use **Microsoft Endpoint Configuration Manager** to manage your company's PC, servers, and mobile devices. You can extend this support to your Azure VMs with Configuration Manager.
 
-- **更新の管理**: VM の更新プログラムとパッチの管理には、このサービスを使います。このサービスでは、利用可能な更新プログラムの状態の評価、インストールのスケジュール設定、デプロイ結果の確認による更新の適用検証が行えます。更新の管理には、プロセス管理と構成管理を提供するサービスが組み込まれています。VM の更新の管理は、**Azure Automation** アカウントから直接有効化できます。ポータルの仮想マシン ペインから、単一の仮想マシンに対して有効化することもできます。
+- **Update Management**. Use this service to manage updates and patches for your VMs. With this service, you're able to assess the status of available updates, schedule installation, and review deployment results to verify updates applied successfully. Update management incorporates services that provide process and configuration management. You enable update management for a VM directly from your **Azure Automation** account. You can also enable update management for a single virtual machine from the virtual machine pane in the portal.
 
-## 自動シャットダウン
+## Auto-shutdown
 
-自動シャットダウンは、スケジュールに従って VM を自動的にシャットダウンできる Azure の機能です。自動シャットダウンを使えば、必要のないときに VM が動き続けないようにして、コストを節約できます。自動シャットダウンのスケジュールは毎日または毎週に設定でき、スケジュールのタイム ゾーンも指定できます。
+Auto-shutdown is a feature in Azure that allows you to automatically shut down your VMs on a schedule. Use Auto-shutdown to save costs by ensuring that your VMs are not running when they aren't needed. You can set the schedule for auto-shutdown to occur daily or weekly, and you can also specify the time zone for the schedule.
 
-Azure portal で VM の自動シャットダウン機能に移動するには、ポータルで VM のブレードを開き、[操作] セクションの [自動シャットダウン] をクリックして、好みに応じて自動シャットダウンの設定を構成します。
+To navigate to the Auto-shutdown feature in a VM in the Azure portal, go to the VM's blade in the portal, click on "Auto-shutdown" under the "Operations" section, and then configure the auto-shutdown settings according to your preferences.
 
-![VM の自動シャットダウン オプションを示すスクリーンショット。](../media/4-auto-shutdown-option.png)
+![Screenshot showing Auto-shutdown option for a VM.](../media/4-auto-shutdown-option.png)
 
-詳しくは、「[自動シャットダウン](/azure/virtual-machines/auto-shutdown-vm)」を参照してください。
+For more information, see [Auto-shutdown](/azure/virtual-machines/auto-shutdown-vm).
 
-このように、Azure にはリソースの作成と管理のためのさまざまなツールが用意されており、管理作業を「自分に合った」プロセスに組み込めます。次は、インフラ リソースを円滑に稼働させ続けるための、その他の Azure サービスを見ていきましょう。
+As you can see, Azure provides various tools to create and administer resources so that you can integrate management operations into a process _that works for you_. Let's examine some of the other Azure services to make sure your infrastructure resources are running smoothly.

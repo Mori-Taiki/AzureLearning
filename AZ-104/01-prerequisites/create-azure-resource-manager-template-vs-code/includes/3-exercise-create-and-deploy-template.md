@@ -1,10 +1,10 @@
-この演習では、Azure Resource Manager (ARM) テンプレートを作成して Azure にデプロイし、その後 ARM テンプレートを更新してパラメーターと出力を追加します。
+In this exercise, you create an Azure Resource Manager (ARM) template, deploy it to Azure, and then update that ARM template to add parameters and outputs.
 
-## ARM テンプレートを作成する
+## Create an ARM template
 
-1. Visual Studio Code を開き、*azuredeploy.json* という名前の新しいファイルを作成します。
+1. Open Visual Studio Code and create a new file called *azuredeploy.json*.
 
-1. 次のコードをコピーしてファイルに貼り付けます。
+1. Copy and paste the following code into the file.
 
     ```json
     {
@@ -18,59 +18,59 @@
     }
     ```
 
-    このファイルには、前のユニットで説明した ARM テンプレートのすべてのセクションが含まれていることに注目してください。
+    Notice that this file has all of the sections of an ARM template that we described in the previous unit.
 
-1. <kbd>Ctrl+S</kbd> キーを押して、ファイルへの変更を保存します。
+1. Save the changes to the file by pressing <kbd>Ctrl+S</kbd>.
 
-## ARM テンプレートを Azure にデプロイする
+## Deploy the ARM template to Azure
 
 ::: zone pivot="cli"
 
-このテンプレートを Azure にデプロイするには、Visual Studio Code のターミナルから Azure アカウントにサインインする必要があります。[Azure CLI](/cli/azure/install-azure-cli) ツールがインストールされていることを確認してください。
+To deploy this template to Azure, you need to sign in to your Azure account from the Visual Studio Code terminal. Be sure you have the [Azure CLI](/cli/azure/install-azure-cli) tools installed.
 
-1. **[ターミナル] > [新しいターミナル]** を選択して、ターミナル ウィンドウを開きます。
+1. Select **Terminal > New Terminal** to open a terminal window.
 
-1. ターミナル ウィンドウのコマンド バーに **bash** と表示されていれば、作業に適したシェルが開いているので、次のセクションに進んでください。
+1. If the command bar of the terminal window says **bash**, you have the right shell to work from and you can skip to the next section.
 
-    1. そうでない場合は、ドロップダウンを選択し、**[既定のプロファイルの選択]** を選択します。
+    1. If not, select the drop-down and choose **Select Default Profile**.
+    
+          :::image type="content" source="../media/3-bash.png" alt-text="Screenshot of the Visual Studio Code terminal window with bash in the drop-down.":::
+    
+    1. Select **Git Bash**.
+    
+          :::image type="content" source="../media/3-select-shell-bash.png" alt-text="Screenshot of the Visual Studio Code terminal window showing the select shell drop-down.":::
 
-          :::image type="content" source="../media/3-bash.png" alt-text="ドロップダウンに bash が表示されている Visual Studio Code ターミナル ウィンドウのスクリーンショット。":::
+1. Change directory to the folder containing your ARM template file.
 
-    1. **[Git Bash]** を選択します。
+### Sign in to Azure
 
-          :::image type="content" source="../media/3-select-shell-bash.png" alt-text="シェル選択のドロップダウンが表示されている Visual Studio Code ターミナル ウィンドウのスクリーンショット。":::
-
-1. ARM テンプレート ファイルが保存されているフォルダーにディレクトリを移動します。
-
-### Azure にサインインする
-
-ターミナル ウィンドウで次のコマンドを実行して、Azure にサインインします。
+In the terminal window, run this command to sign in to Azure.
 
 ```azurecli
 az login
 ```
 
-開いたブラウザー ウィンドウで、自分のアカウントにサインインします。サインインすると、このアカウントに関連付けられているサブスクリプションの一覧がターミナルに表示されます。既定のサブスクリプションにはアスタリスク (*) が付いています。複数のサブスクリプションがある場合は、この演習で使用するサブスクリプションを選択してください。
+In the browser window that opens, sign in to your account. After you sign in, a list of the subscriptions associated with this account displays in the terminal. The default subscription is marked with an asterisk (*). If you have multiple subscriptions, select the subscription you want to use for this exercise.
 
-### 既定のリソース グループを作成して設定する
+### Create and set the default resource group
 
 ```azurecli
 az group create --name <resource-group-name> --location <location>
 ```
 
-*\<resource-group-name>* は、リソース グループの一意の名前に置き換えます。*\<location>* は、最寄りの Azure リージョンに置き換えます。たとえば、米国東部の場合は *eastus* を使用します。
+Replace *\<resource-group-name>* with a unique name for your resource group. Replace *\<location>* with the Azure region closest to you. For example, use *eastus* for East US.
 
-既定のリソース グループを設定しておくと、この演習の Azure CLI コマンドからそのパラメーターを省略できます。リソース グループを設定するには、次のコマンドを実行します。
+By setting the default resource group, you can omit that parameter from the Azure CLI commands in this exercise. To set the resource group, run the following command.
 
 ```azurecli
 az configure --defaults group="<resource-group-name>"
 ```
 
-*\<resource-group-name>* は、自分のリソース グループ名に置き換えてください。
+Replace *\<resource-group-name>* with your resource group name.
 
-### テンプレートを Azure にデプロイする
+### Deploy the template to Azure
 
-次のコマンドを実行して、ARM テンプレートを Azure にデプロイします。この ARM テンプレートにはまだリソースが含まれていないため、リソースは作成されません。デプロイは成功するはずです。
+Run the following commands to deploy the ARM template to Azure. The ARM template doesn't have any resources yet, so there aren't any resources created. You should get a successful deployment.
 
 ```azurecli
 templateFile="azuredeploy.json"
@@ -82,57 +82,57 @@ az deployment group create \
  --template-file $templateFile
 ```
 
-上記コードの前半では、デプロイするテンプレート ファイルへのパスとデプロイ名を含む Azure CLI の変数を設定しています。後半の ```az  deployment group create``` で、テンプレートを Azure にデプロイします。デプロイ名は `blanktemplate` に日付がサフィックスとして付いたものになる点に注目してください。
+The top section of the preceding code sets the Azure CLI variables, which include the path to the template file to deploy and the name of the deployment. The bottom section,  ```az  deployment group create```, deploys the template to Azure. Notice that the deployment name is `blanktemplate` with the date as a suffix.
 
-ターミナルに ```Running...``` と表示されるはずです。
+You should see ```Running...``` in the terminal.
 
 ::: zone-end
 
 ::: zone pivot="powershell"
 
-このテンプレートを Azure にデプロイするには、Visual Studio Code のターミナルから Azure アカウントにサインインする必要があります。Visual Studio Code の拡張機能から Azure PowerShell Tools がインストールされていることを確認してください。
+To deploy this template to Azure, you need to sign in to your Azure account from the Visual Studio Code terminal. Be sure that Azure PowerShell Tools are installed from the Visual Studio Code Extensions.
 
-1. コマンド バーで **[ターミナル] > [新しいターミナル]** を選択して、PowerShell ウィンドウを開きます。
+1. In the command bar, select **Terminal > New Terminal** to open a PowerShell window.
 
-1. ターミナル ウィンドウのコマンド バーに **PowerShell** と表示されていれば、作業に適したシェルが開いているので、次のセクションに進んでください。
+1. If the command bar of the terminal window shows **PowerShell**, you have the right shell from which to work, and you can skip to the next section.
 
-      :::image type="content" source="../media/3-pwsh.png" alt-text="'pwsh' ターミナルが選択されている Visual Studio Code ターミナル ウィンドウのスクリーンショット。":::
+      :::image type="content" source="../media/3-pwsh.png" alt-text="Screenshot of the Visual Studio Code terminal window with the 'pwsh' terminal selected.":::
 
-    1. そうでない場合は、下向き矢印を選択し、ドロップダウン リストで PowerShell を選択します。その選択肢がない場合は、**[既定のプロファイルの選択]** を選択します。
+    1. If not, select the down arrow and in the dropdown list select PowerShell. If that option is missing, then select **Select Default Profile**.
 
-    1. 入力フィールドで下にスクロールし、**[PowerShell]** を選択します。
+    1. In the input field, scroll down and select **PowerShell**.
 
-          :::image type="content" source="../media/3-select-shell-powershell.png" alt-text="シェル選択のドロップダウンが表示されている Visual Studio Code ターミナル ウィンドウのスクリーンショット。":::
+          :::image type="content" source="../media/3-select-shell-powershell.png" alt-text="Screenshot of the Visual Studio Code terminal window showing the select shell drop-down.":::
 
-1. ARM テンプレート ファイルが保存されているフォルダーにディレクトリを移動します。
+1. Change directory to the folder containing your ARM template files.
 
-### Azure PowerShell を使用して Azure にサインインする
+### Sign in to Azure by using Azure PowerShell
 
-Visual Studio Code のターミナルから次のコマンドを実行して、Azure にサインインします。ブラウザーが開くので、自分のアカウントにサインインできます。
+From the terminal in Visual Studio Code, run the following command to sign in to Azure. A browser opens so you can sign in to your account.
 
   ```azurepowershell
   Connect-AzAccount
   ```
 
-開いたブラウザー ウィンドウ (現在のウィンドウの背後に開くことがあります。その場合は現在のウィンドウを最小化して確認してください) で、自分のアカウントにサインインします。サインインすると、このアカウントに関連付けられているサブスクリプションの一覧がターミナルに表示されます。既定のサブスクリプションにはアスタリスク (*) が付いています。複数のサブスクリプションがある場合は、この演習で使用するサブスクリプションを選択してください。
+In the browser window that opens (the browser window could be opened behind the current window, minimize the current window to see it), sign in to your account. After you sign in, a list of the subscriptions associated with this account displays in the terminal. The default subscription is marked with an asterisk (*). If you have multiple subscriptions, select the subscription you want to use for this exercise.
 
-### テンプレートを Azure にデプロイする
+### Deploy the template to Azure
 
 ```azurepowershell
 New-AzResourceGroup -Name <ResourceGroupName> -Location <Location>
 ```
 
-リソース グループの一意の名前に置き換えます。また、最寄りの Azure リージョンに置き換えます。たとえば、米国東部の場合は eastus を使用します。
+Replace with a unique name for your resource group. Replace with the Azure region closest to you. For example, use eastus for East US.
 
-既定のリソース グループを設定しておくと、この演習の Azure CLI コマンドからそのパラメーターを省略できます。リソース グループを設定するには、次のコマンドを実行します。
+By setting the default resource group, you can omit that parameter from the Azure CLI commands in this exercise. To set the resource group, run the following command.
 
 ```azurepowershell
 Set-AzDefault -ResourceGroupName <ResourceGroupName>
 ```
 
-*\<ResourceGroupName>* は、自分のリソース グループ名に置き換えてください。
+replace *\<ResourceGroupName>* with your resource group name.
 
-次のコマンドを実行して、テンプレートを Azure にデプロイします。この ARM テンプレートにはまだリソースが含まれていないため、リソースは作成されません。
+Deploy the template to Azure by running the following commands. The ARM template doesn't have any resources yet, so there aren't any resources created.
 
 ```azurepowershell
 $templateFile="azuredeploy.json"
@@ -143,51 +143,51 @@ New-AzResourceGroupDeployment `
   -TemplateFile $templateFile
 ```
 
-上記コードの前半では、デプロイ ファイルへのパスとデプロイ名を含む Azure PowerShell の変数を設定しています。その後、```New-AzResourceGroupDeployment``` コマンドでテンプレートを Azure にデプロイします。デプロイ名は `blanktemplate` に日付がサフィックスとして付いたものになる点に注目してください。
+The top section of the preceding code sets Azure PowerShell variables, which includes the path to the deployment file and the name of the deployment. Then, the ```New-AzResourceGroupDeployment``` command deploys the template to Azure. Notice that the deployment name is `blanktemplate` with the date as a suffix.
 
 ::: zone-end
 
-ARM テンプレートを Azure にデプロイしたら、[Azure portal](https://portal.azure.com?azure-portal=true) にアクセスします。
+When you deploy your ARM template to Azure, go to the [Azure portal](https://portal.azure.com?azure-portal=true).
 
-1. リソース メニューで **[リソース グループ]** を選択します。
+1. In the resource menu, select **Resource groups**.
 
-1. この演習で作成したリソース グループを選択します。
+1. Select the resource group you created in this exercise.
 
-1. **[概要]** ペインに、1 件のデプロイが成功したことが表示されます。
+1. On the **Overview** pane, you see that one deployment succeeded.
 
-    :::image type="content" source="../media/3-deployment-succeeded.png" alt-text="デプロイ セクションに 1 件の成功が表示されている、リソース グループの概要の Azure portal インターフェイス。":::
+    :::image type="content" source="../media/3-deployment-succeeded.png" alt-text="Azure portal interface for the resource group overview with the deployments section showing that one succeeded.":::
 
-1. **[1 成功]** を選択して、デプロイの詳細を表示します。
+1. Select **1 Succeeded** to see the details of the deployment.
 
-    :::image type="content" source="../media/3-blanktemplate.png" alt-text="1 件のデプロイが成功ステータスで一覧表示されている、デプロイの Azure portal インターフェイス。":::
+    :::image type="content" source="../media/3-blanktemplate.png" alt-text="Azure portal interface for the deployments with the one deployment listed and a succeeded status.":::
 
-1. `blanktemplate` を選択して、どのようなリソースがデプロイされたかを確認します。今回は、テンプレートにまだリソースを指定していないため、空になっています。
+1. Select `blanktemplate` to see what resources were deployed. In this case, it's empty because you didn't specify any resources in the template yet.
 
-    :::image type="content" source="../media/3-no-results.png" alt-text="リソースが一覧に表示されていない、特定のデプロイの Azure portal インターフェイス。":::
+    :::image type="content" source="../media/3-no-results.png" alt-text="Azure portal interface for the specific deployment with no resources listed.":::
 
-1. 後でデプロイを再度確認できるように、このページをブラウザーで開いたままにしておきます。
+1. Leave the page open in your browser so that you can check on deployments again.
 
-## ARM テンプレートにリソースを追加する
+## Add a resource to the ARM template
 
-前のタスクでは、空のテンプレートを作成してデプロイする方法を学習しました。次は、実際のリソースをデプロイします。このタスクでは、ARM テンプレートに Azure ストレージ アカウント リソースを追加します。
+In the previous task, you learned how to create a blank template and deploy it. Now, you're ready to deploy an actual resource. In this task, you add an Azure storage account resource to the ARM template.
 
-1. Visual Studio Code で *azuredeploy.json* ファイルを次のように更新します。
+1. In the *azuredeploy.json* file in Visual Studio Code, update the file so it looks like:
 
     [!code-json[](code/parameter1.json)]
 
-1. リソースの *name* と *displayName* の値を一意のものに変更します (例: **learnexercise12321**)。この名前は Azure 全体でグローバルに一意である必要があり、3 〜 24 文字で、小文字、数字、ハイフンのみを使用できます。
+1. Change the values of the resource *name* and *displayName* to something unique (for example, **learnexercise12321**). This name must be globally unique across Azure, contain 3 to 24 characters, and include only lowercase letters, numbers, and hyphens. 
 
-1. リソースの場所は、リソースがデプロイされるリソース グループと同じ場所に設定されています。ここでは既定のままにします。
+1. The resource location is set to the same location as the resource group where the resource is deployed. Leave the default here.
 
-1. ファイルを保存します。
+1. Save the file.
 
-### 更新した ARM テンプレートをデプロイする
+### Deploy the updated ARM template
 
-ここでは、このデプロイの内容をより適切に表すように、デプロイの名前を変更します。
+Here, you change the name of the deployment to better reflect what this deployment does.
 
 ::: zone pivot="cli"
 
-ターミナルで次の Azure CLI コマンドを実行します。このスニペットは以前使用したものと同じコードですが、デプロイの名前が変更されています。
+Run the following Azure CLI commands in the terminal. This snippet is the same code you used previously, but the name of the deployment is changed.
 
 ```azurecli
 templateFile="azuredeploy.json"
@@ -203,7 +203,7 @@ az deployment group create \
 
 ::: zone pivot="powershell"
 
-ターミナルで次の Azure PowerShell コマンドを実行します。このスニペットは以前使用したものと同じコードですが、デプロイの名前が変更されています。
+Run the following Azure PowerShell commands in the terminal. This snippet is the same code you used previously, but the name of the deployment is changed.
 
 ```azurepowershell
 $templateFile="azuredeploy.json"
@@ -216,16 +216,16 @@ New-AzResourceGroupDeployment `
 
 ::: zone-end
 
-### デプロイを確認する
+### Check your deployment
 
-1. デプロイが完了したら、ブラウザーで Azure portal に戻ります。リソース グループに移動すると、**[2 成功]** と表示されています。このリンクを選択します。
+1. When the deployment finishes, go back to the Azure portal in your browser. Go to your resource group, and you see that there are now **2 Succeeded** deployments. Select this link.
 
-    2 件のデプロイが両方とも一覧に表示されていることに注目してください。
+    Notice that both deployments are in the list.
 
-    :::image type="content" source="../media/3-addstorage-deployment.png" alt-text="2 件のデプロイが成功ステータスで一覧表示されている、デプロイの Azure portal インターフェイスのスクリーンショット。":::
+    :::image type="content" source="../media/3-addstorage-deployment.png" alt-text="Screenshot of the Azure portal interface for the deployments with the two deployments listed and succeeded statuses.":::
 
-1. **addstorage** を選択します。
+1. Select **addstorage**.
 
-    :::image type="content" source="../media/3-show-resource-deployed.png" alt-text="1 件のリソースが一覧表示されている、特定のデプロイの Azure portal インターフェイスのスクリーンショット。" :::
+    :::image type="content" source="../media/3-show-resource-deployed.png" alt-text="Screenshot of the Azure portal interface for the specific deployment with one resource listed." :::
 
-ストレージ アカウントがデプロイされていることを確認してください。
+Notice that the storage account is deployed.

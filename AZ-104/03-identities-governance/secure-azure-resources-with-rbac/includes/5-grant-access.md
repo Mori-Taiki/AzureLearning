@@ -1,69 +1,69 @@
-First Up Consultants の同僚 Alain は、担当プロジェクトのために仮想マシンを作成・管理する権限を必要としています。上司から、この依頼への対応を任されました。業務の遂行に必要な最小限の権限をユーザーに与えるというベスト プラクティスに従い、Alain にはリソース グループのスコープで仮想マシン共同作成者ロールを割り当てることにしました。
+A coworker named Alain at First Up Consultants needs permission to create and manage virtual machines for a project on which they're working. Your manager has asked that you handle this request. Using the best practice to grant users the least privileges to get their work done, you decide to assign Alain the Virtual Machine Contributor role for a resource group.
 
-## アクセスを付与する
+## Grant access
 
-リソース グループのスコープでユーザーに仮想マシン共同作成者ロールを割り当てるには、次の手順に従います。
+Follow this procedure to assign the Virtual Machine Contributor role to a user at the resource group scope.
 
-1. [ユーザー アクセス管理者](/azure/role-based-access-control/built-in-roles#user-access-administrator)や[所有者](/azure/role-based-access-control/built-in-roles#owner)など、ロールを割り当てる権限を持つ管理者として、[Azure portal](https://portal.azure.com?azure-portal=true) にサインインします。
+1. Sign in to the [Azure portal](https://portal.azure.com?azure-portal=true) as an administrator that has permissions to assign roles, such as [User Access Administrator](/azure/role-based-access-control/built-in-roles#user-access-administrator) or [Owner](/azure/role-based-access-control/built-in-roles#owner).
 
-1. 上部の検索ボックスで **[リソース グループ]** を検索します。
+1. In the Search box at the top, search for **Resource groups**.
 
-    :::image type="content" source="../media/5-resource-groups.png" alt-text="リソース グループの検索方法を示す Azure portal のスクリーンショット。":::
+    :::image type="content" source="../media/5-resource-groups.png" alt-text="Screenshot of the Azure portal that shows how to search for resource groups.":::
 
-1. リソース グループの一覧から、リソース グループを 1 つ選択します。
+1. In the list of resource groups, select a resource group.
 
-    この手順では **example-group** という名前のリソース グループを使いますが、あなたのリソース グループの名前は異なります。
+    These steps use a resource group named **example-group**, but your resource group's name will be different.
 
-1. 左側のメニュー ペインで **[アクセス制御 (IAM)]** を選択します。
+1. On the left menu pane, select **Access control (IAM)**.
 
-1. **[ロールの割り当て]** タブを選択して、このスコープにおける現在のロール割り当ての一覧を表示します。
+1. Select the **Role assignments** tab to display the current list of role assignments at this scope.
 
-   :::image type="content" source="../media/5-resource-group-role-assignment.png" alt-text="選択したリソース グループの [ロールの割り当て] タブを示すスクリーンショット。":::
+   :::image type="content" source="../media/5-resource-group-role-assignment.png" alt-text="Screenshot showing Role assignments tab for the selected resource group.":::
 
-1. **[追加]** > **[ロールの割り当ての追加]** を選択します。
+1. Select **Add** > **Add role assignment**.
 
-    ロールを割り当てる権限がない場合、**[ロールの割り当ての追加]** オプションは無効になっています。
+    If you don't have permissions to assign roles, the **Add role assignment** option will be disabled.
 
-   :::image type="content" source="../media/5-resource-group-add-role-assignment.png" alt-text="[ロールの割り当ての追加] メニューを示すスクリーンショット。":::
+   :::image type="content" source="../media/5-resource-group-add-role-assignment.png" alt-text="Screenshot that shows Add role assignment menu.":::
 
-    **[ロールの割り当ての追加]** ページが開きます。
+    The **Add role assignment** page opens.
 
-1. **[ロール]** タブで、**[仮想マシン共同作成者]** を検索して選択します。
+1. On the **Role** tab, search for and select **Virtual Machine Contributor**.
 
-   :::image type="content" source="../media/5-select-role.png" alt-text="[ロールの割り当ての追加] とロールの一覧を示すスクリーンショット。":::
+   :::image type="content" source="../media/5-select-role.png" alt-text="Screenshot that shows Add role assignment and list of roles.":::
 
-1. **[次へ]** を選択します。
+1. Select **Next**.
 
-1. **[メンバー]** タブで **[メンバーの選択]** を選択します。
+1. On the **Members** tab, select **Select members**.
 
-1. ユーザーを検索して選択します。
+1. Search for and select a user.
 
-    :::image type="content" source="../media/5-select-members-option.png" alt-text="[メンバーの選択] オプションを示す [ロールの割り当ての追加] ページのスクリーンショット。":::
+    :::image type="content" source="../media/5-select-members-option.png" alt-text="Screenshot of the add role assignment page that shows the select members option.":::
 
-1. **[選択]** を選んで、ユーザーをメンバーの一覧に追加します。
+1. Select **Select** to add the user to the Members list.
 
-1. **[次へ]** を選択します。
+1. Select **Next**.
 
-1. **[レビューと割り当て]** タブで、ロール割り当ての設定を確認します。
+1. On the **Review + assign** tab, review the role assignment settings.
 
-1. **[レビューと割り当て]** を選択して、ロールを割り当てます。
+1. Select **Review + assign** to assign the role.
 
-    しばらくすると、そのユーザーにリソース グループのスコープで仮想マシン共同作成者ロールが割り当てられます。ユーザーは、このリソース グループ内に限って、仮想マシンを作成・管理できるようになります。
+    After a few moments, the user is assigned the Virtual Machine Contributor role at the resource group scope. The user can now create and manage virtual machines just within this resource group.
 
-    :::image type="content" source="../media/5-vm-contributor-assignment.png" alt-text="ユーザーに仮想マシン共同作成者ロールが割り当てられたことを示すスクリーンショット。":::
+    :::image type="content" source="../media/5-vm-contributor-assignment.png" alt-text="Screenshot that shows the Virtual Machine Contributor role assigned to a user.":::
 
-## アクセスを削除する
+## Remove access
 
-Azure RBAC では、ロール割り当てを削除することでアクセスを取り除けます。
+In Azure RBAC, you can remove a role assignment to remove access.
 
-1. ロール割り当ての一覧で **[割り当ての表示]** を選択します。
+1. In the list of role assignments, select **View Assignments**.
 
-1. 仮想マシン共同作成者ロールを持つユーザーを検索して、チェック ボックスをオンにします。
+1. Search for and check the box for the user with the Virtual Machine Contributor role.
 
-1. **[削除]** を選択します。
+1. Select **Delete**.
 
-    :::image type="content" source="../media/5-remove-role-assignment.png" alt-text="ロール割り当ての削除メッセージを示すスクリーンショット。":::
+    :::image type="content" source="../media/5-remove-role-assignment.png" alt-text="Screenshot that shows the Remove role assignment message.":::
 
-1. 表示された **[ロールの割り当ての削除]** メッセージで **[はい]** を選択します。
+1. In the **Remove role assignments** message that appears, select **Yes**.
 
-このユニットでは、Azure portal を使って、リソース グループ内で仮想マシンを作成・管理するためのアクセスをユーザーに付与する方法を学びました。
+In this unit, you learned how to grant a user access to create and manage virtual machines in a resource group using the Azure portal.

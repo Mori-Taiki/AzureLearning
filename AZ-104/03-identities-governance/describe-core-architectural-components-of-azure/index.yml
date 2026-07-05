@@ -1,8 +1,8 @@
 ### YamlMime:Module
 uid: learn.wwl.describe-core-architectural-components-of-azure
 metadata:
-  title: Azure の中核となるアーキテクチャ コンポーネントについて説明する
-  description: "Azure の中核となるアーキテクチャ コンポーネントについて説明する"
+  title: Describe the core architectural components of Azure
+  description: "Describe the core architectural components of Azure"
   ms.date: 02/03/2026
   author: wwlpublish
   ms.author: robbarefoot
@@ -12,25 +12,25 @@ metadata:
   - N/A
   ms.service: azure
   ai-usage: ai-generated
-title: Azure の中核となるアーキテクチャ コンポーネントについて説明する
-summary: このモジュールでは、Microsoft Azure の基本的なインフラストラクチャ コンポーネントについて説明します。物理インフラストラクチャと、リソースがどのように管理されるかを学びます。
+title: Describe the core architectural components of Azure
+summary: This module explains the basic infrastructure components of Microsoft Azure. You'll learn about the physical infrastructure and how resources are managed.
 abstract: |
-  このモジュールを完了すると、次のことができるようになります。
+  Upon completion of this module, you'll be able to:
 
-  -   Azure のリージョン、リージョン ペア、ソブリン リージョンについて説明する
+  -   Describe Azure regions, region pairs, and sovereign regions
 
-  -   可用性ゾーンについて説明する
+  -   Describe Availability Zones
 
-  -   Azure のデータセンターについて説明する
+  -   Describe Azure datacenters
 
-  -   Azure のリソースとリソース グループについて説明する
+  -   Describe Azure resources and Resource Groups
 
-  -   サブスクリプションについて説明する
+  -   Describe subscriptions
 
-  -   管理グループについて説明する
+  -   Describe management groups
 
-  -   リソース グループ、サブスクリプション、管理グループの階層について説明する
-prerequisites: '-   IT の用語と概念に関する基本知識'
+  -   Describe the hierarchy of resource groups, subscriptions, and management groups
+prerequisites: '-   Basic familiarity with IT terms and concepts'
 iconUrl: /training/achievements/describe-core-architectural-components-of-azure.svg
 levels:
 - beginner

@@ -1,24 +1,24 @@
-コンテナーと仮想マシンはどちらも仮想化の一形態ですが、両者にはいくつかの重要な違いがあります。
+Containers and virtual machines are both forms of virtualization, but there are some key differences between them.
 
-背景として、次のシナリオを考えてみましょう。あなたは、クラウド環境でのアプリケーションのデプロイと管理を担当する Azure 管理者です。組織は、起動が速く、管理が簡単で、分離されたコンテナーでアプリケーションを実行できるソリューションを探しています。あなたは、Azure Container Instances を使う利点と、仮想マシンとの比較を理解したいと考えています。
+To provide context, let's consider a scenario: You're an Azure Administrator responsible for deploying and managing applications in a cloud environment. Your organization is looking for a solution that offers fast startup times, easy management, and the ability to run applications in isolated containers. You want to understand the benefits of using Azure Container Instances and how it compares to virtual machines.
 
-このモジュールでは、仮想マシンではなく Azure Container Instances を使うべき場面を学びます。機能と利用ケースの概要も確認します。
+In this module, you learn when to use Azure Container Instances instead of virtual machines. You also get an overview of features and use cases. 
 
-このモジュールの目標は、AI 対応の Azure Container Instances を紹介することです。
+The goal of this module is to introduce you to AI-ready Azure Container Instances.
 
-## 学習の目標
+## Learning objectives
 
-このモジュールでは、次のことを学びます。
+In this module, you learn how to:
 
-- コンテナーと仮想マシンをいつ使い分けるかを判断する。
-- Azure Container Instances の機能と利用ケースを把握する。
-- Azure コンテナー グループを実装する。
+- Identify when to use containers versus virtual machines.
+- Identify the features and usage cases of Azure Container Instances.
+- Implement Azure container groups.
 
-## 評価されるスキル
+## Skills measured
 
-このモジュールの内容は、[試験 AZ-104: Microsoft Azure Administrator](/credentials/certifications/resources/study-guides/az-104) の準備に役立ちます。
+The content in the module helps you prepare for [Exam AZ-104: Microsoft Azure Administrator](/credentials/certifications/resources/study-guides/az-104). 
 
-## 前提条件
+## Prerequisites
 
-- コンテナー化の概念と用語に関する実務知識。
-- クラウド コンピューティングに関する基本知識と、Azure portal の使用経験。
+- Working knowledge of containerization concepts and terminology.
+- Familiarity with cloud computing and experience with the Azure portal.

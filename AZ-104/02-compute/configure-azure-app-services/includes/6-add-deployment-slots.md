@@ -1,28 +1,28 @@
-デプロイ スロットは Azure portal で構成します。アプリのコンテンツと構成要素は、運用スロットを含むデプロイ スロット間でスワップできます。
+Deployment slots are configured in the Azure portal. You can swap your app content and configuration elements between deployment slots, including the production slot.
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=b8909968-03b3-47da-ac69-63bee05b8a6c]
 
-### デプロイ スロットの作成について知っておくべきこと
+### Things to know about creating deployment slots
 
-デプロイ スロットの構成方法の詳細を確認しましょう。
+Let's review some details about how deployment slots are configured.
 
-- 新しいデプロイ スロットは、空にすることも、複製 (クローン) することもできます。
+- New deployment slots can be empty or cloned.
 
-- デプロイ スロットの設定は、3 つのカテゴリに分けられます。
-   - スロット固有のアプリ設定と接続文字列 (該当する場合)。
-   - 継続的デプロイの設定 (有効な場合)。
-   - Azure App Service の認証設定 (有効な場合)。
+- Deployment slot settings fall into three categories:
+   - Slot-specific app settings and connection strings (if applicable).
+   - Continuous deployment settings (when enabled).
+   - Azure App Service authentication settings (when enabled).
 
-- 別のデプロイ スロットから構成を複製した場合、複製された構成は編集できます。構成要素の中には、スワップ時にコンテンツと一緒に移動するものもあれば、スワップ後もソース スロットに残るスロット固有のものもあります。
+- When you clone a configuration from another deployment slot, the cloned configuration is editable. Some configuration elements follow the content across the swap. Other slot-specific configuration elements stay in the source slot after the swap.
 
-#### スワップされる設定とスロット固有の設定
+#### Swapped settings versus slot-specific settings
 
-デプロイ スロット間でスワップされる設定と、ソース スロットに残る (スロット固有の) 設定を次の表に示します。これらの設定を確認しながら、自分の App Service アプリにどの機能が必要か考えてみてください。詳しくは「[どの設定がスワップされるか](/azure/app-service/deploy-staging-slots?tabs=portal#which-settings-are-swapped)」を参照してください。
+The following table lists settings that are swapped between deployment slots. The table also lists settings that remain in the source slot (slot-specific). As you review these settings, consider which features are required for your App Service apps. Read more about [which settings are swapped](/azure/app-service/deploy-staging-slots?tabs=portal#which-settings-are-swapped).
 
-| スワップされる設定 | スロット固有の設定 |
+| Swapped settings | Slot-specific settings | 
 | --- | --- |
-| 言語スタックとバージョン、32/64 ビット <br> アプリ設定 __\*__ <br> 接続文字列 __\*__ <br> マウントされたストレージ アカウント* <br> パブリック証明書 <br> WebJobs のコンテンツ <br> ハイブリッド接続 __\*\*__ <br> サービス エンドポイント __\*\*__ <br> Azure Content Delivery Network __\*\*__ <br> パス マッピング | カスタム ドメイン名 <br> 非パブリック証明書と TLS/SSL 設定 <br> スケール設定 <br> Always On <br> IP 制限 <br> WebJobs スケジューラ <br> 診断設定 <br> クロスオリジン リソース共有 (CORS) <br> 仮想ネットワーク統合 <br> マネージド ID <br> |
+| Language stack and version, 32/64-bit <br> App settings __\*__ <br> Connection strings __\*__ <br> Mounted storage accounts* <br> Public certificates <br> WebJobs content <br> Hybrid connections __\*\*__ <br> Service endpoints __\*\*__ <br> Azure Content Delivery Network __\*\*__ <br> Path mapping | Custom domain names <br> Nonpublic certificates and TLS/SSL settings <br> Scale settings <br> Always On <br> IP restrictions <br> WebJobs schedulers <br> Diagnostic settings <br> Cross-origin resource sharing (CORS) <br> Virtual network integration <br> Managed identities <br> |
 
-__*__ スロット固有になるよう構成できる設定です。
+__*__ Setting can be configured to be slot-specific.
 
-__**__ 現在利用できない機能です。
+__**__ Feature isn't currently available.

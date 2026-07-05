@@ -1,83 +1,83 @@
-ネットワーク インフラの計画を立て、クラウドに移行する VM をいくつか選び出しました。VM の作成にはいくつかの方法があり、どれを選ぶかは、自分が使い慣れた環境次第です。Azure には、リソースの作成と管理を行える Web ベースのポータルが用意されています。Linux、macOS、Windows で動作するコマンドライン ツールを使うこともできます。
+You've planned out the network infrastructure and identified a few VMs to migrate to the cloud. You have several choices for creating your VMs. The choice you make depends on the environment you're comfortable with. Azure supports a web-based portal for creating and administering resources. You can also choose to use command-line tools that run on Linux, macOS, and Windows.
 
 [!INCLUDE[](../../../includes/azure-optional-exercise-subscription-note.md)]
 
 [!INCLUDE[](../../../includes/azure-optional-exercise-create-resource-group-note.md)]
 
 > [!NOTE]
-> この演習全体を通して、例の中の **myResourceGroupName** は、既存のリソース グループ名か、この演習用に作成したリソース グループ名に置き換えてください。
+> Throughout this exercise, replace **myResourceGroupName** in the examples with the name of an existing resource group, or the name of the resource group that you created for this exercise.
 
-#### VM を作成・管理するための選択肢
+#### Options to create and manage VMs
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=8790339c-187e-4ebe-85f6-6c57b8c869cb]
 
-まずは Azure portal から見ていきましょう。Azure を始めるには一番手軽な方法です。
+Let's explore the Azure portal first - it's the easiest way to start with Azure.
 
 ## Azure portal
 
-**Azure portal** は、使いやすいブラウザーベースのユーザー インターフェイスで、あらゆる Azure リソースの作成と管理を行えます。たとえば、新しいデータベースのセットアップ、仮想マシンの処理能力の増強、毎月のコストの監視などができます。利用可能なリソースを一覧でき、ガイド付きウィザードで必要なリソースを作成できるため、学習ツールとしても優れています。
+The **Azure portal** provides an easy-to-use browser-based user interface that enables you to create and manage all your Azure resources. For example, you can set up a new database, increase the compute power of your virtual machines, and monitor your monthly costs. It's also a great learning tool, because you can survey all available resources and use guided wizards to create the ones you need.
 
-### Azure portal で Azure VM を作成する
+### Create an Azure VM with the Azure portal
 
-Ubuntu で Web サーバーを動かす VM を作成したいとしましょう。サイトのセットアップ自体は難しくありませんが、いくつか気を付ける点があります。オペレーティング システムのインストールと構成、Web サイトの構成、データベースのインストールが必要で、ファイアウォールのようなことも気にかけなければなりません。VM の作成はこの後のいくつかのモジュールで扱いますが、どれほど簡単かを見るために、ここで 1 つ作ってみましょう。すべてのオプションは説明しません。各オプションの詳細は **Create a VM** 系のモジュールを参照してください。
+Let's assume you want to create a VM running a web server on Ubuntu. Setting up a site isn't difficult, but there are a couple of things to keep in mind. You need to install and configure an operating system, configure a website, install a database, and worry about things like firewalls. We're going to cover creating VMs in the next few modules, but let's create one here to see how easy it is. We don't go through all the options - check out one of the **Create a VM** modules to get complete details on each option.
 
-1. [Azure portal](https://portal.azure.com/) にサインインします。
+1. Sign in to the [Azure portal](https://portal.azure.com/).
 
-1. Azure のホーム ページで、**[Azure サービス]** の下にある **[リソースの作成]** を選択します。**[リソースの作成]** ペインが表示され、Azure サービスの人気の製品が表示されます。
+1. On the Azure home page, under **Azure services**, select **Create a resource**. The **Create a resource** pane appears, displaying popular products for Azure services.
 
-    ![[リソースの作成] ページを示すスクリーンショット。](../media/3-create-new-resource.png)
+    ![Screenshot that shows the Create a resource page.](../media/3-create-new-resource.png)
 
-1. VM を作成したいので、**[仮想マシン]** を選択します。
+1. We want to create a VM, so select **Virtual machine**.
 
-1. **[仮想マシンの作成]** ペインが表示されます。
+1. The **Create virtual machine** pane appears.
 
-### VM を構成する
+### Configure the VM
 
-仮想マシンの基本的なパラメーターを構成する必要があります。この時点で見慣れないオプションがあっても大丈夫です。これらのオプションはすべて今後のモジュールで説明します。ここで使っている値をそのまま使ってかまいません。
+You need to configure the basic parameters of your virtual machine. If some of the options at this point are unfamiliar to you, that's OK. We're going to describe all of these options in a future module. You're welcome to copy the values used here.
 
-1. **[基本]** タブで、各設定に次の値を入力します。
+1. On the **Basics** tab, enter the following values for each setting.
 
-    | 設定 | 値  |
+    | Setting | Value  |
     | ------ | ------- |
-    | **プロジェクトの詳細**  |
-    | サブスクリプション | 自分のサブスクリプションを選択 |
-    | リソース グループ | ドロップダウンから **myResourceGroupName** を選択 |
-    | **インスタンスの詳細** |
-    | 仮想マシン名  | *test-ubuntu-cus-vm* と入力 |
-    | リージョン | ドロップダウン リストから、自分に近い地理的な場所を選択します。 |
-    | 可用性オプション  | インフラストラクチャ冗長は必要ありません |
-    | セキュリティの種類  | Standard |
-    | イメージ | Ubuntu Server 24.04 LTS - Gen2 |
-    | VM アーキテクチャ  | x64 |
-    | Azure Spot 割引で実行する | チェックしない |
-    | サイズ | Standard D2s V3 |
-    | **管理者アカウント** |
-    | 認証の種類 | SSH 公開キー |
-    | ユーザー名 | ユーザー名を入力 |
-    | SSH 公開キーのソース | 新しいキーの組の生成 |
-    | キーの組名 | **test-ubuntu-cus-vm_key** |
-    | **受信ポートの規則** |
-    | パブリック受信ポート | 選択したポートを許可する |
-    | 受信ポートを選択 | SSH (22) |
+    | **Project details**  |
+    | Subscription | Select your subscription |
+    | Resource group | Select **myResourceGroupName** from the drop-down |
+    | **Instance details** |
+    | Virtual machine name  | Enter *test-ubuntu-cus-vm* |
+    | Region | From the dropdown list, select a geographical location close to you. |
+    | Availability options  | No infrastructure redundancy required |
+    | Security type  | Standard |
+    | Image | Ubuntu Server 24.04 LTS - Gen2 |
+    | VM architecture  | x64 |
+    | Run with Azure Spot discount | Unchecked |
+    | Size | Standard D2s V3 |
+    | **Administrator account** |
+    | Authentication type | SSH public key |
+    | Username | Enter a username |
+    | SSH public key source | Generate a new key pair |
+    | Key pair name | **test-ubuntu-cus-vm_key** |
+    | **Inbound port rules** |
+    | Public inbound ports | Allow selected ports |
+    | Select inbound ports | SSH (22) |
 
-1. 他にもいくつかタブがあり、VM 作成時に指定できる設定を確認できます。ひととおり確認したら、**[確認および作成]** を選択して設定を確認・検証します。
+1. There are several other tabs you can explore to see the settings you can influence during the VM creation. After you're finished exploring, select **Review + create** to review and validate the settings.
 
-1. Azure は、リソースを作成する前に構成設定を検証します。Azure に組み込まれたイメージ作成者の要件によっては、追加の情報を求められることがあります。難しいことはありません。エラーが表示されているタブを開くだけです。すべての設定が意図どおりになっていることを確認したら、**[作成]** を選択して VM をデプロイ・作成します。
+1. Azure validates your configuration settings for a resource before it creates it. You might need to supply some additional information based on the requirements of the image creator built into Azure. It's simple; just open the tab that has an error. Verify all the settings are set the way you want, and then select **Create** to deploy and create the VM.
 
-1. **[新しいキーの組の生成]** ウィンドウが開きます。**[秘密キーのダウンロードとリソースの作成]** を選択します。
+1. The **Generate new key pair** window opens. Select **Download private key and create resource**.
 
-1. デプロイの進行状況は、**[概要]** ペインの **[デプロイの詳細]**、または **[通知]** ペインで確認できます。右上のツール バーにある通知アイコンを選択すると、[通知] ペインの表示/非表示を切り替えられます。
+1. You can monitor the deployment in the **Deployment details** on the **Overview** pane or through the **Notifications** pane. Select the notifications icon in the top right toolbar to show or hide the Notifications pane.
 
-    :::image type="content" source="../media/3-notifications.png" alt-text="ツール バーの通知アイコンと通知ペインの一部を示すスクリーンショット。":::
+    :::image type="content" source="../media/3-notifications.png" alt-text="Screenshot showing the notifications icon on toolbar and part of the notifications pane.":::
 
-    VM のデプロイ処理が完了するまでには数分かかります。デプロイが成功すると、その旨の通知が届きます。
+    The VM deployment process takes a few minutes to complete. You receive a notification informing you that the deployment succeeded.
 
-1. **[リソースに移動]** を選択します。VM の **[概要]** ページが表示されます。
+1. Select **Go to resource**. The **Overview** page of your VM appears.
 
-    ここでは、作成したばかりの Ubuntu VM のすべての情報と構成オプションを確認できます。その情報のひとつが**パブリック IP アドレス**です。
+    Here, you can see all the information and configuration options for your newly created Ubuntu VM. One of the pieces of information is the **Public IP address**.
 
-     :::image type="content" source="../media/3-public-ip-address.png" alt-text="パブリック IP アドレスが強調表示された、VM の要点とプロパティを示すスクリーンショット。":::
+     :::image type="content" source="../media/3-public-ip-address.png" alt-text="Screenshot showing VM essentials and properties with the public IP address highlighted.":::
 
-    先ほどの手順で SSH 公開キー認証を有効にしたとき、ユーザー インターフェイスには SSH を有効にするオプションも表示されていました。SSH を使うと、任意の SSH クライアントからパブリック IP 経由で VM に接続できます。
+    When you enabled SSH public key authentication in an earlier step, the user interface also gave an option to enable SSH. SSH allows you to connect to your VM via the public IP using any SSH client.
 
-おめでとうございます! わずかな手順で、Linux が動作する VM をデプロイできました。次は、VM を作成する他の方法を見てみましょう。
+Congratulations! With a few steps, you deployed a VM that runs Linux. Let's explore some other ways we could have created a VM.

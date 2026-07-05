@@ -1,13 +1,13 @@
 
 
-あなたは、会社のオンライン小売サイトのアプリのデプロイと管理の戦略に取り組んでいます。実装計画の一環として、いくつかのシナリオを検討しています。
+You're working on the app deployment and management strategy for your company's online retail site. You're reviewing a few scenarios as part of the implementation planning.
 
-- 管理チームから、Windows 上のコンテナーが仮想マシンより有利になるのはどんな場面かについて意見を求められています。
+- The Admin team requested input about where containers on Windows can be more advantageous than virtual machines. 
 
-- サイト関連のアプリがハードウェア リソース、ネットワーク、ストレージ ボリュームを共有できるようにするため、Azure Container Instances の機能を調べています。
+- You're examining features of Azure Container Instances to support site-related apps hosted on-premises in Azure to share hardware resources, network usage, and storage volumes.
 
-- 開発チームは、デプロイを簡素化し、オーケストレーションを提供するコンテナー管理ソリューションを必要としています。
+- The development team needs a container management solution that simplifies deployment and provides orchestration. 
 
-### 次の質問に答えてください
+### Answer the following questions
 
-各質問に対して最も適切な回答を選んでください。
+Choose the best response for each question.

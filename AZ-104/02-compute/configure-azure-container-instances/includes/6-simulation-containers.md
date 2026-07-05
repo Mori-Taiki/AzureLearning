@@ -1,21 +1,21 @@
-## ラボのシナリオ
+## Lab scenario
 
-あなたの組織には、オンプレミスのデータセンター内の仮想マシンで動作する Web アプリケーションがあります。組織はすべてのアプリケーションをクラウドに移行したいと考えていますが、管理するサーバーの数を増やしたくはありません。そこで、Azure Container Instances と Docker を評価することにしました。
+Your organization has a web application that runs on a virtual machine in your on-premises data center. The organization wants to move all applications to the cloud but doesn’t want to have a large number of servers to manage. You decide to evaluate Azure Container Instances and Docker.
 
-## アーキテクチャ図
+## Architecture diagram
 
-:::image type="content" source="../media/lab-09b.png" alt-text="本文で説明されているアーキテクチャ図。" border="false":::
+:::image type="content" source="../media/lab-09b.png" alt-text="Architecture diagram as explained in the text." border="false":::
 
-## 実践するスキル
+## Job skills
 
-+ Docker イメージを使って Azure コンテナー インスタンスをデプロイする。
-+ Azure コンテナー インスタンスのデプロイをテスト・検証する。
++ Deploy an Azure Container Instance using a Docker image.
++ Test and verify deployment of an Azure Container Instance.
 
 > [!NOTE]
-> 想定時間: 15 分。
-> この演習を完了するには、[Azure サブスクリプション](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)が必要です。
+> Estimated time: 15 minutes.
+> To complete this exercise, you need an [Azure subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-演習を起動して、指示に従ってください。完了したら、学習を続けられるよう、必ずこのページに戻ってきてください。
+Launch the exercise, and follow the instructions. When finished, be sure to return to this page so you can continue learning.
 
 
-[![演習を起動するボタン。](../media/launch-exercise.png)](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_09b-Implement_Azure_Container_Instances.html)
+[![Button to launch exercise.](../media/launch-exercise.png)](https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/Instructions/Labs/LAB_09b-Implement_Azure_Container_Instances.html)

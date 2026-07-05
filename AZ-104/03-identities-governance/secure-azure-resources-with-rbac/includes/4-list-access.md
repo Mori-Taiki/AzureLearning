@@ -1,53 +1,53 @@
-First Up Consultants で、あなたはマーケティング チームのリソース グループへのアクセス権を付与されました。Azure portal に慣れるために、現在どのようなロールが割り当てられているかを見てみましょう。
+At First Up Consultants, you've been granted access to a resource group for the marketing team. You want to familiarize yourself with the Azure portal and see what roles are currently assigned.
 
 [!include[](../../../includes/azure-subscription-prerequisite.md)]
 
-## 自分のロール割り当てを一覧表示する
+## List role assignments for yourself
 
-現在自分に割り当てられているロールを確認するには、次の手順に従います。
+Follow these steps to see what roles are currently assigned to you.
 
-1. [Azure portal](https://portal.azure.com?azure-portal=true) にサインインします。
+1. Sign in to the [Azure portal](https://portal.azure.com?azure-portal=true).
 
-1. **プロファイル** メニューで、省略記号 (**...**) を選択して他のリンクを表示します。
+1. On the **Profile** menu, select the ellipsis (**...**) to see more links.
 
-    :::image type="content" source="../media/4-my-permissions-menu.png" alt-text="[自分のアクセス許可] が強調表示されたユーザー メニューのスクリーンショット。":::
+    :::image type="content" source="../media/4-my-permissions-menu.png" alt-text="Screenshot of user menu with My permissions highlighted.":::
 
-1. **[自分のアクセス許可]** を選択して、**[自分のアクセス許可]** ペインを開きます。
+1. Select **My permissions** to open the **My permissions** pane.
 
-    :::image type="content" source="../media/4-my-permissions-pane.png" alt-text="[自分のアクセス許可] ペインのスクリーンショット。":::
+    :::image type="content" source="../media/4-my-permissions-pane.png" alt-text="Screenshot of the My permissions pane.":::
 
-    自分に割り当てられているロールとそのスコープが確認できます。表示される一覧は人によって異なります。
+    You'll find the roles that you've been assigned and the scope. Your list will look different.
 
-## リソース グループのロール割り当てを一覧表示する
+## List role assignments for a resource group
 
-リソース グループのスコープで割り当てられているロールを確認するには、次の手順に従います。
+Follow these steps to see what roles are assigned at the resource group scope.
 
-1. 上部の検索ボックスで **[リソース グループ]** を検索して選択します。
+1. In the Search box at the top, search for and select **Resource groups**.
 
-    :::image type="content" source="../media/4-resource-groups.png" alt-text="リソース グループの検索方法を示す Azure portal のスクリーンショット。":::
+    :::image type="content" source="../media/4-resource-groups.png" alt-text="Screenshot of the Azure portal that shows how to search for resource groups.":::
 
-1. リソース グループの一覧から、リソース グループを 1 つ選択します。
+1. In the list of resource groups, select a resource group.
 
-    この手順では **example-group** という名前のリソース グループを使いますが、あなたのリソース グループの名前は異なります。
+    These steps use a resource group named **example-group**, but your resource group's name will be different.
 
-1. 左側のメニュー ペインで **[アクセス制御 (IAM)]** を選択します。
+1. On the left menu pane, select **Access control (IAM)**.
 
-    :::image type="content" source="../media/4-resource-group-access-control.png" alt-text="リソース グループのペインで [アクセス制御 (IAM)] オプションを示すスクリーンショット。":::
+    :::image type="content" source="../media/4-resource-group-access-control.png" alt-text="Screenshot showing Access control (IAM) option on the resource group pane.":::
 
-1. **[ロールの割り当て]** タブを選択します。
+1. Select the **Role assignments** tab.
 
-    このタブには、リソース グループに誰がアクセスできるかが表示されます。一部のロールのスコープは **[このリソース]** ですが、親スコープから **[(継承済み)]** のものもあることに注目してください。
+    This tab shows who has access to the resource group. Notice that some roles are scoped to **This resource**, while others are **(Inherited)** from a parent scope.
 
-   :::image type="content" source="../media/4-resource-group-role-assignment.png" alt-text="選択したリソース グループの [ロールの割り当て] タブを示すスクリーンショット。":::
+   :::image type="content" source="../media/4-resource-group-role-assignment.png" alt-text="Screenshot showing Role assignments tab for the selected resource group.":::
 
-## ロールを一覧表示する
+## List roles
 
-前のユニットで学んだとおり、ロールはアクセス許可の集まりです。Azure には、ロール割り当てで使える 70 を超える組み込みロールがあります。ロールを一覧表示するには:
+As you learned in the previous unit, a role is a collection of permissions. Azure has more than 70 built-in roles that you can use in your role assignments. To list the roles:
 
-- ペイン上部のメニュー バーで **[ロール]** タブを選択すると、すべての組み込みロールとカスタム ロールの一覧が表示されます。
+- In the menu bar at the top of the pane, select the **Roles** tab to list of all the built-in and custom roles.
 
-   **[詳細]** 列にあるロールの **[表示]** リンクを選択し、**[割り当て]** タブを選択すると、そのロールに割り当てられているユーザーとグループの数が表示されます。
+   Select a role's **View** link in the **Details** column, then select the **Assignments** tab to display the number of users and groups assigned to that role.
 
-   :::image type="content" source="../media/4-roles-list.png" alt-text="ロールの一覧と、各ロールに割り当てられているユーザーおよびグループを示すスクリーンショット。":::
+   :::image type="content" source="../media/4-roles-list.png" alt-text="Screenshot showing a list of Roles and users and groups assigned to each role.":::
 
-このユニットでは、Azure portal で自分のロール割り当てを一覧表示する方法を学びました。リソース グループのロール割り当てを一覧表示する方法も学びました。
+In this unit, you learned how to list the role assignments for yourself in the Azure portal. You also learned how to list the role assignments for a resource group.

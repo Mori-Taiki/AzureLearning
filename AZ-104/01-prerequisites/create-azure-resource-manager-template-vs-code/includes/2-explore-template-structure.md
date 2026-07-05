@@ -1,72 +1,72 @@
-このユニットでは、Azure Resource Manager テンプレート (ARM テンプレート) を使用して Infrastructure as Code を実装する方法について学習します。ARM テンプレートの各セクションを概観し、ARM テンプレートを Azure にデプロイする方法を学び、ARM テンプレートの *resources* セクションについて詳しく掘り下げます。
+In this unit, you learn about using Azure Resource Manager templates (ARM templates) to implement infrastructure as code. You survey the sections of an ARM template, learn how to deploy your ARM template to Azure, and delve into detail on the *resources* section of the ARM template.
 
-## Infrastructure as Code とは
+## What is infrastructure as code?
 
-*Infrastructure as Code* を使用すると、アプリケーションに必要なインフラストラクチャをコードで記述できます。
+*Infrastructure as code* allows you to describe, through code, the infrastructure that you need for your application.
 
-Infrastructure as Code では、アプリケーション コードと、アプリケーションのデプロイに必要なすべてのものを、中央のコード リポジトリで一元管理できます。Infrastructure as Code の利点は次のとおりです。
+With infrastructure as code, you can maintain both your application code and everything you need to deploy your application in a central code repository. The advantages to infrastructure as code are:
 
-- 構成の一貫性
-- スケーラビリティの向上
-- デプロイの高速化
-- 追跡可能性の向上
+- Consistent configurations
+- Improved scalability
+- Faster deployments
+- Better traceability
 
-次のビデオでは、Infrastructure as Code について説明しています。
+This video explains infrastructure as code:
 
 > [!VIDEO https://channel9.msdn.com/Blogs/One-Dev-Minute/What-is-Infrastructure-as-Code--One-Dev-Question/player?format=ny]
 
-## ARM テンプレートとは
+## What is an ARM template?
 
-ARM テンプレートは、デプロイのインフラストラクチャと構成を定義する JavaScript Object Notation (JSON) ファイルです。テンプレートでは、*宣言型構文*を使用します。宣言型構文とは、制御フローを記述することなく、リソースがどのような状態であるべきかを示す構造と要素を組み立てる方法です。宣言型構文は、コンピューターに実行させるコマンドを使用する*命令型構文*とは異なります。命令型のスクリプトは、リソースをデプロイする各ステップを指定することに焦点を当てています。
+ARM templates are JavaScript Object Notation (JSON) files that define the infrastructure and configuration for your deployment. The template uses a *declarative syntax*. The declarative syntax is a way of building the structure and elements that outline what resources look like without describing the control flow. Declarative syntax is different than *imperative syntax*, which uses commands for the computer to perform. Imperative scripting focuses on specifying each step in deploying the resources.
 
-ARM テンプレートを使用すると、リソースを作成するための一連のプログラミング コマンドを書くことなく、デプロイしたい内容を宣言できます。ARM テンプレートでは、リソースと、それらのリソースのプロパティを指定します。その情報を基に、[Azure Resource Manager](/azure/azure-resource-manager/management/overview?azure-portal=true) が、整理された一貫性のある方法でリソースをデプロイします。
+ARM templates allow you to declare what you intend to deploy without having to write the sequence of programming commands to create it. In an ARM template, you specify the resources and the properties for those resources. [Azure Resource Manager](/azure/azure-resource-manager/management/overview?azure-portal=true) then uses that information to deploy the resources in an organized and consistent manner.
 
-### ARM テンプレートを使用する利点
+### Benefits of using ARM templates
 
-ARM テンプレートを使用すると、デプロイを自動化し、Infrastructure as Code (IaC) のプラクティスを採用できます。テンプレート コードは、インフラストラクチャおよび開発プロジェクトの一部になります。アプリケーション コードと同じように、IaC ファイルをソース リポジトリに保存してバージョン管理できます。
+ARM templates allow you to automate deployments and use the practice of infrastructure as code (IaC). The template code becomes part of your infrastructure and development projects. Just like application code, you can store the IaC files in a source repository and version it.
 
-ARM テンプレートは*べき等*です。つまり、同じテンプレートを何度デプロイしても、同じ種類のリソースが同じ状態で得られます。
+ARM templates are *idempotent*, which means you can deploy the same template many times and get the same resource types in the same state.
 
-Resource Manager は、リソースが正しい順序で作成されるように、リソースのデプロイをオーケストレーションします。可能な場合、リソースは並列で作成されるため、ARM テンプレートによるデプロイはスクリプトによるデプロイよりも速く完了します。
+Resource Manager orchestrates deploying the resources so they're created in the correct order. When possible, resources are created in parallel, so ARM template deployments finish faster than scripted deployments.
 
-  :::image type="content" source="../media/2-template-processing.png" alt-text="テンプレート処理手順の対応関係を示す図。スクリプトを処理するための複数の呼び出しとは対照的に、テンプレートの処理には 1 回の呼び出ししか必要ありません。" border="false":::
+  :::image type="content" source="../media/2-template-processing.png" alt-text="Diagram showing a mapping of the template processing procedure. There's only one call to process a template as opposed to several calls to process scripts." border="false":::
 
-Resource Manager には検証機能も組み込まれています。デプロイを開始する前にテンプレートをチェックし、デプロイが成功することを確認します。
+Resource Manager also has built-in validation. It checks the template before starting the deployment to make sure the deployment succeeds.
 
-デプロイがより複雑になった場合は、ARM テンプレートをより小さく再利用可能なコンポーネントに分割できます。これらの小さなテンプレートは、デプロイ時にリンクしてつなぎ合わせることができます。テンプレートを別のテンプレートの中に入れ子にすることもできます。
+If your deployments become more complex, you can break your ARM templates into smaller, reusable components. You can link these smaller templates together at deployment time. You can also nest templates inside other templates.
 
-Azure portal では、デプロイ履歴を確認し、デプロイの状態に関する情報を取得できます。ポータルには、すべてのパラメーターと出力の値が表示されます。
+In the Azure portal, you can review your deployment history and get information about the state of the deployment. The portal displays values for all parameters and outputs.
 
-また、ARM テンプレートは、[Azure Pipelines](https://azure.microsoft.com/services/devops/pipelines?azure-portal=true) などの継続的インテグレーションおよび継続的デプロイ (CI/CD) ツールに統合することもできます。これにより、リリース パイプラインを自動化し、アプリケーションとインフラストラクチャを迅速かつ確実に更新できます。Azure DevOps と ARM テンプレート タスクを使用することで、プロジェクトを継続的にビルドしてデプロイできます。
+You can also integrate your ARM templates into continuous integration and continuous deployment (CI/CD) tools like [Azure Pipelines](https://azure.microsoft.com/services/devops/pipelines?azure-portal=true), which can automate your release pipelines for fast and reliable application and infrastructure updates. By using Azure DevOps and ARM template tasks, you can continuously build and deploy your projects.
 
-### ARM テンプレート ファイルの構造
+### ARM template file structure
 
-ARM テンプレートを書く際には、テンプレートを構成するすべての部分と、それぞれの役割を理解しておく必要があります。ARM テンプレート ファイルは、次の要素で構成されます。
+When you're writing an ARM template, you need to understand all the parts that make up the template and what they do. ARM template files are made up of the following elements:
 
-| 要素        | 説明 |
+| Element        | Description |
 | -------------- | --- |
-| **schema** | JSON データの構造を記述する JSON スキーマ ファイルの場所を定義する必須セクション。使用するバージョン番号は、デプロイのスコープと JSON エディターによって異なります。 |
-| **contentVersion** | テンプレートのバージョン (1.0.0.0 など) を定義する必須セクション。この値を使用してテンプレートの重要な変更を記録し、正しいテンプレートをデプロイしていることを確認できます。 |
-| **apiProfile** | リソースの種類に対する API バージョンのコレクションを定義する省略可能なセクション。この値を使用すると、テンプレート内のリソースごとに API バージョンを指定する必要がなくなります。 |
-| **parameters** | デプロイ時に指定する値を定義する省略可能なセクション。これらの値は、パラメーター ファイル、コマンドライン パラメーター、または Azure portal で指定できます。 |
-| **variables** | テンプレート言語式を簡潔にするために使用する値を定義する省略可能なセクション。 |
-| **functions** | テンプレート内で使用できる[ユーザー定義関数](/azure/azure-resource-manager/templates/template-user-defined-functions?azure-portal=true)を定義できる省略可能なセクション。複雑な式がテンプレート内で繰り返し使用される場合、ユーザー定義関数を使うとテンプレートを簡潔にできます。 |
-| **resources** | リソース グループまたはサブスクリプションにデプロイまたは更新する実際の項目を定義する必須セクション。 |
-| **output** | デプロイの最後に返される値を指定する省略可能なセクション。 |
+| **schema** | A required section that defines the location of the JSON schema file that describes the structure of JSON data. The version number you use depends on the scope of the deployment and your JSON editor. |
+| **contentVersion** | A required section that defines the version of your template (such as 1.0.0.0). You can use this value to document significant changes in your template to ensure you're deploying the right template. |
+| **apiProfile** | An optional section that defines a collection of API versions for resource types. You can use this value to avoid having to specify API versions for each resource in the template. |
+| **parameters** | An optional section where you define values that are provided during deployment. You can provide these values in a parameter file, by command-line parameters, or in the Azure portal. |
+| **variables** | An optional section where you define values that are used to simplify template language expressions. |
+| **functions** | An optional section where you can define [user-defined functions](/azure/azure-resource-manager/templates/template-user-defined-functions?azure-portal=true) that are available within the template. User-defined functions can simplify your template when complicated expressions are used repeatedly in your template. |
+| **resources** | A required section that defines the actual items you want to deploy or update in a resource group or a subscription. |
+| **output** | An optional section where you specify the values that are returned at the end of the deployment. |
 
-## ARM テンプレートを Azure にデプロイする
+## Deploy an ARM template to Azure
 
-ARM テンプレートは、次のいずれかの方法で Azure にデプロイできます。
+You can deploy an ARM template to Azure in one of the following ways:
 
-- ローカル テンプレートをデプロイする
-- リンクされたテンプレートをデプロイする
-- 継続的デプロイ パイプラインでデプロイする
+- Deploy a local template
+- Deploy a linked template
+- Deploy in a continuous deployment pipeline
 
-このモジュールでは、ローカルの ARM テンプレートのデプロイを中心に扱います。今後の Learn モジュールでは、より複雑なインフラストラクチャのデプロイ方法や、Azure Pipelines との統合方法を学習します。
+This module focuses on deploying a local ARM template. In future Learn modules, you learn how to deploy more complicated infrastructure and how to integrate with Azure Pipelines.
 
-ローカル テンプレートをデプロイするには、[Azure PowerShell](/powershell/azure/install-az-ps) または [Azure CLI](/cli/azure/install-azure-cli?azure-portal=true) のいずれかがローカルにインストールされている必要があります。
+To deploy a local template, you need to have either [Azure PowerShell](/powershell/azure/install-az-ps) or the [Azure CLI](/cli/azure/install-azure-cli?azure-portal=true) installed locally.
 
-まず、Azure CLI または Azure PowerShell を使用して Azure にサインインします。
+First, sign in to Azure by using the Azure CLI or Azure PowerShell.
 
 # [Azure CLI](#tab/azure-cli)
 
@@ -82,7 +82,7 @@ Connect-AzAccount
 
 ---
 
-次に、リソース グループを定義します。既に定義済みのリソース グループを使用することも、次のコマンドで新しいリソース グループを作成することもできます。使用可能な場所の値は、`az account list-locations` (CLI) または `Get-AzLocation` (PowerShell) で取得できます。既定の場所は `az configure --defaults location=<location>` で構成できます。
+Next, define your resource group. You can use an already-defined resource group or create a new one with the following command. You can obtain available location values from: `az account list-locations` (CLI) or `Get-AzLocation` (PowerShell). You can configure the default location using `az configure --defaults location=<location>`.
 
 # [Azure CLI](#tab/azure-cli)
 
@@ -102,16 +102,16 @@ New-AzResourceGroup `
 
 ---
 
-リソース グループに対するテンプレートのデプロイを開始するには、Azure CLI コマンドの [az deployment group create](/cli/azure/deployment/group#az-deployment-group-create) または Azure PowerShell コマンドの [New-AzResourceGroupDeployment](/powershell/module/az.resources/new-azresourcegroupdeployment) を使用します。
+To start a template deployment at the resource group, use either the Azure CLI command [az deployment group create](/cli/azure/deployment/group#az-deployment-group-create) or the Azure PowerShell command [New-AzResourceGroupDeployment](/powershell/module/az.resources/new-azresourcegroupdeployment).
 
 > [!TIP]
-> `az deployment group create` と `az group deployment create` の違いは、`az group deployment create` が非推奨となる予定の古いコマンドであり、`az deployment group create` に置き換えられるという点です。そのため、リソース グループ スコープでリソースをデプロイする際は、`az deployment group create` の使用をお勧めします。
+> The difference between `az deployment group create` and `az group deployment create` is that `az group deployment create` is an old command to be deprecated and will be replaced by `az deployment group create`. Therefore, we recommend using `az deployment group create` to deploy resources under the resource group scope.
 
-どちらのコマンドにも、リソース グループ、リージョン、およびデプロイの名前が必要です。名前を付けることで、デプロイ履歴の中でそのデプロイを簡単に識別できます。便宜上、演習ではテンプレート ファイルへのパスを格納する変数を作成します。この変数を使うと、デプロイのたびにパスを入力し直す必要がなくなるため、デプロイ コマンドを実行しやすくなります。次に例を示します。
+Both commands require the resource group, the region, and the name for the deployment so you can easily identify it in the deployment history. For convenience, the exercises create a variable that stores the path to the template file. This variable makes it easier for you to run deployment commands, because you don't have to retype the path every time you deploy. Here's an example:
 
 # [Azure CLI](#tab/azure-cli)
 
-このデプロイ コマンドを実行するには、[最新バージョン](/cli/azure/install-azure-cli)の Azure CLI が必要です。
+To run this deployment command, you must have the [latest version](/cli/azure/install-azure-cli) of Azure CLI.
 
 ```azurecli
 templateFile="{provide-the-path-to-the-template-file}"
@@ -133,25 +133,25 @@ New-AzResourceGroupDeployment `
 
 ---
 
-複雑なソリューションをデプロイするには、リンクされたテンプレートを使用します。テンプレートを複数のテンプレートに分割し、メイン テンプレートを通じてそれらのテンプレートをデプロイできます。メイン テンプレートをデプロイすると、リンクされたテンプレートのデプロイがトリガーされます。リンクされたテンプレートは、SAS トークンを使用して保存し、保護できます。
+Use linked templates to deploy complex solutions. You can break a template into many templates and deploy these templates through a main template. When you deploy the main template, it triggers the linked template's deployment. You can store and secure the linked template by using a SAS token.
 
-CI/CD パイプラインは、ARM テンプレート プロジェクトを含む開発プロジェクトの作成とデプロイを自動化します。テンプレートのデプロイに使用される最も一般的な 2 つのパイプラインは、Azure Pipelines と [GitHub Actions](/training/paths/github-actions/?azure-portal=true) です。
+A CI/CD pipeline automates the creation and deployment of development projects, which includes ARM template projects. The two most common pipelines used for template deployment are Azure Pipelines or [GitHub Actions](/training/paths/github-actions/?azure-portal=true).
 
-これら 2 種類のデプロイの詳細については、他のモジュールで説明します。
+More information on these two types of deployment is covered in other modules.
 
-## テンプレートにリソースを追加する
+## Add resources to the template
 
-テンプレートにリソースを追加するには、リソース プロバイダーとそのリソースの種類を知っておく必要があります。この組み合わせの構文は、*{リソース プロバイダー}/{リソースの種類}* という形式です。たとえば、ストレージ アカウント リソースをテンプレートに追加するには、`Microsoft.Storage` リソース プロバイダーが必要です。このプロバイダーの種類の 1 つが `storageAccount` です。したがって、リソースの種類は `Microsoft.Storage/storageAccounts` と表記されます。必要なプロバイダーは、[Azure サービスのリソース プロバイダー](/azure/azure-resource-manager/management/azure-services-resource-providers?azure-portal=true)の一覧から探すことができます。
+To add a resource to your template, you need to know the resource provider and its types of resources. The syntax for this combination is in the form of *{resource-provider}/{resource-type}*. For example, to add a storage account resource to your template, you need the `Microsoft.Storage` resource provider. One of the types for this provider is `storageAccount`. So your resource type is displayed as `Microsoft.Storage/storageAccounts`. You can use a list of [resource providers for Azure services](/azure/azure-resource-manager/management/azure-services-resource-providers?azure-portal=true) to find the providers you need.
 
-プロバイダーとリソースの種類を定義したら、使用したい各リソースの種類のプロパティを理解する必要があります。詳細については、「[Azure Resource Manager テンプレートでのリソースの定義](/azure/templates?azure-portal=true)」を参照してください。リソースを見つけるには、左側の列の一覧を確認します。プロパティは API バージョンごとに整理されている点に注意してください。
+After you define the provider and resource type, you need to understand the properties for each resource type you want to use. For details, see [Define resources in Azure Resource Manager templates](/azure/templates?azure-portal=true). To find the resource, view the list in the left column. Notice that the properties are sorted by API version.
 
-:::image type="content" source="../media/2-resource-type-properties.png" alt-text="ストレージ アカウントのドキュメントが選択されている Microsoft ドキュメント ページのスクリーンショット。":::
+:::image type="content" source="../media/2-resource-type-properties.png" alt-text="Screenshot of a Microsoft documentation page showing the storage account documentation selected.":::
 
-Storage Accounts ページに記載されているプロパティの一部の例を次に示します。
+Here's an example of some of the listed properties from the Storage Accounts page:
 
-![ストレージ アカウントのプロパティの一部を示す Microsoft ドキュメント ページのスクリーンショット。](../media/2-storage-account-properties.png)
+![Screenshot of a Microsoft documentation page showing some of the storage account properties.](../media/2-storage-account-properties.png)
 
-このストレージの例では、テンプレートは次のようになります。
+For our storage example, your template might look like this:
 
 ```json
 {

@@ -1,58 +1,58 @@
 
 
-受講者は、Active Directory Domain Services (AD DS。従来は単に「Active Directory」と呼ばれていました) に馴染みがあることが前提です。AD DS は、ユーザー アカウントやパスワードなどのディレクトリ データを保存する仕組みを提供し、そのデータをネットワークのユーザー、管理者、その他のデバイスやサービスから利用できるようにするディレクトリ サービスです。Windows Server 上でサービスとして動作し、そのサーバーはドメイン コントローラーと呼ばれます。
+Students should be familiar with Active Directory Domain Services (AD DS or traditionally called just "Active Directory"). AD DS is a directory service that provides the methods for storing directory data, such as user accounts and passwords, and makes this data available to network users, administrators, and other devices and services. It runs as a service on Windows Server, referred to as a domain controller.
 
-Microsoft Entra ID は PaaS (サービスとしてのプラットフォーム) の一部であり、クラウド上で Microsoft が管理するディレクトリ サービスとして動作します。顧客が所有・管理するコア インフラの一部でも、IaaS の提供物でもありません。実装に対するコントロールが少なくなることを意味する一方で、デプロイや保守にリソースを割く必要がないことも意味します。
+Microsoft Entra ID is part of the platform as a service (PaaS) offering and operates as a Microsoft-managed directory service in the cloud. It’s not a part of the core infrastructure that customers own and manage, nor is it an Infrastructure as a service offering. While this implies that you have less control over its implementation, it also means that you don’t have to dedicate resources to its deployment or maintenance.
 
-また、Microsoft Entra ID では、多要素認証のサポート、ID 保護、セルフサービス パスワード リセットなど、AD DS にはもともと備わっていない一連の機能を利用できます。
+With Microsoft Entra ID, you also have access to a set of features that aren’t natively available in AD DS, such as support for multi-factor authentication, identity protection, and self-service password reset.
 
-Microsoft Entra ID を使うと、次のような方法で、組織や個人がクラウドベースのリソースへより安全にアクセスできるようにできます。
+You can use Microsoft Entra ID to provide more secure access to cloud-based resources for organizations and individuals by:
 
- -  アプリケーションへのアクセスを構成する
- -  クラウドベースの SaaS アプリケーションへのシングル サインオン (SSO) を構成する
- -  ユーザーとグループを管理する
- -  ユーザーをプロビジョニングする
- -  組織間のフェデレーションを有効にする
- -  ID 管理ソリューションを提供する
- -  異常なサインイン アクティビティを特定する
- -  多要素認証を構成する
- -  既存のオンプレミス Active Directory の実装を Microsoft Entra ID に拡張する
- -  クラウドおよびローカルのアプリケーション向けにアプリケーション プロキシを構成する
- -  ユーザーとデバイスに条件付きアクセスを構成する
+ -  Configuring access to applications
+ -  Configuring single sign-on (SSO) to cloud-based SaaS applications
+ -  Managing users and groups
+ -  Provisioning users
+ -  Enabling federation between organizations
+ -  Providing an identity management solution
+ -  Identifying irregular sign-in activity
+ -  Configuring multi-factor authentication
+ -  Extending existing on-premises Active Directory implementations to Microsoft Entra ID
+ -  Configuring Application Proxy for cloud and local applications
+ -  Configuring Conditional Access for users and devices
 
-:::image type="content" source="../media/azure-active-directory-connect-stack-f1aae359.png" alt-text="Microsoft Entra Connect のスタックを示す図。":::
+:::image type="content" source="../media/azure-active-directory-connect-stack-f1aae359.png" alt-text="Diagram that shows the Microsoft Entra Connect Stack.":::
 
 
-Microsoft Entra は独立した Azure サービスです。その最も基本的な形態は、新規の Azure サブスクリプションに自動的に含まれ、追加費用はかからず、Free レベルと呼ばれます。Microsoft のオンライン ビジネス サービス (Microsoft 365 や Microsoft Intune など) を契約すると、Free のすべての機能にアクセスできる Microsoft Entra ID が自動的に付いてきます。
+Microsoft Entra constitutes a separate Azure service. Its most elementary form, which any new Azure subscription includes automatically, doesn't incur any extra cost and is referred to as the Free tier. If you subscribe to any Microsoft Online business services (for example, Microsoft 365 or Microsoft Intune), you automatically get Microsoft Entra ID with access to all the Free features.
 
 > [!NOTE]
-> 既定では、Microsoft アカウントを使って新しい Azure サブスクリプションを作成すると、そのサブスクリプションには Default Directory という名前の新しい Microsoft Entra テナントが自動的に含まれます。
+> By default, when you create a new Azure subscription by using a Microsoft account, the subscription automatically includes a new Microsoft Entra tenant named Default Directory.
 
-より高度な ID 管理機能の一部には、Basic と Premium のレベルとして提供される、有料版の Microsoft Entra ID が必要です。これらの機能の一部は、Microsoft 365 サブスクリプションの一部として生成される Microsoft Entra インスタンスにも自動的に含まれます。Microsoft Entra のバージョン間の違いは、このモジュールの後半で説明します。
+Some of the more advanced identity management features require paid versions of Microsoft Entra ID, offered in the form of Basic and Premium tiers. Some of these features are also automatically included in Microsoft Entra instances generated as part of Microsoft 365 subscriptions. Differences between Microsoft Entra versions are discussed later in this module.
 
-Microsoft Entra ID の実装は、Azure に仮想マシンをデプロイし、AD DS を追加して、新しいフォレストとドメインのためにドメイン コントローラーをいくつかデプロイするのとは異なります。Microsoft Entra ID は別物のサービスで、オンプレミスのアプリに重点を置く AD DS とは違い、Web ベースのアプリへの ID 管理サービスの提供にずっと重点を置いています。
+Implementing Microsoft Entra ID isn't the same as deploying virtual machines in Azure, adding AD DS, and then deploying some domain controllers for a new forest and domain. Microsoft Entra ID is a different service, much more focused on providing identity management services to web-based apps, unlike AD DS, which is more focused on on-premises apps.
 
 <a name='azure-ad-tenants'></a>
 
-### Microsoft Entra テナント
+### Microsoft Entra tenants
 
-AD DS と異なり、Microsoft Entra ID は設計上マルチテナントであり、個々のディレクトリ インスタンス間の分離を保証するように実装されています。Microsoft Entra ID は世界最大のマルチテナント ディレクトリで、100 万を超えるディレクトリ サービス インスタンスをホストし、週あたり数十億件の認証リクエストを処理しています。この文脈でのテナントという用語は、通常、Microsoft 365、Intune、Azure など、Microsoft Entra ID を利用する Microsoft のクラウドベース サービスのサブスクリプションに登録した企業や組織を指します。ただし技術的な観点では、テナントという用語は個々の Microsoft Entra インスタンスを表します。1 つの Azure サブスクリプション内に、複数の Microsoft Entra テナントを作成できます。他のテナントに影響を与えずに、あるテナントで Microsoft Entra の機能をテストしたい場合などには、複数の Microsoft Entra テナントがあると便利です。
+Unlike AD DS, Microsoft Entra ID is multi-tenant by design and is implemented specifically to ensure isolation between its individual directory instances. It’s the world’s largest multi-tenant directory, hosting over a million directory services instances, with billions of authentication requests per week. The term tenant in this context typically represents a company or organization that signed up for a subscription to a Microsoft cloud-based service such as Microsoft 365, Intune, or Azure, each of which uses Microsoft Entra ID. However, from a technical standpoint, the term tenant represents an individual Microsoft Entra instance. Within an Azure subscription, you can create multiple Microsoft Entra tenants. Having multiple Microsoft Entra tenants might be convenient if you want to test Microsoft Entra functionality in one tenant without affecting the others.
 
-どの時点でも、Azure サブスクリプションは 1 つの (そしてただ 1 つの) Microsoft Entra テナントに関連付けられていなければなりません。この関連付けにより、その Microsoft Entra テナントに存在するユーザー、グループ、アプリケーションに対して、Azure サブスクリプション内のリソースへのアクセス許可を (RBAC 経由で) 付与できます。
+At any given time, an Azure subscription must be associated with one, and only one, Microsoft Entra tenant. This association allows you to grant permissions to resources in the Azure subscription (via RBAC) to users, groups, and applications that exist in that particular Microsoft Entra tenant. 
 
 > [!NOTE]
-> 同じ Microsoft Entra テナントを複数の Azure サブスクリプションに関連付けることができます。これにより、同じユーザー、グループ、アプリケーションを使って、複数の Azure サブスクリプションにまたがるリソースを管理できます。
+> You can associate the same Microsoft Entra tenant with multiple Azure subscriptions. This allows you to use the same users, groups, and applications to manage resources across multiple Azure subscriptions.
 
-各 Microsoft Entra テナントには、一意のプレフィックスからなる既定のドメイン ネーム システム (DNS) ドメイン名が割り当てられます。プレフィックスは、Azure サブスクリプションの作成に使った Microsoft アカウントの名前に由来するか、Microsoft Entra テナントの作成時に明示的に指定され、その後ろに **onmicrosoft.com** のサフィックスが付きます。同じ Microsoft Entra テナントに少なくとも 1 つのカスタム ドメイン名を追加することが可能で、一般的にもよく行われます。この名前には、対応する企業や組織が所有する DNS ドメインの名前空間を使います。Microsoft Entra テナントは、セキュリティ境界として、またユーザー、グループ、アプリケーションといった Microsoft Entra オブジェクトのコンテナーとして機能します。単一の Microsoft Entra テナントで、複数の Azure サブスクリプションをサポートできます。
+Each Microsoft Entra tenant is assigned the default Domain Name System (DNS) domain name, consisting of a unique prefix. The prefix, derived from the name of the Microsoft account you use to create an Azure subscription or provided explicitly when creating a Microsoft Entra tenant, is followed by the **onmicrosoft.com** suffix. Adding at least one custom domain name to the same Microsoft Entra tenant is possible and common. This name utilizes the DNS domain namespace that the corresponding company or organization owns. The Microsoft Entra tenant serves as the security boundary and a container for Microsoft Entra objects such as users, groups, and applications. A single Microsoft Entra tenant can support multiple Azure subscriptions.
 
 <a name='azure-ad-schema'></a>
 
-### Microsoft Entra スキーマ
+### Microsoft Entra schema
 
-Microsoft Entra のスキーマに含まれるオブジェクトの種類は、AD DS より少なくなっています。特に注目すべきは、computer クラスの定義が含まれていないことです (ただし device クラスは含まれます)。デバイスを Microsoft Entra に参加させるプロセスは、コンピューターを AD DS に参加させるプロセスとは大きく異なります。また、Microsoft Entra のスキーマは簡単に拡張でき、その拡張は完全に元に戻せます。
+The Microsoft Entra schema contains fewer object types than that of AD DS. Most notably, it doesn't include a definition of the computer class, although it does include the device class. The process of joining devices to Microsoft Entra differs considerably from the process of joining computers to AD DS. The Microsoft Entra schema is also easily extensible, and its extensions are fully reversible.
 
-従来のコンピューターのドメイン メンバーシップがサポートされていないため、グループ ポリシー オブジェクト (GPO) のような従来の管理手法で、Microsoft Entra ID を使ってコンピューターやユーザー設定を管理することはできません。その代わり、Microsoft Entra ID とそのサービスは、モダン管理という概念を定義しています。Microsoft Entra ID の主な強みは、ディレクトリ サービスの提供、ユーザー・デバイス・アプリケーションのデータの保存と公開、そしてユーザー・デバイス・アプリケーションの認証と認可の処理にあります。これらの機能の有効性と効率性は、Microsoft Entra ID を ID プロバイダーとして利用し、数百万のユーザーを支えている Microsoft 365 などのクラウド サービスの実績からも明らかです。
+The lack of support for the traditional computer domain membership means that you can't use Microsoft Entra ID to manage computers or user settings by using traditional management techniques, such as Group Policy Objects (GPOs). Instead, Microsoft Entra ID and its services define a concept of modern management. Microsoft Entra ID’s primary strength lies in providing directory services; storing and publishing user, device, and application data; and handling the authentication and authorization of the users, devices, and applications. The effectiveness and efficiency of these features are apparent based on existing deployments of cloud services such as Microsoft 365, which rely on Microsoft Entra ID as their identity provider and support millions of users.
 
-Microsoft Entra ID には組織単位 (OU) クラスがないため、オンプレミスの AD DS デプロイでよく使われるような、カスタム コンテナーの階層にオブジェクトを整理することはできません。ただし、これは大きな欠点ではありません。AD DS の OU は主にグループ ポリシーのスコープ設定と委任に使われるものであり、グループ メンバーシップに基づいてオブジェクトを整理すれば同等の構成を実現できるからです。
+Microsoft Entra ID doesn't include the organizational unit (OU) class, which means that you can't arrange its objects into a hierarchy of custom containers, which is frequently used in on-premises AD DS deployments. However, this isn't a significant shortcoming, because OUs in AD DS are used primarily for Group Policy scoping and delegation. You can accomplish equivalent arrangements by organizing objects based on their group membership.
 
-Microsoft Entra ID では、Application クラスと servicePrincipal クラスのオブジェクトがアプリケーションを表します。Application クラスのオブジェクトはアプリケーションの定義を含み、servicePrincipal クラスのオブジェクトは現在の Microsoft Entra テナントにおけるそのインスタンスを構成します。この 2 つの特性を分離することで、あるテナントでアプリケーションを定義し、各テナントにそのアプリケーションのサービス プリンシパル オブジェクトを作成することで、複数のテナントで使用できます。Microsoft Entra ID は、対応するアプリケーションをその Microsoft Entra テナントに登録したときに、サービス プリンシパル オブジェクトを作成します。
+Objects of the Application and servicePrincipal classes represent applications in Microsoft Entra ID. An object in the Application class contains an application definition and an object in the servicePrincipal class constitutes its instance in the current Microsoft Entra tenant. Separating these two sets of characteristics allows you to define an application in one tenant and use it across multiple tenants by creating a service principal object for this application in each tenant. Microsoft Entra ID creates the service principal object when you register the corresponding application in that Microsoft Entra tenant.

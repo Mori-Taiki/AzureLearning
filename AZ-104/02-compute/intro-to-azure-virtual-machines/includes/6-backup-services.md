@@ -1,42 +1,42 @@
-データのバックアップと復元は、優れたインフラ計画に欠かせない要素です。バグで会社のデータの一部が消えてしまった、あるいは監査のためにアーカイブ済みのデータを取り出す必要が生じた、といった状況を想像してみてください。しっかりしたバックアップ戦略を維持しておけば、データやソフトウェアの復元が必要になったときに慌てずに済みます。
+Data backup and recovery is a necessary piece of the planning for any good infrastructure. Assume a bug erases some company data, or maybe you need to retrieve some archived data for auditing purposes. Maintaining a good backup strategy ensures that you aren't scrambling when data or software needs to be restored.
 
-**Azure Backup** は「サービスとしてのバックアップ (backup as a service)」であり、オンプレミスでもクラウドでも、どこにある物理マシンや仮想マシンでも保護できます。
+**Azure Backup** is a _backup as a service_ offering that protects physical or virtual machines no matter where they reside: on-premises or in the cloud.
 
-Azure Backup は、次のような幅広いデータ バックアップ シナリオに利用できます。
+Azure Backup can be used for a wide range of data backup scenarios, such as:
 
-- Windows OS マシン上のファイルとフォルダー (物理・仮想、ローカル・クラウドを問わず)
-- アプリケーション対応のスナップショット (ボリューム シャドウ コピー サービス)
-- Microsoft SQL Server、Microsoft SharePoint、Microsoft Exchange などの定番の Microsoft サーバー ワークロード
-- Azure 仮想マシンのネイティブ サポート (Windows、Linux とも)
-- Linux および Windows 10 クライアント マシン
+- Files and folders on Windows OS machines (physical or virtual, local or cloud)
+- Application-aware snapshots (Volume Shadow Copy Service)
+- Popular Microsoft server workloads such as Microsoft SQL Server, Microsoft SharePoint, and Microsoft Exchange
+- Native support for Azure Virtual Machines, both Windows, and Linux
+- Linux and Windows 10 client machines
 
-![フォルダー、ファイル、Exchange、SharePoint、SQL Server など、Azure 仮想マシンのさまざまなワークロードの保存に Azure Backup コンテナーが使われている様子を示す図。](../media/6-backup-server.png)
+![An illustration showing Azure Backup Vault being used to store different workloads from an Azure virtual machine such as folders, files, exchange, sharepoint, and SQL server.](../media/6-backup-server.png)
 
-## Azure Backup を使う利点
+## Advantages of using Azure Backup
 
-従来のバックアップ ソリューションは、基盤である Azure プラットフォームを必ずしも十分に活用できていません。その結果、高コストだったり非効率だったりするソリューションになりがちです。ストレージが多すぎたり少なすぎたり、適切な種類のストレージが提供されなかったり、管理作業が煩雑で手間がかかったりします。Azure Backup は他の Azure サービスと連携して動作するよう設計されており、いくつかの明確な利点があります。
+Traditional backup solutions don't always take full advantage of the underlying Azure platform. The result is a solution that tends to be expensive or inefficient. The solution either offers too much or too little storage, doesn't offer the correct types of storage, or has cumbersome and long-winded administrative tasks. Azure Backup was designed to work in tandem with other Azure services and provides several distinct benefits.
 
-- **ストレージの自動管理**: Azure Backup はバックアップ ストレージを自動的に割り当てて管理し、使った分だけ支払うモデルを採用しています。支払うのは使用した分だけです。
+- **Automatic storage management**. Azure Backup automatically allocates and manages backup storage and uses a pay-as-you-use model. You only pay for what you use.
 
-- **無制限のスケーリング**: Azure Backup は Azure の性能とスケーラビリティを活かして高可用性を実現します。
+- **Unlimited scaling**. Azure Backup uses the power and scalability of Azure to deliver high availability.
 
-- **複数のストレージ オプション**: Azure Backup には、データのすべてのコピーが同一リージョン内に置かれるローカル冗長ストレージと、データがセカンダリ リージョンにレプリケートされる geo 冗長ストレージがあります。
+- **Multiple storage options**. Azure Backup offers locally redundant storage where all copies of the data exist within the same region and geo-redundant storage where your data is replicated to a secondary region.
 
-- **無制限のデータ転送**: Azure Backup は、送受信するデータ量を制限しません。転送されるデータに対する課金もありません。
+- **Unlimited data transfer**. Azure Backup doesn't limit the amount of inbound or outbound data you transfer. Azure Backup also doesn't charge for the data that is transferred.
 
-- **データの暗号化**: データの暗号化により、Azure でのデータの送信と保存を安全に行えます。
+- **Data encryption**. Data encryption allows for secure transmission and storage of your data in Azure.
 
-- **アプリケーション整合性バックアップ**: アプリケーション整合性バックアップとは、バックアップ コピーの復元に必要なすべてのデータを復旧ポイントが持っている状態を指します。Azure Backup はアプリケーション整合性バックアップを提供します。
+- **Application-consistent backup**. An application-consistent backup means that a recovery point has all required data to restore the backup copy. Azure Backup provides application-consistent backups.
 
-- **長期保持**: Azure は、バックアップ データの保持期間を制限しません。
+- **Long-term retention**. Azure doesn't limit the length of time you keep the backup data.
 
-## Azure Backup を使う
+## Use Azure Backup
 
-Azure Backup では、バックアップしたい各コンピューターにダウンロードしてデプロイするコンポーネントをいくつか使います。どのコンポーネントをデプロイするかは、何を保護したいかによって決まります。
+Azure Backup uses several components that you download and deploy to each computer you want to back up. The component that you deploy depends on what you want to protect.
 
-- Azure Backup エージェント
+- Azure Backup agent
 - System Center Data Protection Manager
 - Azure Backup Server
-- Azure Backup VM 拡張機能
+- Azure Backup VM extension
 
-Azure Backup は、バックアップ データの保存に Recovery Services コンテナーを使用します。コンテナーの実体は Azure Storage の BLOB であり、効率的で経済的な長期保存媒体になっています。コンテナーを用意したら、バックアップするマシンを選び、バックアップ ポリシー (スナップショットを取得するタイミングと保存期間) を定義します。
+Azure Backup uses a Recovery Services vault for storing the backup data. Azure Storage blobs back up a vault, making it an efficient and economical long-term storage medium. With the vault in place, you can select the machines to back up, and define a backup policy (when snapshots are taken and for how long they’re stored).

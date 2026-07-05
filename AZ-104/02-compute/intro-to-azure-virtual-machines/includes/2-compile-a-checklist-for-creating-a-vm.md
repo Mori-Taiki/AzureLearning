@@ -1,180 +1,179 @@
-オンプレミス サーバーの Azure への移行には、計画と慎重さが求められます。一度にすべて移行することもできますが、実際には少しずつ、あるいは 1 台ずつ移行するケースが多いでしょう。最初の VM を作る前に、まず現在のインフラ構成を書き出して、それがクラウドにどう対応付けられるかを整理しておくべきです。
+Performing a migration of on-premises servers to Azure requires planning and care. You can move them all at once, or more likely, in small batches or even individually. Before you create a single VM, you should sit down and sketch out your current infrastructure model and see how it might map to the cloud.
 
-## Azure リソースとは
+## What is an Azure resource?
 
-**Azure リソース**とは、Azure における管理可能な項目のことです。データセンターにある物理コンピューターと同じように、VM が役割を果たすにはいくつかの要素が必要です。
+An **Azure resource** is a manageable item in Azure. Just like a physical computer in your datacenter, VMs have several elements that are needed to do their job:
 
-- VM 本体
-- ストレージ用のディスク
-- 仮想ネットワーク
-- ネットワーク上で通信するためのネットワーク インターフェイス
-- ネットワーク トラフィックを保護するネットワーク セキュリティ グループ (NSG)
-- IP アドレス (パブリック、プライベート、またはその両方)
+- The VM itself
+- Disks for storage
+- Virtual network
+- Network interface to communicate on the network
+- Network Security Group (NSG) to secure the network traffic
+- An IP address (public, private, or both)
 
-これらのリソースは、必要に応じて Azure が作成してくれますし、デプロイの一環として既存のものを指定することもできます。各リソースには識別のための名前が必要です。Azure がリソースを作成する場合、VM 名を基にリソース名が生成されます。VM の名前付けに一貫性を持たせるべき理由がここにもあります。
+Azure creates all of these resources if necessary, or you can supply existing ones as part of the deployment process. Each resource needs a name that's used to identify it. If Azure creates the resource, it uses the VM name to generate a resource name - another reason to be consistent with your VM names!
 
 
-## IaaS 仮想マシンに必要なリソース
+## Required resources for IaaS Virtual Machines
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=df61837a-37b8-4406-928c-e0d3331ac4a0]
 
 
-検討すべき項目をチェックリストとして順に見ていきましょう。
+Let's walk through a checklist of things to think about.
 
-- ネットワーク
-- VM 名
-- 場所
-- VM のサイズ
-- ディスク
-- オペレーティング システム
+- The network
+- VM name
+- Location
+- The VM size
+- Disks
+- Operating system
 
-## ネットワーク
+## The network
 
-最初に考えるべきなのは、実は仮想マシンそのものではなく、ネットワークです。オンプレミスのサーバーを 1 台取り上げて、次の点を確認してみてください。
+The first thing you should think about isn't the virtual machine at all - it's the network. Take a look at one of your on-premises servers:
+- What does the server communicate with?
+- Which ports are open?
 
-- そのサーバーは何と通信しているか?
-- どのポートが開いているか?
+Virtual networks (VNets) are used in Azure to provide private connectivity between Azure Virtual Machines and other Azure services. VMs and services that are part of the same virtual network can access one another. By default, services outside the virtual network can't connect to services within the virtual network. You can, however, configure the network to allow access to the external service, including your on-premises servers.
 
-Azure では、Azure の仮想マシンとその他の Azure サービスの間のプライベート接続を提供するために、仮想ネットワーク (VNet) を使用します。同じ仮想ネットワークに属する VM とサービスは互いにアクセスできます。既定では、仮想ネットワークの外部にあるサービスから仮想ネットワーク内のサービスへは接続できません。ただし、オンプレミスのサーバーを含む外部サービスからのアクセスを許可するようにネットワークを構成することは可能です。
+This latter point is why you should spend some time thinking about your network configuration. Network addresses and subnets aren't trivial to change once you have them set up. If you plan to connect your private company network to the Azure services, you want to make sure you consider the topology before putting any VMs into place.
 
-この後者の点こそ、ネットワーク構成にじっくり時間をかけるべき理由です。ネットワーク アドレスとサブネットは、一度設定すると簡単には変更できません。社内のプライベート ネットワークを Azure のサービスに接続する予定があるなら、VM を配置する前にトポロジを十分に検討しておきましょう。
+When you set up a virtual network, you specify the available address spaces, subnets, and security. If the VNet is connected to other VNets, you must select address ranges that aren't overlapping. This is the range of private addresses that the VMs and services in your network can use. You can use unroutable IP addresses such as 10.0.0.0/8, 172.16.0.0/12, or 192.168.0.0/16, or define your own range. Azure treats any address range as part of the private VNet IP address space if it's only reachable within the VNet, within interconnected VNets, and from your on-premises location. If someone else is responsible for the internal networks, you should work with that person before selecting your address space to make sure there's no overlap. Let them know what space you want to use, so they don’t try to use the same range of IP addresses.
 
-仮想ネットワークを設定する際には、使用可能なアドレス空間、サブネット、セキュリティを指定します。VNet を他の VNet と接続する場合は、重複しないアドレス範囲を選ぶ必要があります。これは、ネットワーク内の VM とサービスが使用できるプライベート アドレスの範囲です。10.0.0.0/8、172.16.0.0/12、192.168.0.0/16 といったルーティング不可能な IP アドレスを使うことも、独自の範囲を定義することもできます。VNet 内、相互接続された VNet 内、およびオンプレミス拠点からのみ到達可能なアドレス範囲であれば、Azure はそれをプライベート VNet の IP アドレス空間の一部として扱います。社内ネットワークを別の担当者が管理している場合は、アドレス空間を決める前にその人と調整し、重複がないことを確認してください。使いたいアドレス空間を伝えておけば、同じ IP アドレス範囲を使われてしまう事態を避けられます。
+### Segregate your network
 
-### ネットワークを分割する
-
-仮想ネットワークのアドレス空間を決めたら、仮想ネットワークに 1 つ以上のサブネットを作成できます。サブネットを作ることで、ネットワークを管理しやすい単位に分割できます。たとえば、10.1.0.0 を VM に、10.2.0.0 をバックエンド サービスに、10.3.0.0 を SQL Server の VM に割り当てる、といった具合です。
+After deciding the virtual network address space(s), you can create one or more subnets for your virtual network. You create these subnets to break up your network into more manageable sections. For example, you might assign 10.1.0.0 to VMs, 10.2.0.0 to back-end services, and 10.3.0.0 to SQL Server VMs.
 
 > [!NOTE]
-> Azure は、各サブネットの先頭 4 つのアドレスと末尾のアドレスを予約しています。
+> Azure reserves the first four addresses and the last address in each subnet for its use.
 
-### ネットワークを保護する
+### Secure the network
 
-既定では、サブネット間にセキュリティ境界はないため、各サブネット内のサービスは互いに通信できます。しかし、ネットワーク セキュリティ グループ (NSG) を設定すれば、サブネットや VM を出入りするトラフィック フローを制御できます。NSG はソフトウェア ファイアウォールとして機能し、ネットワーク インターフェイスとサブネットのレベルで、受信・送信の各リクエストにカスタム ルールを適用します。これにより、VM を出入りするすべてのネットワーク リクエストを完全にコントロールできます。
+By default, there's no security boundary between subnets, so services in each of these subnets can talk to one another. However, you can set up Network Security Groups (NSGs), which allow you to control the traffic flow to and from subnets and to and from VMs. NSGs act as software firewalls, applying custom rules to each inbound or outbound request at the network interface and subnet level. This way, you can fully control every network request coming in or out of the VM.
 
-## 各 VM のデプロイを計画する
+## Plan each VM deployment
 
-通信とネットワークの要件を整理できたら、作成する VM について考え始められます。良い進め方は、サーバーを 1 台選んで棚卸しをすることです。
+Once you have mapped out your communication and network requirements, you can start thinking about the VMs you want to create. A good plan is to select a server and take an inventory:
 
-- どの OS を使っているか?
-- ディスク使用量はどれくらいか?
-- どのような種類のデータを扱うか? 保存方法や物理的な保管場所について (法的なものを含めて) 制約はあるか?
-- CPU、メモリ、ディスク I/O の負荷はどの程度か? 考慮すべきバースト トラフィックはあるか?
+- Which OS is used?
+- How much disk space is in use?
+- What kind of data does this use? Are there restrictions (legal or otherwise) around how it's stored or where it's physically located?
+- What sort of CPU, memory, and disk I/O load does the server have? Is there burst traffic to account for?
 
-これらが分かれば、新しい仮想マシンについて Azure が尋ねてくる質問のいくつかに答えられるようになります。
+We can then start to answer some of the questions Azure has for a new virtual machine.
 
-### VM 名
+### VM name
 
-VM 名はコンピューター名として使用され、オペレーティング システムの一部として構成されます。Linux VM では最大 64 文字、Windows VM では最大 15 文字の名前を指定できます。
+The VM name is used as the computer name, which is configured as part of the operating system. You can specify a name of up to 64 characters on a Linux VM and 15 characters on a Windows VM.
 
-この名前は管理可能な **Azure リソース**の名前にもなり、後から変更するのは簡単ではありません。つまり、VM が何をするものかをすぐに識別できるよう、意味があって一貫性のある名前を選ぶべきです。名前に次の情報を含めるのが良い慣例です。
+This name also defines a manageable **Azure resource**, and it's not trivial to change later. That means you should choose names that are meaningful and consistent, so you can easily identify what the VM does. A good convention is to include the following information in the name:
 
-| 要素 | 例 | 補足 |
+| Element | Example | Notes |
 | --- | --- | --- |
-| 環境 |dev、prod、QA |リソースの環境を識別します |
-| 場所 | 米国東部なら `eus`、西日本なら `jw` |リソースのデプロイ先リージョンを識別します |
-| インスタンス |01、02 |名前付きインスタンスが複数あるリソース (Web サーバーなど) 用 |
-| 製品またはサービス |service |リソースが支える製品、アプリケーション、またはサービスを識別します |
-| 役割 |sql、web、messaging |関連付けられたリソースの役割を識別します |
+| Environment |dev, prod, QA |Identifies the environment for the resource |
+| Location | `eus` for East US, `jw` for Japan West |Identifies the region into which the resource is deployed |
+| Instance |01, 02 |For resources that have more than one named instance (web servers, etc.) |
+| Product or Service |service |Identifies the product, application, or service that the resource supports |
+| Role |sql, web, messaging |Identifies the role of the associated resource |
 
-たとえば `deveus-webvm01` なら、米国東部でホストされている 1 台目の開発用 Web サーバーを表せます。
+For example, `deveus-webvm01` might represent the first development web server hosted in the East US location.
 
 
-### VM の場所を決める
+### Decide the location for the VM
 
-Azure は、サーバーとディスクを備えたデータセンターを世界中に持っています。これらのデータセンターは、冗長性と可用性を確保するために、地理的な「リージョン」('米国西部'、'北ヨーロッパ'、'東南アジア' など) にグループ化されています。
+Azure has datacenters all over the world filled with servers and disks. These datacenters are grouped into geographic _regions_ ('West US', 'North Europe', 'Southeast Asia', etc.) to provide redundancy and availability.
 
-仮想マシンを作成してデプロイするときは、リソースを配置するリージョンを選ぶ必要があります。VM をユーザーのできるだけ近くに配置すれば、パフォーマンスが向上し、法規制、コンプライアンス、税務上の要件にも対応できます。
+When you create and deploy a virtual machine, you must select a region where you want to allocate the resources. You can place your VMs as close as possible to your users to improve performance and to meet any legal, compliance, or tax requirements.
 
-場所の選択については、ほかに 2 つ考慮すべき点があります。第一に、場所によって選べる構成が制限されることがあります。リージョンごとに利用できるハードウェアは異なり、一部の構成はすべてのリージョンで利用できるわけではありません。第二に、場所によって価格差があります。ワークロードが特定の場所に縛られないのであれば、必要な構成を複数のリージョンで見積もって最安値を探すのは、コスト面で非常に有効です。
+Two other things to think about regarding the location choice. First, the location can limit your available options. Each region has different hardware available and some configurations aren't available in all regions. Second, there are price differences between locations. If your workload isn't bound to a specific location, it can be very cost effective to check your required configuration in multiple regions to find the lowest price.
 
-### VM のサイズを決める
+### Determine the size of the VM
 
-名前と場所が決まったら、次は [VM のサイズ](/azure/virtual-machines/sizes)を決めます。Azure では、処理能力、メモリ、ストレージ容量を個別に指定するのではなく、これらの要素をさまざまな組み合わせで提供する「VM サイズ」が用意されています。Azure には幅広い VM サイズの選択肢があり、やりたいことに応じてコンピューティング、メモリ、ストレージの適切な組み合わせを選べます。
+Once you have the name and location set, you need to decide on the [size of your VM](/azure/virtual-machines/sizes). Rather than specify processing power, memory, and storage capacity independently, Azure provides different _VM sizes_ that offer variations of these elements in different sizes. Azure provides a wide range of VM size options allowing you to select the appropriate mix of compute, memory, and storage for what you want to do.
 
-適切な VM サイズを決める最良の方法は、その VM で実行するワークロードの種類を考えることです。ワークロードに基づいて、利用可能な VM サイズの中から絞り込んで選択できます。Azure では、ワークロードの選択肢は次のように分類されています。
+The best way to determine the appropriate VM size is to consider the type of workload your VM needs to run. Based on the workload, you're able to choose from a subset of available VM sizes. Workload options are classified as follows on Azure:
 
-| 選択肢              | 説明 |
+| Option              | Description |
 |---------------------|-------------|
-| [汎用](/azure/virtual-machines/sizes-general) | 汎用 VM は、CPU とメモリの比率がバランスよく設計されています。テストと開発、小規模から中規模のデータベース、トラフィックが少〜中程度の Web サーバーに最適です。 |
-| [コンピューティング最適化](/azure/virtual-machines/sizes-compute) | コンピューティング最適化 VM は、メモリに対する CPU の比率が高くなるよう設計されています。中程度のトラフィックの Web サーバー、ネットワーク アプライアンス、バッチ処理、アプリケーション サーバーに適しています。 |
-| [メモリ最適化](/azure/virtual-machines/sizes-memory) | メモリ最適化 VM は、CPU に対するメモリの比率が高くなるよう設計されています。リレーショナル データベース サーバー、中規模から大規模のキャッシュ、インメモリ分析に最適です。 |
-| [ストレージ最適化](/azure/virtual-machines/sizes-storage) | ストレージ最適化 VM は、高いディスク スループットと I/O を実現するよう設計されています。データベースを実行する VM に最適です。 |
-| [GPU](/azure/virtual-machines/sizes-gpu) | GPU VM は、重いグラフィックス レンダリングやビデオ編集を対象とした特化型の仮想マシンです。ディープ ラーニングによるモデルのトレーニングや推論にも最適です。 |
-| [ハイ パフォーマンス コンピューティング](/azure/virtual-machines/sizes-hpc) | ハイ パフォーマンス コンピューティングは、最も高速で強力な CPU を備えた仮想マシンで、オプションで高スループットのネットワーク インターフェイスを利用できます。 |
+| [General purpose](/azure/virtual-machines/sizes-general) | General-purpose VMs are designed to have a balanced CPU-to-memory ratio. Ideal for testing and development, small to medium databases, and low to medium traffic web servers. |
+| [Compute optimized](/azure/virtual-machines/sizes-compute) | Compute optimized VMs are designed to have a high CPU-to-memory ratio. Suitable for medium traffic web servers, network appliances, batch processes, and application servers. |
+| [Memory optimized](/azure/virtual-machines/sizes-memory) | Memory optimized VMs are designed to have a high memory-to-CPU ratio. Great for relational database servers, medium to large caches, and in-memory analytics. |
+| [Storage optimized](/azure/virtual-machines/sizes-storage) | Storage optimized VMs are designed to have high disk throughput and IO. Ideal for VMs running databases. |
+| [GPU](/azure/virtual-machines/sizes-gpu) | GPU VMs are specialized virtual machines targeted for heavy graphics rendering and video editing. These VMs are ideal options for model training and inferencing with deep learning. |
+| [High performance compute](/azure/virtual-machines/sizes-hpc) | High performance compute is the fastest and most powerful CPU virtual machines with optional high-throughput network interfaces. |
 
-Azure で VM サイズを構成する際には、ワークロードの種類でフィルターできます。選んだサイズはサービスのコストに直結します。CPU、メモリ、GPU を多く必要とするほど、価格は高くなります。
+You're able to filter on the workload type when you configure the VM size in the Azure. The size you choose directly affects the cost of your service. The more CPU, memory, and GPU you need, the higher the price point.
 
-### サイズの要件が変わったら?
+### What if my size needs change?
 
-Azure では、既存のサイズがニーズに合わなくなったときに VM サイズを変更できます。現在のハードウェア構成が新しいサイズで許可されている限り、VM のアップグレードもダウングレードも可能です。VM サイズを変更できることで、VM 管理を完全にアジャイルかつスケーラブルに行えます。
+Azure allows you to change the VM size when the existing size no longer meets your needs. You can upgrade or downgrade the VM, as long as your current hardware configuration is allowed in the new size. The ability to change VM size provides a fully agile and scalable approach to VM management.
 
-VM が動作しているハードウェア クラスターで新しいサイズが利用可能であれば、VM を実行したままサイズを変更できます。Azure portal では、選択可能なサイズだけが表示されるため、選択肢がひと目で分かります。コマンドライン ツールでは、利用できないサイズへの変更を試みるとエラーが報告されます。実行中の VM のサイズを変更すると、処理を完了するためにマシンが自動的に再起動されます。
+The VM size can be changed while the VM is running, as long as the new size is available in the current hardware cluster the VM is running on. The Azure portal makes the size options obvious by only showing you available size choices. The command line tools report an error if you attempt to resize a VM to an unavailable size. Changing a running VM size automatically reboots the machine to complete the request.
 
-VM を停止して割り当て解除すると、VM が動作していたクラスターから外れるため、リージョン内で利用可能な任意のサイズを選択できるようになります。
+If you stop and deallocate the VM, you can then select any size available in your region since deallocation removes your VM from the cluster it was running on.
 
 > [!WARNING]
-> 運用環境の VM のサイズ変更には注意してください。自動的に再起動されるため、一時的な停止が発生し、IP アドレスなど一部の構成設定が変わる可能性があります。
+> Be careful about resizing production VMs - they will be rebooted automatically which can cause a temporary outage and change some configuration settings such as the IP address.
 
-### VM を構成する要素と課金のしくみ
+### Parts of a VM and how they're billed
 
-仮想マシンを作成すると、その仮想マシンを支えるリソースも一緒に作成されます。これらのリソースにはそれぞれコストがかかるため、考慮しておく必要があります。
+When you create a virtual machine, you're also creating resources that support the virtual machine. These resources come with their own costs that should be considered.
 
-仮想マシンを支える既定のリソースと、その課金方法を次の表にまとめます。
+The default resources supporting a virtual machine and how they're billed are detailed in the following table:
 
-| リソース | 説明 | コスト |
+| Resource | Description | Cost | 
 |-|-|-|
-| 仮想ネットワーク | 仮想マシンが他のリソースと通信できるようにするため | [Virtual Network の価格](https://azure.microsoft.com/pricing/details/virtual-network/) |
-| 仮想ネットワーク インターフェイス カード (NIC) | 仮想ネットワークに接続するため | NIC 自体に個別の料金はかかりません。ただし、使用できる NIC の数には [VM のサイズ](/azure/virtual-machines/sizes)に応じた上限があります。それを踏まえて VM のサイズを決め、[Virtual Machines の価格](https://azure.microsoft.com/pricing/details/virtual-machines/linux/)を参照してください。 |
-| プライベート IP アドレスと、場合によってはパブリック IP アドレス | 自分のネットワーク内および外部ネットワークとの通信とデータ交換のため | [IP アドレスの価格](https://azure.microsoft.com/pricing/details/ip-addresses/) |
-| ネットワーク セキュリティ グループ (NSG) | VM を出入りするネットワーク トラフィックを管理するため。たとえば、SSH アクセス用にポート 22 を開放しつつ、ポート 80 へのトラフィックはブロックしたい場合があります。ポートの許可とブロックは NSG で行います。| Azure のネットワーク セキュリティ グループに追加料金はかかりません。 |
-| OS ディスクと、場合によっては別のデータ ディスク | データはオペレーティング システムとは別のディスクに置くのがベスト プラクティスです。VM に障害が起きても、データ ディスクをデタッチして新しい VM にアタッチするだけで済みます。 | 新しい仮想マシンにはすべて、オペレーティング システム ディスクとローカル ディスクがあります。<br> ローカル ディスクのストレージには課金されません。<br> オペレーティング システム ディスク (通常 127GiB。一部のイメージではより小さい) は、[ディスクの通常料金](https://azure.microsoft.com/pricing/details/managed-disks/)で課金されます。<br> Premium (SSD ベース) と Standard (HDD ベース) のディスクを仮想マシンにアタッチする場合のコストは、[Managed Disks の価格ページ](https://azure.microsoft.com/pricing/details/managed-disks/)で確認できます。 |
-| 場合によっては OS のライセンス | 仮想マシンで OS を実行するため | コストは VM のコア数によって変わるため、[それを踏まえて VM のサイズを決めてください](/azure/virtual-machines/sizes)。[Azure ハイブリッド特典](https://azure.microsoft.com/pricing/hybrid-benefit/#overview)を使うとコストを削減できます。 |
+| Virtual network | For giving your virtual machine the ability to communicate with other resources | [Virtual Network pricing](https://azure.microsoft.com/pricing/details/virtual-network/) |
+| A virtual Network Interface Card (NIC) | For connecting to the virtual network  | There is no separate cost for NICs. However, there is a limit to how many NICs you can use based on your [VM's size](/azure/virtual-machines/sizes). Size your VM accordingly and reference [Virtual Machine pricing](https://azure.microsoft.com/pricing/details/virtual-machines/linux/). | 
+| A private IP address and sometimes a public IP address. | For communication and data exchange on your network and with external networks | [IP Addresses pricing](https://azure.microsoft.com/pricing/details/ip-addresses/) |
+| Network security group (NSG) | For managing the network traffic too and from your VM. For example, you might need to open port 22 for SSH access, but you might want to block traffic to port 80. Blocking and allowing port access is done through the NSG.| There are no additional charges for network security groups in Azure. |
+| OS Disk and possibly separate disks for data. | It's a best practice to keep your data on a separate disk from your operating system, in case you ever have a VM fail, you can simply detach the data disk, and attach it to a new VM. | All new virtual machines have an operating system disk and a local disk. <br> Azure doesn't charge for local disk storage. <br> The operating system disk, which is usually 127GiB but is smaller for some images, is charged at the [regular rate for disks](https://azure.microsoft.com/pricing/details/managed-disks/). <br> You can see the cost for attach Premium (SSD based) and Standard (HDD) based disks to your virtual machines on the [Managed Disks pricing page](https://azure.microsoft.com/pricing/details/managed-disks/). |
+| In some cases, a license for the OS | For providing your virtual machine runs to run the OS | The cost varies based on the number of cores on your VM, so [size your VM accordingly](/azure/virtual-machines/sizes). The cost can be reduced through the [Azure Hybrid Benefit](https://azure.microsoft.com/pricing/hybrid-benefit/#overview). |
 
-### 価格モデルを理解する
+### Understanding the pricing model
 
-VM ごとに、サブスクリプションにはコンピューティングとストレージという 2 つの別々のコストが課金されます。コストが分かれていることで、それぞれを独立してスケールでき、必要な分だけ支払えばよくなります。
+There are two separate costs the subscription is charged for every VM: compute and storage. By separating these costs, you scale them independently and only pay for what you need.
 
-**コンピューティング コスト** - コンピューティング費用は時間単価で設定され、分単位で課金されます。たとえば、VM を 55 分間だけデプロイした場合、課金されるのは 55 分の使用分だけです。VM を停止して割り当て解除すればハードウェアが解放されるため、コンピューティング容量への課金は発生しません。時間単価は、選択した VM のサイズと OS によって変わります。Linux ベースのインスタンスは、オペレーティング システムのライセンス料金がかからないため安価です。Windows の場合、VM のコストにはオペレーティング システムの料金が含まれます。
+**Compute costs** - Compute expenses are priced on a per-hour basis but billed on a per-minute basis. For example, you're only charged for 55 minutes of usage if the VM is deployed for 55 minutes. You're not charged for compute capacity if you stop and deallocate the VM since deallocation releases the hardware. The hourly price varies based on the VM size and OS you select. Linux-based instances are cheaper because there's no operating system license charge. For Windows, the cost for a VM includes the charge for the operating system.
 
 > [!TIP]
-> [Linux](/azure/virtual-machines/linux/azure-hybrid-benefit-linux) または [Windows](/azure/virtual-machines/windows/hybrid-use-benefit-licensing) の **Azure ハイブリッド特典**を使って既存のライセンスを再利用すれば、コストを節約できる場合があります。
+> You might be able to save money by reusing existing licenses with the **Azure Hybrid benefit** for [Linux](/azure/virtual-machines/linux/azure-hybrid-benefit-linux) or [Windows](/azure/virtual-machines/windows/hybrid-use-benefit-licensing).
 
-コンピューティング コストの支払い方法は、2 つの選択肢から選べます。
+You're able to choose from two payment options for compute costs.
 
-| 選択肢 | 説明 |
+| Option | Description |
 |--------|-------------|
-| **従量課金制** | **従量課金制**では、長期の契約や前払いなしに、コンピューティング容量に対して秒単位で支払います。コンピューティング容量はオンデマンドで増減でき、いつでも開始・停止できます。中断できない短期的または予測不能なワークロードのアプリケーションを実行する場合は、この選択肢を選んでください。たとえば、ちょっとしたテストを行う場合や、VM でアプリを開発する場合は、**従量課金制**が適しています。 |
-| **予約仮想マシン インスタンス** | 予約仮想マシン インスタンス (RI) は、特定のリージョンの仮想マシンを 1 年間または 3 年間分、前もって購入する方式です。前払いでコミットする代わりに、従量課金制の価格と比べて最大 72% の割引が受けられます。**RI** は柔軟で、早期解約手数料を支払えば簡単に交換や返却ができます。VM を継続的に稼働させる必要がある場合や、予算の予測可能性が必要で、**かつ** 1 年以上 VM を使い続けるとコミットできる場合は、この選択肢を選んでください。 |
+| **Pay as you go** | With the **pay-as-you-go** option, you pay for compute capacity by the second, with no long-term commitment or upfront payments. You're able to increase or decrease compute capacity on demand and start or stop at any time. Select this option if you run applications with short-term or unpredictable workloads that can't be interrupted. For example, if you're doing a quick test, or developing an app in a VM, **pay-as-you-go** is the appropriate option. |
+| **Reserved Virtual Machine Instances** | The Reserved Virtual Machine Instances (RI) option is an advance purchase of a virtual machine for one or three years in a specified region. The commitment is made up front, and in return, you get up to 72% price savings compared to pay-as-you-go pricing. **RIs** are flexible and can easily be exchanged or returned for an early termination fee. Select this option if the VM has to run continuously, or you need budget predictability, **and** you can commit to using the VM for at least a year. |
 
-**ストレージ コスト** - VM が使用するストレージには別途課金されます。VM の状態は、発生するストレージ料金とは関係ありません。VM が停止/割り当て解除されていて実行中の VM への課金がない場合でも、ディスクが使用するストレージには課金され続けます。
+**Storage costs** - You're charged separately for the storage the VM uses. The status of the VM has no relation to the storage charges that are incurred. If the VM is stopped/deallocated and you aren’t billed for the running VM, you're still charged for the storage used by the disks.
 
-### VM のストレージ
+### Storage for the VM
 
-Azure のすべての仮想マシンには、少なくとも 2 つの仮想ハード ディスク (VHD) があります。1 つ目のディスクにはオペレーティング システムが格納され、2 つ目は一時ストレージとして使われます。アプリケーションのデータを保存するには、データ ディスクを追加すべきです。データを別のディスクに分けておけば、ディスクを個別に管理できます。VM にアタッチできるデータ ディスクの最大数は VM のサイズで決まり、一般的には vCPU あたり 2 つです。
+All Azure virtual machines have at least two virtual hard disks (VHDs). The first disk stores the operating system, and the second is used as temporary storage. You should add more data disks to store application data. Separating out the data to different disks allows you to manage the disks independently. The VM size determines the maximum number of data disks you can attach to your VM, typically two per vCPU.
 
-ディスクの種類は 5 つあり、それぞれ特定の利用シナリオを想定しています。
+There are five disk types, each intended to address a specific customer scenario:
 
-- [Ultra ディスク](/azure/virtual-machines/disks-types#ultra-disks)
-- [Premium SSD v2 (プレビュー)](/azure/virtual-machines/disks-types#premium-ssd-v2-preview)
-- [Premium SSD (ソリッドステート ドライブ)](/azure/virtual-machines/disks-types#premium-ssds)
-- [Standard SSD](/azure/virtual-machines/disks-types#standard-ssds)
-- [Standard HDD (ハード ディスク ドライブ)](/azure/virtual-machines/disks-types#standard-hdds)
+- [Ultra disks](/azure/virtual-machines/disks-types#ultra-disks)
+- [Premium SSD v2 (preview)](/azure/virtual-machines/disks-types#premium-ssd-v2-preview)
+- [Premium SSDs (solid-state drives)](/azure/virtual-machines/disks-types#premium-ssds)
+- [Standard SSDs](/azure/virtual-machines/disks-types#standard-ssds)
+- [Standard HDDs (hard disk drives)](/azure/virtual-machines/disks-types#standard-hdds)
 
-どれを使うか判断できるよう、5 種類のディスクの比較を次の表に示します。
+The following table provides a comparison of the five disk types to help you decide which to use.
 
-|         | Ultra ディスク | Premium SSD v2 | Premium SSD | Standard SSD | <nobr>Standard HDD</nobr> |
+|         | Ultra disk | Premium SSD v2 | Premium SSD | Standard SSD | <nobr>Standard HDD</nobr> |
 | ------- | ---------- | ----------- | ------------ | ------------ | ------------ |
-| **ディスクの種類** | SSD | SSD |SSD | SSD | HDD |
-| **シナリオ**  | [SAP HANA](/azure/virtual-machines/workloads/sap/hana-vm-operations-storage) などの I/O 集約型ワークロード、最上位クラスのデータベース (SQL、Oracle など)、その他トランザクションの多いワークロード。 | 低遅延と高い IOPS・スループットを常に必要とする、運用環境およびパフォーマンス重視のワークロード | 運用環境およびパフォーマンス重視のワークロード | Web サーバー、使用頻度の低いエンタープライズ アプリケーション、開発/テスト | バックアップ、重要度が低くアクセス頻度の少ない用途 |
-| **最大ディスク サイズ** | 65,536 ギビバイト (GiB) | 65,536 GiB |32,767 GiB | 32,767 GiB | 32,767 GiB |
-| **最大スループット** | 4,000 MB/s | 1,200 MB/s | 900 MB/s | 750 MB/s | 500 MB/s |
-| **最大 IOPS** | 160,000 | 80,000 | 20,000 | 6,000 | 2,000 |
-| **OS ディスクとして使用可能?** | いいえ | いいえ | はい | はい | はい |
-### オペレーティング システムを選ぶ
+| **Disk type** | SSD | SSD |SSD | SSD | HDD |
+| **Scenario**  | IO-intensive workloads such as [SAP HANA](/azure/virtual-machines/workloads/sap/hana-vm-operations-storage), top tier databases (for example, SQL, Oracle), and other transaction-heavy workloads. | Production and performance-sensitive workloads that consistently require low latency and high IOPS and throughput | Production and performance sensitive workloads | Web servers, lightly used enterprise applications and dev/test | Backup, noncritical, infrequent access |
+| **Max disk size** | 65,536 gibibytes (GiB) | 65,536 GiB |32,767 GiB | 32,767 GiB | 32,767 GiB |
+| **Max throughput** | 4,000 MB/s | 1,200 MB/s | 900 MB/s | 750 MB/s | 500 MB/s |
+| **Max IOPS** | 160,000 | 80,000 | 20,000 | 6,000 | 2,000 |
+| **Usable as OS Disk?** | No | No | Yes | Yes | Yes |
+### Select an operating system
 
-Azure には、VM にインストールできるさまざまな OS イメージが用意されており、多くの Linux ディストリビューションも含まれます。Azure は OS ライセンスのコストを価格に含めているため、OS の選択は時間あたりのコンピューティング料金に影響することがあります。
+Azure provides various OS images that you can install into the VM, including many Linux distributions. The choice of OS might influence your hourly compute pricing as Azure bundles the cost of the OS license into the price.
 
-基本の OS イメージだけでは足りない場合は、Azure Marketplace で、OS と特定シナリオ向けの定番ソフトウェア ツールを含む、より高度なイメージを探せます。たとえば、新しい WordPress サイトが必要なら、標準的な技術スタックは Linux サーバー、Apache Web サーバー、MySQL データベース、PHP で構成されます。各コンポーネントを個別にセットアップして構成する代わりに、Marketplace のイメージを使えばスタック全体を一度にインストールできます。
+If you're looking for more than just base OS images, you can search the Azure Marketplace for more sophisticated images that include the OS and popular software tools for specific scenarios. For example, if you needed a new WordPress site, the standard technology stack would consist of a Linux server, Apache web server, a MySQL database, and PHP. Instead of setting up and configuring each component, you can use a Marketplace image and install the entire stack all at once.
 
-それでも適切な OS イメージが見つからない場合は、必要なものを組み込んだ独自のイメージを作成し、それを使って VM を作成できます。開発やテストで使う個別のイメージを作ることもできますし、[Azure コンピューティング ギャラリー](/azure/virtual-machines/azure-compute-gallery)を作成して複数のイメージを管理し、必要なリージョンにレプリケートすることもできます。
+Finally, if you can't find a suitable OS image, you can create your own image with what you need, and use them to create VMs. You can create individual images for use in development and test. Or, you can create an [Azure Compute Gallery](/azure/virtual-machines/azure-compute-gallery) to manage multiple images and replicate them to the regions where they're needed.

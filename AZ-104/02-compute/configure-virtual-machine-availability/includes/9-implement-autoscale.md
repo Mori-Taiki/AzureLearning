@@ -1,19 +1,19 @@
-Azure 仮想マシン スケール セットの実装では、アプリケーションを実行する仮想マシン インスタンスの数を自動的に増減できます。この処理を「自動スケール」と呼びます。自動スケールにより、変化するワークロードの需要に合わせて構成を動的にスケールできます。
+An Azure Virtual Machine Scale Sets implementation can automatically increase or decrease the number of virtual machine instances that run your application. This process is known as _autoscaling_. Autoscaling allows you to dynamically scale your configuration to meet changing workload demands.
 
-:::image type="content" source="../media/autoscale-45b054e0.png" alt-text="最小 2 台、最大 5 台の仮想マシンがワークロードの需要に応じて自動スケールする仮想マシン スケール セットの実装を示す図。" border="false":::
+:::image type="content" source="../media/autoscale-45b054e0.png" alt-text="Illustration of a Virtual Machine Scale Sets implementation with a minimum of two virtual machines and a maximum of five machines that autoscale depending on workload demands." border="false":::
 
-自動スケールは、需要が低いときにアプリケーションを実行する不要な仮想マシン インスタンスの数を最小限に抑えます。需要が増えれば仮想マシン インスタンスが自動的に追加されるため、顧客は引き続き十分なパフォーマンスを得られます。
+Autoscaling minimizes the number of unnecessary virtual machine instances that run your application when demand is low. Your customers continue to receive an acceptable level of performance as demand grows and more virtual machine instances are automatically added.
 
-### 自動スケールを使う際に考慮すべきこと
+### Things to consider when using autoscaling
 
-自動スケールに関する次の考慮事項を確認してください。この仕組みが会社の Web サイトの実装にどう役立つか、考えてみましょう。
+Review the following considerations about autoscaling. Think about how this process can benefit your company website implementation.
 
-- **容量の自動調整を考慮する**: 良好な顧客体験のために許容できるパフォーマンスを定義する自動スケール ルールを作成できます。定義したしきい値に達すると、自動スケール ルールが動作して、仮想マシン スケール セットの実装の容量を調整します。
-
-- **スケールアウトを考慮する**: アプリケーションの需要が増えると、実装内の仮想マシン インスタンスへの負荷が増えます。負荷の増加が一時的な需要ではなく継続的なものである場合は、実装内の仮想マシン インスタンス数を増やす自動スケール ルールを構成できます。
-
-- **スケールインを考慮する**: 夜間や週末には、アプリケーションの需要が減ることがあります。負荷の減少が一定期間続く場合は、実装内の仮想マシン インスタンス数を減らす自動スケール ルールを構成できます。スケールインにより、現在の需要を満たすのに必要な数のインスタンスだけを動かすことになるため、仮想マシン スケール セットの実装の運用コストが下がります。
-
-- **スケジュールされたイベントを考慮する**: 自動スケールを実装し、決まった時刻に実装の容量を自動的に増減させるイベントをスケジュールできます。
-
-- **管理の手間を考慮する**: Azure 仮想マシン スケール セットを自動スケールと組み合わせて使うと、アプリケーションのパフォーマンスの監視と最適化にかかる管理の手間が減ります。
+- **Consider automatic adjusted capacity**. You can create autoscaling rules to define the acceptable performance for a positive customer experience. When the defined thresholds are met, the autoscale rules act to adjust the capacity of your Virtual Machine Scale Sets implementation.
+ 
+- **Consider scale out**. If your application demand increases, the load on the virtual machine instances in your implementation increases. If the increased load is consistent, rather than a brief demand, you can configure autoscale rules to increase the number of virtual machine instances in your implementation.
+ 
+- **Consider scale in**. On an evening or weekend, your application demand might decrease. If the decreased load is consistent over a period of time, you can configure autoscale rules to decrease the number of virtual machine instances in your implementation. The scale-in action reduces the cost to run your Virtual Machine Scale Sets implementation as you only run the number of instances required to meet the current demand.
+ 
+- **Consider scheduled events**. You can implement autoscaling and schedule events to automatically increase or decrease the capacity of your implementation at fixed times.
+ 
+- **Consider overhead**. Using Azure Virtual Machine Scale Sets with autoscaling reduces your management overhead to monitor and optimize the performance of your application.

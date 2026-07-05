@@ -1,7 +1,7 @@
-このモジュールでは、Azure RBAC と、それを使って Azure のリソースを保護する方法を学びました。アクセスを付与するには、特定のスコープでユーザーにロールを割り当てます。Azure RBAC を使えば、ユーザーが業務の遂行に必要とする分だけのアクセスを付与できます。
+In this module, you learned about Azure RBAC, and how you can use it to secure your Azure resources. To grant access, you assign users a role at a particular scope. Using Azure RBAC, you can grant only the amount of access to users that they need to perform their jobs. 
 
-Azure RBAC には 200 を超える組み込みロールがあります。組織が特定のアクセス許可を必要とする場合は、独自のカスタム ロールを作成できます。Azure は Azure RBAC の変更を記録しているため、過去にどのような変更が行われたかを後から確認できます。
+Azure RBAC has more than 200 built-in roles. However, if your organization needs specific permissions, you can create your own custom roles. Azure keeps track of your Azure RBAC changes in case you need to see what changes were made in the past.
 
-## さらに読む
+## Further reading
 
-Azure RBAC について学習を続けるには、「[Azure ロールベースのアクセス制御 (Azure RBAC) とは](/azure/role-based-access-control/overview)」を参照してください。
+To continue learning about Azure RBAC, check out [What is Azure role-based access control (Azure RBAC)?](/azure/role-based-access-control/overview).

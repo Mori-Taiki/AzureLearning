@@ -1,0 +1,46 @@
+### YamlMime:Module
+uid: learn.secure-azure-resources-with-rbac
+metadata:
+  moduleType: standard
+  title: Azure ロールベースのアクセス制御 (Azure RBAC) で Azure リソースを保護する
+  description: Azure ロールベースのアクセス制御を使って、チームの Azure リソースへのアクセスを効果的に管理する方法を学びます。
+  ms.date: 09/19/2024
+  author: rolyon
+  ms.author: rolyon
+  ms.topic: module
+  ms.service: role-based-access-control
+title: Azure ロールベースのアクセス制御 (Azure RBAC) で Azure リソースを保護する
+summary: Azure RBAC を使って Azure のリソースへのアクセスを管理する方法を学びます。
+abstract: |
+  このモジュールでは、次のことを行います。
+  - 自分自身と他のユーザーのリソースへのアクセスを確認する。
+  - リソースへのアクセスを付与する。
+  - Azure RBAC の変更のアクティビティ ログを確認する。
+prerequisites: |
+  - [有効なサブスクリプション](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)のある Azure アカウント
+  - Azure portal やリソース グループなど、Azure の基本概念に関する知識
+iconUrl: /training/achievements/secure-azure-resources-with-rbac.svg
+levels:
+- beginner
+roles:
+- administrator
+- solution-architect
+- security-engineer
+products:
+- azure
+- azure-portal
+- entra-id
+- azure-rbac
+subjects:
+- identity-access
+units:
+- learn.secure-azure-resources-with-rbac.1-introduction
+- learn.secure-azure-resources-with-rbac.2-rbac-overview
+- learn.secure-azure-resources-with-rbac.3-knowledge-check-rbac-overview
+- learn.secure-azure-resources-with-rbac.4-list-access
+- learn.secure-azure-resources-with-rbac.5-grant-access
+- learn.secure-azure-resources-with-rbac.6-view-activity-logs
+- learn.secure-azure-resources-with-rbac.7-knowledge-check-rbac
+- learn.secure-azure-resources-with-rbac.8-summary
+badge:
+  uid: learn.secure-azure-resources-with-rbac.badge

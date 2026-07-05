@@ -1,29 +1,31 @@
-ハードウェアの仮想化により、同じ物理ハードウェア上で、分離された複数のオペレーティング システムのインスタンスを同時に実行できるようになりました。コンテナーは、コンピューティング リソースの仮想化における次の段階です。
+Hardware virtualization makes it possible to run multiple isolated instances of operating systems concurrently on the same physical hardware. Containers represent the next stage in the virtualization of computing resources.
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=ee640e0c-b3ac-49ae-a273-6767416e1666]
 
-コンテナー ベースの仮想化では、オペレーティング システムを仮想化できます。このアプローチでは、アプリケーション間の分離を保ちながら、同じオペレーティング システムのインスタンス内で複数のアプリケーションを実行できます。仮想マシン内のコンテナーは、物理サーバー内の仮想マシンに似た機能を提供します。
+Container-based virtualization allows you to virtualize the operating system. This approach lets you run multiple applications within the same instance of an operating system, while maintaining isolation between the applications. The containers within a virtual machine provide functionality similar to that of virtual machines within a physical server.
 
-### コンテナーと仮想マシンの違いについて知っておくべきこと
+### Things to know about containers versus virtual machines
 
-コンテナー ベースの仮想化をより深く理解するために、[コンテナーと仮想マシンを比較](/virtualization/windowscontainers/about/containers-vs-vm)してみましょう。
+To better understand container-based virtualization, let's [compare containers and virtual machines](/virtualization/windowscontainers/about/containers-vs-vm).
 
-| 比較項目 | コンテナー | 仮想マシン |
+| Compare | Containers | Virtual machines | 
 | --- | --- | --- |
-| **分離** | コンテナーは通常、ホストや他のコンテナーからの軽量な分離を提供しますが、仮想マシンほど強固なセキュリティ境界は提供しません。 | 仮想マシンは、ホストのオペレーティング システムや他の仮想マシンから完全に分離されます。競合企業のアプリを同じサーバーやクラスターでホストする場合など、強固なセキュリティ境界が重要なときに、この分離が役立ちます。 |
-| **オペレーティング システム** | コンテナーはオペレーティング システムのユーザー モード部分を実行し、アプリに必要なサービスだけを含むよう調整できます。このアプローチにより、使用するシステム リソースを減らせます。 | 仮想マシンはカーネルを含む完全なオペレーティング システムを実行するため、より多くのシステム リソース (CPU、メモリ、ストレージ) が必要です。 |
-| **デプロイ** | 個々のコンテナーは、コマンドラインから Docker を使ってデプロイできます。複数のコンテナーは、Azure Kubernetes Service などのオーケストレーターを使ってデプロイできます。 | 個々の仮想マシンは、Windows Admin Center または Hyper-V マネージャーでデプロイできます。複数の仮想マシンは、PowerShell または System Center Virtual Machine Manager でデプロイできます。 |
-| **永続ストレージ** | コンテナーは、単一ノードのローカル ストレージには Azure Disks を、複数のノードやサーバーで共有するストレージには Azure Files (SMB 共有) を使います。 | 仮想マシンは、単一マシンのローカル ストレージには仮想ハード ディスク (VHD) を、複数サーバーで共有するストレージには SMB ファイル共有を使います。 |
-| **耐障害性** | クラスター ノードに障害が起きた場合、別のクラスター ノード上のオーケストレーターが、そのノードで動作していたコンテナーを速やかに再作成します。 | 仮想マシンはクラスター内の別のサーバーへフェールオーバーでき、新しいサーバー上で仮想マシンのオペレーティング システムが再起動されます。 |
+| **Isolation** | A container typically provides lightweight isolation from the host and other containers, but a container doesn't provide as strong a security boundary as a virtual machine. | A virtual machine provides complete isolation from the host operating system and other virtual machines. This separation is useful when a strong security boundary is critical, such as hosting apps from competing companies on the same server or cluster. |
+| **Operating system** | Containers run the user mode portion of an operating system and can be tailored to contain just the needed services for your app. This approach helps you use fewer system resources. | Virtual machines run a complete operating system including the kernel, which requires more system resources (CPU, memory, and storage). |
+| **Deployment** | You can deploy individual containers by using Docker via the command line. You can deploy multiple containers by using an orchestrator such as Azure Kubernetes Service. | You can deploy individual virtual machines by using Windows Admin Center or Hyper-V Manager. You can deploy multiple virtual machines by using PowerShell or System Center Virtual Machine Manager. |
+| **Persistent storage** | Containers use Azure Disks for local storage for a single node, or Azure Files (SMB shares) for storage shared by multiple nodes or servers. | Virtual machines use a virtual hard disk (VHD) for local storage for a single machine, or an SMB file share for storage shared by multiple servers. |
+| **Fault tolerance** | If a cluster node fails, the orchestrator on another cluster node rapidly recreates any containers running on the node. | Virtual machines can fail over to another server in a cluster, where the virtual machine's operating system restarts on the new server. |
 
-### コンテナーを使う際に考慮すべきこと
+### Things to consider when using containers
 
-コンテナーには、物理マシンや仮想マシンに比べていくつもの利点があります。次の利点を確認し、会社の社内アプリにコンテナーをどう導入できるか考えてみてください。
+Containers offer several advantages over physical and virtual machines. Review the following benefits and consider how you can implement containers for the internal apps for your company.
 
-- **柔軟性と速度を考慮する**: コンテナー化されたアプリケーション コードの開発と共有において、柔軟性と速度が向上します。
+- **Consider flexibility and speed**. Gain increased flexibility and speed when developing and sharing your containerized application code.
 
-- **テストを考慮する**: 構成にコンテナーを選べば、アプリのテストを簡素化できます。
+- **Consider testing**. Choose containers for your configuration to allow for simplified testing of your apps.
 
-- **アプリのデプロイを考慮する**: コンテナーを導入すれば、アプリのデプロイを効率化・高速化できます。
+- **Consider app deployment**. Implement containers to gain streamlined and accelerated deployment of your apps.
 
-- **ワークロード密度を考慮する**: コンテナーを使うことで、より高いワークロード密度を実現し、リソース使用率を改善できます。
+- **Consider workload density**. Support higher workload density and improve your resource utilization by working with containers.
+
+

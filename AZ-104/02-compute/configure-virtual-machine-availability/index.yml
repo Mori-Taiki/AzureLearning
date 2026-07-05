@@ -1,8 +1,8 @@
 ### YamlMime:Module
 uid: learn.wwl.configure-virtual-machine-availability
 metadata:
-  title: 仮想マシンの可用性の構成
-  description: "垂直・水平スケーリングを含む、仮想マシンの可用性の構成方法を学びます。"
+  title: Configure Virtual Machine Availability
+  description: "Learn how to configure virtual machine availability including vertical and horizontal scaling."
   ms.date: 06/23/2026
   author: wwlpublish
   ms.author: robbarefoot
@@ -12,22 +12,22 @@ metadata:
   - N/A
   ms.service: azure-virtual-machines
   ai-usage: ai-assisted
-title: 仮想マシンの可用性の構成
-summary: 垂直・水平スケーリングを含む、仮想マシンの可用性の構成方法を学びます。&nbsp;
+title: Configure virtual machine availability
+summary: Learn how to configure virtual machine availability including vertical and horizontal scaling.&nbsp;
 abstract: |
-  このモジュールでは、次のことを学びます。
+  In this module, you learn how to:
 
-  -   可用性セットと可用性ゾーンを実装する。
+  -   Implement availability sets and availability zones.
 
-  -   更新ドメインと障害ドメインを実装する。
+  -   Implement update and fault domains.
 
-  -   Azure 仮想マシン スケール セットを実装する。
+  -   Implement Azure Virtual Machine Scale Sets.
 
-  -   仮想マシンを自動スケールする。
+  -   Autoscale virtual machines.
 prerequisites: |
-  -   Azure 仮想マシンの作成と管理に関する基本知識。
+  -   Familiarity with creating and managing Azure virtual machines.
 
-  -   変動するワークロードに応じてインフラ リソースをスケールさせることについての一般的な知識。
+  -   General knowledge of scaling infrastructure resources in fluctuating workloads.
 iconUrl: /training/achievements/configure-virtual-machine-availability.svg
 levels:
 - intermediate

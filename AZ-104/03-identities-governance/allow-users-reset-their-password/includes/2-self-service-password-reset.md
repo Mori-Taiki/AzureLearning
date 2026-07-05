@@ -1,81 +1,81 @@
-あなたは、小売組織のヘルプデスク コストを削減する方法の評価を依頼されました。サポート スタッフが、ユーザーのパスワード リセットに多くの時間を費やしていることに気づいています。ユーザーからはこのプロセスの遅さへの不満がよく上がっており、遅延は生産性にも影響しています。ユーザーが自分でパスワードを管理できるように Azure を構成する方法を理解したいところです。
+You've been asked to assess ways to reduce help-desk costs in your retail organization. You've noticed that the support staff spends a lot of their time resetting passwords for users. Users often complain about delays with this process, and these delays impact their productivity. You want to understand how you can configure Azure to allow users to manage their own passwords.
 
-このユニットでは、Microsoft Entra ID のセルフサービス パスワード リセット (SSPR) の仕組みを学びます。
+In this unit, you'll learn how self-service password reset (SSPR) works in Microsoft Entra ID.
 
-## なぜ SSPR を使うのか?
+## Why use SSPR?
 
-Microsoft Entra ID では、サインイン済みのユーザーは誰でもパスワードを変更できます。しかし、サインインしていない、パスワードを忘れた、あるいはパスワードの有効期限が切れた場合は、パスワードのリセットが必要です。SSPR を使えば、ユーザーは Web ブラウザーまたは Windows のサインイン画面からパスワードをリセットして、Azure、Microsoft 365、その他 Microsoft Entra ID を認証に使うあらゆるアプリケーションへのアクセスを取り戻せます。
+In Microsoft Entra ID, any user can change their password if they're already signed in. But if they're not signed in, forgot their password, or it's expired, they'll need to reset their password. With SSPR, users can reset their passwords in a web browser or from a Windows sign-in screen to regain access to Azure, Microsoft 365, and any other application that uses Microsoft Entra ID for authentication.
 
-SSPR により、ユーザーがヘルプデスクに電話しなくても自分でパスワードの問題を解決できるようになるため、管理者の負荷が減ります。また、パスワードの忘失や期限切れによる生産性への影響も最小限に抑えられます。ユーザーは、管理者の手が空いてパスワードをリセットしてもらえるまで待つ必要がありません。
+SSPR reduces the load on administrators because users can fix password problems themselves without having to call the help desk. Also, it minimizes the productivity impact of a forgotten or expired password. Users don't have to wait until an administrator is available to reset their password.
 
-## SSPR の仕組み
+## How SSPR works
 
-ユーザーは、パスワード リセット ポータルに直接アクセスするか、サインイン ページの **[アカウントにアクセスできない場合]** リンクを選択して、パスワード リセットを開始します。リセット ポータルは次のステップを実行します。
+The user initiates a password reset either by going directly to the password-reset portal, or by selecting the **Can't access your account** link on a sign-in page. The reset portal takes these steps:
 
-1. **ローカライズ**: ポータルはブラウザーのロケール設定を確認し、適切な言語で SSPR ページを表示します。
-1. **確認**: ユーザーがユーザー名を入力し、ボットではなく人間であることを確認する CAPTCHA を通過します。
-1. **認証**: ユーザーが本人確認に必要なデータを入力します。コードの入力やセキュリティの質問への回答などです。
-1. **パスワードのリセット**: 認証テストに合格すると、ユーザーは新しいパスワードを入力して確認できます。
-1. **通知**: リセットを確認するメッセージがユーザーに送られます。
+1. **Localization**: The portal checks the browser's locale setting and renders the SSPR page in the appropriate language.
+1. **Verification**: The user enters their username and passes a CAPTCHA to ensure that it's a user and not a bot.
+1. **Authentication**: The user enters the required data to authenticate their identity. They might enter a code or answer security questions.
+1. **Password reset**: If the user passes the authentication tests, they can enter a new password and confirm it.
+1. **Notification**: A message is sent to the user to confirm the reset.
 
-SSPR のユーザー体験は、いくつかの方法でカスタマイズできます。たとえば、サインイン ページに会社のロゴを追加して、パスワードをリセットする正しい場所にいることがユーザーに分かるようにできます。
+There are several ways you can customize the SSPR user experience. For example, you can add your company logo to the sign-in page so users know they're in the right place to reset their password.
 
-## パスワード リセットの認証
+## Authenticate a password reset
 
-パスワードのリセットを許可する前に、ユーザーの身元を確認することが極めて重要です。悪意のあるユーザーは、システムの弱点を突いてそのユーザーになりすまそうとするかもしれません。Azure は、リセット要求の認証方法として 6 種類をサポートしています。
+It's critical to verify a user's identity before you allow a password reset. Malicious users might exploit any weakness in the system to impersonate that user. Azure supports six different ways to authenticate reset requests.
 
-管理者は、SSPR を構成する際に使用する方法を選べます。ユーザーが使いやすいものを選べるように、これらの方法を 2 つ以上有効にしてください。方法は次のとおりです。
+As an administrator, you can choose the methods to use when you configure SSPR. Enable two or more of these methods so that users can choose the ones they can easily use. The methods are:
 
-| 認証方法 | 登録方法 | パスワード リセット時の認証方法 |
+| Authentication method | How to register | How to authenticate for a password reset |
 | --- | --- | --- |
-| モバイル アプリ通知 | モバイル デバイスに Microsoft Authenticator アプリをインストールし、多要素認証のセットアップ ページで登録します。 | Azure がアプリに通知を送り、それを承認または拒否します。 |
-| モバイル アプリ コード | この方法も Authenticator アプリを使い、インストールと登録は同じ手順です。 | アプリに表示されるコードを入力します。 |
-| メール | Azure および Microsoft 365 の外部のメール アドレスを登録します。 | Azure がそのアドレスにコードを送り、リセット ウィザードでそれを入力します。 |
-| 携帯電話 | 携帯電話番号を登録します。 | Azure が SMS メッセージでコードを送り、リセット ウィザードでそれを入力します。自動音声通話を受けることも選べます。 |
-| 会社電話 | 携帯電話以外の電話番号を登録します。 | この番号に自動音声通話がかかってくるので、# を押します。 |
-| セキュリティの質問 | 「母親の出生地はどこですか?」のような質問を選び、回答を保存しておきます。 | 質問に回答します。 |
+| Mobile app notification | Install the Microsoft Authenticator app on your mobile device, then register it on the multifactor authentication setup page. | Azure sends a notification to the app, which you can either verify or deny. |
+| Mobile app code | This method also uses the Authenticator app, and you install and register it in the same way. | Enter the code from the app. |
+| Email | Provide an email address that's external to Azure and Microsoft 365. | Azure sends a code to the address, which you enter in the reset wizard. |
+| Mobile phone | Provide a mobile phone number. | Azure sends a code to the phone in an SMS message, which you enter in the reset wizard. You can also choose to get an automated call. |
+| Office phone | Provide a nonmobile phone number. | You receive an automated call to this number and press #. |
+| Security questions | Select questions such as "In what city was your mother born?" and save their responses. | Answer the questions. |
 
-試用版の Microsoft Entra 組織では、電話によるオプションはサポートされていません。
+In trial Microsoft Entra organizations, phone call options aren't supported.
 
-### 最低限必要な認証方法の数を設定する
+### Require the minimum number of authentication methods
 
-ユーザーが設定しなければならない方法の最小数を、1 つまたは 2 つで指定できます。たとえば、モバイル アプリ コード、メール、会社電話、セキュリティの質問の各方法を有効にし、最小数を 2 に指定できます。ユーザーは、モバイル アプリ コードとメールのように、好みの 2 つの方法を選べます。
+You can specify the minimum number of methods that the user must set up, either one or two. For example, you might enable the mobile app code, email, office phone, and security questions methods and specify a minimum of two methods. Users can then choose the two methods they prefer, like mobile app code and email.
 
-セキュリティの質問の方法では、この方法に登録するためにユーザーが設定しなければならない質問の最小数を指定できます。また、パスワードをリセットするために正しく回答しなければならない質問の最小数も指定できます。
+For the security-question method, you can specify a minimum number of questions the user must set up to register for this method. You also can specify a minimum number of questions they must answer correctly to reset their password.
 
-指定した最小数の方法について必要な情報を登録し終えたユーザーは、SSPR に登録済みと見なされます。
+After your users register the required information for the minimum number of methods you've specified, they're considered registered for SSPR.
 
-### 推奨事項
+### Recommendations
 
-- リセット要求の認証方法を 2 つ以上有効にしてください。
-- 主要な方法にはモバイル アプリ通知またはコードを使ってください。ただし、モバイル デバイスを持たないユーザーのために、メールまたは会社電話の方法も有効にしておきましょう。
-- 携帯電話の方法は推奨されません。詐欺的な SMS メッセージが送られる可能性があるためです。
-- セキュリティの質問のオプションは、最も推奨されない方法です。セキュリティの質問への回答は、他人に知られている可能性があるためです。セキュリティの質問の方法は、必ず少なくとも 1 つの他の方法と組み合わせて使ってください。
+- Enable two or more of the authentication reset request methods.
+- Use the mobile app notification or code as the primary method. But also enable the email or office phone methods to support users without mobile devices.
+- The mobile phone method isn't a recommended method, because it's possible to send fraudulent SMS messages.
+- The security-question option is the least recommended method, because the answers to the security questions might be known to other people. Only use the security-question method in combination with at least one other method.
 
-### 管理者ロールに関連付けられたアカウント
+### Accounts associated with administrator roles
 
-- 管理者ロールを持つアカウントには、他のユーザーへの構成にかかわらず、常に 2 つの方法による強力な認証ポリシーが適用されます。
-- セキュリティの質問の方法は、管理者ロールに関連付けられたアカウントでは利用できません。
+- A strong, two-method authentication policy is always applied to accounts with an administrator role, regardless of your configuration for other users.
+- The security-question method isn't available to accounts associated with an administrator role.
 
-## 通知を構成する
+## Configure notifications
 
-管理者は、パスワード変更をユーザーにどう通知するかを選べます。有効にできるオプションは 2 つあります。
+Administrators can choose how users are notified of password changes. There are two options you can enable:
 
-- **パスワードのリセット時にユーザーに通知する**: 自分のパスワードをリセットしたユーザーに、プライマリとセカンダリのメール アドレス宛てに通知が届きます。悪意のあるユーザーがリセットを行った場合、この通知によって本人が気づき、対策を取れます。
-- **他の管理者がパスワードをリセットしたときにすべての管理者に通知する**: 管理者がパスワードをリセットすると、すべての管理者に通知が届きます。
+- **Notify users on password resets**: The user who resets their own password is notified to their primary and secondary email addresses. If the reset was done by a malicious user, this notification alerts the user, who can take mitigation steps.
+- **Notify all admins when other admins reset their password**: All administrators are notified when another administrator resets their password.
 
-## ライセンス要件
+## License requirements
 
-Microsoft Entra ID には、Premium P1 と Premium P2 の 2 つのエディションがあります。利用できるパスワード リセット機能は、エディションによって異なります。
+There are two editions of Microsoft Entra ID, Premium P1 and Premium P2. The password-reset functionality you can use depends on your edition.
 
-サインイン済みのユーザーは、Microsoft Entra ID のエディションにかかわらず、誰でもパスワードを変更できます。
+Any user who is signed in can change their password, regardless of the edition of Microsoft Entra ID.
 
-では、サインインしておらず、パスワードを忘れたり期限が切れたりした場合はどうでしょうか。その場合は、Microsoft Entra ID P1 または P2 の SSPR を使えます。SSPR は、Microsoft 365 Apps for business や Microsoft 365 でも利用できます。
+What if you're not signed in, and you've forgotten your password or your password has expired? In this case, you can use SSPR in Microsoft Entra ID P1 or P2. It's also available with Microsoft 365 Apps for business or Microsoft 365.
 
-オンプレミスに Active Directory、クラウドに Microsoft Entra ID があるハイブリッドの状況では、クラウドでのパスワード変更をオンプレミスのディレクトリに書き戻す必要があります。このライトバックのサポートは、Microsoft Entra ID P1 または P2 で利用できます。Microsoft 365 Apps for business でも利用できます。
+In a hybrid situation, where you have Active Directory on-premises and Microsoft Entra ID in the cloud, any password change in the cloud must be written back to the on-premises directory. This writeback support is available in Microsoft Entra ID P1 or P2. It's also available with Microsoft 365 Apps for business.
 
-## SSPR のデプロイ オプション
+## SSPR deployment options
 
-ユーザーのニーズに応じて、[Microsoft Entra Connect](/entra/identity/authentication/tutorial-enable-sspr-writeback/) または[クラウド同期](/entra/identity/authentication/tutorial-enable-cloud-sync-sspr-writeback/)を使って、パスワード ライトバック付きの SSPR をデプロイできます。それぞれの方法を異なるドメインに並行してデプロイし、異なるユーザー グループを対象にすることもできます。これにより、オンプレミスの既存ユーザーのパスワード変更をライトバックしつつ、会社の合併や分割によって切り離されたドメインのユーザーにも選択肢を用意できます。既存のオンプレミス ドメインのユーザーは Microsoft Entra Connect を使い、合併で加わった新しいユーザーは別ドメインでクラウド同期を使う、といった具合です。
+You can deploy SSPR with password writeback by using [Microsoft Entra Connect](/entra/identity/authentication/tutorial-enable-sspr-writeback/) or [cloud sync](/entra/identity/authentication/tutorial-enable-cloud-sync-sspr-writeback/), depending on user needs. You can deploy each option side-by-side in different domains to target different sets of users. This helps existing users on-premises to write back password changes, while adding an option for users in disconnected domains because of a company merger or split. Users from an existing on-premises domain can use Microsoft Entra Connect, while new users from a merger can use cloud sync in another domain.
 
-クラウド同期は、Microsoft Entra Connect の単一インスタンスに依存しないため、より高い可用性も実現できます。2 つのデプロイ オプションの機能比較は、「[Microsoft Entra Connect とクラウド同期の比較](/entra/identity/hybrid/cloud-sync/what-is-cloud-sync#how-is-azure-ad-connect-cloud-sync-different-from-azure-ad-connect-sync/)」を参照してください。
+Cloud sync can also provide higher availability, because it doesn't rely on a single instance of Microsoft Entra Connect. For a feature comparison between the two deployment options, see [Comparison between Microsoft Entra Connect and cloud sync](/entra/identity/hybrid/cloud-sync/what-is-cloud-sync#how-is-azure-ad-connect-cloud-sync-different-from-azure-ad-connect-sync/).

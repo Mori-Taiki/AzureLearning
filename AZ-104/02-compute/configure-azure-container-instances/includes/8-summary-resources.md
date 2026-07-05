@@ -1,35 +1,35 @@
-このモジュールでは、Azure Container Instances と Azure 仮想マシンをいつ使い分けるかを学びました。Azure Container Instances の機能と利用ケースを確認し、Azure コンテナー グループの実装方法を学びました。
+In this module, you learned how to identify when to use Azure Container Instances versus Azure virtual machines. You explored the features and usage cases of Azure Container Instances. You discovered how to implement Azure container groups.
 
-このモジュールの要点は次のとおりです。
+The main takeaways from this module are:
 
-- コンテナーは軽量な分離を提供し、仮想マシンに比べて使用するシステム リソースが少なくて済みます。
-- コンテナーは、Docker で個別にデプロイすることも、Azure Container Apps のようなオーケストレーターでデプロイすることもできます。
-- コンテナーは、ストレージに Azure Disks または Azure Files を使います。
-- コンテナー グループとは、同じホスト マシン上にスケジュールされるコンテナーの集まりです。
-- ノードに障害が起きても、コンテナーは別のクラスター ノード上で速やかに再作成できます。
+- Containers provide lightweight isolation and use fewer system resources compared to virtual machines.
+- Containers can be deployed individually using Docker or with an orchestrator like Azure Container Apps. 
+- Containers use Azure Disks or Azure Files for storage.
+- A container group is a collection of containers that get scheduled on the same host machine. 
+- Containers can be rapidly recreated on another cluster node if a node fails. 
+ 
+## Learn more with Copilot
+Copilot can assist you in configuring Azure infrastructure solutions. Copilot can compare, recommend, explain, and research products and services where you need more information. Open a Microsoft Edge browser and choose Copilot (top right) or navigate to copilot.microsoft.com. Take a few minutes to try these prompts and extend your learning with Copilot.
 
-## Copilot でさらに学ぶ
-Copilot は、Azure インフラストラクチャ ソリューションの構成を支援してくれます。より詳しい情報が必要な製品やサービスについて、Copilot に比較、推奨、解説、調査を頼めます。Microsoft Edge ブラウザーを開いて右上の Copilot を選ぶか、copilot.microsoft.com にアクセスしてください。少し時間を取って次のプロンプトを試し、Copilot で学びを深めましょう。
+- Compare benefits and usage cases for containers and virtual machines. 
 
-- Compare benefits and usage cases for containers and virtual machines.
-
-- What are the best practices for configuring Azure Container Instances for task-based workloads? Explain the restart policies.
-
+- What are the best practices for configuring Azure Container Instances for task-based workloads? Explain the restart policies. 
+  
 - How do I deploy a multi-container group in Azure Container Instances using Bicep? Show an example with environment variables.
 
 
-## ドキュメントでさらに学ぶ
+## Learn more with documentation
 
-- [コンテナーと仮想マシンの比較](/virtualization/windowscontainers/about/containers-vs-vm)。コンテナーと仮想マシン (VM) の主な類似点と相違点、およびそれぞれをどんなときに使うべきかを解説する記事です。
+- [Containers versus virtual machines](/virtualization/windowscontainers/about/containers-vs-vm). This article reviews the key similarities and differences between containers and virtual machines (VMs), and when you might want to use each. 
 
-- [クイックスタート: Azure portal を使用して Azure にコンテナー インスタンスをデプロイする](/azure/container-instances/container-instances-quickstart-portal)。このクイックスタートでは、Azure portal を使って分離された Docker コンテナーをデプロイし、そのアプリケーションを完全修飾ドメイン名 (FQDN) で利用できるようにします。いくつかの設定を構成してコンテナーをデプロイした後、動作中のアプリケーションにブラウザーでアクセスできます。
+- [Quickstart: Deploy a container instance in Azure using the Azure portal](/azure/container-instances/container-instances-quickstart-portal). In this quickstart, you use the Azure portal to deploy an isolated Docker container and make its application available with a fully qualified domain name (FQDN). After configuring a few settings and deploying the container, you can browse to the running application:
 
-- [Azure Container Instances のコンテナー グループ](/azure/container-instances/container-instances-container-groups)。コンテナー グループとは何か、どのようなシナリオを実現できるかを説明する記事です。
+- [Container groups in Azure Container Instances](/azure/container-instances/container-instances-container-groups). This article describes what container groups are and the types of scenarios they enable.
 
-## 自習型トレーニングでさらに学ぶ
+## Learn more with self-paced training
 
-- [Azure Container Instances でコンテナー イメージを実行する](/training/modules/create-run-container-images-azure-container-instances/)。Azure Container Instances でコンテナーを素早くデプロイする方法、環境変数の設定方法、コンテナーの再起動ポリシーの指定方法を学びます。
+- [Run container images in Azure Container Instances](/training/modules/create-run-container-images-azure-container-instances/). Learn how Azure Container Instances can help you quickly deploy containers, how to set environment variables, and specify container restart policies.
 
-- [Azure Container Apps を実装する](/training/modules/implement-azure-container-apps/)。Azure Kubernetes Service 上で動作するサーバーレス プラットフォームで、Azure Container Apps を使ってマイクロサービスとコンテナー化されたアプリをデプロイ・管理する方法を学びます。
+- [Implement Azure Container Apps](/training/modules/implement-azure-container-apps/). Learn how Azure Container Apps can help you deploy and manage microservices and containerized apps on a serverless platform that runs on top of Azure Kubernetes Service.
 
-- [Docker コンテナーの概要](/training/modules/intro-to-docker-containers/)。コンテナー化プラットフォームとして Docker コンテナーを使う利点を学びます。Docker プラットフォームが提供するインフラについても説明します。
+- [Introduction to Docker containers](/training/modules/intro-to-docker-containers/). Learn the benefits of using Docker containers as a containerization platform. Discuss the infrastructure provided by the Docker platform.

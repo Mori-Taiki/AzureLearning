@@ -1,19 +1,19 @@
-このモジュールでは、Microsoft Entra ID の SSPR を使って、忘れたパスワードや期限切れのパスワードをユーザー自身がリセットできるようにする方法を学びました。管理者がパスワード リセットを行う必要はありません。SSPR は、選択した認証方法によって保護されます。認証方法には、モバイル認証アプリ、SMS テキスト メッセージで送られるコード、セキュリティの質問などがあります。
+In this module, you've learned how you can use SSPR in Microsoft Entra ID to allow users to reset their forgotten or expired passwords. An administrator doesn't have to do the password reset. SSPR is secured by authentication methods of your choice. These methods can include a mobile authentication app, a code sent to you by an SMS text message, or security questions. 
 
-SSPR は、管理者に求められる作業量の削減に役立ちます。また、ユーザーがパスワードを忘れたときの生産性への影響も最小限に抑えられます。
+SSPR helps reduce the amount of work required from administrators. It also minimizes the productivity impact for users when they forget their password.
 
-## クリーンアップ
+## Clean up
 
-作業が終わったら、忘れずにクリーンアップしてください。
+Remember to clean up after you've finished.
 
-- **Microsoft Entra ID で作成したユーザーを削除する**: **[Microsoft Entra ID]** > **[管理]** > **[ユーザー]** に移動します。ユーザーの横のボックスをオンにして **[削除]** を選択します。**[OK]** を選択します。
-- **Microsoft Entra ID で作成したグループを削除する**: **[Microsoft Entra ID]** > **[管理]** > **[グループ]** に移動します。グループの横のボックスをオンにして **[削除]** を選択します。**[OK]** を選択します。
-- **セルフサービス パスワード リセットを無効にする**: **[Microsoft Entra ID]** > **[管理]** > **[パスワード リセット]** に移動します。**[セルフサービス パスワード リセットが有効]** で **[なし]** を選択します。**[保存]** を選択します。
+- **Delete the user you created in Microsoft Entra ID**: Go to **Microsoft Entra ID** > **Manage** > **Users**. Check the box next to the user and select **Delete**. Select **OK**.
+- **Delete the group you created in Microsoft Entra ID**: Go to **Microsoft Entra ID** > **Manage** > **Groups**. Check the box next to the group and select **Delete**. Select **OK**.
+- **Turn off self-service password reset**: Go to **Microsoft Entra ID** > **Manage** > **Password reset**. Under **Self service password reset enabled**, select **None**. Select **Save**.
 
-このモジュール用に Premium 試用版の Microsoft Entra テナントを作成した場合、試用期間の終了から 30 日後にテナントを削除できます。
+If you created a Premium trial Microsoft Entra tenant for this module, you can delete the tenant 30 days after the trial has expired.
 
-## 詳細情報
+## Learn more
 
-- [チュートリアル: Microsoft Entra セルフサービス パスワード リセットを使用してユーザーがアカウントのロック解除やパスワードのリセットを行えるようにする](/entra/identity/authentication/tutorial-enable-sspr)
-- [仕組み: Microsoft Entra セルフサービス パスワード リセット](/entra/identity/authentication/concept-sspr-howitworks)
-- [セルフサービス パスワード リセットを有効にする](/entra/external-id/customers/how-to-enable-password-reset-customers)
+- [Tutorial: Enable users to unlock their account or reset passwords using Microsoft Entra self-service password reset](/entra/identity/authentication/tutorial-enable-sspr)
+- [How it works: Microsoft Entra self-service password reset](/entra/identity/authentication/concept-sspr-howitworks)
+- [Enable self-service password reset](/entra/external-id/customers/how-to-enable-password-reset-customers)

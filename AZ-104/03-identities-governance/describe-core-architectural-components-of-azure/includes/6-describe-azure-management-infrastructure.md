@@ -1,63 +1,64 @@
-管理インフラストラクチャには、Azure のリソースとリソース グループ、サブスクリプション、アカウントが含まれます。この階層を理解しておくと、Azure の利用が拡大するにつれて、リソースの整理、アクセス制御、コスト管理がしやすくなります。
+The management infrastructure includes Azure resources and resource groups, subscriptions, and accounts. Understanding this hierarchy helps you organize resources, control who can access what, and manage costs as your Azure usage grows.
 
-## Azure のリソースとリソース グループ
+## Azure resources and resource groups
 
-リソースは、Azure の基本的な構成要素です。作成、プロビジョニング、デプロイするものはすべてリソースです。VM、仮想ネットワーク、データベース、Azure AI サービスは、いずれもリソースの例です。
+A resource is the basic building block of Azure. Anything you create, provision, or deploy is a resource. VMs, virtual networks, databases, and Azure AI services are all examples of resources.
 
-:::image type="content" source="../media/resource-group-rules.png" alt-text="リソース グループの 3 つのルールを示す図。リソースは一度に 1 つのグループに属する (移動は可能)、グループは入れ子にも名前変更もできない、グループを削除すると中のリソースがすべて削除される。":::
-
-
-リソース グループは、リソースのまとまりです。すべてのリソースは、ちょうど 1 つのリソース グループに属さなければなりません。一部のリソースはグループ間で移動できますが、リソースが同時に関連付けられるグループは 1 つだけです。リソース グループは入れ子にできず、作成後に名前を変更することもできないため、最初から分かりやすい名前付け規則を選んでください。
-
-リソース グループに対して適用した操作は、その中のすべてのリソースに影響します。リソース グループを削除すると、その中のすべてが削除されます。アクセスの許可や拒否も、そのすべてのリソースに適用されます。
-
-たとえば、一時的な開発環境をセットアップする場合、すべてのリソースを 1 つにまとめておけば、終わったときにグループごと削除できます。複数のプロジェクトを運用している場合は、プロジェクトごとに別々のリソース グループを作れば、各チームは自分たちのリソースだけを見て管理できます。
-
-リソース グループの構成に厳格なルールはありません。自分の状況に最も合ったアプローチを選んでください。
-
-## Azure サブスクリプション
-
-Azure において、サブスクリプションは管理、課金、スケールの単位です。サブスクリプションを使うと、リソース グループを整理し、アクセスとは別に課金を管理できます。
-
-:::image type="content" source="../media/subscription-boundaries.png" alt-text="サブスクリプションの 2 種類の境界を示す図。課金境界では各サブスクリプションが個別の請求書を生成し、アクセス制御境界では開発と運用のサブスクリプションが異なるアクセス ポリシーと支出制限を持ちます。":::
+:::image type="content" source="../media/resource-group-rules.png" alt-text="Diagram showing three resource group rules: a resource belongs to one group at a time (with move option), groups cannot be nested or renamed, and deleting a group deletes all resources inside it.":::
 
 
-Azure を使うには、Azure サブスクリプションが必要です。サブスクリプションは、Azure の製品とサービスへのアクセスを提供し、課金の単位として機能します。Azure サブスクリプションは Azure アカウントにリンクされます。Azure アカウントとは、Microsoft Entra ID 内、または Microsoft Entra ID が信頼するディレクトリ内の ID です。
+Resource groups are groupings of resources. Every resource must belong to exactly one resource group. You can move some resources between groups, but a resource is only associated with one group at a time. Resource groups can't be nested, and they can't be renamed after creation, so choose a clear naming convention from the start.
 
-1 つのアカウントは複数のサブスクリプションを持てますが、必要なのは 1 つだけです。複数サブスクリプションのアカウントでは、異なる課金モデルとアクセス ポリシーを構成できます。サブスクリプションの境界には 2 つの種類があります。
+Actions you apply to a resource group affect all resources inside it. Deleting a resource group deletes everything in it. Granting or denying access applies to all its resources.
 
- -  **課金境界**: Azure アカウントへの課金方法を決めます。課金要件の違いに応じて複数のサブスクリプションを作成できます。Azure は、サブスクリプションごとに個別の課金レポートと請求書を生成します。
- -  **アクセス制御境界**: Azure は、サブスクリプションのレベルでアクセス管理ポリシーを適用します。たとえば、開発作業用と運用用に別々のサブスクリプションを作成し、それぞれに異なる支出制限とアクセス ルールを設定できます。
+For example, if you're setting up a temporary dev environment, grouping all the resources together lets you delete the entire group when you're done. If you're running multiple projects, create a separate resource group for each so each team only sees and manages its own resources.
 
-### 追加の Azure サブスクリプションを作成する
+There are no hard rules for structuring resource groups — choose the approach that works best for your situation.
 
-次のような分離のために、追加のサブスクリプションを作成することがあります。
+## Azure subscriptions
 
- -  **環境**: サンドボックス、開発、テスト、運用といったライフサイクルの段階ごとのサブスクリプション。アクセス制御はサブスクリプション レベルで行われるため、自然な境界になります。
- -  **チームとワークロードの境界**: プロジェクトごとに専用のサブスクリプションを与えてコストを追跡しやすくしたり、サンドボックス環境を運用環境から分離したりします。
- -  **課金**: コストを個別に追跡するためにサブスクリプションを作成します。たとえば、運用ワークロード用と開発・テスト用に分けます。
+In Azure, subscriptions are a unit of management, billing, and scale. Subscriptions let you organize resource groups and control billing separately from access.
 
-## Azure 管理グループ
-
-リソースはリソース グループに入り、リソース グループはサブスクリプションに入ります。小規模な環境ならこれで十分です。しかし、複数のチームや地域にまたがる多数のサブスクリプションがある場合は、より高いレベルでアクセスとポリシーを管理する方法が必要です。
-
-Azure 管理グループは、サブスクリプションの上位に位置します。サブスクリプションを管理グループにまとめ、アクセス ポリシーやコンプライアンス ルールといったガバナンス条件をグループに適用します。管理グループ内のすべてのサブスクリプションは、リソースがリソース グループから設定を継承するのと同じように、これらの条件を自動的に継承します。管理グループは (ルート レベルとサブスクリプション レベルを除いて) 最大 6 階層まで入れ子にでき、組織の構造を反映した階層を構築できます。
-
-すべての Microsoft Entra テナントには、単一の最上位のテナント ルート グループがあります。他のすべての管理グループとサブスクリプションはこのルート グループに集約されるため、ガバナンス ポリシーをグローバルに適用できます。
-
-## 管理グループ、サブスクリプション、リソース グループの階層
-
-管理グループとサブスクリプションの柔軟な構造を構築し、統一されたポリシーとアクセス管理のためにリソースを階層に整理できます。
-
-:::image type="content" source="../media/management-group-hierarchy.png" alt-text="テナント ルート グループから管理グループ (マーケティング、IT)、サブスクリプション (Web、モバイル、アプリ、サーバー)、リソース グループ、個々のリソースへと続く管理グループの階層を示す図。ポリシーとアクセスは下方向に継承されます。":::
+:::image type="content" source="../media/subscription-boundaries.png" alt-text="Diagram showing two subscription boundary types: billing boundary where each subscription generates a separate invoice, and access control boundary where dev and prod subscriptions have different access policies and spending limits.":::
 
 
-管理グループの使い方の例:
+Using Azure requires an Azure subscription. A subscription provides access to Azure products and services and serves as a billing unit. An Azure subscription links to an Azure account, which is an identity in Microsoft Entra ID or in a directory that Microsoft Entra ID trusts.
 
- -  **サブスクリプション全体にポリシーを適用する**: Production というグループで、VM の場所を米国西部リージョンに限定できます。このポリシーはその管理グループ配下のすべてのサブスクリプションに継承され、それらのサブスクリプション内のすべての VM に適用されます。リソースやサブスクリプションの所有者はこれを上書きできないため、ガバナンスが強化されます。
- -  **複数のサブスクリプションへのアクセスを一度に付与する**: サブスクリプションを管理グループの下に置くことで、グループに対して 1 つの Azure RBAC 割り当てを作成できます。配下のすべての子管理グループ、サブスクリプション、リソース グループ、リソースがそのアクセス許可を継承するため、個々のサブスクリプションに対して Azure RBAC をスクリプトで設定する必要がありません。
+An account can have multiple subscriptions, but only one is required. In a multi-subscription account, you can configure different billing models and access policies. There are two types of subscription boundaries:
 
-管理グループに関する重要な事実:
+ -  **Billing boundary**: Determines how an Azure account is billed. You can create multiple subscriptions for different billing requirements. Azure generates separate billing reports and invoices for each subscription.
+ -  **Access control boundary**: Azure applies access-management policies at the subscription level. For example, you might create one subscription for your development work and another for production, each with different spending limits and access rules.
 
- -  1 つのディレクトリは、最大 10,000 個の管理グループをサポートします。
- -  各管理グループとサブスクリプションは、親を 1 つだけ持てます。
+### Create additional Azure subscriptions
+
+You might create additional subscriptions to separate:
+
+ -  **Environments**: Subscriptions for lifecycle stages such as sandbox, development, test, and production. Access control occurs at the subscription level, making this a natural boundary.
+ -  **Team and workload boundaries**: Give each project its own subscription so costs are easy to track, or separate sandbox environments from production.
+ -  **Billing**: Create subscriptions to track costs separately — for instance, one for production workloads and another for development and testing.
+
+## Azure management groups
+
+Resources go into resource groups, and resource groups go into subscriptions. For a small environment, that's enough. But when you have many subscriptions across multiple teams or geographies, you need a way to manage access and policies at a higher level.
+
+Azure management groups sit above subscriptions. You organize subscriptions into management groups and apply governance conditions — like access policies or compliance rules — to the group. All subscriptions in a management group automatically inherit those conditions, just as resources inherit settings from their resource group. Management groups can be nested up to six levels deep (not counting the root level or the subscription level), letting you build a hierarchy that mirrors your organization.
+
+Every Microsoft Entra tenant has a single top-level Tenant Root Group. All other management groups and subscriptions fold up to this root group, which lets you apply governance policies globally.
+
+## Management group, subscriptions, and resource group hierarchy
+
+You can build a flexible structure of management groups and subscriptions to organize your resources into a hierarchy for unified policy and access management.
+
+:::image type="content" source="../media/management-group-hierarchy.png" alt-text="Diagram showing a management group hierarchy from Tenant Root Group down through management groups (Marketing, IT) to subscriptions (Web, Mobile, Apps, Servers), resource groups, and individual resources, with policies and access inheriting downward.":::
+
+
+Examples of how you could use management groups:
+
+ -  **Apply a policy across subscriptions**. You could limit VM locations to the US West Region in a group called Production. This policy inherits to all subscriptions under that management group and applies to all VMs in those subscriptions. The resource or subscription owner can't override it, which strengthens governance.
+ -  **Grant access to multiple subscriptions at once**. By placing subscriptions under a management group, you can create one Azure RBAC assignment on the group. All sub-management groups, subscriptions, resource groups, and resources underneath inherit those permissions — no need to script Azure RBAC across individual subscriptions.
+
+Important facts about management groups:
+
+ -  A single directory supports up to 10,000 management groups.
+ -  Each management group and subscription can have only one parent.
+

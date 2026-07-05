@@ -1,0 +1,48 @@
+### YamlMime:Module
+uid: learn.wwl.configure-azure-container-instances
+metadata:
+  adobe-target: true
+  prefetch-feature-rollout: true
+  title: Azure Container Instances の構成
+  description: "コンテナー グループを含む、Azure Container Instances の構成方法を学びます。"
+  ms.date: 06/23/2026
+  author: wwlpublish
+  ms.author: robbarefoot
+  ms.topic: module
+  ms.collection: N/A
+  ms.custom:
+  - N/A
+  ms.service: azure-container-instances
+  ai-usage: ai-assisted
+title: Azure Container Instances の構成
+summary: コンテナー グループを含む、Azure Container Instances の構成方法を学びます。
+abstract: |
+  このモジュールでは、次のことを学びます。
+
+  -   コンテナーと仮想マシンをいつ使い分けるかを判断する。
+
+  -   Azure Container Instances の機能と利用ケースを把握する。
+
+  -   Azure コンテナー グループを実装する。
+prerequisites: |
+  -   コンテナー化の概念と用語に関する実務知識。
+
+  -   クラウド コンピューティングに関する基本知識と、Azure portal の使用経験。
+iconUrl: /training/achievements/azure-container-instance-configure.svg
+levels:
+- intermediate
+roles:
+- administrator
+products:
+- azure-container-instances
+units:
+- learn.wwl.configure-azure-container-instances.introduction
+- learn.wwl.configure-azure-container-instances.compare-containers-to-virtual-machines
+- learn.wwl.configure-azure-container-instances.review
+- learn.wwl.configure-azure-container-instances.implement-container-groups
+- learn.wwl.configure-azure-container-instances.review-docker-platform
+- learn.wwl.configure-azure-container-instances.interactive-lab-simulation-containers
+- learn.wwl.configure-azure-container-instances.knowledge-check
+- learn.wwl.configure-azure-container-instances.summary-resources
+badge:
+  uid: learn.wwl.configure-azure-container-instances.badge

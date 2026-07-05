@@ -1,25 +1,25 @@
-大規模な仮想マシンの管理は、特に利用パターンが変化し、アプリケーションへの需要が変動する状況では難しいものです。Azure 管理者は、変化する需要に合わせて仮想マシンのリソースを調整できる必要があります。同時に、アプリケーションの安定性を保つために、仮想マシンの構成には一貫性を持たせなければなりません。これらの目標を達成するには、多数の仮想マシンを常時稼働させるコストを抑えつつ、スループットと応答性を維持することが求められます。
+Managing virtual machines at scale can be challenging, especially when usage patterns vary and demands on applications fluctuate. Azure Administrators need to be able to adjust their virtual machine resources to match changing demands. At the same time, they need to keep their virtual machine configuration consistent to ensure application stability. Achieving these goals means maintaining throughput and responsiveness while minimizing the costs of continually running a large collection of virtual machines.
 
-あなたの会社の Web サイトは仮想マシンを使用しており、大きなワークロードを処理しています。IT 部門は、ワークロードの増減に合わせて仮想マシンが動的に調整されるようにしたいと考えています。また、高可用性なマシンを確保する事業継続計画も用意したいと考えています。あなたは高可用性な仮想マシンのデプロイを担当しており、Azure 仮想マシン スケール セットと自動スケール機能を使うことにしました。
+Your company website uses virtual machines and manages large workloads. The IT department wants to ensure the virtual machines can dynamically adjust to increases and decreases in workloads. They also want to ensure there's a business continuity plan to provide for highly available machines. You're responsible for deploying highly available virtual machines. You decide to use Azure Virtual Machine Scale Sets and the autoscale feature.
 
-このモジュールでは、仮想マシンのスケーリングについて学びます。可用性ゾーン、可用性セット、更新ドメインと障害ドメインについて学び、さらにスケール セットと自動スケールについても学びます。
+In this module, you learn about scaling virtual machines. You learn about availability zones, availability sets, and update and fault domains. You also learn about scale sets and autoscale.
 
-このモジュールの目標は、変化する仮想マシンのワークロードにうまく対応する方法を身につけることです。
+The goal of this module is to learn how to successfully respond to changing virtual machine workloads. 
 
-## 学習の目標
+## Learning objectives
 
-このモジュールでは、次のことを学びます。
+In this module, you learn how to:
 
-- 可用性セットと可用性ゾーンを実装する。
-- 更新ドメインと障害ドメインを実装する。
-- Azure 仮想マシン スケール セットを実装する。
-- 仮想マシンを自動スケールする。
+- Implement availability sets and availability zones.
+- Implement update and fault domains.
+- Implement Azure Virtual Machine Scale Sets.
+- Autoscale virtual machines.
 
-## 評価されるスキル
+## Skills measured
 
-このモジュールの内容は、[試験 AZ-104: Microsoft Azure Administrator](/credentials/certifications/resources/study-guides/az-104) の準備に役立ちます。
+The content in the module helps you prepare for [Exam AZ-104: Microsoft Azure Administrator](/credentials/certifications/resources/study-guides/az-104). 
 
-## 前提条件
+## Prerequisites
 
-- Azure 仮想マシンの作成と管理に関する基本知識。
-- 変動するワークロードに応じてインフラ リソースをスケールさせることについての一般的な知識。
+- Familiarity with creating and managing Azure virtual machines.
+- General knowledge of scaling infrastructure resources in fluctuating workloads. 

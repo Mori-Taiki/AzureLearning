@@ -1,23 +1,23 @@
-Azure 管理者には、Web アプリケーションをスケールさせる能力が求められます。スケーリングにより、需要が高い時期でもアプリケーションの応答性を保てます。また、需要が落ち込んだときには必要なリソースを減らすことで、コストの節約にもつながります。
+Azure Administrators need to be able to scale a web application. Scaling enables an application to remain responsive during periods of high demand. Scaling also helps to save money by reducing the resources required when demand drops.
 
-あなたは大きなホテル チェーンに勤めていて、ホテルの Web サイトの保守を担当しているとしましょう。顧客はこの Web サイトで新規予約をしたり、現在の予約内容を確認したりします。1 年のうち特定の時期には、祝日・連休の旅行に向けてホテルを探す顧客が増えるため、Web サイトのトラフィックが増加します。それ以外の時期にはトラフィックは減少します。こうした Web サイトの利用パターンは予測可能です。
+Suppose you work for a large chain of hotels. You're responsible for maintaining the hotel website. Customers visit the website to make new reservations and view details for their current bookings. At certain times of the year, the volume of website traffic grows because customers are browsing hotels for vacations during national/regional holidays. At other times, traffic declines. These website usage patterns are predictable.
 
-このモジュールでは、Azure App Service プランの実装を学びます。App Service プランごとに価格とスケーリングの選択肢がどう違うのか、プランを変更するとパフォーマンスにどう影響するのかを学びます。
+In this module, you learn to implement Azure App Service plans. You learn how different App Service plans provide different pricing and scaling options. You learn how changing the plan affects performance.
 
-このモジュールの目標は、アプリケーションに最適な App Service プランを判断できるようになることです。
+The goal of this module is to ensure you can determine the best App Service plan for your application. 
 
-## 学習の目標
+## Learning objectives
 
-このモジュールでは、次のことを学びます。
+In this module, you learn how to:
 
-- 適切な Azure App Service プランの価格レベルを選択する。
-- Azure App Service プランをスケールする。
+- Select an appropriate Azure App Service plan pricing tier.
+- Scale an Azure App Service plan.
 
-## 評価されるスキル
+## Skills measured
 
-このモジュールの内容は、[試験 AZ-104: Microsoft Azure Administrator](/credentials/certifications/resources/study-guides/az-104) の準備に役立ちます。
+The content in the module helps you prepare for [Exam AZ-104: Microsoft Azure Administrator](/credentials/certifications/resources/study-guides/az-104). 
 
-## 前提条件
+## Prerequisites
 
-- スケーリングとパフォーマンスの概念に関する基本知識。
-- 適切な App Service プランを構成できる程度の、Azure portal に関する基本知識。
+- Basic knowledge of scaling and performance concepts. 
+- Familiarity with the Azure portal so you can configure the correct App Service plan. 

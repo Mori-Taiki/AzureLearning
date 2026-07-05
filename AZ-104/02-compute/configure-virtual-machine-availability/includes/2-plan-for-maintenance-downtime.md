@@ -1,14 +1,14 @@
-Azure 管理者は、計画的な障害にも予期しない障害にも備えます。
+Azure Administrators prepare for planned and unplanned failures. 
 
-### メンテナンス計画について知っておくべきこと
+### Things to know about maintenance planning
 
-Azure 仮想マシンの可用性計画には、非計画的なハードウェア メンテナンス、予期しないダウンタイム、計画メンテナンスへの対応戦略を含める必要があります。
+An availability plan for Azure virtual machines needs to include strategies for unplanned hardware maintenance, unexpected downtime, and planned maintenance. 
 
-- **非計画的なハードウェア メンテナンス** イベントは、物理マシンに関連するハードウェアやプラットフォーム コンポーネントの障害が近いと Azure プラットフォームが予測したときに発生します。障害を予測すると、プラットフォームは非計画的なハードウェア メンテナンス イベントを発行します。Azure はライブ マイグレーション技術を使って、障害が近いハードウェアから正常な物理マシンへ仮想マシンを移行します。ライブ マイグレーションは仮想マシンを保持したまま行われる操作で、仮想マシンが一時停止するのは短時間だけですが、イベントの前後でパフォーマンスが低下することがあります。
+- An **unplanned hardware maintenance** event occurs when the Azure platform predicts that the hardware or any platform component associated to a physical machine is about to fail. When the platform predicts a failure, it issues an unplanned hardware maintenance event. Azure uses Live Migration technology to migrate your virtual machines from the failing hardware to a healthy physical machine. Live Migration is a virtual machine preserving operation that only pauses the virtual machine for a short time, but performance might be reduced before or after the event.
 
-- **予期しないダウンタイム**は、仮想マシンのハードウェアや物理インフラに突発的な障害が起きたときに発生します。ローカル ネットワークの障害、ローカル ディスクの障害、その他ラック レベルの障害などが含まれます。障害を検出すると、Azure プラットフォームは同じデータセンター内の正常な物理マシンへ仮想マシンを自動的に移行 (修復) します。この修復処理の間、仮想マシンにはダウンタイム (再起動) が発生し、場合によっては一時ドライブが失われます。
+- **Unexpected downtime** occurs when the hardware or the physical infrastructure for your virtual machine fails unexpectedly. Unexpected downtime can include local network failures, local disk failures, or other rack level failures. When detected, the Azure platform automatically migrates (heals) your virtual machine to a healthy physical machine in the same datacenter. During the healing procedure, virtual machines experience downtime (reboot) and in some cases loss of the temporary drive.
 
-- **計画メンテナンス** イベントは、仮想マシンが動作する基盤プラットフォーム インフラの信頼性、パフォーマンス、セキュリティを全体的に向上させるために、Microsoft が Azure プラットフォームに対して定期的に行う更新のことです。
+- **Planned maintenance** events are periodic updates made by Microsoft to the underlying Azure platform to improve overall reliability, performance, and security of the platform infrastructure that your virtual machines run on. 
 
 > [!NOTE]
-> Microsoft が仮想マシンのオペレーティング システムやその他のソフトウェアを自動的に更新することはありません。それらの更新は、すべてあなたの管理と責任のもとにあります。ただし、基盤となるソフトウェア ホストとハードウェアは、信頼性と高いパフォーマンスを確保するために定期的にパッチが適用されます。
+> Microsoft doesn't automatically update your virtual machine operating system or other software. You have complete control and responsibility for those updates. However, the underlying software host and hardware are periodically patched to ensure reliability and high performance.

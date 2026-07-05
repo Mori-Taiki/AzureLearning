@@ -1,37 +1,37 @@
-コンテナーは、クラウド アプリケーションのパッケージ化、デプロイ、管理の方法として主流になりつつあります。Azure でクラウド ネイティブなアプリケーションやコンテナー化されたアプリケーションを構築・デプロイする方法は、チームにとって数多くあります。このユニットでは、Azure Container Instances (ACI) を確認します。
+Containers are becoming the preferred way to package, deploy, and manage cloud applications. There are many options for teams to build and deploy cloud native and containerized applications on Azure. In this unit, we review Azure Container Instances (ACI). 
 
-Azure Container Instances は、仮想マシンを管理することも、より上位のサービスを導入することもなく、Azure でコンテナーを実行する最も速くて簡単な方法です。Azure Container Instances は、分離されたコンテナーで動作できるあらゆるシナリオに適したソリューションです。
+Azure Container Instances offers the fastest and simplest way to run a container in Azure, without having to manage any virtual machines and without having to adopt a higher-level service. Azure Container Instances is a great solution for any scenario that can operate in isolated containers. 
 
-### コンテナー イメージを理解する
+### Understand container images
 
-すべてのコンテナーは、コンテナー イメージから作成されます。コンテナー イメージとは、アプリケーションの実行に必要なものすべてをカプセル化した、軽量でスタンドアロンな実行可能ソフトウェア パッケージです。次のコンポーネントが含まれます。
+All containers are created from container images. A container image is a lightweight, standalone, executable package of software that encapsulates everything needed to run an application. It includes the following components:
 
-- **コード**: アプリケーションのソース コード。
-- **ランタイム**: アプリケーションの実行に必要な環境。
-- **システム ツール**: アプリケーションの動作に必要なユーティリティ。
-- **システム ライブラリ**: アプリケーションが使用する共有ライブラリ。
-- **設定**: アプリケーション固有の構成パラメーター。
+- **Code**: The application’s source code.
+- **Runtime**: The environment required to execute the application.
+- **System tools**: Utilities necessary for the application to function.
+- **System libraries**: Shared libraries used by the application.
+- **Settings**: Configuration parameters specific to the application.
 
-コンテナー イメージを作成すると、それは異なるコンピューティング環境間で一貫して動作するポータブルな単位になります。これらのイメージがコンテナーの構成要素であり、コンテナーとは実行時に動いているイメージのインスタンスのことです。
+When you create a container image, it becomes a portable unit that can run consistently across different computing environments. These images are the building blocks for containers, which are instances of these images running at runtime.
 
-次の図は、Azure Container Instances で構築された Web サーバー コンテナーを示しています。コンテナーは、仮想ネットワーク内の仮想マシン上で動作しています。
+The following illustration shows a web server container built with Azure Container Instances. The container is running on a virtual machine in a virtual network.
 
-:::image type="content" source="../media/container-overview-0e72c2ba.png" alt-text="仮想ネットワーク内の仮想マシン上で動作する Web サーバー コンテナーを示す図。" border="false":::
+:::image type="content" source="../media/container-overview-0e72c2ba.png" alt-text="Diagram that shows a web server container running on a virtual machine in a virtual network." border="false":::
 
-### Azure Container Instances について知っておくべきこと
+### Things to know about Azure Container Instances
 
-[Azure Container Instances を使う利点](/azure/container-instances/container-instances-overview)をいくつか確認しましょう。これらのポイントを確認しながら、社内アプリケーションに Container Instances をどう導入できるか考えてみてください。
+Let's review some of the [benefits of using Azure Container Instances](/azure/container-instances/container-instances-overview). As you review these points, think about how you can implement Container Instances for your internal applications.
 
-- **高速な起動**: 仮想マシンのデプロイや管理を必要とせず、コンテナーは数秒で起動できます。
+- **Fast startup times**. Containers can start in seconds without the need to deploy and manage virtual machines.
 
-- **パブリック IP 接続と DNS 名**: コンテナーは、IP アドレスと FQDN (完全修飾ドメイン名) を使って、インターネットに直接公開できます。
+- **Public IP connectivity and DNS names**. Containers can be directly exposed to the internet with an IP address and FQDN (fully qualified domain name).
 
-- **カスタム サイズ**: デプロイ時に、コンテナーごとに CPU コア (0.1 〜 4 vCPU) とメモリ (0.1 〜 16 GB) を指定します。リソース割り当ては、コンテナー グループの存続期間中は固定です。
+- **Custom sizes**. You specify CPU cores (from 0.1 to 4 vCPU) and memory (from 0.1 to 16 GB) for each container at deployment time. Resource allocation is fixed for the lifetime of the container group.
 
-- **永続ストレージ**: コンテナーは、Azure Files のファイル共有の直接マウントをサポートします。
+- **Persistent storage**. Containers support direct mounting of Azure Files file shares.
 
-- **Linux と Windows のコンテナー**: Container Instances は、Windows と Linux の両方のコンテナーをスケジュールできます。コンテナー グループの作成時に、オペレーティング システムの種類を指定します。
+- **Linux and Windows containers**. Container Instances can schedule both Windows and Linux containers. Specify the operating system type when you create your container groups.
 
-- **同時スケジュールされるグループ**: Container Instances は、ホスト マシンのリソースを共有する複数コンテナー グループのスケジューリングをサポートします。
+- **Coscheduled groups**. Container Instances supports scheduling of multi-container groups that share host machine resources.
 
-- **仮想ネットワークへのデプロイ**: Linux のコンテナー グループは、他の Azure リソースとのプライベート通信のために、Azure 仮想ネットワークにデプロイできます。仮想ネットワークにデプロイされたコンテナーにはパブリック IP アドレスが付与されず、仮想ネットワーク内またはピアリングされたネットワーク内でのみ通信します。
+- **Virtual network deployment**. Linux container groups can be deployed into an Azure virtual network for private communication with other Azure resources. Virtual network deployed containers receive no public IP address and communicate only within the virtual network or peered networks.

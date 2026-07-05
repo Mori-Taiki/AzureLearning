@@ -1,3 +1,3 @@
 
 
-以下の各質問に対して、最も適切な回答を選んでください。
+Choose the best response for each of the questions below. 

@@ -1,10 +1,10 @@
 
-Microsoft 365 や Intune などのクラウド サービスをデプロイするときには、これらのサービスの認証と認可を提供するディレクトリ サービスもクラウド上に必要です。そのため、認証を必要とする各クラウド サービスは、それぞれ独自の Microsoft Entra テナントを作成します。1 つの組織が複数のクラウド サービスを使う場合、サービスごとに別々のディレクトリを持つより、これらのクラウド サービスが単一のクラウド ディレクトリを使うほうがずっと便利です。
+When you deploy cloud services such as Microsoft 365 or Intune, you also need to have directory services in the cloud to provide authentication and authorization for these services. Because of this, each cloud service that needs authentication will create its own Microsoft Entra tenant. When a single organization uses more than one cloud service, it’s much more convenient for these cloud services to use a single cloud directory instead of having separate directories for each service.
 
-現在では、Microsoft 365、Azure、Microsoft Dynamics 365、Intune といった Microsoft のすべてのクラウドベース サービスをカバーする、1 つの ID サービスを持つことができます。Microsoft Entra ID は、他の ID プロバイダーやオンプレミスの AD DS を利用して、Azure 上のアプリケーションに対する集中型の認証と認可を開発者に提供します。Microsoft Entra ID は、Facebook、Google のサービス、Yahoo、Microsoft のクラウド サービスなどのアプリケーションを使う際に、ユーザーに SSO の体験を提供できます。
+It’s now possible to have one identity service that covers all Microsoft cloud-based services, such as Microsoft 365, Azure, Microsoft Dynamics 365, and Intune. Microsoft Entra ID provides developers with centralized authentication and authorization for applications in Azure by using other identity providers or on-premises AD DS. Microsoft Entra ID can provide users with an SSO experience when using applications such as Facebook, Google services, Yahoo, or Microsoft cloud services.
 
-カスタム アプリケーションに Microsoft Entra ID のサポートを実装するプロセスはかなり複雑で、このコースの範囲を超えます。ただし、Azure portal と Microsoft Visual Studio 2013 以降を使えば、そのようなサポートの構成プロセスはより簡単になります。
+The process of implementing Microsoft Entra ID support for custom applications is rather complex and beyond the scope of this course. However, the Azure portal and Microsoft Visual Studio 2013 and later make the process of configuring such support more straightforward.
 
-特に、Azure App Service の Web Apps 機能に対する Microsoft Entra 認証は、Azure portal の [認証/認可] ブレードから直接有効化できます。Microsoft Entra テナントを指定することで、そのディレクトリにアカウントを持つユーザーだけが Web サイトにアクセスできるようにできます。デプロイ スロットごとに異なる認証設定を適用することも可能です。
+In particular, you can enable Microsoft Entra authentication for the Web Apps feature of Azure App Service directly from the Authentication/Authorization blade in the Azure portal. By designating the Microsoft Entra tenant, you can ensure that only users with accounts in that directory can access the website. It’s possible to apply different authentication settings to individual deployment slots.
 
-詳しくは、「[Microsoft Entra ログインを使用するように App Service アプリを構成する](/azure/app-service/configure-authentication-provider-aad)」を参照してください。
+For more information, see [Configure your App Service app to use Microsoft Entra login](/azure/app-service/configure-authentication-provider-aad).

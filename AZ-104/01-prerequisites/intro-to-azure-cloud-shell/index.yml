@@ -1,27 +1,27 @@
 ### YamlMime:Module
 uid: learn.intro-to-azure-cloud-shell
 metadata:
-  moduleType: introduction
-  title: Azure Cloud Shell の概要
-  description: このモジュールでは、Azure Cloud Shell で何ができるか、どのように動作するか、そして組織のニーズを満たすソリューションとして Azure Cloud Shell をいつ選択すべきかについて学習します。
+  moduleType: introduction        
+  title: Introduction to Azure Cloud Shell
+  description: In this module, you learn what Azure Cloud Shell does, how it works, and when you should choose to use Azure Cloud Shell as a solution to meet your organization’s needs. 
   ms.date: 04/09/2024
   author: vrapolinario
   ms.author: viniap
   ms.topic: module
   ms.custom: team=cloud_advocates
   ms.service: azure-cloud-shell
-title: Azure Cloud Shell の概要
-summary: Microsoft Azure Cloud Shell について説明し、その仕組みを学び、基本的な使用手順を確認します。
+title: Introduction to Azure Cloud Shell
+summary: Describe Microsoft Azure Cloud Shell, learn how it works, and explore basic steps for its usage.
 abstract: |
-  このモジュールを完了すると、次のことができるようになります。
-    - Azure Cloud Shell とその機能について説明する。
-    - Azure Cloud Shell が組織のニーズを満たすかどうかを判断する。
-    - Azure Cloud Shell の使い方と、複数のセッションにまたがってファイルを保持する方法を理解する。
+  By the end of this module, you're able to:
+    - Describe Azure Cloud Shell and the functionality it provides.
+    - Determine whether Azure Cloud Shell meets the needs of your organization.
+    - Recognize how to use Azure Cloud Shell and persist files for multiple sessions.
 prerequisites: |
-  - Azure 仮想マシン (VM) の使用経験
-  - Azure 仮想ネットワークの使用経験
-  - ルーティングおよびルーティング プロトコルの使用経験
-  - Azure portal を操作し、Azure PowerShell を使用できること
+  - Experience with Azure virtual machines (VMs)
+  - Experience with Azure virtual networks
+  - Experience with routing and routing protocols
+  - The ability to navigate the Azure portal and use Azure PowerShell
 iconUrl: /training/achievements/introduction-to-azure-cloud-shell.svg
 levels:
 - beginner
@@ -48,3 +48,4 @@ units:
 - learn.intro-to-azure-cloud-shell.summary
 badge:
   uid: learn.azure.intro-to-azure-cloud-shell.badge
+

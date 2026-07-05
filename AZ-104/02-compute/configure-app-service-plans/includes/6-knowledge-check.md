@@ -1,13 +1,13 @@
 
 
-あなたは、ホテルの Web サイトのスケーリング要件を満たすために、Azure App Service プランを実装する戦略を練っています。組織内のさまざまなチームから、検討してほしい要望や質問が寄せられています。
+You're developing a strategy to implement Azure App Service plans to enable scaling requirements for the hotel website. Various teams in your organization submit requests and questions for your consideration.
 
-- 管理チームは、スケーリングの選択肢について情報を求めています。仮想マシンを追加するのではなく、CPU とディスク領域を増やせる選択肢を希望しています。
+- The Admin team requests information about scaling options. They prefer an option that can increase CPU and disk space rather than having to add more virtual machines.
 
-- 運用チームは、10 個のステージング スロットへのスケーリングが必要な Web アプリを管理しています。
+- The Production team manages a web app that requires scaling to 10 staging slots. 
 
-- あなたの Web サイトの構成では、毎週土曜の午前 8 時にイベントをトリガーするルールが必要です。
+- In your website configuration, you need a rule to trigger an event at 8:00 AM on Saturdays.
 
-### 次の質問に答えてください
+### Answer the following questions
 
-各質問に対して最も適切な回答を選んでください。
+Choose the best response for each question.

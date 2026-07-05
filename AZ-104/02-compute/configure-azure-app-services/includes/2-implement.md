@@ -1,17 +1,18 @@
-[Azure App Service](/azure/app-service/overview) は、あらゆるプラットフォームやデバイス向けの Web サイト、モバイル バックエンド、Web API を作成するのに必要なものをすべてまとめて提供します。アプリケーションは、Windows ベースと Linux ベースのどちらの環境でも簡単に実行・スケールできます。
+[Azure App Service](/azure/app-service/overview) brings together everything you need to create websites, mobile backends, and web APIs for any platform or device. Applications run and scale with ease in both Windows and Linux-based environments.
 
-App Service には、プログラミング言語ごとのクイックスタートが用意されています。対象の言語には、ASP.NET、Java、Node.js、Python、PHP が含まれます。
+App Service provides Quickstarts for programming languages. These languages include: ASP.NET, Java, Node.js, Python, and PHP. 
 
-### App Service の利点
+### App Service benefits
 
-Web、モバイル、API のアプリの開発とデプロイに App Service を使う利点はたくさんあります。次の表を確認し、どの機能が App Service インスタンスのホストに役立つか考えてみてください。
+There are many advantages to using App Service to develop and deploy your web, mobile, and API apps. Review the following table and think about what features can help you host your App Service instances.
 
-| 利点 | 説明 |
+| Benefit | Description |
 | --- | --- |
-| **多様な言語とフレームワーク** | App Service は、ASP.NET、Java、Node.js、PHP、Python を第一級でサポートします。PowerShell やその他のスクリプト・実行可能ファイルをバックグラウンド サービスとして実行することもできます。 |
-| **DevOps の最適化** | App Service は、Azure DevOps、GitHub、BitBucket、Docker Hub、Azure Container Registry との継続的インテグレーションとデプロイをサポートします。テスト環境やステージング環境を通じて更新を昇格できます。App Service のアプリは、Azure PowerShell またはクロスプラットフォームのコマンドライン インターフェイス (CLI) で管理できます。 |
-| **高可用性を備えたグローバル スケール** | App Service では、手動でも自動でもスケールアップ・スケールアウトできます。Microsoft のグローバル データセンター インフラ内のどこでもアプリをホストでき、App Service の SLA は高可用性を提供します。 |
-| **セキュリティとコンプライアンス** | App Service は ISO、SOC、PCI に準拠しています。Microsoft Entra ID や、Google、Facebook、X、Microsoft を介したソーシャル ログインでユーザーを認証できます。IP アドレス制限の作成やサービス ID の管理も行えます。 |
-| **アプリケーション テンプレート** | WordPress、Joomla、Drupal など、Azure Marketplace の豊富なアプリケーション テンプレートから選択できます。
-| **Visual Studio との統合** | App Service には Visual Studio 専用のツールがあり、作成、デプロイ、デバッグの作業を効率化できます。 |
-| **API とモバイルの機能** | App Service は、RESTful API のシナリオ向けにすぐに使える CORS サポートを提供します。認証、オフライン データ同期、プッシュ通知などを有効にして、モバイル アプリのシナリオを簡素化できます。 |
+| **Multiple languages and frameworks** | App Service has first-class support for ASP.NET, Java, Node.js, PHP, and Python. You can also run PowerShell and other scripts or executables as background services. |
+| **DevOps optimization** | App Service supports continuous integration and deployment with Azure DevOps, GitHub, BitBucket, Docker Hub, and Azure Container Registry. You can promote updates through test and staging environments. Manage your apps in App Service by using Azure PowerShell or the cross-platform command-line interface (CLI). |
+| **Global scale with high availability** | App Service helps you scale up or out manually or automatically. You can host your apps anywhere within the Microsoft global datacenter infrastructure, and the App Service SLA offers high availability. |
+| **Security and compliance** | App Service is ISO, SOC, and PCI compliant. You can authenticate users with Microsoft Entra ID or with social logins via Google, Facebook, X, or Microsoft. Create IP address restrictions and manage service identities. |
+| **Application templates** | Choose from an extensive list of application templates in Azure Marketplace, such as WordPress, Joomla, and Drupal.
+| **Visual Studio integration** | App Service offers dedicated tools in Visual Studio to help streamline the work of creating, deploying, and debugging. |
+| **API and mobile features** | App Service provides turn-key CORS support for RESTful API scenarios. You can simplify your mobile app scenarios by enabling authentication, offline data sync, push notifications, and more. |
+

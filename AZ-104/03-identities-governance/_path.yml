@@ -1,54 +1,54 @@
 ### YamlMime:LearningPath
 uid: learn.az-104-manage-identities-governance
 metadata:
-  title: 'AZ-104: Azure の ID とガバナンスの管理'
-  description: 'AZ-104: Azure の ID とガバナンスの管理'
+  title: 'AZ-104: Manage identities and governance in Azure'
+  description: 'AZ-104: Manage identities and governance in Azure'
   ms.date: 06/23/2026
   author: wwlpublish
   ms.author: robbarefoot
   ms.topic: learning-path
-title: 'AZ-104: Azure の ID とガバナンスの管理'
+title: 'AZ-104: Manage identities and governance in Azure'
 prerequisites: |
-  -   [Microsoft Azure Fundamentals: クラウドの概念について説明する](/training/paths/microsoft-azure-fundamentals-describe-cloud-concepts/)
-  -   [Azure Fundamentals: Azure のアーキテクチャとサービスについて説明する](/training/paths/azure-fundamentals-describe-azure-architecture-services/)
-  -   [Azure Fundamentals: Azure の管理とガバナンスについて説明する](/training/paths/describe-azure-management-governance/)
-  -   [AZ-104: Azure 管理者のための前提知識](/training/paths/az-104-administrator-prerequisites/)
+  -   [Microsoft Azure Fundamentals: Describe cloud concepts](/training/paths/microsoft-azure-fundamentals-describe-cloud-concepts/)
+  -   [Azure Fundamentals: Describe Azure architecture and services](/training/paths/azure-fundamentals-describe-azure-architecture-services/)
+  -   [Azure Fundamentals: Describe Azure management and governance](/training/paths/describe-azure-management-governance/)
+  -   [AZ-104: Prerequisites for Azure administrators](/training/paths/az-104-administrator-prerequisites/)
 summary: |
-  Azure Active Directory のオブジェクト、ロールベースのアクセス制御 (RBAC)、サブスクリプション、Azure のガバナンスの管理方法を学びます。
-  AZ-104 Azure Administrator シリーズのラーニング パスは次のとおりです。
+  Learn how to manage Azure Active Directory objects, role-based access control (RBAC), subscriptions, and governance in Azure.
+  Here are the learning paths in the AZ-104 Azure Administrator series:
   :::row:::
   :::column:::
-  <img src="/training/achievements/az-104-administrator-prerequisites.svg" width="84" height="70" alt="AZ-104: Azure 管理者のための前提知識ラーニング パスのトロフィー。" ></img>
-
-  [AZ-104: Azure 管理者のための前提知識](/training/paths/az-104-administrator-prerequisites/)
+  <img src="/training/achievements/az-104-administrator-prerequisites.svg" width="84" height="70" alt="The trophy for the AZ-104 Prerequisites for Azure administrators learning path." ></img>
+  
+  [AZ-104: Prerequisites for Azure administrators](/training/paths/az-104-administrator-prerequisites/)
   :::column-end:::
   :::column:::
-  <img src="/training/achievements/az-104-manage-identities-governance.svg" width="101" height="84" alt="AZ-104: Azure の ID とガバナンスの管理ラーニング パスのトロフィー。" ></img>
+  <img src="/training/achievements/az-104-manage-identities-governance.svg" width="101" height="84" alt="The trophy for the AZ-104 Manage identities and governance in Azure learning path." ></img>
+ 
 
-
-  AZ-104: Azure の ID とガバナンスの管理
+  AZ-104: Manage identities and governance in Azure
   :::column-end:::
   :::column:::
-  <img src="/training/achievements/az-104-manage-storage.svg" width="113" height="84" alt="AZ-104: Azure のストレージの実装と管理ラーニング パスのトロフィー。" ></img>
-
-  [AZ-104: Azure のストレージの実装と管理](/training/paths/az-104-manage-storage/)
+  <img src="/training/achievements/az-104-manage-storage.svg" width="113" height="84" alt="The trophy for the AZ-104 Implement and manage storage in Azure learning path." ></img>
+  
+  [AZ-104: Implement and manage storage in Azure](/training/paths/az-104-manage-storage/)
   :::column-end:::
   :::row-end:::
   :::row:::
   :::column:::
-  <img src="/training/achievements/az-104-manage-compute-resources.svg" width="84" height="70" alt="AZ-104: Azure コンピューティング リソースのデプロイと管理ラーニング パスのトロフィー。" ></img>
-
-  [AZ-104: Azure コンピューティング リソースのデプロイと管理](/training/paths/az-104-manage-compute-resources/)
+  <img src="/training/achievements/az-104-manage-compute-resources.svg" width="84" height="70" alt="The trophy for the AZ-104 Deploy and manage Azure compute resources learning path." ></img>
+  
+  [AZ-104: Deploy and manage Azure compute resources](/training/paths/az-104-manage-compute-resources/)
   :::column-end:::
   :::column:::
-  <img src="/training/achievements/az-104-manage-virtual-networks.svg" width="101" height="84" alt="AZ-104: Azure 管理者向けの仮想ネットワークの構成と管理ラーニング パスのトロフィー。" ></img>
-
-  [AZ-104: Azure 管理者向けの仮想ネットワークの構成と管理](/training/paths/az-104-manage-virtual-networks/)
+  <img src="/training/achievements/az-104-manage-virtual-networks.svg" width="101" height="84" alt="The trophy for the AZ-104 Configure and manage virtual networks for Azure administrators learning path." ></img>
+  
+  [AZ-104: Configure and manage virtual networks for Azure administrators](/training/paths/az-104-manage-virtual-networks/)
   :::column-end:::
   :::column:::
-  <img src="/training/achievements/az-104-monitor-backup-resources.svg" width="101" height="84" alt="AZ-104: Azure リソースの監視とバックアップ ラーニング パスのトロフィー。" ></img>
-
-  [AZ-104: Azure リソースの監視とバックアップ](/training/paths/az-104-monitor-backup-resources/)
+  <img src="/training/achievements/az-104-monitor-backup-resources.svg" width="101" height="84" alt="The trophy for the AZ-104 Monitor and back up Azure resources learning path." ></img>
+  
+  [AZ-104: Monitor and back up Azure resources](/training/paths/az-104-monitor-backup-resources/)
   :::column-end:::
   :::row-end:::
 iconUrl: /training/achievements/az-104-manage-identities-governance.svg

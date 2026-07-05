@@ -1,0 +1,49 @@
+### YamlMime:Module
+uid: learn.wwl.understand-azure-active-directory
+metadata:
+  title: Microsoft Entra ID を理解する
+  description: "このモジュールでは、クラウドベースの ID およびアクセス管理サービスである Microsoft Entra ID について説明できるようになります。AD DS との比較、クラウド サービスのディレクトリとしての役割、セキュリティ機能について理解します。Microsoft Entra Domain Services についても学びます。"
+  ms.date: 05/12/2023
+  author: wwlpublish
+  ms.author: rstearman
+  ms.topic: module
+  ms.service: azure-active-directory
+title: Microsoft Entra ID を理解する
+summary: このモジュールでは、Microsoft Entra ID について説明します。Microsoft Entra ID と Active Directory DS を比較し、Microsoft Entra ID P1 と P2 について学び、クラウドでドメイン参加済みのデバイスとアプリを管理するための Microsoft Entra Domain Services を探ります。
+abstract: |
+  このモジュールを完了すると、次のことができるようになります。
+  - Microsoft Entra ID について説明する。
+  - Microsoft Entra ID と Active Directory Domain Services (AD DS) を比較する。
+  - クラウド アプリのディレクトリとしての Microsoft Entra ID の使われ方を説明する。
+  - Microsoft Entra ID P1 と P2 について説明する。
+  - Microsoft Entra Domain Services について説明する。
+prerequisites: |
+  - Windows 11 以降の OS のインストール、保守、トラブルシューティングに関する高い技術スキル。
+  - コンピューター ネットワーク、クライアント セキュリティ、アプリケーションの概念に関する深い理解。
+  - Active Directory Domain Services の使用経験。
+iconUrl: /training/achievements/azure-active-directory-explore.svg
+levels:
+- intermediate
+roles:
+- administrator
+- identity-access-admin
+products:
+- azure
+- entra-id
+- active-directory
+subjects:
+- identity-access
+- infrastructure
+- it-management-monitoring
+- employee-management
+units:
+- learn.wwl.understand-azure-active-directory.introduction
+- learn.wwl.understand-azure-active-directory.examine-azure-active-directory
+- learn.wwl.understand-azure-active-directory.compare-azure-active-directory-domain-services
+- learn.wwl.understand-azure-active-directory.examine-azure-directory-service-cloud-apps
+- learn.wwl.understand-azure-active-directory.compare-azure-premium-p1-p2-plans
+- learn.wwl.understand-azure-active-directory.examine-azure-domain-services
+- learn.wwl.understand-azure-active-directory.knowledge-check
+- learn.wwl.understand-azure-active-directory.summary
+badge:
+  uid: learn.wwl.understand-azure-active-directory.badge
