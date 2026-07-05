@@ -1,98 +1,98 @@
-When it comes to identity and access, most organizations that are considering using the public cloud are concerned about two things:
+ID とアクセスに関して、パブリック クラウドの利用を検討しているほとんどの組織が気にするのは、次の 2 点です。
 
-1. Ensuring that when people leave the organization, they lose access to resources in the cloud.
-1. Striking the right balance between autonomy and central governance. For example, giving project teams the ability to create and manage virtual machines in the cloud, while centrally controlling the networks those VMs use to communicate with other resources.
+1. 組織を離れた人が、クラウド内のリソースへのアクセスを確実に失うようにすること。
+1. 自律性と中央のガバナンスの適切なバランスを取ること。たとえば、プロジェクト チームにはクラウドで仮想マシンを作成・管理する権限を与えつつ、それらの VM が他のリソースとの通信に使うネットワークは中央で管理する、といったことです。
 
-Microsoft Entra ID and Azure RBAC work together to make it simple to carry out these goals.
+Microsoft Entra ID と Azure RBAC が連携することで、これらの目標を簡単に実現できます。
 
-## Azure subscriptions
+## Azure サブスクリプション
 
-First, remember that each Azure subscription is associated with a single Microsoft Entra directory. Users, groups, and applications in that directory can manage resources in the Azure subscription. The subscriptions use Microsoft Entra ID for single sign-on (SSO) and access management. You can extend your on-premises Active Directory to the cloud by using **Microsoft Entra Connect**. This feature allows your employees to manage their Azure subscriptions by using their existing work identities. When you disable an on-premises Active Directory account, it automatically loses access to all Azure subscriptions connected with Microsoft Entra ID.
+まず、各 Azure サブスクリプションは単一の Microsoft Entra ディレクトリに関連付けられていることを思い出してください。そのディレクトリ内のユーザー、グループ、アプリケーションが、Azure サブスクリプション内のリソースを管理できます。サブスクリプションは、シングル サインオン (SSO) とアクセス管理に Microsoft Entra ID を使います。**Microsoft Entra Connect** を使えば、オンプレミスの Active Directory をクラウドに拡張できます。この機能により、従業員は既存の職場の ID を使って Azure サブスクリプションを管理できます。オンプレミスの Active Directory アカウントを無効にすると、そのアカウントは Microsoft Entra ID に接続されたすべての Azure サブスクリプションへのアクセスを自動的に失います。
 
-## What's Azure RBAC?
+## Azure RBAC とは
 
-Azure RBAC is an authorization system built on Azure Resource Manager that provides fine-grained access management for resources in Azure. With Azure RBAC, you can grant the exact access that users need to do their jobs. For example, you can use Azure RBAC to let one employee manage virtual machines in a subscription, while another manages SQL databases within the same subscription.
+Azure RBAC は、Azure Resource Manager 上に構築された認可システムで、Azure のリソースに対するきめ細かなアクセス管理を提供します。Azure RBAC を使えば、ユーザーが業務に必要とするアクセスをちょうど必要な分だけ付与できます。たとえば、ある従業員にはサブスクリプション内の仮想マシンの管理を任せ、別の従業員には同じサブスクリプション内の SQL データベースの管理を任せる、といったことが Azure RBAC で可能です。
 
-The following video describes Azure RBAC in detail:
+次のビデオでは、Azure RBAC を詳しく説明しています。
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=0c2fa19a-79e6-4922-a1c6-03041e8369e7]
 
-You can grant access by assigning the appropriate Azure role to users, groups, and applications at a certain scope. The scope of a role assignment can be a management group, subscription, a resource group, or a single resource. A role assigned at a parent scope also grants access to the child scopes contained within it. For example, a user with access to a resource group can manage all the resources it contains like websites, virtual machines, and subnets. The Azure role that you assign dictates what resources the user, group, or application can manage within that scope.
+アクセスの付与は、ユーザー、グループ、アプリケーションに対して、特定のスコープで適切な Azure ロールを割り当てることで行います。ロール割り当てのスコープは、管理グループ、サブスクリプション、リソース グループ、または単一のリソースにできます。親スコープで割り当てられたロールは、その中に含まれる子スコープへのアクセスも付与します。たとえば、リソース グループへのアクセス権を持つユーザーは、Web サイト、仮想マシン、サブネットなど、そのグループに含まれるすべてのリソースを管理できます。割り当てる Azure ロールによって、そのスコープ内でユーザー、グループ、アプリケーションが管理できるリソースが決まります。
 
-The following diagram depicts how the classic subscription administrator roles, Azure roles, and Microsoft Entra roles are related at a high level. Child scopes, such as service instances, inherit roles assigned at a higher scope, like an entire subscription.
+次の図は、クラシックなサブスクリプション管理者ロール、Azure ロール、Microsoft Entra ロールの関係を大まかに表しています。サービス インスタンスなどの子スコープは、サブスクリプション全体のような上位スコープで割り当てられたロールを継承します。
 
-![Diagram that depicts how the classic subscription administrator roles, Azure roles, and Microsoft Entra roles are related at a high level.](../media/2-azuread-and-azure-roles.png)
+![クラシックなサブスクリプション管理者ロール、Azure ロール、Microsoft Entra ロールの関係を大まかに表した図。](../media/2-azuread-and-azure-roles.png)
 
-In the preceding diagram, a subscription is associated with only one Microsoft Entra tenant. Also note that a resource group can have multiple resources, but it's associated with only one subscription. Although it's not obvious from the diagram, a resource can be bound to only one resource group.
+上の図では、サブスクリプションは 1 つの Microsoft Entra テナントだけに関連付けられています。また、リソース グループは複数のリソースを持てますが、関連付けられるサブスクリプションは 1 つだけである点にも注目してください。図からは分かりにくいですが、リソースが属せるリソース グループも 1 つだけです。
 
-## What can I do with Azure RBAC?
+## Azure RBAC で何ができるのか?
 
-Azure RBAC allows you to grant access to Azure resources that you control. Suppose you need to manage access to resources in Azure for the development, engineering, and marketing teams. You’ve started to receive access requests, and you need to quickly learn how access management works for Azure resources.
+Azure RBAC を使うと、自分が管理する Azure リソースへのアクセスを付与できます。開発、エンジニアリング、マーケティングの各チームに対して Azure のリソースへのアクセスを管理する必要があるとしましょう。アクセス申請が届き始めており、Azure リソースのアクセス管理の仕組みを早急に理解する必要があります。
 
-Here are some scenarios you can implement with Azure RBAC:
+Azure RBAC で実現できるシナリオの例を挙げます。
 
-- Allow one user to manage virtual machines in a subscription and another user to manage virtual networks.
-- Allow a database administrator group to manage SQL databases in a subscription.
-- Allow a user to manage all resources in a resource group, such as virtual machines, websites, and subnets.
-- Allow an application to access all resources in a resource group.
+- あるユーザーにはサブスクリプション内の仮想マシンの管理を、別のユーザーには仮想ネットワークの管理を許可する。
+- データベース管理者のグループに、サブスクリプション内の SQL データベースの管理を許可する。
+- あるユーザーに、仮想マシン、Web サイト、サブネットなど、リソース グループ内のすべてのリソースの管理を許可する。
+- あるアプリケーションに、リソース グループ内のすべてのリソースへのアクセスを許可する。
 
-## Azure RBAC in the Azure portal
+## Azure portal での Azure RBAC
 
-In several areas in the Azure portal, you'll see a pane named **Access control (IAM)**, also known as *identity and access management*. On this pane, you can see who has access to that area and their role. Using this same pane, you can grant or remove access.
+Azure portal のいくつかの場所に、**[アクセス制御 (IAM)]** というペインがあります。*ID とアクセスの管理* とも呼ばれます。このペインでは、その領域に誰がアクセスできるか、そのロールが何かを確認できます。同じペインから、アクセスの付与や削除もできます。
 
-The following shows an example of the Access control (IAM) pane for a resource group. In this example, Alain has been assigned the Backup Operator role for this resource group.
+次の図は、リソース グループの [アクセス制御 (IAM)] ペインの例です。この例では、Alain にこのリソース グループのバックアップ オペレーター ロールが割り当てられています。
 
-![Screenshot of the Azure portal showing the Access control Role assignment pane with the Backup operator section highlighted.](../media/2-resource-group-access-control.png)
+![バックアップ オペレーターのセクションが強調表示された、アクセス制御のロール割り当てペインを示す Azure portal のスクリーンショット。](../media/2-resource-group-access-control.png)
 
-## How does Azure RBAC work?
+## Azure RBAC の仕組み
 
-You can control access to resources using Azure RBAC by creating role assignments, which control how permissions are enforced. To create a role assignment, you need three elements: a security principal, a role definition, and a scope. You can think of these elements as *who*, *what*, and *where*.
+Azure RBAC でリソースへのアクセスを制御するには、ロール割り当てを作成します。ロール割り当てが、アクセス許可の適用方法を制御します。ロール割り当ての作成には、セキュリティ プリンシパル、ロール定義、スコープの 3 つの要素が必要です。これらの要素は「誰が」「何を」「どこで」と考えることができます。
 
-### 1. Security principal (who)
+### 1. セキュリティ プリンシパル (誰が)
 
-A *security principal* is just a fancy name for a user, group, or application to which you want to grant access.
+*セキュリティ プリンシパル*とは、アクセスを付与したいユーザー、グループ、またはアプリケーションを指す、少し格式ばった呼び名にすぎません。
 
-![An illustration showing security principal including user, group, and service principal.](../media/2-rbac-security-principal.png)
+![ユーザー、グループ、サービス プリンシパルを含むセキュリティ プリンシパルを示す図。](../media/2-rbac-security-principal.png)
 
-### 2. Role definition (what)
+### 2. ロール定義 (何を)
 
-A *role definition* is a collection of permissions. It's sometimes just called a role. A role definition lists the permissions the role can perform such as read, write, and delete. Roles can be high-level, like Owner, or specific, like Virtual Machine Contributor.
+*ロール定義*は、アクセス許可の集まりです。単にロールと呼ばれることもあります。ロール定義には、読み取り、書き込み、削除など、そのロールで実行できるアクセス許可が列挙されています。ロールは、所有者のような大まかなものにも、仮想マシン共同作成者のような特化したものにもできます。
 
-![An illustration listing different built-in and custom roles with zoom-in on the definition for the contributor role.](../media/2-rbac-role-definition.png)
+![さまざまな組み込みロールとカスタム ロールを一覧にし、共同作成者ロールの定義を拡大して示した図。](../media/2-rbac-role-definition.png)
 
-Azure includes several built-in roles that you can use. The following lists four fundamental built-in roles:
+Azure には、すぐに使える組み込みロールがいくつも用意されています。基本となる 4 つの組み込みロールを次に示します。
 
-- **Owner**: Has full access to all resources, including the right to delegate access to others.
-- **Contributor**: Can create and manage all types of Azure resources, but can’t grant access to others.
-- **Reader**: Can view existing Azure resources.
-- **User Access Administrator**: Lets you manage user access to Azure resources.
+- **所有者**: すべてのリソースへのフル アクセス権を持ち、他のユーザーにアクセスを委任する権限も持ちます。
+- **共同作成者**: あらゆる種類の Azure リソースを作成・管理できますが、他のユーザーにアクセスを付与することはできません。
+- **閲覧者**: 既存の Azure リソースを表示できます。
+- **ユーザー アクセス管理者**: Azure リソースへのユーザーのアクセスを管理できます。
 
-If the built-in roles don't meet the specific needs of your organization, you can create your own custom roles.
+組み込みロールが組織固有のニーズを満たさない場合は、独自のカスタム ロールを作成できます。
 
-### 3. Scope (where)
+### 3. スコープ (どこで)
 
-*Scope* is the level where the access applies. This is helpful if you want to make someone a Website Contributor but only for one resource group.
+*スコープ*は、アクセスが適用されるレベルです。誰かを Web サイト共同作成者にしたいが、対象は 1 つのリソース グループだけにしたい、といった場合に便利です。
 
-In Azure, you can specify a scope at multiple levels: management group, subscription, resource group, or resource. Scopes are structured in a parent-child relationship. When you grant access at a parent scope, the child scopes automatically inherit those permissions. For example, if a group is assigned the Contributor role at the subscription scope, it will inherit the role for all resource groups and resources within the subscription.
+Azure では、管理グループ、サブスクリプション、リソース グループ、リソースという複数のレベルでスコープを指定できます。スコープは親子関係で構成されます。親スコープでアクセスを付与すると、子スコープはそのアクセス許可を自動的に継承します。たとえば、あるグループにサブスクリプションのスコープで共同作成者ロールを割り当てると、そのサブスクリプション内のすべてのリソース グループとリソースに対してロールが継承されます。
 
-![An illustration showing a hierarchical representation of different Azure levels to apply scope. The hierarchy, starting with the highest level, is in this order: Management group, subscription, resource group, and resource.](../media/2-rbac-scope.png)
+![スコープを適用できる Azure のさまざまなレベルを階層的に表した図。階層は上位から順に、管理グループ、サブスクリプション、リソース グループ、リソースです。](../media/2-rbac-scope.png)
 
-### Role assignment
+### ロール割り当て
 
-Once you have determined the who, what, and where, you can combine those elements to grant access. A *role assignment* is the process of binding a role to a security principal at a particular scope for the purpose of granting access. To grant access, you'll create a role assignment. To revoke access, you'll remove a role assignment.
+「誰が」「何を」「どこで」が決まったら、これらの要素を組み合わせてアクセスを付与できます。*ロール割り当て*とは、アクセスを付与する目的で、特定のスコープにおいてロールをセキュリティ プリンシパルに結び付ける処理のことです。アクセスを付与するにはロール割り当てを作成し、アクセスを取り消すにはロール割り当てを削除します。
 
-The following example shows how the Marketing group has been assigned the Contributor role at the sales resource group scope.
+次の例は、マーケティング グループに、sales リソース グループのスコープで共同作成者ロールが割り当てられている様子を示しています。
 
-![An illustration showing a sample role assignment process for Marketing group, which is a combination of security principal, role definition, and scope. The Marketing group falls under the Group security principal and has a Contributor role assigned for the Resource group scope.](../media/2-rbac-overview.png)
+![セキュリティ プリンシパル、ロール定義、スコープの組み合わせである、マーケティング グループのロール割り当てプロセスの例を示す図。マーケティング グループはグループというセキュリティ プリンシパルに該当し、リソース グループのスコープで共同作成者ロールが割り当てられています。](../media/2-rbac-overview.png)
 
-## Azure RBAC is an allow model
+## Azure RBAC は許可モデル
 
-Azure RBAC is an *allow* model. This means that when you're assigned a role, Azure RBAC allows you to perform certain actions such as read, write, or delete. If one role assignment grants you read permissions to a resource group, and a different role assignment grants you write permissions to the same resource group, then you'll have read and write permissions on that resource group.
+Azure RBAC は*許可*モデルです。つまり、ロールを割り当てられると、Azure RBAC は読み取り、書き込み、削除といった特定の操作の実行を許可します。あるロール割り当てでリソース グループへの読み取り権限が付与され、別のロール割り当てで同じリソース グループへの書き込み権限が付与された場合、そのリソース グループに対して読み取りと書き込みの両方の権限を持つことになります。
 
-Azure RBAC has something called `NotActions` permissions. You can use `NotActions` to create a set of not allowed permissions. The access a role grants—the *effective permissions*—is computed by subtracting the `NotActions` operations from the `Actions` operations. For example, the [Contributor](/azure/role-based-access-control/built-in-roles#contributor) role has both `Actions` and `NotActions`. The wildcard (*) in `Actions` indicates that it can perform all operations on the control plane. You'd then subtract the following operations in `NotActions` to compute the effective permissions:
+Azure RBAC には `NotActions` というアクセス許可があります。`NotActions` を使うと、許可しない操作のセットを作成できます。ロールが付与するアクセス、つまり*有効なアクセス許可*は、`Actions` の操作から `NotActions` の操作を差し引いて計算されます。たとえば、[共同作成者](/azure/role-based-access-control/built-in-roles#contributor)ロールには `Actions` と `NotActions` の両方があります。`Actions` のワイルドカード (*) は、コントロール プレーン上のすべての操作を実行できることを示します。そこから、`NotActions` にある次の操作を差し引いて、有効なアクセス許可を計算します。
 
-- Delete roles and role assignments
-- Create roles and role assignments
-- Grant the caller User Access Administrator access at the tenant scope
-- Create or update any blueprint artifacts
-- Delete any blueprint artifacts
+- ロールとロール割り当ての削除
+- ロールとロール割り当ての作成
+- テナントのスコープでの、呼び出し元へのユーザー アクセス管理者権限の付与
+- ブループリント成果物の作成または更新
+- ブループリント成果物の削除
