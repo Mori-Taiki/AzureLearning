@@ -1,26 +1,26 @@
 ### YamlMime:Module
 uid: learn.wwl.understand-azure-active-directory
 metadata:
-  title: Understand Microsoft Entra ID
-  description: "This module equips learners to describe Microsoft Entra ID - a cloud-based identity and access management service. They'll compare it with AD DS, understand its role as a directory for cloud services, and learn about its security features. They'll also learn about Microsoft Entra Domain Services."
+  title: Microsoft Entra ID を理解する
+  description: "このモジュールでは、クラウドベースの ID およびアクセス管理サービスである Microsoft Entra ID について説明できるようになります。AD DS との比較、クラウド サービスのディレクトリとしての役割、セキュリティ機能について理解します。Microsoft Entra Domain Services についても学びます。"
   ms.date: 05/12/2023
   author: wwlpublish
   ms.author: rstearman
   ms.topic: module
   ms.service: azure-active-directory
-title: Understand Microsoft Entra ID
-summary: This module explains Microsoft Entra ID. You'll compare Microsoft Entra ID to Active Directory DS, learn about Microsoft Entra ID P1 and P2, and explore Microsoft Entra Domain Services for managing domain-joined devices and apps in the cloud.
+title: Microsoft Entra ID を理解する
+summary: このモジュールでは、Microsoft Entra ID について説明します。Microsoft Entra ID と Active Directory DS を比較し、Microsoft Entra ID P1 と P2 について学び、クラウドでドメイン参加済みのデバイスとアプリを管理するための Microsoft Entra Domain Services を探ります。
 abstract: |
-  After this module, you should be able to:
-  - Describe Microsoft Entra ID.
-  - Compare Microsoft Entra ID to Active Directory Domain Services (AD DS).
-  - Describe how Microsoft Entra ID is used as a directory for cloud apps.
-  - Describe Microsoft Entra ID P1 and P2.
-  - Describe Microsoft Entra Domain Services.
+  このモジュールを完了すると、次のことができるようになります。
+  - Microsoft Entra ID について説明する。
+  - Microsoft Entra ID と Active Directory Domain Services (AD DS) を比較する。
+  - クラウド アプリのディレクトリとしての Microsoft Entra ID の使われ方を説明する。
+  - Microsoft Entra ID P1 と P2 について説明する。
+  - Microsoft Entra Domain Services について説明する。
 prerequisites: |
-  - Strong technical skills installing, maintaining, and troubleshooting the Windows 11 OS or later.
-  - Strong understanding of computer networking, client security, and application concepts.
-  - Experience using Active Directory Domain Services.
+  - Windows 11 以降の OS のインストール、保守、トラブルシューティングに関する高い技術スキル。
+  - コンピューター ネットワーク、クライアント セキュリティ、アプリケーションの概念に関する深い理解。
+  - Active Directory Domain Services の使用経験。
 iconUrl: /training/achievements/azure-active-directory-explore.svg
 levels:
 - intermediate
@@ -47,4 +47,3 @@ units:
 - learn.wwl.understand-azure-active-directory.summary
 badge:
   uid: learn.wwl.understand-azure-active-directory.badge
-

@@ -1,22 +1,22 @@
 
-The Microsoft Entra ID P1 or P2 tier provides extra functionality as compared to the Free and Office 365 editions. However, premium versions require additional cost per user provisioning. Microsoft Entra ID P1 or P2 comes in two versions P1 and P2. You can procure it as an extra license or as a part of the Microsoft Enterprise Mobility + Security, which also includes the license for Azure Information Protection and Intune.
+Microsoft Entra ID の P1 または P2 レベルは、Free 版や Office 365 版と比べて追加の機能を提供します。ただし、プレミアム版には、ユーザーごとのプロビジョニングに追加費用がかかります。Microsoft Entra ID P1 または P2 には、P1 と P2 の 2 つのバージョンがあります。追加ライセンスとして購入することも、Azure Information Protection と Intune のライセンスも含む Microsoft Enterprise Mobility + Security の一部として購入することもできます。
 
-Microsoft provides a free trial period that can be used to experience the full functionality of the Microsoft Entra ID P2 edition. The following features are available with the Microsoft Entra ID P1 edition:
+Microsoft は、Microsoft Entra ID P2 エディションの全機能を体験できる無料試用期間を提供しています。Microsoft Entra ID P1 エディションでは、次の機能が利用できます。
 
- -  **Self-service group management**. It simplifies the administration of groups where users are given the rights to create and manage the groups. End users can create requests to join other groups, and group owners can approve requests and maintain their groups’ memberships.
- -  **Advanced security reports and alerts**. You can monitor and protect access to your cloud applications by viewing detailed logs that show advanced anomalies and inconsistent access pattern reports. Advanced reports are machine learning based and can help you gain new insights to improve access security and respond to potential threats.
- -  **Multi-factor authentication**. Full multi-factor authentication (MFA) works with on-premises applications (using virtual private network \[VPN\], RADIUS, and others), Azure, Microsoft 365, Dynamics 365, and third-party Microsoft Entra gallery applications. It doesn't work with non-browser off-the-shelf apps, such as Microsoft Outlook. Full multi-factor authentication is covered in more detail in the following units in this lesson.
- -  **Microsoft Identity Manager (MIM) licensing**. MIM integrates with Microsoft Entra ID P1 or P2 to provide hybrid identity solutions. MIM can bridge multiple on-premises authentication stores such as AD DS, LDAP, Oracle, and other applications with Microsoft Entra ID. This provides consistent experiences to on-premises line-of-business (LOB) applications and SaaS solutions.
- -  **Enterprise SLA of 99.9%**. You're guaranteed at least 99.9% availability of the Microsoft Entra ID P1 or P2 service. The same SLA applies to Microsoft Entra Basic.
- -  **Password reset with writeback**. Self-service password reset follows the Active Directory on-premises password policy.
- -  **Cloud App Discovery feature of Microsoft Entra ID**. This feature discovers the most frequently used cloud-based applications.
- -  **Conditional Access based on device, group, or location**. This lets you configure conditional access for critical resources, based on several criteria.
- -  **Microsoft Entra Connect Health**. You can use this tool to gain operational insight into Microsoft Entra ID. It works with alerts, performance counters, usage patterns, and configuration settings, and presents the collected information in the Microsoft Entra Connect Health portal.
+ -  **セルフサービスのグループ管理**: ユーザーにグループの作成と管理の権限を与えることで、グループの管理を簡素化します。エンド ユーザーは他のグループへの参加リクエストを作成でき、グループの所有者はリクエストを承認し、グループのメンバーシップを維持できます。
+ -  **高度なセキュリティ レポートとアラート**: 高度な異常や一貫性のないアクセス パターンのレポートを示す詳細なログを確認して、クラウド アプリケーションへのアクセスを監視・保護できます。高度なレポートは機械学習に基づいており、アクセス セキュリティの改善や潜在的な脅威への対応に役立つ新しい知見を得られます。
+ -  **多要素認証**: 完全な多要素認証 (MFA) は、オンプレミスのアプリケーション (仮想プライベート ネットワーク \[VPN\]、RADIUS などを使用)、Azure、Microsoft 365、Dynamics 365、およびサードパーティの Microsoft Entra ギャラリー アプリケーションと連携します。Microsoft Outlook のような、ブラウザー以外の市販アプリでは機能しません。完全な多要素認証については、このレッスンの後続のユニットで詳しく説明します。
+ -  **Microsoft Identity Manager (MIM) のライセンス**: MIM は Microsoft Entra ID P1 または P2 と統合して、ハイブリッド ID ソリューションを提供します。MIM は、AD DS、LDAP、Oracle などの複数のオンプレミス認証ストアやその他のアプリケーションを Microsoft Entra ID と橋渡しできます。これにより、オンプレミスの基幹業務 (LOB) アプリケーションと SaaS ソリューションに一貫した体験を提供できます。
+ -  **99.9% のエンタープライズ SLA**: Microsoft Entra ID P1 または P2 サービスには、少なくとも 99.9% の可用性が保証されます。同じ SLA が Microsoft Entra Basic にも適用されます。
+ -  **ライトバック付きパスワード リセット**: セルフサービス パスワード リセットは、オンプレミスの Active Directory のパスワード ポリシーに従います。
+ -  **Microsoft Entra ID の Cloud App Discovery 機能**: この機能は、最も頻繁に使われているクラウドベースのアプリケーションを検出します。
+ -  **デバイス、グループ、場所に基づく条件付きアクセス**: 複数の条件に基づいて、重要なリソースへの条件付きアクセスを構成できます。
+ -  **Microsoft Entra Connect Health**: このツールを使うと、Microsoft Entra ID の運用に関する知見を得られます。アラート、パフォーマンス カウンター、使用パターン、構成設定を扱い、収集した情報を Microsoft Entra Connect Health ポータルに表示します。
 
-In addition to these features, the Microsoft Entra ID P2 license provides extra functionalities:
+これらの機能に加えて、Microsoft Entra ID P2 のライセンスでは、さらに次の機能が提供されます。
 
- -  **Microsoft Entra ID Protection**. This feature provides enhanced functionalities for monitoring and protecting user accounts. You can define user risk policies and sign-in policies. In addition, you can review users’ behavior and flag users for risk.
- -  **Microsoft Entra Privileged Identity Management**. This functionality lets you configure additional security levels for privileged users such as administrators. With Privileged Identity Management, you define permanent and temporary administrators. You also define a policy workflow that activates whenever someone wants to use administrative privileges to perform some task.
+ -  **Microsoft Entra ID Protection**: この機能は、ユーザー アカウントの監視と保護のための強化された機能を提供します。ユーザー リスク ポリシーとサインイン ポリシーを定義できます。さらに、ユーザーの行動を確認し、リスクのあるユーザーとしてフラグを付けられます。
+ -  **Microsoft Entra Privileged Identity Management**: この機能では、管理者などの特権ユーザーに対して追加のセキュリティ レベルを構成できます。Privileged Identity Management では、恒久的な管理者と一時的な管理者を定義します。また、誰かが管理者特権を使って何らかのタスクを実行しようとするたびに起動されるポリシー ワークフローも定義します。
 
 > [!NOTE]
-> Plans change frequently. Check Microsoft's website for the current plans and capabilities.
+> プランは頻繁に変わります。最新のプランと機能については、Microsoft の Web サイトを確認してください。

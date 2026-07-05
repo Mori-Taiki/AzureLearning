@@ -1,13 +1,13 @@
 
 
-Welcome to the Microsoft Entra ID learning module! Microsoft Entra ID is a cloud-based identity and access management service provided by Microsoft. Microsoft Entra ID is a comprehensive solution for managing identities, enforcing access policies, and securing your applications and data in the cloud and on-premises. 
+Microsoft Entra ID の学習モジュールへようこそ! Microsoft Entra ID は、Microsoft が提供するクラウドベースの ID およびアクセス管理サービスです。Microsoft Entra ID は、ID の管理、アクセス ポリシーの適用、クラウドとオンプレミスのアプリケーションとデータの保護のための包括的なソリューションです。
 
-This module aims to equip you with a comprehensive understanding of the following: 
+このモジュールの目的は、次の内容をしっかり理解できるようになることです。
 
- -  Describe Microsoft Entra ID.
- -  Compare Microsoft Entra ID to Active Directory Domain Services (AD DS).
- -  Describe how Microsoft Entra ID is used as a directory for cloud apps.
- -  Describe Microsoft Entra ID P1 and P2.
- -  Describe Microsoft Entra Domain Services.
+ -  Microsoft Entra ID について説明する。
+ -  Microsoft Entra ID と Active Directory Domain Services (AD DS) を比較する。
+ -  クラウド アプリのディレクトリとしての Microsoft Entra ID の使われ方を説明する。
+ -  Microsoft Entra ID P1 と P2 について説明する。
+ -  Microsoft Entra Domain Services について説明する。
 
- Whether you're a beginner or an experienced IT professional, this module provides you with the knowledge and skills necessary to understand Microsoft Entra ID effectively. So, let's explore the exciting world of Microsoft Entra ID!
+ 初心者でも経験豊富な IT プロフェッショナルでも、このモジュールを通じて Microsoft Entra ID を的確に理解するための知識とスキルを身につけられます。それでは、Microsoft Entra ID のエキサイティングな世界を探検しましょう!
