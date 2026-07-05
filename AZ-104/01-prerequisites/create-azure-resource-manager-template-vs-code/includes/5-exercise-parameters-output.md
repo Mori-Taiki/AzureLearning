@@ -1,10 +1,10 @@
-In this exercise, you add a parameter to define the Azure storage account name during deployment. Then, you add a parameter to define which storage-account SKUs are allowed, and define which one to use for this deployment. You also add usefulness to the Azure Resource Manager template (ARM template) by adding an output that you can use later in the deployment process.
+この演習では、デプロイ時に Azure ストレージ アカウント名を定義するパラメーターを追加します。次に、許可するストレージ アカウント SKU を定義するパラメーターを追加し、このデプロイで使用する SKU を指定します。また、デプロイ プロセスの後段で利用できる出力を追加して、Azure Resource Manager テンプレート (ARM テンプレート) の利便性を高めます。
 
-## Create parameters for the ARM template
+## ARM テンプレートのパラメーターを作成する
 
-Here, you make your ARM template more flexible by adding parameters that can be set at runtime. Create a parameter for the ```storageName``` value.
+ここでは、実行時に設定できるパラメーターを追加して、ARM テンプレートをより柔軟にします。```storageName``` の値のパラメーターを作成します。
 
-1. In the *azuredeploy.json* file in Visual Studio Code, update ```"parameters":{},```, so it looks like:
+1. Visual Studio Code の *azuredeploy.json* ファイルで、```"parameters":{},``` を次のように更新します。
 
     ```json
     "parameters": {
@@ -19,21 +19,21 @@ Here, you make your ARM template more flexible by adding parameters that can be 
     },
     ```
 
-    To format the JSON file correctly, press <kbd>Alt+Shift+F</kbd>.
+    JSON ファイルを正しくフォーマットするには、<kbd>Alt+Shift+F</kbd> キーを押します。
 
-1. Use the new parameter in the ```resources``` block in both the ```name``` and ```displayName``` values. The entire file looks like this code example:
+1. ```resources``` ブロック内の ```name``` と ```displayName``` の両方の値で、この新しいパラメーターを使用します。ファイル全体は、次のコード例のようになります。
 
    [!code-json[](code/parameter2.json?highlight=5-12,20,22)]
 
-1. Save the file.
+1. ファイルを保存します。
 
-### Deploy the parameterized ARM template
+### パラメーター化した ARM テンプレートをデプロイする
 
-Here, you change the name of the deployment to better reflect what this deployment does and fill in a value for the new parameter.
+ここでは、このデプロイの内容をより適切に表すようにデプロイ名を変更し、新しいパラメーターの値を入力します。
 
 ::: zone pivot="cli"
 
-Run the following Azure CLI commands in the terminal. This script is identical to the one you used Previously, except the deployment name has been changed. Enter a unique value for the ```storageName``` parameter. It must be globally unique across Azure, contain 3 to 24 characters, and include only lowercase letters, numbers, and hyphens. You can reuse the unique name you created in the previous unit; if you do, Azure will update the existing resource instead of creating a new one.
+ターミナルで次の Azure CLI コマンドを実行します。このスクリプトは以前使用したものと同じですが、デプロイ名が変更されています。```storageName``` パラメーターには一意の値を入力してください。この名前は Azure 全体でグローバルに一意である必要があり、3 〜 24 文字で、小文字、数字、ハイフンのみを使用できます。前のユニットで作成した一意の名前を再利用してもかまいません。その場合、Azure は新しいリソースを作成する代わりに既存のリソースを更新します。
 
 ```azurecli
 templateFile="azuredeploy.json"
@@ -50,7 +50,7 @@ az deployment group create \
 
   ::: zone pivot="powershell"
 
-Run the following Azure PowerShell commands in the terminal. This script is identical to the one you used earlier, except the deployment name has been changed. Enter a unique value for the `storageName` parameter. It must be globally unique across Azure, contain 3 to 24 characters, and include only lowercase letters, numbers, and hyphens. You can reuse the unique name you created in the previous unit; if you do, Azure will update the existing resource instead of creating a new one.
+ターミナルで次の Azure PowerShell コマンドを実行します。このスクリプトは以前使用したものと同じですが、デプロイ名が変更されています。`storageName` パラメーターには一意の値を入力してください。この名前は Azure 全体でグローバルに一意である必要があり、3 〜 24 文字で、小文字、数字、ハイフンのみを使用できます。前のユニットで作成した一意の名前を再利用してもかまいません。その場合、Azure は新しいリソースを作成する代わりに既存のリソースを更新します。
 
 ```azurepowershell
 $templateFile="azuredeploy.json"
@@ -64,19 +64,19 @@ New-AzResourceGroupDeployment `
 
 ::: zone-end
 
-### Check your deployment
+### デプロイを確認する
 
-1. When the deployment finishes, go back to the Azure portal in your browser. Go to your resource group, and see that there are now **3 Succeeded** deployments. Select this link.
+1. デプロイが完了したら、ブラウザーで Azure portal に戻ります。リソース グループに移動すると、**[3 成功]** と表示されています。このリンクを選択します。
 
-    Notice that all three deployments are in the list.
+    3 件のデプロイがすべて一覧に表示されていることに注目してください。
 
-1. Explore the *addnameparameter* deployment as you did previously.
+1. 前回と同じ手順で、*addnameparameter* デプロイの内容を確認します。
 
-### Add another parameter that limits allowed values
+### 許可される値を制限するパラメーターを追加する
 
-Here, you use parameters to limit the values allowed for a parameter.
+ここでは、パラメーターに指定できる値を制限します。
 
-1. Add a new parameter named ```storageSKU``` to the ```parameters``` section of the *azuredeploy.json* file. 
+1. *azuredeploy.json* ファイルの ```parameters``` セクションに、```storageSKU``` という名前の新しいパラメーターを追加します。
 
     ```json
     // This is the allowed values for an Azure storage account
@@ -96,9 +96,9 @@ Here, you use parameters to limit the values allowed for a parameter.
      }
     ```
 
-    The first line is a comment. ARM templates support ```//``` and ```/* */``` comments.
+    1 行目はコメントです。ARM テンプレートは ```//``` と ```/* */``` のコメントをサポートしています。
 
-1. Update **resources** to use the ```storageSKU``` parameter. If you take advantage of IntelliSense in Visual Studio Code, it makes this step easier.
+1. ```storageSKU``` パラメーターを使用するように **resources** を更新します。Visual Studio Code の IntelliSense を活用すると、この手順が簡単になります。
 
     ```json
     "sku": {
@@ -106,19 +106,19 @@ Here, you use parameters to limit the values allowed for a parameter.
        }
     ```
 
-    The entire file looks like this code example:
+    ファイル全体は、次のコード例のようになります。
 
     [!code-json[](code/parameter3.json?highlight=13-26,41)]
 
-1. Save the file.
+1. ファイルを保存します。
 
-### Deploy the ARM template
+### ARM テンプレートをデプロイする
 
-Here, you deploy successfully by using a ```storageSKU``` parameter that's in the allowed list. Then, you try to deploy the template by using a ```storageSKU``` parameter that isn't in the allowed list. The second deployment fails as expected.
+ここでは、許可リストに含まれる ```storageSKU``` パラメーターを使用してデプロイを成功させます。その後、許可リストに含まれない ```storageSKU``` パラメーターを使用してテンプレートのデプロイを試みます。2 回目のデプロイは、想定どおり失敗します。
 
 ::: zone pivot="cli"
 
-1. Deploy the template by running the following commands. Fill in a unique name for the ```storageName``` parameter. It must be globally unique across Azure, contain 3 to 24 characters, and include only lowercase letters, numbers, and hyphens. You can reuse the unique name you created in the previous unit; if you do, Azure will update the existing resource instead of creating a new one.
+1. 次のコマンドを実行して、テンプレートをデプロイします。```storageName``` パラメーターには一意の名前を入力してください。この名前は Azure 全体でグローバルに一意である必要があり、3 〜 24 文字で、小文字、数字、ハイフンのみを使用できます。前のユニットで作成した一意の名前を再利用してもかまいません。その場合、Azure は新しいリソースを作成する代わりに既存のリソースを更新します。
 
     ```azurecli
     templateFile="azuredeploy.json"
@@ -131,9 +131,9 @@ Here, you deploy successfully by using a ```storageSKU``` parameter that's in th
       --parameters storageSKU=Standard_GRS storageName={your-unique-name}
     ```
 
-      Allow this deployment to finish. This deployment succeeds as expected. Your list of allowed values, prevents your template's users from passing in parameter values that don't work for the resource. Let's see what happens when you provide an invalid SKU.
+      このデプロイが完了するまで待ちます。このデプロイは想定どおり成功します。許可される値の一覧により、テンプレートの利用者がリソースに対して機能しないパラメーター値を渡すことを防げます。次に、無効な SKU を指定するとどうなるかを見てみましょう。
 
-1. Run the following commands to deploy the template with a parameter that isn't allowed. Here, you changed the ```storageSKU``` parameter to **Basic**. Fill in a unique name for the ```storageName``` parameter. It must be globally unique across Azure, contain 3 to 24 characters, and include only lowercase letters, numbers, and hyphens. You can reuse the unique name you created in the previous unit; if you do, Azure will update the existing resource instead of creating a new one.
+1. 次のコマンドを実行して、許可されていないパラメーターでテンプレートをデプロイします。ここでは、```storageSKU``` パラメーターを **Basic** に変更しています。```storageName``` パラメーターには一意の名前を入力してください。この名前は Azure 全体でグローバルに一意である必要があり、3 〜 24 文字で、小文字、数字、ハイフンのみを使用できます。前のユニットで作成した一意の名前を再利用してもかまいません。その場合、Azure は新しいリソースを作成する代わりに既存のリソースを更新します。
 
     ```azurecli
     templateFile="azuredeploy.json"
@@ -146,15 +146,15 @@ Here, you deploy successfully by using a ```storageSKU``` parameter that's in th
       --parameters storageSKU=Basic storageName={your-unique-name}
     ```
 
-    This deployment fails. Notice the error.
+    このデプロイは失敗します。エラーに注目してください。
 
-    :::image type="content" source="../media/3-deploy-validation-failed.png" alt-text="Screenshot of the Terminal window showing the deployment validation error." border="true":::
+    :::image type="content" source="../media/3-deploy-validation-failed.png" alt-text="デプロイの検証エラーが表示されているターミナル ウィンドウのスクリーンショット。" border="true":::
 
 ::: zone-end
 
 ::: zone pivot="powershell"
 
-1. Deploy the template by running the following commands. Fill in a unique name for the ```storageName``` parameter. It must be globally unique across Azure, contain 3 to 24 characters, and include only lowercase letters, numbers, and hyphens. You can reuse the unique name you created in the previous unit; if you do, Azure will update the existing resource instead of creating a new one.
+1. 次のコマンドを実行して、テンプレートをデプロイします。```storageName``` パラメーターには一意の名前を入力してください。この名前は Azure 全体でグローバルに一意である必要があり、3 〜 24 文字で、小文字、数字、ハイフンのみを使用できます。前のユニットで作成した一意の名前を再利用してもかまいません。その場合、Azure は新しいリソースを作成する代わりに既存のリソースを更新します。
 
     ```azurepowershell
     $today=Get-Date -Format "MM-dd-yyyy"
@@ -166,9 +166,9 @@ Here, you deploy successfully by using a ```storageSKU``` parameter that's in th
       -storageSKU Standard_GRS
     ```
 
-      Allow this deployment to finish. This deployment succeeds as expected. Your list of allowed values, prevents your template's users from passing in parameter values that don't work for the resource. Let's see what happens when you provide an invalid SKU.
+      このデプロイが完了するまで待ちます。このデプロイは想定どおり成功します。許可される値の一覧により、テンプレートの利用者がリソースに対して機能しないパラメーター値を渡すことを防げます。次に、無効な SKU を指定するとどうなるかを見てみましょう。
 
-1. Run the following commands to deploy the template with a parameter that isn't allowed. Here, you changed the ```storageSKU``` parameter to **Basic**. Fill in a unique name for the ```storageName``` parameter. It must be globally unique across Azure, contain 3 to 24 characters, and include only lowercase letters, numbers, and hyphens. You can reuse the unique name you created in the previous unit; if you do, Azure will update the existing resource instead of creating a new one.
+1. 次のコマンドを実行して、許可されていないパラメーターでテンプレートをデプロイします。ここでは、```storageSKU``` パラメーターを **Basic** に変更しています。```storageName``` パラメーターには一意の名前を入力してください。この名前は Azure 全体でグローバルに一意である必要があり、3 〜 24 文字で、小文字、数字、ハイフンのみを使用できます。前のユニットで作成した一意の名前を再利用してもかまいません。その場合、Azure は新しいリソースを作成する代わりに既存のリソースを更新します。
 
     ```azurepowershell
     $today=Get-Date -Format "MM-dd-yyyy"
@@ -180,17 +180,17 @@ Here, you deploy successfully by using a ```storageSKU``` parameter that's in th
       -storageSKU Basic
     ```
 
-    This deployment fails. Notice the error.
+    このデプロイは失敗します。エラーに注目してください。
 
-    :::image type="content" source="../media/3-deploy-validation-failed.png" alt-text="Screenshot of the Terminal window showing the deployment validation error." border="true":::
+    :::image type="content" source="../media/3-deploy-validation-failed.png" alt-text="デプロイの検証エラーが表示されているターミナル ウィンドウのスクリーンショット。" border="true":::
 
 ::: zone-end
 
-## Add output to the ARM template
+## ARM テンプレートに出力を追加する
 
-Here, you add to the ```outputs``` section of the ARM template to output the endpoints for the storage account resource.
+ここでは、ARM テンプレートの ```outputs``` セクションに、ストレージ アカウント リソースのエンドポイントを出力する記述を追加します。
 
-1. In the *azuredeploy.json* file in Visual Studio Code, update ```"outputs":{},``` so it looks like:
+1. Visual Studio Code の *azuredeploy.json* ファイルで、```"outputs":{},``` を次のように更新します。
 
     ```json
     "outputs": {
@@ -201,15 +201,15 @@ Here, you add to the ```outputs``` section of the ARM template to output the end
     }
     ```
 
-1. Save the file.
+1. ファイルを保存します。
 
-### Deploy the ARM template with an output
+### 出力を追加した ARM テンプレートをデプロイする
 
-Here, you deploy the template and see the endpoints output as JSON. You need to fill in a unique name for the ```storageName``` parameter. It must be globally unique across Azure, contain 3 to 24 characters, and include only lowercase letters, numbers, and hyphens. You can reuse the unique name you created in the previous unit; if you do, Azure will update the existing resource instead of creating a new one.
+ここでは、テンプレートをデプロイし、エンドポイントが JSON として出力されることを確認します。```storageName``` パラメーターには一意の名前を入力する必要があります。この名前は Azure 全体でグローバルに一意である必要があり、3 〜 24 文字で、小文字、数字、ハイフンのみを使用できます。前のユニットで作成した一意の名前を再利用してもかまいません。その場合、Azure は新しいリソースを作成する代わりに既存のリソースを更新します。
 
 ::: zone pivot="cli"
 
-1. Deploy the template by running the following commands. Be sure to replace *{your-unique-name}* with a string unique to you.
+1. 次のコマンドを実行して、テンプレートをデプロイします。*{your-unique-name}* は、自分専用の一意の文字列に必ず置き換えてください。
 
     ```azurecli
     templateFile="azuredeploy.json"
@@ -222,15 +222,15 @@ Here, you deploy the template and see the endpoints output as JSON. You need to 
       --parameters storageSKU=Standard_LRS storageName={your-unique-name}
     ```
 
-    Notice the output.
+    出力に注目してください。
 
-    :::image type="content" source="../media/3-add-output-result.png" alt-text="Screenshot of the Terminal window showing the primary endpoints output as JSON." border="true":::
+    :::image type="content" source="../media/3-add-output-result.png" alt-text="プライマリ エンドポイントが JSON として出力されているターミナル ウィンドウのスクリーンショット。" border="true":::
 
 ::: zone-end
 
 ::: zone pivot="powershell"
 
-1. Deploy the template by running the following commands. Be sure to replace *{your-unique-name}* with a string unique to you.
+1. 次のコマンドを実行して、テンプレートをデプロイします。*{your-unique-name}* は、自分専用の一意の文字列に必ず置き換えてください。
 
     ```azurepowershell
     $today=Get-Date -Format "MM-dd-yyyy"
@@ -242,14 +242,14 @@ Here, you deploy the template and see the endpoints output as JSON. You need to 
       -storageSKU Standard_LRS
     ```
 
-    Notice the output.
+    出力に注目してください。
 
-    :::image type="content" source="../media/3-add-output-result.png" alt-text="Screenshot of the Terminal window showing the primary endpoints output as JSON." border="true":::
+    :::image type="content" source="../media/3-add-output-result.png" alt-text="プライマリ エンドポイントが JSON として出力されているターミナル ウィンドウのスクリーンショット。" border="true":::
 
 ::: zone-end
 
-### Check your output deployment
+### 出力のデプロイを確認する
 
-In the Azure portal, go to your *addOutputs* deployment. You can find your output there as well.
+Azure portal で *addOutputs* デプロイに移動します。ここでも出力を確認できます。
 
-  :::image type="content" source="../media/3-portal-outputs.png" alt-text="Screenshot of the Azure portal showing the output selection in the left menu." border="true":::
+  :::image type="content" source="../media/3-portal-outputs.png" alt-text="左側のメニューで出力が選択されている Azure portal のスクリーンショット。" border="true":::

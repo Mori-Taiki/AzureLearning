@@ -1,14 +1,14 @@
-In the last unit, you created an Azure Resource Manager (ARM) template and added an Azure storage account to it. You might notice that there's a problem with your template. The storage account name is hardcoded. You can only use this template to deploy the same storage account every time. To deploy a storage account with a different name, you have to create a new template, which isn't a practical way to automate your deployments. The storage account SKU is also hardcoded, which means you can't vary the type of storage account for different environments. Recall that in our scenario, each deployment might have a different type of storage account. You can make your template more reusable by adding a parameter for the storage account SKU.
+前のユニットでは、Azure Resource Manager (ARM) テンプレートを作成し、そこに Azure ストレージ アカウントを追加しました。ここで、テンプレートに問題があることに気付くかもしれません。ストレージ アカウント名がハードコーディングされているのです。このテンプレートでは、毎回同じストレージ アカウントしかデプロイできません。別の名前でストレージ アカウントをデプロイするには、新しいテンプレートを作成する必要があり、これはデプロイを自動化する方法としては実用的ではありません。ストレージ アカウントの SKU もハードコーディングされているため、環境ごとにストレージ アカウントの種類を変えることもできません。今回のシナリオでは、デプロイごとに異なる種類のストレージ アカウントが必要になる可能性があったことを思い出してください。ストレージ アカウント SKU のパラメーターを追加することで、テンプレートの再利用性を高めることができます。
 
-In this unit, you learn about the *parameters* and *outputs* sections of the template.
+このユニットでは、テンプレートの *parameters* セクションと *outputs* セクションについて学習します。
 
-## ARM-template parameters
+## ARM テンプレートのパラメーター
 
-ARM-template parameters let you customize the deployment by providing values that are tailored for a particular environment. For example, you pass in different values based on whether you're deploying to an environment for development, test, production, or others. For example, the previous template uses the *Standard_LRS* storage account SKU. You can reuse this template for other deployments that create a storage account by making the name of the storage account SKU a parameter. Then, you pass in the name of the SKU you want for this particular deployment when the template is deployed. You can do this step either at the command line or by using a parameter file.
+ARM テンプレートのパラメーターを使用すると、特定の環境に合わせた値を指定して、デプロイをカスタマイズできます。たとえば、開発、テスト、運用など、デプロイ先の環境に応じて異なる値を渡します。たとえば、前のテンプレートでは *Standard_LRS* ストレージ アカウント SKU を使用していました。ストレージ アカウント SKU の名前をパラメーターにすることで、ストレージ アカウントを作成する他のデプロイでもこのテンプレートを再利用できます。テンプレートのデプロイ時に、そのデプロイで使用したい SKU の名前を渡します。この手順は、コマンドラインまたはパラメーター ファイルのどちらでも行えます。
 
-In the `parameters` section of the template, you specify which values you can input when you deploy the resources. You're limited to 256 parameters in a template. Parameter definitions can use most template functions.
+テンプレートの `parameters` セクションでは、リソースのデプロイ時に入力できる値を指定します。1 つのテンプレートで使用できるパラメーターは 256 個までです。パラメーターの定義では、ほとんどのテンプレート関数を使用できます。
 
-The available properties for a parameter are:
+パラメーターで使用できるプロパティは次のとおりです。
 
 ```json
 "parameters": {
@@ -29,7 +29,7 @@ The available properties for a parameter are:
 }
 ```
 
-The allowed types of parameters are:
+使用できるパラメーターの型は次のとおりです。
 
 - string
 - secureString
@@ -39,17 +39,17 @@ The allowed types of parameters are:
 - secureObject
 - array
 
-### Recommendations for using parameters
+### パラメーター使用の推奨事項
 
-Use parameters for settings that vary according to the environment; for example, SKU, size, or capacity. Also use parameters for resource names that you want to specify yourself for easy identification or to comply with internal naming conventions. Provide a description for each parameter, and use default values whenever possible.
+SKU、サイズ、容量など、環境によって異なる設定にはパラメーターを使用します。また、識別しやすくするため、あるいは社内の名前付け規則に準拠するために自分で指定したいリソース名にもパラメーターを使用します。各パラメーターには説明を付け、可能な限り既定値を使用してください。
 
-For security reasons, never hardcode or provide default values for usernames and/or passwords in templates. Always use parameters for usernames and passwords (or secrets). Use *secureString* for all passwords and secrets. If you pass sensitive data in a JSON object, use the *secureObject* type. Template parameters with *secureString* or *secureObject* types can't be read or harvested after the deployment of the resource.
+セキュリティ上の理由から、ユーザー名やパスワードをテンプレートにハードコーディングしたり、既定値として指定したりしてはいけません。ユーザー名とパスワード (またはシークレット) には必ずパラメーターを使用します。すべてのパスワードとシークレットには *secureString* を使用します。機密データを JSON オブジェクトとして渡す場合は、*secureObject* 型を使用します。*secureString* 型または *secureObject* 型のテンプレート パラメーターは、リソースのデプロイ後に読み取ったり取得したりすることはできません。
 
-### Use parameters in an ARM template
+### ARM テンプレートでパラメーターを使用する
 
-In the parameters section of the ARM template, specify the parameters that you can input when you deploy the resources. You're limited to 256 parameters in a template.
+ARM テンプレートの parameters セクションでは、リソースのデプロイ時に入力できるパラメーターを指定します。1 つのテンプレートで使用できるパラメーターは 256 個までです。
 
-Here's an example of a template file with a parameter for the storage-account SKU defined in the template's `parameters` section. You can provide a default for the parameter to be used if no value is specified at execution.
+テンプレートの `parameters` セクションでストレージ アカウント SKU のパラメーターを定義したテンプレート ファイルの例を次に示します。実行時に値が指定されなかった場合に使用される既定値をパラメーターに指定できます。
 
 ```json
 "parameters": {
@@ -69,7 +69,7 @@ Here's an example of a template file with a parameter for the storage-account SK
 }
 ```
 
-Then, use the parameter in the resource definition. The syntax is ```[parameters('name of the parameter')]```. Then, when you deploy you use the ```parameters``` function. In the next module, you learn more about functions.
+次に、リソース定義でパラメーターを使用します。構文は ```[parameters('name of the parameter')]``` です。デプロイ時には ```parameters``` 関数を使用します。関数については、次のモジュールで詳しく学習します。
 
 ```json
 "resources": [
@@ -89,7 +89,7 @@ Then, use the parameter in the resource definition. The syntax is ```[parameters
 ]
 ```
 
-When you deploy the template, you can provide a value for the parameter. Notice the last line in the following command:
+テンプレートのデプロイ時に、パラメーターの値を指定できます。次のコマンドの最後の行に注目してください。
 
 # [Azure CLI](#tab/azure-cli)
 
@@ -113,9 +113,9 @@ New-AzResourceGroupDeployment `
 
 ---
 
-## ARM template outputs
+## ARM テンプレートの出力
 
-In your ARM template's outputs section, you can specify the values that are returned after a successful deployment. Here are the elements that make up the outputs section.
+ARM テンプレートの outputs セクションでは、デプロイが成功した後に返される値を指定できます。outputs セクションを構成する要素は次のとおりです。
 
 ```json
 "outputs": {
@@ -131,17 +131,17 @@ In your ARM template's outputs section, you can specify the values that are retu
 }
 ```
 
-| Element | Description |
+| 要素 | 説明 |
 |--- | --- |
-| **output-name** | Must be a valid JavaScript identifier. |
-| **condition** | (Optional) A Boolean value that indicates whether this output value is returned. When true, the value is included in the output for the deployment. When false, the output value is skipped for this deployment. When not specified, the default value is true. |
-| **type** | The type of the output value. |
-| **value** | (Optional) A template language expression to be evaluated and returned as an output value. |
-| **copy** | (Optional) Copy is used to return more than one value for an output. |
+| **output-name** | 有効な JavaScript 識別子である必要があります。 |
+| **condition** | (省略可能) この出力値を返すかどうかを示すブール値。true の場合、その値はデプロイの出力に含まれます。false の場合、そのデプロイでは出力値がスキップされます。指定しない場合の既定値は true です。 |
+| **type** | 出力値の型。 |
+| **value** | (省略可能) 評価されて出力値として返されるテンプレート言語式。 |
+| **copy** | (省略可能) 出力として複数の値を返す場合に copy を使用します。 |
 
-### Use outputs in an ARM template
+### ARM テンプレートで出力を使用する
 
-Here's an example to output the storage account's endpoints:
+ストレージ アカウントのエンドポイントを出力する例を次に示します。
 
 ```json
 "outputs": {
@@ -152,8 +152,8 @@ Here's an example to output the storage account's endpoints:
 }
 ```
 
-Notice the ```reference``` part of the expression. This function gets the runtime state of the storage account.
+式の ```reference``` の部分に注目してください。この関数は、ストレージ アカウントの実行時の状態を取得します。
 
-## Deploy an ARM template again
+## ARM テンプレートを再度デプロイする
 
-Recall that ARM templates are *idempotent*, which means you can deploy the template to the same environment again, and if nothing changes in the template, nothing changes in the environment. If a change is made to the template (for example, you change a parameter value), only that change is deployed. Your template can contain all of the resources you need for your Azure solution, and you can safely execute a template again. Resources are created only if they don't already exist, and updated only if there's a change.
+ARM テンプレートは*べき等*であることを思い出してください。つまり、同じ環境にテンプレートを再度デプロイしても、テンプレートに変更がなければ、環境にも変更は生じません。テンプレートに変更を加えた場合 (たとえばパラメーター値を変更した場合) は、その変更だけがデプロイされます。テンプレートには Azure ソリューションに必要なすべてのリソースを含めることができ、テンプレートを安全に再実行できます。リソースは、まだ存在しない場合にのみ作成され、変更がある場合にのみ更新されます。
