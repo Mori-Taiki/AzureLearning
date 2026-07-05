@@ -1,7 +1,7 @@
-In this module, you looked at the decisions you need to make before creating a virtual machine. These decisions include aspects such as the VM size, types of disks used, operating system image selected, and the types of resources created.
+このモジュールでは、仮想マシンを作成する前に決めておくべきことを確認しました。VM のサイズ、使用するディスクの種類、選択するオペレーティング システム イメージ、作成されるリソースの種類などです。
 
-You also looked at the options to create and manage virtual machines in Azure. You saw how easy it is to create and manage VMs using the portal. You also learned when to use Resource Manager templates, PowerShell, the Azure CLI, and the Azure Client SDK.
+また、Azure で仮想マシンを作成・管理するための選択肢も見てきました。ポータルを使えば VM の作成と管理がいかに簡単かを体験し、Resource Manager テンプレート、PowerShell、Azure CLI、Azure クライアント SDK をそれぞれどんなときに使うべきかも学びました。
 
-Finally, you looked at the extensions and services available to more easily administer your VMs.
+最後に、VM の管理をより簡単にする拡張機能とサービスを確認しました。
 
 [!INCLUDE [](../../../includes/azure-optional-exercise-subscription-cleanup.md)]

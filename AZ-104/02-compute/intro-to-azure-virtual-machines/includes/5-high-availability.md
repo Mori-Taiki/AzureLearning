@@ -1,59 +1,59 @@
-Frequently, the success of a services company is directly related to the service level agreements (SLA) the company has with its customers. Your customers expect the services you provide always to be available, and their data kept safe. This security is something that Microsoft takes seriously. Azure provides tools you can use to manage availability, data security, and monitoring, so you know your services are always available for your customers.
+サービス企業の成功は、顧客と結んでいるサービス レベル アグリーメント (SLA) に直結していることが少なくありません。顧客は、提供されるサービスが常に利用でき、データが安全に守られていることを期待します。このセキュリティは Microsoft が真剣に取り組んでいる領域です。Azure には可用性、データ セキュリティ、監視を管理するためのツールが用意されており、顧客に対してサービスを常に提供し続けられます。
 
-Administration of an Azure VM isn't limited to managing the operating system, or software that runs on the VM. It helps to know which services Azure provides that ensure service availability and support automation. These services help you to plan your organization's business continuity and disaster recovery strategy.
+Azure VM の管理は、オペレーティング システムや VM 上で動くソフトウェアの管理だけにとどまりません。サービスの可用性を確保し、自動化を支援する Azure のサービスを知っておくと役立ちます。これらのサービスは、組織の事業継続と災害復旧の戦略を立てるのに役立ちます。
 
-Here, we cover an Azure service that helps you improve VM availability, streamlines VM management tasks, and keeps your VM data backed up and safe. Let's start by defining availability.
+ここでは、VM の可用性を高め、VM の管理タスクを効率化し、VM のデータを安全にバックアップしておくための Azure サービスを取り上げます。まずは可用性の定義から始めましょう。
 
-## What is availability?
+## 可用性とは
 
-Availability is the percentage of time a service is available for use.
+可用性とは、サービスが利用可能な時間の割合のことです。
 
-Let's assume you have a website, and you want your customers to be able to always access information. Your expectation is 100% availability concerning website access.
+Web サイトを運営していて、顧客がいつでも情報にアクセスできるようにしたいとしましょう。この場合、Web サイトへのアクセスについて期待するのは 100% の可用性です。
 
-### Why do I need to think about availability when using Azure?
+### Azure を使うのに、なぜ可用性を考える必要があるのか?
 
-Azure VMs run on physical servers hosted within the Azure datacenter. As with most physical devices, there's a chance that there could be a failure. If the physical server fails, the virtual machines hosted on that server also fail. If a failure happens, Azure moves the VM to a healthy host server automatically. However, this self-healing migration could take several minutes, during which the application(s) hosted on that VM aren't available.
+Azure VM は、Azure データセンター内でホストされている物理サーバー上で動作します。ほとんどの物理デバイスと同じく、障害が発生する可能性はあります。物理サーバーに障害が起きると、そのサーバーでホストされている仮想マシンも停止します。障害が起きた場合、Azure は VM を正常なホスト サーバーへ自動的に移動します。ただし、この自己修復のための移行には数分かかることがあり、その間、その VM でホストされているアプリケーションは利用できません。
 
-Periodic updates initiated by Azure itself can also affect the VMs. These maintenance events range from software updates to hardware upgrades and are required to improve platform reliability and performance. These events usually are performed without impacting any guest VMs, but sometimes the virtual machines reboot to complete an update or upgrade.
+Azure 自体が開始する定期的な更新も、VM に影響することがあります。こうしたメンテナンス イベントは、ソフトウェアの更新からハードウェアのアップグレードまで多岐にわたり、プラットフォームの信頼性とパフォーマンスを向上させるために必要なものです。これらのイベントは通常、ゲスト VM に影響を与えずに実施されますが、更新やアップグレードを完了するために仮想マシンが再起動されることもあります。
 
-## Availability zones
+## 可用性ゾーン
 
-[Availability zones](/azure/reliability/availability-zones-overview) expands the level of control you have to maintain the availability of the applications and data on your VMs. An Availability Zone is a physically separate zone, within an Azure region. There are three Availability Zones per supported Azure region.
+[可用性ゾーン](/azure/reliability/availability-zones-overview)を使うと、VM 上のアプリケーションとデータの可用性を維持するためのコントロールの幅が広がります。可用性ゾーンとは、Azure リージョン内の物理的に分離されたゾーンのことです。サポートされている Azure リージョンには、リージョンごとに 3 つの可用性ゾーンがあります。
 
-Each Availability Zone has a distinct power source, network, and cooling. By designing your solutions to use replicated VMs in zones, you can protect your apps and data from the loss of a data center. If one zone is compromised, then replicated apps and data are instantly available in another zone.
+各可用性ゾーンは、独立した電源、ネットワーク、冷却設備を備えています。ゾーン間でレプリケートされた VM を使うようにソリューションを設計すれば、データセンターの喪失からアプリとデータを守れます。あるゾーンが機能しなくなっても、レプリケートされたアプリとデータは別のゾーンですぐに利用できます。
 
-## Virtual Machines Scale Sets
+## 仮想マシン スケール セット
 
-[Azure virtual machine scale sets](/azure/virtual-machines/flexible-virtual-machine-scale-sets) let you create and manage a group of load balanced VMs. The number of VM instances can automatically increase or decrease in response to demand or a defined schedule. Scale sets provide high availability to your applications, and allow you to centrally manage, configure, and update many VMs. There's no cost for the scale set itself, you only pay for each VM instance that you create.
+[Azure 仮想マシン スケール セット](/azure/virtual-machines/flexible-virtual-machine-scale-sets)を使うと、負荷分散された VM のグループを作成・管理できます。VM インスタンスの数は、需要や定義したスケジュールに応じて自動的に増減させることができます。スケール セットはアプリケーションに高可用性をもたらし、多数の VM の管理、構成、更新を一元的に行えるようにします。スケール セット自体に料金はかからず、作成した VM インスタンスの分だけ支払います。
 
-Virtual machines in a scale set can also be deployed into multiple availability zones, a single availability zone, or regionally. Availability zone deployment options may differ based on the [orchestration mode](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes).
+スケール セット内の仮想マシンは、複数の可用性ゾーン、単一の可用性ゾーン、またはリージョン単位でデプロイすることもできます。可用性ゾーンのデプロイの選択肢は、[オーケストレーション モード](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes)によって異なる場合があります。
 
-## Load balancer
+## ロード バランサー
 
-Combine the [Azure Load Balancer](/azure/load-balancer/load-balancer-overview) with an availability zone or availability set to get the most application resiliency. The Azure Load Balancer distributes traffic between multiple virtual machines. For our Standard tier virtual machines, the Azure Load Balancer is included. Not all virtual machine tiers include the Azure Load Balancer. For more information about load balancing your virtual machines, see **Load Balancing virtual machines** for [Linux](/azure/virtual-machines/linux/tutorial-load-balancer) or [Windows](/azure/virtual-machines/windows/tutorial-load-balancer).
+アプリケーションの回復性を最大限に高めるには、[Azure Load Balancer](/azure/load-balancer/load-balancer-overview) を可用性ゾーンまたは可用性セットと組み合わせます。Azure Load Balancer は、複数の仮想マシンの間でトラフィックを分散します。Standard レベルの仮想マシンには Azure Load Balancer が含まれています。すべての仮想マシン レベルに Azure Load Balancer が含まれるわけではありません。仮想マシンの負荷分散について詳しくは、[Linux](/azure/virtual-machines/linux/tutorial-load-balancer) または [Windows](/azure/virtual-machines/windows/tutorial-load-balancer) の **Load Balancing virtual machines** を参照してください。
 
-## Azure Storage redundancy
+## Azure Storage の冗長性
 
-Azure Storage always stores multiple copies of your data so that it's protected from planned and unplanned events, including transient hardware failures, network or power outages, and massive natural disasters. Redundancy ensures that your storage account meets its availability and durability targets even in the face of failures.
+Azure Storage は常にデータの複数のコピーを保存しているため、一時的なハードウェア障害、ネットワークや電源の停止、大規模な自然災害など、計画的・非計画的なイベントからデータが保護されます。冗長性により、障害が発生してもストレージ アカウントは可用性と持続性の目標を満たせます。
 
-When deciding which redundancy option is best for your scenario, consider the tradeoffs between lower costs and higher availability. The factors that help determine which redundancy option you should choose include:
+シナリオに最適な冗長性オプションを選ぶ際は、コストの低さと可用性の高さのトレードオフを考慮してください。どの冗長性オプションを選ぶべきかを判断する材料には、次のものがあります。
 
-- How your data is replicated in the primary region
-- Whether your data is replicated to a second region that is geographically distant to the primary region, to protect against regional disasters
-- Whether your application requires read access to the replicated data in the secondary region if the primary region becomes unavailable for any reason
+- プライマリ リージョンでデータがどのようにレプリケートされるか
+- リージョン規模の災害に備えて、プライマリ リージョンから地理的に離れた第 2 のリージョンにデータをレプリケートするかどうか
+- 何らかの理由でプライマリ リージョンが利用できなくなった場合に、セカンダリ リージョンにレプリケートされたデータへの読み取りアクセスがアプリケーションに必要かどうか
 
-For more information, see [Azure Storage redundancy](/azure/storage/common/storage-redundancy).
+詳しくは、「[Azure Storage の冗長性](/azure/storage/common/storage-redundancy)」を参照してください。
 
-## Failover across locations
+## 拠点をまたいだフェールオーバー
 
-You can also replicate your infrastructure across sites to handle regional failover. **Azure Site Recovery** replicates workloads from a primary site to a secondary location. If an outage happens at your primary site, you can fail over to a secondary location. This failover enables users to continue to access your applications without interruption. You can then fail back to the primary location after it's up and running again. Azure Site Recovery is about replication of virtual or physical machines; it keeps your workloads available in an outage.
+リージョン単位のフェールオーバーに対応するために、インフラを複数のサイトにレプリケートすることもできます。**Azure Site Recovery** は、プライマリ サイトからセカンダリの場所へワークロードをレプリケートします。プライマリ サイトで障害が発生した場合、セカンダリの場所へフェールオーバーできます。このフェールオーバーにより、ユーザーは中断なくアプリケーションにアクセスし続けられます。プライマリの場所が復旧して稼働し始めたら、フェールバックできます。Azure Site Recovery は仮想マシンや物理マシンのレプリケーションを担うもので、障害時にもワークロードを利用可能な状態に保ちます。
 
-While there are many attractive technical features to Site Recovery, there are at least two significant business advantages:
+Site Recovery には技術的に魅力的な機能が多くありますが、ビジネス面でも少なくとも 2 つの大きな利点があります。
 
-- Site Recovery enables the use of Azure as a destination for recovery, thus eliminating the cost and complexity of maintaining a secondary physical datacenter.
+- Site Recovery では復旧先として Azure を使えるため、セカンダリの物理データセンターを維持するコストと複雑さをなくせます。
 
-- Site Recovery makes it incredibly simple to test failovers for recovery drills without impacting production environments. This feature makes it easy to test your planned or unplanned failovers. After all, you don’t have a good disaster recovery plan if you’ve never tried to fail over.
+- Site Recovery を使うと、運用環境に影響を与えずに、復旧訓練のためのフェールオーバー テストを非常に簡単に実施できます。この機能により、計画的・非計画的フェールオーバーのテストが容易になります。結局のところ、一度もフェールオーバーを試したことがないなら、それは良い災害復旧計画とは言えません。
 
-The recovery plans you create with Site Recovery can be as simple or as complex as your scenario requires. They can include custom PowerShell scripts, Azure Automation runbooks, or manual intervention steps. You can use the recovery plans to replicate workloads to Azure, easily enabling new opportunities for migration, temporary bursts during surge periods, or development and testing of new applications.
+Site Recovery で作成する復旧計画は、シナリオの要件に応じて、シンプルにも複雑にもできます。カスタムの PowerShell スクリプト、Azure Automation Runbook、手動の介入ステップを含めることも可能です。復旧計画を使って Azure にワークロードをレプリケートすれば、移行、繁忙期の一時的なバースト対応、新しいアプリケーションの開発・テストといった新たな可能性も簡単に開けます。
 
-Azure Site Recovery works with Azure resources, or Hyper-V, VMware, and physical servers in your on-premises infrastructure. It can be a key part of your organization’s business continuity and disaster recovery (BCDR) strategy by orchestrating the replication, failover, and recovery of workloads and applications if the primary location fails.
+Azure Site Recovery は、Azure のリソースだけでなく、オンプレミス インフラの Hyper-V、VMware、物理サーバーとも連携します。プライマリの場所に障害が発生した場合のワークロードとアプリケーションのレプリケーション、フェールオーバー、復旧をオーケストレーションすることで、組織の事業継続と災害復旧 (BCDR) 戦略の要になり得ます。

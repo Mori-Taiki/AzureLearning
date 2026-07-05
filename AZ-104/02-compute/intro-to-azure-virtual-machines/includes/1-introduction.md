@@ -1,24 +1,23 @@
-Suppose you work for a company doing medical research and you're responsible for managing the on-premises servers. The servers you administer run all the company infrastructure, from web servers to databases. However, the hardware is aging and starting to struggle to keep up with some of the new data analysis applications being deployed to it.
+あなたは医療研究を行う会社に勤めていて、オンプレミスのサーバー管理を任されているとしましょう。管理しているサーバーは、Web サーバーからデータベースまで、会社のインフラすべてを支えています。しかしハードウェアは老朽化が進み、新しく導入されるデータ分析アプリケーションの処理に追いつかなくなりつつあります。
 
-You could upgrade all the hardware, but that's not appealing for several reasons:
+ハードウェアをすべて買い替えるという手もありますが、いくつかの理由からあまり魅力的ではありません。
 
-- The servers are physically scattered all around the world with minimal staff in each location. We'd like to centralize the upgrade to our home office.
+- サーバーは世界中に物理的に分散していて、各拠点の人員はごくわずかです。アップグレード作業は本社に集約したいところです。
 
-- The company runs custom data analysis software on several versions and flavors of Windows and Linux, sometimes set up with odd configurations that aren't entirely understood. We need a way to test our deployments completely and try different configurations to make sure everything is working before we transition the work.
+- 会社では、複数のバージョンや系統の Windows と Linux 上でカスタムのデータ分析ソフトウェアを動かしており、中には完全には把握できていない特殊な構成のものもあります。移行前に、デプロイを十分にテストし、さまざまな構成を試して、すべてが正しく動くことを確認する手段が必要です。
 
-- Business is booming, and the company is growing fast. It's likely that the load on the internal servers, particularly the databases, will continue to grow. This growth requires us to either buy for the future or come up with a scaling plan to handle the growth.
+- 事業は好調で、会社は急成長しています。社内サーバー、特にデータベースへの負荷は今後も増え続ける見込みです。この成長に対応するには、将来を見越してハードウェアを先行投資で購入するか、成長に合わせたスケーリング計画を立てる必要があります。
 
-For these reasons, you decide that it's time to explore the cloud to see if it can help solve the load and scale problem. Since you have a bunch of mixed servers and custom software, it makes sense to look at trying to move servers one at a time into Azure using Azure Virtual Machines (VMs).
+こうした理由から、負荷とスケールの問題を解決できるかどうか、クラウドを検討してみることにしました。多種多様なサーバーとカスタム ソフトウェアを抱えているため、Azure Virtual Machines (VM) を使ってサーバーを 1 台ずつ Azure に移行していくのが理にかなっています。
 
-Azure VMs are one of several types of on-demand, scalable computing resources that Azure offers. With VMs, you have total control over the configuration and can install anything you need to perform the work. You don't need to purchase physical hardware when you need to scale or extend your datacenter. Finally, Azure provides other services to monitor, secure, and manage updates and patches to the OS.
+Azure VM は、Azure が提供するオンデマンドでスケーラブルなコンピューティング リソースのひとつです。VM なら構成を完全にコントロールでき、作業に必要なものを何でもインストールできます。スケールが必要になったときやデータセンターを拡張したいときに、物理ハードウェアを購入する必要はありません。さらに Azure には、OS の監視、保護、更新プログラムやパッチの管理を行うためのサービスも用意されています。
 
-We're going to look at the decisions made before creating a VM, the options to create and manage the VM, and the extensions and services you use to manage your VM.
+これから、VM を作成する前に決めておくべきこと、VM を作成・管理するための選択肢、そして VM の管理に使う拡張機能やサービスを見ていきます。
 
-## Learning objectives
+## 学習の目標
 
-In this module, you learn how to:
+このモジュールでは、次のことを学びます。
 
-- Compile a checklist for creating a virtual machine
-- Describe the options to create and manage virtual machines
-- Describe the other services available to administer virtual machines
-
+- 仮想マシン作成のためのチェックリストをまとめる
+- 仮想マシンを作成・管理するための選択肢を説明する
+- 仮想マシンの管理に利用できるその他のサービスを説明する
