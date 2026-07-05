@@ -1,34 +1,34 @@
-Suppose you've been asked to display your retail organization's branding on the Azure sign-in page to reassure users that they're passing credentials to a legitimate system. Here, you'll learn how to configure this custom branding.
+ユーザーが正当なシステムに資格情報を渡していると安心できるように、Azure のサインイン ページに小売組織のブランドを表示するよう依頼されたとしましょう。ここでは、このカスタム ブランドの構成方法を学びます。
 
-To complete this exercise, you must have two image files:
+この演習を完了するには、2 つの画像ファイルが必要です。
 
-- A page background image. This must be a PNG or JPG file, 1920 x 1080 pixels, and smaller than 300 KB.
-- A company logo image. This must be a PNG or JPG file, 32 x 32 pixels, and smaller than 5 KB.
+- ページの背景画像。PNG または JPG ファイルで、1920 x 1080 ピクセル、300 KB 未満である必要があります。
+- 会社のロゴ画像。PNG または JPG ファイルで、32 x 32 ピクセル、5 KB 未満である必要があります。
 
 <a name='customize-azure-ad-organization-branding'></a>
 
-## Customize Microsoft Entra organization branding
+## Microsoft Entra 組織のブランドをカスタマイズする
 
-Let's use Microsoft Entra ID to set up the custom branding.
+Microsoft Entra ID を使ってカスタム ブランドをセットアップしましょう。
 
-1. Sign in to the [Azure portal](https://portal.azure.com/).
-1. Go to your Microsoft Entra organization by selecting **Microsoft Entra ID**. If you're not in the right Microsoft Entra organization, go to your Azure profile, and select **Switch directory** to find your organization.
-1. Under **Manage**, select **Company branding**. Then select the **Customize** button in the center of the screen.
-1. Next to **Favicon**, select **Browse**. Select your logo image.
-1. Next to **Background image**, select **Browse**. Select your page background image.
-1. Select a **Page background color** or accept the default.
+1. [Azure portal](https://portal.azure.com/) にサインインします。
+1. **[Microsoft Entra ID]** を選択して、自分の Microsoft Entra 組織に移動します。正しい Microsoft Entra 組織にいない場合は、Azure のプロファイルに移動し、**[ディレクトリの切り替え]** を選択して組織を探します。
+1. **[管理]** の下にある **[会社のブランド]** を選択します。次に、画面中央の **[カスタマイズ]** ボタンを選択します。
+1. **[ファビコン]** の横で **[参照]** を選択します。ロゴ画像を選択します。
+1. **[背景画像]** の横で **[参照]** を選択します。ページの背景画像を選択します。
+1. **[ページの背景色]** を選択するか、既定値のままにします。
 
-    ![Screenshot that shows the configure company branding form.](../media/5-customize-ui.png)
-1. Select **Review + Create**, and then select **Create**.
+    ![会社のブランドの構成フォームを示すスクリーンショット。](../media/5-customize-ui.png)
+1. **[確認および作成]** を選択し、**[作成]** を選択します。
 
-## Test the organization's branding
+## 組織のブランドをテストする
 
-Now, let's use the account that we created in the last exercise to test the branding.
+では、前の演習で作成したアカウントを使って、ブランドをテストしましょう。
 
-1. In a new browser window, go to https://login.microsoft.com.
-1. Select the account for **Bala Sandhu**. Your custom branding is displayed.
+1. 新しいブラウザー ウィンドウで https://login.microsoft.com にアクセスします。
+1. **Bala Sandhu** のアカウントを選択します。カスタム ブランドが表示されます。
 
-    ![Screenshot that shows the customized sign-in page.](../media/5-custom-login-page.png)
-1. Select **Forgot my password**.
+    ![カスタマイズされたサインイン ページを示すスクリーンショット。](../media/5-custom-login-page.png)
+1. **[パスワードを忘れた場合]** を選択します。
 
-    ![Screenshot that shows organization logo on password reset page.](../media/5-forgot-password-branding.png)
+    ![パスワード リセット ページに組織のロゴが表示されているスクリーンショット。](../media/5-forgot-password-branding.png)

@@ -1,52 +1,52 @@
-You've decided to implement self-service password reset (SSPR) in Microsoft Entra ID for your organization. You want to start using SSPR for a group of 20 users in the marketing department as a trial deployment. If everything works well, you'll enable SSPR for your whole organization.
+組織に Microsoft Entra ID のセルフサービス パスワード リセット (SSPR) を導入することにしました。まずは試験導入として、マーケティング部門の 20 人のユーザー グループで SSPR を使い始めます。うまくいけば、組織全体で SSPR を有効にする予定です。
 
-In this unit, you'll learn how to enable SSPR in Microsoft Entra ID.
+このユニットでは、Microsoft Entra ID で SSPR を有効にする方法を学びます。
 
-## Prerequisites
+## 前提条件
 
-Before you start to configure SSPR, you need a:
+SSPR の構成を始める前に、次のものが必要です。
 
-- **Microsoft Entra organization**: This organization must have at least a P1 or P2 trial license enabled.
-- **Microsoft Entra account with Authentication Policy Administrator role**: You'll use this account to set up SSPR.
-- **Non-administrative user account**: You'll use this account to test SSPR. It's important that this account isn't an administrator, because Microsoft Entra imposes extra requirements on administrative accounts for SSPR. This user, and all user accounts, must have a valid license to use SSPR.
-- **Security group with which to test the configuration**: The non-administrative user account must be a member of this group. You'll use this security group to limit who you roll SSPR out to.
+- **Microsoft Entra 組織**: この組織で、少なくとも P1 または P2 の試用ライセンスが有効になっている必要があります。
+- **認証ポリシー管理者ロールを持つ Microsoft Entra アカウント**: このアカウントを使って SSPR をセットアップします。
+- **管理者以外のユーザー アカウント**: このアカウントを使って SSPR をテストします。Microsoft Entra は SSPR について管理者アカウントに追加の要件を課すため、このアカウントが管理者でないことが重要です。このユーザーを含むすべてのユーザー アカウントには、SSPR を使うための有効なライセンスが必要です。
+- **構成のテストに使うセキュリティ グループ**: 管理者以外のユーザー アカウントは、このグループのメンバーである必要があります。このセキュリティ グループを使って、SSPR の展開対象を限定します。
 
-## Scope of SSPR rollout
+## SSPR 展開のスコープ
 
-There are three settings for the **Self-service password reset enabled** property:
+**[セルフサービス パスワード リセットが有効]** プロパティには、3 つの設定があります。
 
-- **None**: No users in the Microsoft Entra organization can use SSPR. This value is the default.
-- **Selected**: Only the members of the specified security group can use SSPR. You can use this option to enable SSPR for a targeted group of users who can test it and verify that it works as expected. When you're ready to roll it out broadly, set the property to **Enabled** so that all users have access to SSPR.
-- **All**: All users in the Microsoft Entra organization can use SSPR.
+- **なし**: Microsoft Entra 組織内のどのユーザーも SSPR を使えません。これが既定値です。
+- **選択済み**: 指定したセキュリティ グループのメンバーだけが SSPR を使えます。このオプションを使うと、対象を絞ったユーザー グループで SSPR を有効にし、期待どおりに動作することをテスト・検証できます。広く展開する準備ができたら、プロパティを **[有効]** に設定して、すべてのユーザーが SSPR を利用できるようにします。
+- **すべて**: Microsoft Entra 組織内のすべてのユーザーが SSPR を使えます。
 
-## Configure SSPR
+## SSPR を構成する
 
-Here are the high-level steps to configure SSPR:
+SSPR を構成する大まかな手順は次のとおりです。
 
-1. Go to the [Azure portal](https://portal.azure.com?azure-portal=true), then to **Microsoft Entra ID** > **Manage** > **Password reset**.
-1. **Properties**:
-   - Enable SSPR.
-   - You can enable it for all users in the Microsoft Entra organization or for selected users.
-   - To enable for selected users, you must specify the security group. Members of this group can use SSPR.
+1. [Azure portal](https://portal.azure.com?azure-portal=true) にアクセスし、**[Microsoft Entra ID]** > **[管理]** > **[パスワード リセット]** に移動します。
+1. **[プロパティ]**:
+   - SSPR を有効にします。
+   - Microsoft Entra 組織内のすべてのユーザーに対しても、選択したユーザーに対しても有効にできます。
+   - 選択したユーザーに対して有効にするには、セキュリティ グループを指定する必要があります。このグループのメンバーが SSPR を使えます。
 
-    ![Screenshot of the Password Reset configuration panel. Properties option is selected allowing user to enable self service password resets.](../media/3-enable-sspr.png)
+    ![パスワード リセットの構成パネルのスクリーンショット。[プロパティ] オプションが選択され、セルフサービス パスワード リセットを有効にできる状態です。](../media/3-enable-sspr.png)
 
-1. **Authentication methods**:
-   - Choose whether to require one or two authentication methods.
-   - Choose the authentication methods that the users can use.
+1. **[認証方法]**:
+   - 必要な認証方法を 1 つにするか 2 つにするかを選びます。
+   - ユーザーが使える認証方法を選びます。
 
-    ![Screenshot of the Password Reset panel's Authentication methods option selected displaying panel with authentication options.](../media/3-auth-methods.png)
+    ![パスワード リセット パネルで [認証方法] オプションが選択され、認証オプションのパネルが表示されているスクリーンショット。](../media/3-auth-methods.png)
 
-1. **Registration**:
-   - Specify whether users are required to register for SSPR when they next sign in.
-   - Specify how often users are asked to reconfirm their authentication information.
+1. **[登録]**:
+   - 次回のサインイン時に SSPR への登録をユーザーに必須とするかどうかを指定します。
+   - 認証情報の再確認をユーザーに求める頻度を指定します。
 
-    ![Screenshot of the Password Reset panel's Registration option selected displaying panel with registration options.](../media/3-registration-options.png)
+    ![パスワード リセット パネルで [登録] オプションが選択され、登録オプションのパネルが表示されているスクリーンショット。](../media/3-registration-options.png)
 
-1. **Notifications**: Choose whether to notify users and administrators of password resets.
+1. **[通知]**: パスワード リセットをユーザーと管理者に通知するかどうかを選びます。
 
-    ![Screenshot of the Password Reset panel's Notification option selected displaying panel with notification options.](../media/3-notification-settings.png)
+    ![パスワード リセット パネルで [通知] オプションが選択され、通知オプションのパネルが表示されているスクリーンショット。](../media/3-notification-settings.png)
 
-1. **Customization**: Provide an email address or web page URL where your users can get help.
+1. **[カスタマイズ]**: ユーザーがサポートを受けられるメール アドレスまたは Web ページの URL を指定します。
 
-    ![Screenshot of the Password Reset panel's Customization option selected displaying panel with helpdesk options.](../media/3-customization-settings.png)
+    ![パスワード リセット パネルで [カスタマイズ] オプションが選択され、ヘルプデスク オプションのパネルが表示されているスクリーンショット。](../media/3-customization-settings.png)

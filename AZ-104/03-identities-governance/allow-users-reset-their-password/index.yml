@@ -1,24 +1,24 @@
 ### YamlMime:Module
 uid: learn.azure.allow-users-to-reset-their-password
 metadata:
-  title: Allow users to reset their password with Microsoft Entra self-service password reset
-  description: Learn how to allow users to reset their password with Microsoft Entra self-service password reset.
+  title: Microsoft Entra セルフサービス パスワード リセットでユーザーがパスワードをリセットできるようにする
+  description: Microsoft Entra セルフサービス パスワード リセットを使って、ユーザーが自分のパスワードをリセットできるようにする方法を学びます。
   ms.date: 11/07/2024
   author: Justinha
   ms.author: justinha
   ms.topic: module
   ms.service: azure-active-directory
-title: Allow users to reset their password with Microsoft Entra self-service password reset
-summary: Evaluate self-service password reset to allow users in your organization to reset their passwords or unlock their accounts. Set up, configure, and test self-service password reset.
-abstract: | 
-  In this module, you will:
-  - Decide whether to implement self-service password reset.
-  - Implement self-service password reset to meet your requirements.
-  - Configure self-service password reset to customize the experience.
-prerequisites: | 
-  - Basic understanding of Microsoft Entra ID
-  - A working Microsoft Entra tenant with a subscription package that includes Microsoft Entra ID P1
-  - An account with at least the Authentication Policy Administrator role
+title: Microsoft Entra セルフサービス パスワード リセットでユーザーがパスワードをリセットできるようにする
+summary: 組織のユーザーが自分のパスワードのリセットやアカウントのロック解除を行えるように、セルフサービス パスワード リセットを評価します。セルフサービス パスワード リセットのセットアップ、構成、テストを行います。
+abstract: |
+  このモジュールでは、次のことを行います。
+  - セルフサービス パスワード リセットを導入すべきかどうかを判断する。
+  - 要件を満たすようにセルフサービス パスワード リセットを実装する。
+  - 体験をカスタマイズするためにセルフサービス パスワード リセットを構成する。
+prerequisites: |
+  - Microsoft Entra ID の基本的な理解
+  - Microsoft Entra ID P1 を含むサブスクリプション パッケージを備えた、稼働中の Microsoft Entra テナント
+  - 少なくとも認証ポリシー管理者ロールを持つアカウント
 iconUrl: /training/achievements/allow-users-reset-their-password.svg
 levels:
 - beginner
@@ -38,4 +38,4 @@ units:
 - learn.azure.allow-users-to-reset-their-password.exercise-customize-directory-branding
 - learn.azure.allow-users-to-reset-their-password.summary
 badge:
-  uid: learn.azure.allow-users-to-reset-their-password.badge
+  uid: learn.azure.allow-users-to-reset-their-password.badge
