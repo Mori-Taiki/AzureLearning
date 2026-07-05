@@ -1,35 +1,35 @@
-You can use the Web Apps, Mobile Apps, or API Apps features of Azure App Service, and create your own apps in the Azure portal.
+Azure App Service の Web Apps、Mobile Apps、API Apps の機能を使って、Azure portal で独自のアプリを作成できます。
 
-### Things to know about configuration settings
+### 構成設定について知っておくべきこと
 
-Let's examine some of the basic configuration settings you need to create an app with App Service.
+App Service でアプリを作成するのに必要な基本的な構成設定を見ていきましょう。
 
-- **Name**: The name for your app must be unique. The name identifies and locates your app in Azure. An example name is `webappces1.azurewebsites.net`. You can map a custom domain name, if you prefer to use that option instead.
+- **名前**: アプリの名前は一意である必要があります。名前は、Azure でアプリを識別し、その場所を特定するために使われます。名前の例は `webappces1.azurewebsites.net` です。代わりにカスタム ドメイン名をマップすることもできます。
 
-- **Publish**: App Service hosts (publishes) your app as code or as a Docker Container.
+- **公開**: App Service は、アプリをコードとして、または Docker コンテナーとしてホスト (公開) します。
 
-- **Runtime stack**: App Service uses a software stack to run your app, including the language and SDK versions. For Linux apps and custom container apps, you can set an optional start-up command or file. Your choices for the stack include .NET Core, .NET Framework, Node.js, PHP, and Python. Various versions of each product are available for Linux and Windows.
+- **ランタイム スタック**: App Service は、言語や SDK のバージョンを含むソフトウェア スタックを使ってアプリを実行します。Linux アプリとカスタム コンテナー アプリでは、任意で起動コマンドまたは起動ファイルを設定できます。スタックの選択肢には、.NET Core、.NET Framework、Node.js、PHP、Python があります。各製品のさまざまなバージョンが Linux と Windows で利用できます。
 
-- **Operating system**: The operating system for your app runtime stack can be Linux or Windows.
+- **オペレーティング システム**: アプリのランタイム スタックのオペレーティング システムは、Linux または Windows を選べます。
 
-- **Region**: The region location that you choose for your app affects the App Service plans that are available.
+- **リージョン**: アプリに選んだリージョンによって、利用できる App Service プランが変わります。
 
-- **Pricing plans**: Your app needs to be associated with an Azure App Service plan to establish available resources, features, and capacity. You can choose from pricing tiers that are available for the region location you selected.
+- **価格プラン**: 利用可能なリソース、機能、容量を確定するために、アプリを Azure App Service プランに関連付ける必要があります。選択したリージョンで利用できる価格レベルから選べます。
 
-#### Post-creation settings
+#### 作成後の設定
 
-After your app is created, other **Configuration** settings become available in the Azure portal, including app deployment options and path mapping.
+アプリの作成後、Azure portal では、アプリのデプロイ オプションやパス マッピングなど、その他の **[構成]** 設定が利用できるようになります。
 
-:::image type="content" source="../media/web-app-configuration-27facdc5.png" alt-text="Screenshot that shows other configuration options for an app with the App Service in the Azure portal.":::
+:::image type="content" source="../media/web-app-configuration-27facdc5.png" alt-text="Azure portal で App Service のアプリのその他の構成オプションを示すスクリーンショット。":::
 
-Some of the extra configuration settings can be included in the developer's code, while others can be configured in your app. Here are a few of the extra application settings.
+追加の構成設定の中には、開発者のコードに含められるものもあれば、アプリ側で構成できるものもあります。追加のアプリケーション設定の一部を紹介します。
 
-- **Always On**: You can keep your app loaded even when there's no traffic. This setting is required for continuous WebJobs or for WebJobs that are triggered by using a CRON expression.
+- **Always On**: トラフィックがないときでもアプリを読み込んだままにできます。この設定は、継続的な WebJobs や、CRON 式でトリガーされる WebJobs には必須です。
 
-- **Session affinity**: In a multi-instance deployment, you can ensure your app client is routed to the same instance for the life of the session.
+- **セッション アフィニティ**: 複数インスタンスのデプロイで、アプリのクライアントがセッションの間ずっと同じインスタンスにルーティングされるようにできます。
 
-- **HTTPS Only**: When enabled, all HTTP traffic is redirected to HTTPS.
+- **HTTPS のみ**: 有効にすると、すべての HTTP トラフィックが HTTPS にリダイレクトされます。
 
 
 > [!TIP]
-> Consider practicing on your own with the [Exercise - Create a web app in the Azure portal](/training/modules/host-a-web-app-with-azure-app-service/3-exercise-create-a-web-app-in-the-azure-portal?pivots=csharp). This exercise provides a sandbox. 
+> 「[演習 - Azure portal で Web アプリを作成する](/training/modules/host-a-web-app-with-azure-app-service/3-exercise-create-a-web-app-in-the-azure-portal?pivots=csharp)」で、自分で練習してみることをお勧めします。この演習にはサンドボックスが用意されています。

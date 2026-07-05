@@ -1,43 +1,41 @@
-When you create a web app, Azure assigns the app to a subdomain of `azurewebsites.net`. Suppose your web app is named `contoso`. Azure creates a URL for your web app as `contoso.azurewebsites.net`. Azure also assigns a virtual IP address for your app. For a production web app, you might want users to see a custom domain name.
+Web アプリを作成すると、Azure はそのアプリを `azurewebsites.net` のサブドメインに割り当てます。Web アプリの名前が `contoso` だとしましょう。Azure は Web アプリの URL として `contoso.azurewebsites.net` を作成します。また、アプリには仮想 IP アドレスも割り当てられます。運用環境の Web アプリでは、ユーザーにカスタム ドメイン名を見せたい場合があるでしょう。
 
-### What is a custom domain?
+### カスタム ドメインとは
 
-A domain name is the address people type into a web browser to reach your website. A custom domain is a domain name that you own and configure to point to your Azure-hosted app, replacing the default Azure domain.
+ドメイン名は、あなたの Web サイトにアクセスするために人々が Web ブラウザーに入力するアドレスです。カスタム ドメインとは、自分が所有するドメイン名のことで、既定の Azure ドメインの代わりに、Azure でホストしているアプリを指すように構成します。
 
-For example:
+例:
 
-- Default Azure domain: `myapp-00000.westus.azurewebsites.net`
-- Custom domain: `www.contoso.com`
+- 既定の Azure ドメイン: `myapp-00000.westus.azurewebsites.net`
+- カスタム ドメイン: `www.contoso.com`
 
-Using a custom domain allows you to:
+カスタム ドメインを使うと、次のことができます。
 
-- Establish a branded, user-friendly web address.
-- Improve trust and credibility with customers.
-- Manage and secure traffic to your application.
+- ブランドを反映した、ユーザーに親しみやすい Web アドレスを確立する。
+- 顧客からの信頼と信用を高める。
+- アプリケーションへのトラフィックを管理・保護する。
 
-### Steps to configure a custom domain name for your app
+### アプリにカスタム ドメイン名を構成する手順
 
-Creating a custom domain name requires providers, security, and naming information. 
+カスタム ドメイン名の作成には、プロバイダー、セキュリティ、名前に関する情報が必要です。
 
-:::image type="content" source="../media/custom-domain.png" alt-text="Screenshot that shows the custom domain page in the Azure portal.":::
+:::image type="content" source="../media/custom-domain.png" alt-text="Azure portal のカスタム ドメイン ページを示すスクリーンショット。":::
 
-There are three steps to create a custom domain name. 
+カスタム ドメイン名の作成は 3 つの手順で行います。
 
-1. **Reserve your domain name**. The easiest way to set up a custom domain is to buy one directly in the Azure portal. (This name isn't the Azure assigned name of `\*.azurewebsites.net`.) The registration process enables you to manage your web app's domain name directly in the Azure portal instead of going to a third-party site. Configuring the domain name in your web app is also a simple process in the Azure portal. 
+1. **ドメイン名を予約する**: カスタム ドメインをセットアップする最も簡単な方法は、Azure portal で直接購入することです (これは Azure が割り当てる `\*.azurewebsites.net` の名前とは別のものです)。この登録プロセスにより、サードパーティのサイトに行かなくても、Azure portal で直接 Web アプリのドメイン名を管理できます。Web アプリでのドメイン名の構成も、Azure portal で簡単に行えます。
 
-1. **Create DNS records to map the domain to your Azure web app**. The Domain Name System (DNS) uses data records to map domain names to IP addresses. There are several types of DNS records.
+1. **ドメインを Azure Web アプリにマップする DNS レコードを作成する**: ドメイン ネーム システム (DNS) は、データ レコードを使ってドメイン名を IP アドレスにマップします。DNS レコードにはいくつかの種類があります。
 
-   - For web apps, you create either an `A` (Address) record or a `CNAME` (Canonical Name) record.
-      - An `A` record maps a domain name to an IP address.
-      - A `CNAME` record maps a domain name to another domain name. DNS uses the second name to look up the address. Users still see the first domain name in their browser. As an example, you could map `contoso.com` to your `webapp.azurewebsites.net` URL.
+   - Web アプリでは、`A` (アドレス) レコードまたは `CNAME` (正規名) レコードのいずれかを作成します。
+      - `A` レコードは、ドメイン名を IP アドレスにマップします。
+      - `CNAME` レコードは、ドメイン名を別のドメイン名にマップします。DNS は 2 つ目の名前を使ってアドレスを調べますが、ユーザーのブラウザーには 1 つ目のドメイン名が表示されたままです。たとえば、`contoso.com` を `webapp.azurewebsites.net` の URL にマップできます。
 
-   - If the IP address changes, a `CNAME` entry is still valid, whereas an `A` record must be updated. 
-   
-   - Some domain registrars don't allow `CNAME` records for the root domain or for wildcard domains. In such cases, you must use an `A` record.
+   - IP アドレスが変わっても `CNAME` エントリは有効なままですが、`A` レコードは更新が必要です。
 
-1. **Enable the custom domain**. After you have your domain and create your DNS record, use the Azure portal to validate your custom domain and add it to your web app. Be sure to test your domain before publishing.
+   - ドメイン レジストラーによっては、ルート ドメインやワイルドカード ドメインに `CNAME` レコードを使えないことがあります。その場合は `A` レコードを使う必要があります。
+
+1. **カスタム ドメインを有効にする**: ドメインを取得して DNS レコードを作成したら、Azure portal でカスタム ドメインを検証し、Web アプリに追加します。公開前に必ずドメインをテストしてください。
 
 > [!Important]
-> App Service offers free managed TLS certificates. Certificates auto-renew 30 days before expiry. In the Azure portal, go to **Custom domains** → **Add binding** → **App Service Managed Certificate**. 
-
-
+> App Service は、無料のマネージド TLS 証明書を提供しています。証明書は有効期限の 30 日前に自動更新されます。Azure portal で **[カスタム ドメイン]** → **[バインドの追加]** → **[App Service マネージド証明書]** に移動します。

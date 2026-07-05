@@ -2,14 +2,14 @@
 
 
 
-You're developing a strategy to implement web apps for your company by using Azure App Service. Various teams in your organization submit requests for your consideration as part of the implementation plan.
+あなたは、Azure App Service を使って会社の Web アプリを実装する戦略を練っています。実装計画の一環として、組織内のさまざまなチームから検討依頼が寄せられています。
 
-- The Production team needs information about cloning configurations across deployment slots.
+- 運用チームは、デプロイ スロット間での構成の複製について情報を必要としています。
 
-- The Marketing team needs to know which research web pages are most popular, at what times of day, and where users are located.
+- マーケティング チームは、どの調査 Web ページが、1 日のどの時間帯に人気で、ユーザーがどこにいるのかを知りたがっています。
 
-- You're investigating automated deployment sources.
+- あなたは自動デプロイのソースを調査しています。
 
-### Answer the following questions
+### 次の質問に答えてください
 
-Choose the best response for each question.
+各質問に対して最も適切な回答を選んでください。

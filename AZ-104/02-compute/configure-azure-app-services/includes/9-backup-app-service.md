@@ -1,50 +1,50 @@
-The [Backup and Restore feature](/azure/app-service/manage-backup) in Azure App Service lets you easily create backups manually or on a schedule. You can configure the backups to be retained for a specific or indefinite amount of time. You can restore your app or site to a snapshot of a previous state by overwriting the existing content or restoring to another app or site.
+Azure App Service の[バックアップと復元の機能](/azure/app-service/manage-backup)を使うと、手動またはスケジュールで簡単にバックアップを作成できます。バックアップは、特定の期間または無期限に保持するよう構成できます。既存のコンテンツを上書きするか、別のアプリやサイトに復元することで、アプリやサイトを以前の状態のスナップショットに戻せます。
 
-The **Backups** page lists all the automatic and custom backups for your app and displays the status of each.
+**[バックアップ]** ページには、アプリの自動およびカスタムのバックアップがすべて一覧表示され、それぞれの状態が確認できます。
 
-:::image type="content" source="../media/open-backups-page.png" alt-text="Screenshot showing the app service backup page in the portal.":::
+:::image type="content" source="../media/open-backups-page.png" alt-text="ポータルの App Service バックアップ ページを示すスクリーンショット。":::
 
-### Things to know about Backup and Restore
+### バックアップと復元について知っておくべきこと
 
-Examine the following details about the Backup and Restore feature. Think about how you can implement this feature for your App Service apps.
+バックアップと復元の機能の詳細を確認しましょう。自分の App Service アプリにこの機能をどう実装できるか考えてみてください。
 
-- Back up and restore is supported in the Basic, Standard, Premium, and Isolated tiers. For the Basic tier, you can only back up and restore the production slot.
-  
-- You need an Azure storage account and container in the same subscription as the app to back up.
+- バックアップと復元は、Basic、Standard、Premium、Isolated の各レベルでサポートされます。Basic レベルでは、運用スロットのみバックアップと復元が可能です。
 
-- Azure App Service can back up the following information to the Azure storage account and container you configured for your app:
-   - App configuration settings
-   - File content
-   - Any database connected to your app (SQL Database, Azure Database for MySQL, Azure Database for PostgreSQL, MySQL in-app)
+- バックアップには、アプリと同じサブスクリプション内の Azure ストレージ アカウントとコンテナーが必要です。
 
-- In your storage account, each backup consists of a Zip file and XML file:
-   - The Zip file contains the back-up data for your app or site.
-   - The XML file contains a manifest of the Zip file contents. 
+- Azure App Service は、アプリ用に構成した Azure ストレージ アカウントとコンテナーに、次の情報をバックアップできます。
+   - アプリの構成設定
+   - ファイルのコンテンツ
+   - アプリに接続されているデータベース (SQL Database、Azure Database for MySQL、Azure Database for PostgreSQL、MySQL in-app)
 
-- You can configure backups manually or on a schedule.
+- ストレージ アカウントでは、各バックアップは Zip ファイルと XML ファイルで構成されます。
+   - Zip ファイルには、アプリまたはサイトのバックアップ データが含まれます。
+   - XML ファイルには、Zip ファイルの内容の一覧 (マニフェスト) が含まれます。
 
-- Full backups are the default.
+- バックアップは手動でもスケジュールでも構成できます。
 
-- Partial backups are supported. You can specify files and folders to exclude from a backup.
+- 既定は完全バックアップです。
 
-- You restore partial backups of your app or site the same way you restore a regular backup.
+- 部分バックアップもサポートされています。バックアップから除外するファイルやフォルダーを指定できます。
 
-- Backups can hold up to 10 GB of app and database content.
+- アプリやサイトの部分バックアップの復元は、通常のバックアップの復元と同じ方法で行います。
 
-- Backups for your app or site are visible on the **Containers** page of your storage account and app (or site) in the Azure portal. 
+- バックアップには、アプリとデータベースのコンテンツを最大 10 GB まで保持できます。
 
-### Things to consider when creating backups and restoring backups
+- アプリやサイトのバックアップは、Azure portal のストレージ アカウントとアプリ (またはサイト) の **[コンテナー]** ページで確認できます。
 
-Let's review some considerations about creating a backup for your app or site, and restoring data and content from a backup.
+### バックアップの作成と復元で考慮すべきこと
 
-- **Consider full backups**. Do a full backup to easily save all configuration settings, all file content, and all database content connected with your app or site.
+アプリやサイトのバックアップの作成と、バックアップからのデータやコンテンツの復元に関する考慮事項を確認しましょう。
 
-   When you restore a full backup, all content on the site is replaced with whatever is in the backup. If a file is on the site, but not in the backup, the file is deleted.
+- **完全バックアップを考慮する**: 完全バックアップを行えば、アプリやサイトに関連するすべての構成設定、すべてのファイル コンテンツ、すべてのデータベース コンテンツを手軽に保存できます。
 
-- **Consider partial backups**. Specify a partial backup so you can choose exactly which files to back up.
-   
-   When you restore a partial backup, any content located in an excluded folder or file is left as-is.
+   完全バックアップを復元すると、サイト上のすべてのコンテンツがバックアップの内容に置き換えられます。サイトにあってバックアップにないファイルは削除されます。
 
-- **Consider browsing back-up files**. Unzip and browse the Zip and XML files associated with your backup to access your backups. This option lets you view the content without actually performing an app or site restore.
+- **部分バックアップを考慮する**: 部分バックアップを指定すれば、バックアップするファイルを正確に選べます。
 
-- **Consider firewall on back-up destination**. If your storage account is enabled with a firewall, you can't use the storage account as the destination for your backups.
+   部分バックアップを復元した場合、除外されたフォルダーやファイルにあるコンテンツはそのまま残ります。
+
+- **バックアップ ファイルの閲覧を考慮する**: バックアップに関連する Zip ファイルと XML ファイルを解凍して閲覧すれば、バックアップの中身にアクセスできます。この方法なら、実際にアプリやサイトの復元を行わずにコンテンツを確認できます。
+
+- **バックアップ先のファイアウォールを考慮する**: ストレージ アカウントでファイアウォールが有効になっている場合、そのストレージ アカウントをバックアップ先として使うことはできません。

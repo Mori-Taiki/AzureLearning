@@ -1,40 +1,40 @@
-[Azure Application Insights](/azure/azure-monitor/app/app-insights-overview) is a feature of Azure Monitor that lets you monitor your live applications. You can integrate Application Insights with your App Service configure to automatically detect performance anomalies in your apps. 
+[Azure Application Insights](/azure/azure-monitor/app/app-insights-overview) は、稼働中のアプリケーションを監視できる Azure Monitor の機能です。Application Insights を App Service の構成に統合すると、アプリのパフォーマンスの異常を自動的に検出できます。
 
-Application Insights is designed to help you continuously improve the performance and usability of your apps. The feature offers powerful analytics tools to help you diagnose issues and understand what users actually do with your apps.
+Application Insights は、アプリのパフォーマンスとユーザビリティを継続的に改善していけるように設計されています。問題の診断や、ユーザーがアプリで実際に何をしているのかの把握に役立つ、強力な分析ツールを備えています。
 
-:::image type="content" source="../media/app-insights-16629887.png" alt-text="Diagram that shows Azure Application Insights receiving information from web pages, client apps, and web services, which is transferred to Alerts, Power BI, and Visual Studio." border="false":::
+:::image type="content" source="../media/app-insights-16629887.png" alt-text="Azure Application Insights が Web ページ、クライアント アプリ、Web サービスから情報を受け取り、それがアラート、Power BI、Visual Studio に転送される様子を示す図。" border="false":::
 
-### Things to know about Application Insights
+### Application Insights について知っておくべきこと
 
-Let's examine some characteristics of Application Insights for Azure Monitor.
+Azure Monitor の Application Insights の特徴を確認しましょう。
 
-- Application Insights works on various platforms including .NET, Node.js, and Java EE.
+- Application Insights は、.NET、Node.js、Java EE など、さまざまなプラットフォームで動作します。
 
-- The feature can be used for configurations that are hosted on-premises, in a hybrid environment, or in any public cloud.
+- オンプレミス、ハイブリッド環境、任意のパブリック クラウドでホストされている構成にも使えます。
 
-- Application Insights integrates with your Azure Pipeline processes, and has connection points to many development tools.
+- Application Insights は Azure Pipelines のプロセスと統合でき、多くの開発ツールとの接続ポイントを持っています。
 
-### Things to consider when using Application Insights
+### Application Insights を使う際に考慮すべきこと
 
-Application Insights is ideal for supporting your development team. The feature helps developers understand how your app is performing and how it's being used. Consider monitoring the following items in your App Service configuration scenario.
+Application Insights は開発チームの支援に最適です。アプリのパフォーマンスや利用のされ方を開発者が理解するのに役立ちます。App Service の構成シナリオでは、次の項目の監視を検討してください。
 
-- **Consider Request rates, response times, and failure rates**. Find out which pages are most popular, at what times of day, and where your users are. See which pages perform best. If your response times and failure rates go high when there are more requests, then perhaps you have a resourcing problem.
+- **リクエスト レート、応答時間、エラー率を考慮する**: どのページが、1 日のどの時間帯に人気で、ユーザーがどこにいるのかを把握できます。どのページのパフォーマンスが最も良いかも確認できます。リクエストが増えたときに応答時間とエラー率が上がるなら、リソース不足の問題があるのかもしれません。
 
-- **Consider Dependency rates, response times, and failure rates**. Use Application Insights to discover if external services are degrading your app performance.
+- **依存関係のレート、応答時間、エラー率を考慮する**: Application Insights を使えば、外部サービスがアプリのパフォーマンスを低下させていないかを調べられます。
 
-- **Consider Exceptions**. Analyze the aggregated statistics, or pick specific instances and drill into the stack trace and related requests. Both server and browser exceptions are reported.
+- **例外を考慮する**: 集計された統計を分析することも、特定のインスタンスを選んでスタック トレースや関連リクエストを掘り下げることもできます。サーバーとブラウザーの両方の例外が報告されます。
 
-- **Consider Page views and load performance**. Collect the number of page views reported by your users' browsers and analyze the load performance.
+- **ページ ビューと読み込みパフォーマンスを考慮する**: ユーザーのブラウザーから報告されるページ ビュー数を収集し、読み込みパフォーマンスを分析できます。
 
-- **Consider User and session counts**. Application Insights can help you keep track of the number of users and sessions connected to your app.
+- **ユーザー数とセッション数を考慮する**: Application Insights は、アプリに接続しているユーザー数とセッション数の追跡に役立ちます。
 
-- **Consider Performance counters**. Add Application Insights performance counters from your Windows or Linux server machines. Monitor performance output for the CPU, memory, network usage, and so on.
+- **パフォーマンス カウンターを考慮する**: Windows または Linux のサーバー マシンから Application Insights のパフォーマンス カウンターを追加できます。CPU、メモリ、ネットワーク使用量などのパフォーマンスを監視できます。
 
-- **Consider Host diagnostics**. Integrate diagnostics from Docker or Azure into your app Application Insights.
+- **ホストの診断を考慮する**: Docker や Azure の診断情報をアプリの Application Insights に統合できます。
 
-- **Consider Diagnostic trace logs**. Implement trace logs from your app to help correlate trace events with requests and diagnose issues.
+- **診断トレース ログを考慮する**: アプリからのトレース ログを実装すると、トレース イベントとリクエストを関連付けて問題を診断するのに役立ちます。
 
-- **Consider Custom events and metrics**. Write your own custom events and metric tracking algorithms as client or server code. Track business events such as number of items sold, or number of games won.
+- **カスタム イベントとメトリックを考慮する**: クライアントまたはサーバーのコードとして、独自のカスタム イベントとメトリックの追跡ロジックを書けます。販売した商品数や勝利したゲーム数など、ビジネス上のイベントを追跡できます。
 
 > [!TIP]
-> Consider extending your learning with the [*Troubleshoot solutions by using Application Insights*](/training/paths/az-204-instrument-solutions-support-monitoring-logging/) training module. 
+> 「[*Application Insights を使用してソリューションをトラブルシューティングする*](/training/paths/az-204-instrument-solutions-support-monitoring-logging/)」トレーニング モジュールで学びを広げることをお勧めします。
