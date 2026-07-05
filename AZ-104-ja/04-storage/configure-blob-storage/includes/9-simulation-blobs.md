@@ -1,21 +1,20 @@
-## Exercise scenario
+## 演習のシナリオ
 
-The company website supplies product images, videos, marketing literature, and customer success stories. Customers are located worldwide and demand is rapidly expanding. The content is mission-critical and requires low latency load times. It’s important to keep track of the document versions and to quickly restore documents if they’re deleted.
+会社の Web サイトでは、製品画像、ビデオ、マーケティング資料、顧客の成功事例を提供しています。顧客は世界中におり、需要は急速に拡大しています。コンテンツはミッション クリティカルで、低遅延の読み込み時間が求められます。ドキュメントのバージョンを追跡し、削除された場合には素早く復元できることが重要です。
 
-## Job skills
+## 実践するスキル
 
-- Create a storage account with high availability.
-- Ensure the storage account has anonymous public access.
-- Create a blob storage container for the website documents.
-- Enable soft delete so files can be easily restored.
-- Enable blob versioning.
+- 高可用性を備えたストレージ アカウントを作成する。
+- ストレージ アカウントで匿名のパブリック アクセスが有効なことを確認する。
+- Web サイトのドキュメント用に BLOB ストレージ コンテナーを作成する。
+- ファイルを簡単に復元できるように、論理的な削除を有効にする。
+- BLOB のバージョン管理を有効にする。
 
 > [!NOTE]
-> Estimated time: 30 minutes. 
-> To complete this exercise, you need an [Azure subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+> 想定時間: 30 分。
+> この演習を完了するには、[Azure サブスクリプション](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)が必要です。
 
-Launch the exercise, and follow the instructions. When finished, be sure to return to this page so you can continue learning.
+演習を起動して、指示に従ってください。完了したら、学習を続けられるよう、必ずこのページに戻ってきてください。
 
 
-[![Button to launch exercise.](../media/launch-exercise.png)](https://microsoftlearning.github.io/Secure-storage-for-Azure-Files-and-Azure-Blob-Storage/Instructions/Labs/LAB_02a_storage_public_website.html)
-
+[![演習を起動するボタン。](../media/launch-exercise.png)](https://microsoftlearning.github.io/Secure-storage-for-Azure-Files-and-Azure-Blob-Storage/Instructions/Labs/LAB_02a_storage_public_website.html)

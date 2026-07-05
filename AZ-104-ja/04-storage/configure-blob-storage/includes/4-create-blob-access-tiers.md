@@ -1,38 +1,36 @@
-Azure Storage supports several [access tiers](/azure/storage/blobs/access-tiers-overview) for blob data. These tiers include Hot, Cool, Cold, and Archive. Each access tier is optimized to support a particular pattern of data usage.
+Azure Storage は、BLOB データに対して複数の[アクセス層](/azure/storage/blobs/access-tiers-overview)をサポートします。アクセス層には、ホット、クール、コールド、アーカイブがあります。各アクセス層は、特定のデータ利用パターンに合わせて最適化されています。
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=eb34696d-bdbd-4892-a2e9-6f0e1c46904b]
 
-### Things to know about blob access tiers
+### BLOB のアクセス層について知っておくべきこと
 
-Let's examine characteristics of the blob access tiers.
+BLOB のアクセス層の特徴を見ていきましょう。
 
-#### Hot tier
+#### ホット層
 
-The Hot tier is optimized for frequent reads and writes of objects in the Azure storage account. A good usage case is data that is actively being processed. The hot tier has the highest storage costs, but the lowest access costs.
+ホット層は、Azure ストレージ アカウント内のオブジェクトの頻繁な読み取りと書き込みに最適化されています。活発に処理されているデータが良い利用例です。ホット層はストレージ コストが最も高い一方、アクセス コストは最も低くなります。
 
-#### Cool tier
+#### クール層
 
-The Cool tier is optimized for storing large amounts of infrequently accessed data. This tier is intended for data that remains in the Cool tier for at least 30 days. A usage case for the Cool tier is short-term backup and disaster recovery datasets and older media content. This content shouldn't be viewed frequently, but it needs to be immediately available. Storing data in the Cool tier is more cost-effective. The cool tier has lower storage costs and higher access costs compared to the hot tier.
+クール層は、アクセス頻度の低い大量のデータの保存に最適化されています。この層は、少なくとも 30 日間クール層にとどまるデータを想定しています。クール層の利用例には、短期のバックアップや災害復旧のデータセット、古いメディア コンテンツがあります。頻繁に閲覧されるべきではないものの、すぐに利用できる必要があるコンテンツです。クール層へのデータ保存はコスト効率に優れています。クール層は、ホット層と比べてストレージ コストが低く、アクセス コストが高くなります。
 
-#### Cold tier
+#### コールド層
 
-The Cold tier is also optimized for storing large amounts of infrequently accessed data. This tier is intended for data that can remain in the tier for at least 90 days. The cold tier has lower storage costs and higher access costs compared to the cool tier.
+コールド層も、アクセス頻度の低い大量のデータの保存に最適化されています。この層は、少なくとも 90 日間この層にとどまれるデータを想定しています。コールド層は、クール層と比べてストレージ コストが低く、アクセス コストが高くなります。
 
-#### Archive tier
+#### アーカイブ層
 
-The Archive tier is an offline tier that's optimized for data that can tolerate several hours of retrieval latency. Data must remain in the Archive tier for at least 180 days or be subject to an early deletion charge. Data for the Archive tier includes secondary backups, original raw data, and legally required compliance information. This tier is the most cost-effective option for storing data. Accessing data is more expensive in the Archive tier than accessing data in the other tiers. 
+アーカイブ層は、数時間の取得遅延を許容できるデータに最適化されたオフラインの層です。データは少なくとも 180 日間アーカイブ層にとどまる必要があり、それより早く削除すると早期削除料金がかかります。アーカイブ層向けのデータには、二次バックアップ、元の生データ、法的に必要なコンプライアンス情報が含まれます。この層は、データ保存の選択肢として最もコスト効率に優れています。データへのアクセスは、他の層に比べてアーカイブ層のほうが高くつきます。
 
-To access the blob's content, you can rehydrate it to the hot, cool, or cold tier using two methods: **Copy Blob** (recommended - creates a new blob in an online tier) or **Set Blob Tier** (changes tier in place). Both methods support Standard priority (up to 15 hours) or High priority (within 1 hour for objects under 10 GB, at higher cost). Use High priority for urgent data retrieval in disaster recovery scenarios.
+BLOB の内容にアクセスするには、2 つの方法でホット、クール、またはコールド層にリハイドレートします。**Copy Blob** (推奨 - オンライン層に新しい BLOB を作成) または **Set Blob Tier** (その場で層を変更) です。どちらの方法も、Standard 優先度 (最大 15 時間) と High 優先度 (10 GB 未満のオブジェクトなら 1 時間以内、ただし高コスト) をサポートします。災害復旧のシナリオで緊急にデータを取得するには、High 優先度を使ってください。
 
-### Compare access tiers
+### アクセス層を比較する
 
-The access options for Azure Blob Storage offer a range of features and support levels to help you optimize your storage costs. As you compare the features and support, think about which access options can best support your application needs.
+Azure Blob Storage のアクセスの選択肢は、ストレージ コストの最適化に役立つ、さまざまな機能とサポート レベルを提供します。機能とサポートを比較しながら、どのアクセスの選択肢がアプリケーションのニーズを最もよく支えられるか考えてみてください。
 
-| Comparison | Hot access tier | Cool access tier | Cold access tier | Archive access tier |
+| 比較項目 | ホット アクセス層 | クール アクセス層 | コールド アクセス層 | アーカイブ アクセス層 |
 | --- | --- | --- | --- | ---|
-| **Availability** | 99.9% | 99% | 99% | 99% |
-| **Availability (RA-GRS reads)** | 99.99%  | 99.9% | 99.9% | 99.9%  |
-| **Latency (time to first byte)** | milliseconds | milliseconds | milliseconds | hours |
-| **Minimum storage duration** | N/A | 30 days | 90 days | 180 days |
-
-
+| **可用性** | 99.9% | 99% | 99% | 99% |
+| **可用性 (RA-GRS 読み取り)** | 99.99%  | 99.9% | 99.9% | 99.9%  |
+| **待機時間 (最初のバイトまでの時間)** | ミリ秒 | ミリ秒 | ミリ秒 | 時間単位 |
+| **最小保存期間** | なし | 30 日 | 90 日 | 180 日 |

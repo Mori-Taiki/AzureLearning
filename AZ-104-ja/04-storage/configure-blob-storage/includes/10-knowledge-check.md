@@ -1,7 +1,7 @@
 
 
-Your organization has an extensive video library. Users access the library thousands of times a day. You're configuring Azure Blob Storage for the video data. The admin team asks for guidance about the supported access tiers and object replication for failover. The executive team wants an implementation that can help reduce cost and improve performance.
+あなたの組織には膨大なビデオ ライブラリがあります。ユーザーは 1 日に何千回もライブラリにアクセスします。あなたは、このビデオ データのために Azure Blob Storage を構成しています。管理チームは、サポートされるアクセス層と、フェールオーバーのためのオブジェクト レプリケーションについての指針を求めています。経営陣は、コストの削減とパフォーマンスの向上につながる実装を望んでいます。
 
-### Answer the following questions
+### 次の質問に答えてください
 
-Choose the best response for each question. 
+各質問に対して最も適切な回答を選んでください。

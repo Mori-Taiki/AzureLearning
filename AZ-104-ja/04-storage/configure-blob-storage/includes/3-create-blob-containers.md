@@ -1,40 +1,35 @@
-Azure Blob Storage uses a container resource to group a set of blobs. A blob can't exist by itself in Blob Storage. A blob must be stored in a container resource.
+Azure Blob Storage は、一連の BLOB をグループ化するためにコンテナー リソースを使います。BLOB は、Blob Storage 内に単独では存在できません。BLOB は必ずコンテナー リソースに保存する必要があります。
 
-### Things to know about containers and blobs
+### コンテナーと BLOB について知っておくべきこと
 
-Let's look at the configuration characteristics of containers and blobs.
+コンテナーと BLOB の構成上の特徴を見てみましょう。
 
-- All blobs must be in a container.
+- すべての BLOB はコンテナー内になければなりません。
 
-- Containers organize your blob storage. 
+- コンテナーは BLOB ストレージを整理します。
 
-- A container can store an unlimited number of blobs.
+- 1 つのコンテナーには無制限の数の BLOB を保存できます。
 
-- An Azure storage account can contain an unlimited number of containers.
+- 1 つの Azure ストレージ アカウントには無制限の数のコンテナーを含められます。
 
-- You must create a storage container before you can begin to upload data.
+- データのアップロードを始める前に、ストレージ コンテナーを作成しておく必要があります。
 
-### Configure a container
+### コンテナーを構成する
 
-In the Azure portal, you configure settings to create a container for an Azure storage account. As you review these details, consider how you might organize containers in your storage account.
+Azure portal で、Azure ストレージ アカウントのコンテナーを作成する設定を構成します。詳細を確認しながら、自分のストレージ アカウントでコンテナーをどう整理するか考えてみてください。
 
-:::image type="content" source="../media/blob-containers-a243a2b9.png" alt-text="Screenshot that shows the container creation page and the public access level choices in the Azure portal." border="false":::
+:::image type="content" source="../media/blob-containers-a243a2b9.png" alt-text="Azure portal のコンテナー作成ページと、パブリック アクセス レベルの選択肢を示すスクリーンショット。" border="false":::
 
-- **Name**: Enter a name for your container. The name must be unique within the Azure storage account.
-   - The name can contain only lowercase letters, numbers, and hyphens.
-   - The name must begin with a letter or a number.
-   - The minimum length for the name is three characters.
-   - The maximum length for the name is 63 characters.
+- **名前**: コンテナーの名前を入力します。名前は Azure ストレージ アカウント内で一意である必要があります。
+   - 名前に使えるのは、小文字、数字、ハイフンだけです。
+   - 名前は文字または数字で始まる必要があります。
+   - 名前の最小長は 3 文字です。
+   - 名前の最大長は 63 文字です。
 
-- **Public access level**: The access level specifies whether the container and its blobs can be accessed publicly. By default, container data is private and visible only to the account owner. There are three access level choices:
-   - **Private**: (Default) Prohibit anonymous access to the container and blobs.  
-   - **Blob**: Allow anonymous public read access for the blobs only.
-   - **Container**: Allow anonymous public read and list access to the entire container, including the blobs.
+- **パブリック アクセス レベル**: アクセス レベルは、コンテナーとその BLOB にパブリックにアクセスできるかどうかを指定します。既定では、コンテナーのデータはプライベートで、アカウントの所有者だけが見られます。アクセス レベルには 3 つの選択肢があります。
+   - **プライベート**: (既定) コンテナーと BLOB への匿名アクセスを禁止します。
+   - **BLOB**: BLOB のみへの匿名のパブリック読み取りアクセスを許可します。
+   - **コンテナー**: BLOB を含むコンテナー全体への、匿名のパブリックな読み取りと一覧表示のアクセスを許可します。
 
 > [!IMPORTANT]
-> The Blob and Container access levels have no effect unless the storage account's **Allow Blob anonymous access** setting is enabled. When disabled, all containers remain private regardless of their individual access level settings. Microsoft recommends keeping anonymous access disabled at the account level unless serving public content scenarios.
-
-
-
-
-
+> BLOB とコンテナーのアクセス レベルは、ストレージ アカウントの **[BLOB 匿名アクセスを許可する]** 設定が有効になっていない限り効果がありません。無効の場合、個々のアクセス レベル設定にかかわらず、すべてのコンテナーはプライベートのままです。Microsoft は、パブリック コンテンツを配信するシナリオでない限り、アカウント レベルで匿名アクセスを無効にしておくことを推奨しています。

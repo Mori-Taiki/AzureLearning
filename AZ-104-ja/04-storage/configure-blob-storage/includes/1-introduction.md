@@ -1,32 +1,32 @@
-Azure Blob Storage is an AI-ready service for storing large amounts of unstructured object data. Unstructured data is data that doesn't adhere to a particular data model or definition, such as text or binary data. 
+Azure Blob Storage は、大量の非構造化オブジェクト データを保存するための AI 対応サービスです。非構造化データとは、テキストやバイナリ データのように、特定のデータ モデルや定義に従わないデータのことです。
 
-In this module, your media company has an extensive library of video clips that are accessed thousands of times a day. The company relies on you to configure Blob Storage for the video data. You plan to use access tiers to reduce cost and improve performance. You're developing a lifecycle management strategy for the older videos. Your plan also includes configuring object replication for failover.
+このモジュールでは、あなたのメディア企業には、1 日に何千回もアクセスされる膨大なビデオ クリップのライブラリがあります。会社は、このビデオ データのための Blob Storage の構成をあなたに任せています。あなたは、コストを削減しパフォーマンスを高めるためにアクセス層を使う計画です。古いビデオのライフサイクル管理戦略も練っています。計画には、フェールオーバーのためのオブジェクト レプリケーションの構成も含まれます。
 
-## Learning objectives
+## 学習の目標
 
-In this module, you will:
+このモジュールでは、次のことを行います。
 
-- Understand the purpose and benefits of Azure Blob Storage.
-- Create and configure Azure Blob Storage accounts.
-- Manage containers and blobs within Azure Blob Storage.
-- Optimize blob storage performance and scalability.
-- Implement lifecycle management policies to automate data movement and deletion.
-- Determine the best pricing plans for your Azure Blob Storage. 
+- Azure Blob Storage の目的と利点を理解する。
+- Azure Blob Storage のアカウントを作成して構成する。
+- Azure Blob Storage 内のコンテナーと BLOB を管理する。
+- BLOB ストレージのパフォーマンスとスケーラビリティを最適化する。
+- ライフサイクル管理ポリシーを実装して、データの移動と削除を自動化する。
+- Azure Blob Storage に最適な価格プランを見極める。
 
-## Skills measured
+## 評価されるスキル
 
-The content in the module helps you prepare for [Exam AZ-104: Microsoft Azure Administrator](/credentials/certifications/resources/study-guides/az-104). 
+このモジュールの内容は、[試験 AZ-104: Microsoft Azure Administrator](/credentials/certifications/resources/study-guides/az-104) の準備に役立ちます。
 
-## Prerequisites
+## 前提条件
 
-Here are some common prerequisites that can be beneficial for understanding and successfully completing this module. 
+このモジュールの理解と修了に役立つ、一般的な前提知識を挙げます。
 
-- Basic understanding of cloud computing: Familiarity with cloud computing concepts, such as virtualization, scalability, and pay-as-you-go pricing models, can provide a foundation for understanding how Azure Blob Storage fits into the broader cloud ecosystem.
+- クラウド コンピューティングの基本的な理解: 仮想化、スケーラビリティ、従量課金の価格モデルといったクラウド コンピューティングの概念に馴染みがあると、Azure Blob Storage がクラウド エコシステム全体のどこに位置するのかを理解する土台になります。
 
-- Knowledge of Azure fundamentals: Having a basic understanding of Microsoft Azure services and concepts, such as Azure Resource Manager, Azure Storage Accounts, and Azure Virtual Networks, can help you navigate and configure blob storage effectively.
+- Azure の基礎知識: Azure Resource Manager、Azure ストレージ アカウント、Azure 仮想ネットワークなど、Microsoft Azure のサービスと概念を基本的に理解していると、BLOB ストレージの操作と構成を効果的に行えます。
 
-- Understand fundamental storage concepts like file systems, directories, files, and data replication can be beneficial when working with blob storage.
+- ファイル システム、ディレクトリ、ファイル、データ レプリケーションといった基本的なストレージの概念を理解していると、BLOB ストレージを扱う際に役立ちます。
 
-- Experience with Azure portal or Azure CLI: Familiarity with the Azure portal (web-based management interface) or Azure CLI (command-line interface) can help you navigate and configure blob storage resources efficiently.
+- Azure portal または Azure CLI の使用経験: Azure portal (Web ベースの管理インターフェイス) または Azure CLI (コマンドライン インターフェイス) に馴染みがあると、BLOB ストレージのリソースを効率的に操作・構成できます。
 
-- Basic programming or scripting skills: While not always required, having some knowledge of programming or scripting languages like PowerShell or Python can be advantageous when automating blob storage configuration tasks.
+- 基本的なプログラミングまたはスクリプトのスキル: 必須ではありませんが、PowerShell や Python などのプログラミング言語・スクリプト言語の知識があると、BLOB ストレージの構成タスクを自動化する際に有利です。

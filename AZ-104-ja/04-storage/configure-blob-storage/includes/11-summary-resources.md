@@ -1,27 +1,27 @@
-In this module, you learned about Azure Blob Storage and how to configure it. You discovered that Blob Storage is Microsoft's object storage solution for the cloud. You learned Azure blob storage is optimized for storing massive amounts of unstructured data like text or binary files. You explored the features of Blob Storage and its use cases. You also learned how to configure Blob Storage, including choosing the appropriate access tiers to reduce cost and improve performance. And, you learned about creating a lifecycle management strategy, and configuring object replication for failover.
+このモジュールでは、Azure Blob Storage とその構成方法を学びました。Blob Storage が、クラウド向けの Microsoft のオブジェクト ストレージ ソリューションであることを確認しました。Azure Blob Storage は、テキストやバイナリ ファイルといった膨大な量の非構造化データの保存に最適化されていることも学びました。Blob Storage の機能と利用ケースを確認し、コストを削減してパフォーマンスを向上させる適切なアクセス層の選択を含めて、Blob Storage の構成方法を学びました。また、ライフサイクル管理戦略の作成と、フェールオーバーのためのオブジェクト レプリケーションの構成についても学びました。
 
-**The main takeaways from this module are:**
-- Azure Blob Storage is a powerful solution for storing unstructured data in the cloud, such as text documents, images, and videos.
-- Blob Storage offers different access tiers (Hot, Cool, Cold, and Archive) to optimize performance and cost based on the usage patterns of your data.
-- You can configure lifecycle management policies to automatically transition data between access tiers and set expiration times for data.
-- Object replication allows you to asynchronously copy blobs between containers in different regions, providing redundancy and reducing latency for read requests.
+**このモジュールの要点は次のとおりです。**
+- Azure Blob Storage は、テキスト ドキュメント、画像、ビデオなど、非構造化データをクラウドに保存するための強力なソリューションです。
+- Blob Storage には、データの利用パターンに基づいてパフォーマンスとコストを最適化するためのアクセス層 (ホット、クール、コールド、アーカイブ) があります。
+- ライフサイクル管理ポリシーを構成すると、アクセス層間でのデータの自動移行や、データの有効期限の設定ができます。
+- オブジェクト レプリケーションを使うと、異なるリージョンのコンテナー間で BLOB を非同期にコピーでき、冗長性の確保と読み取りリクエストの遅延削減が実現します。
 
-## Learn more with Copilot
+## Copilot でさらに学ぶ
 
-Copilot can assist you in configuring Azure infrastructure solutions. Copilot can compare, recommend, explain, and research products and services where you need more information. Open a Microsoft Edge browser and choose Copilot (top right) or navigate to copilot.microsoft.com. Take a few minutes to try these prompts and extend your learning with Copilot.
+Copilot は、Azure インフラストラクチャ ソリューションの構成を支援してくれます。より詳しい情報が必要な製品やサービスについて、Copilot に比較、推奨、解説、調査を頼めます。Microsoft Edge ブラウザーを開いて右上の Copilot を選ぶか、copilot.microsoft.com にアクセスしてください。少し時間を取って次のプロンプトを試し、Copilot で学びを深めましょう。
 
 - What are common administration tasks associated with Azure blob storage?
 
 - How is Azure blob storage priced?
 
-## Learn more with Azure documentation
+## Azure ドキュメントでさらに学ぶ
 
-- [Azure Blob Storage documentation](/azure/storage/blobs/) - Microsoft Azure's official documentation provides comprehensive information on configuring and managing blob storage. You can find detailed guides, tutorials, and examples to help you navigate through different aspects of blob storage configuration.  
+- [Azure Blob Storage のドキュメント](/azure/storage/blobs/) - Microsoft Azure の公式ドキュメントには、BLOB ストレージの構成と管理に関する包括的な情報があります。BLOB ストレージの構成のさまざまな側面を進めるのに役立つ、詳細なガイド、チュートリアル、例が見つかります。
 
-- [Azure Blob Storage Concepts](/azure/storage/blobs/storage-blobs-introduction) - This article provides an overview of the key concepts related to Azure Blob Storage, including storage accounts, containers, and blobs. It explains how to create and manage these entities and covers various configuration options. 
+- [Azure Blob Storage の概念](/azure/storage/blobs/storage-blobs-introduction) - ストレージ アカウント、コンテナー、BLOB など、Azure Blob Storage に関連する主要な概念の概要を示す記事です。これらのエンティティの作成と管理の方法を説明し、さまざまな構成オプションを扱います。
 
-- [Azure Blob Storage Security](/azure/storage/blobs/security-recommendations) - Understanding the security aspects of blob storage is crucial for proper configuration. This article explores authentication, authorization, and encryption options available in Azure Blob Storage. It also covers best practices for securing your blob storage resources. 
+- [Azure Blob Storage のセキュリティ](/azure/storage/blobs/security-recommendations) - BLOB ストレージのセキュリティ面の理解は、適切な構成に不可欠です。この記事では、Azure Blob Storage で利用できる認証、認可、暗号化の選択肢を探ります。BLOB ストレージのリソースを保護するベスト プラクティスも扱います。
 
-- [Azure Blob Storage Performance and Scalability](/azure/storage/blobs/scalability-targets) - This article delves into performance considerations when configuring blob storage. The module covers the storage account type, and optimizing data transfer.
+- [Azure Blob Storage のパフォーマンスとスケーラビリティ](/azure/storage/blobs/scalability-targets) - BLOB ストレージを構成する際のパフォーマンスの考慮事項を掘り下げる記事です。ストレージ アカウントの種類や、データ転送の最適化を扱います。
 
-- [Azure Blob Storage Lifecycle Management](/azure/storage/blobs/storage-lifecycle-management-concepts) - Blob storage lifecycle management allows you to automate the movement and deletion of data based on predefined rules. This article explains how to configure and manage lifecycle policies to optimize storage costs and improve data management. 
+- [Azure Blob Storage のライフサイクル管理](/azure/storage/blobs/storage-lifecycle-management-concepts) - BLOB ストレージのライフサイクル管理を使うと、あらかじめ定義したルールに基づいてデータの移動と削除を自動化できます。この記事では、ストレージ コストを最適化しデータ管理を改善するための、ライフサイクル ポリシーの構成と管理の方法を説明します。

@@ -1,35 +1,33 @@
-[Object replication](/azure/storage/blobs/object-replication-overview) copies blobs in a container asynchronously according to policy rules that you configure. 
+[オブジェクト レプリケーション](/azure/storage/blobs/object-replication-overview)は、構成したポリシー ルールに従って、コンテナー内の BLOB を非同期でコピーします。
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=b7e01208-33ae-4488-83a1-6a29ca6624d4]
 
-Replication includes the blob content, metadata properties, and versions. The following illustration shows an example of asynchronous replication of blob containers between regions.
+レプリケーションには、BLOB のコンテンツ、メタデータ プロパティ、バージョンが含まれます。次の図は、リージョン間での BLOB コンテナーの非同期レプリケーションの例を示しています。
 
-:::image type="content" source="../media/blob-object-replication-21fd3c07.png" alt-text="Diagram that shows asynchronous replication of blob containers between regions." border="false":::
+:::image type="content" source="../media/blob-object-replication-21fd3c07.png" alt-text="リージョン間での BLOB コンテナーの非同期レプリケーションを示す図。" border="false":::
 
-### Things to know about blob object replication
+### BLOB のオブジェクト レプリケーションについて知っておくべきこと
 
-There are several considerations to keep in mind when planning your configuration for blob object replication.
+BLOB のオブジェクト レプリケーションの構成を計画する際には、いくつか念頭に置くべきことがあります。
 
-- Object replication requires that [Blob versioning](/azure/storage/blobs/versioning-overview) is enabled on both the source and destination accounts. When blob versioning is enabled, you can access earlier versions of a blob. This access lets you recover your modified or deleted data.
+- オブジェクト レプリケーションには、ソースとレプリケート先の両方のアカウントで [BLOB のバージョン管理](/azure/storage/blobs/versioning-overview)が有効になっている必要があります。BLOB のバージョン管理が有効なら、BLOB の以前のバージョンにアクセスできます。このアクセスにより、変更または削除されたデータを復元できます。
 
-- Object replication doesn't support blob snapshots. Any snapshots on a blob in the source account aren't replicated to the destination account.
+- オブジェクト レプリケーションは BLOB スナップショットをサポートしません。ソース アカウントの BLOB にあるスナップショットは、レプリケート先アカウントにはレプリケートされません。
 
-- Object replication is supported when the source and destination accounts are in the Hot, Cool, or Cold tier. The source and destination accounts can be in different tiers.
+- オブジェクト レプリケーションは、ソースとレプリケート先のアカウントがホット、クール、またはコールド層にある場合にサポートされます。ソースとレプリケート先のアカウントは異なる層でもかまいません。
 
-- When you configure object replication, you create a replication policy that specifies the source Azure storage account and the destination storage account.
+- オブジェクト レプリケーションを構成する際には、ソースの Azure ストレージ アカウントとレプリケート先のストレージ アカウントを指定するレプリケーション ポリシーを作成します。
 
-- A replication policy includes one or more rules that specify a source container and a destination container. The policy identifies the blobs in the source container to replicate.
+- レプリケーション ポリシーには、ソース コンテナーとレプリケート先コンテナーを指定する 1 つ以上のルールが含まれます。ポリシーは、ソース コンテナー内のレプリケート対象の BLOB を特定します。
 
-### Things to consider when configuring blob object replication
+### BLOB のオブジェクト レプリケーションを構成する際に考慮すべきこと
 
-There are many benefits to using blob object replication. Consider the following scenarios and think about how replication can be a part of your Blob Storage strategy.
+BLOB のオブジェクト レプリケーションには多くの利点があります。次のシナリオを検討し、レプリケーションを自分の Blob Storage 戦略にどう組み込めるか考えてみてください。
 
-- **Consider latency reductions**. Minimize latency with blob object replication. You can reduce latency for read requests by enabling clients to consume data from a region that's in closer physical proximity.
+- **遅延の削減を考慮する**: BLOB のオブジェクト レプリケーションで遅延を最小化できます。クライアントが物理的により近いリージョンからデータを利用できるようにすることで、読み取りリクエストの遅延を減らせます。
 
-- **Consider efficiency for compute workloads**. Improve efficiency for compute workloads by using blob object replication. With object replication, compute workloads can process the same sets of blobs in different regions.
+- **コンピューティング ワークロードの効率を考慮する**: BLOB のオブジェクト レプリケーションを使って、コンピューティング ワークロードの効率を高められます。オブジェクト レプリケーションにより、コンピューティング ワークロードは異なるリージョンで同じ BLOB のセットを処理できます。
 
-- **Consider data distribution**. Optimize your configuration for data distribution. You can process or analyze data in a single location and then replicate only the results to other regions.
+- **データの配布を考慮する**: データ配布のための構成を最適化できます。1 か所でデータの処理や分析を行い、結果だけを他のリージョンにレプリケートできます。
 
-- **Consider costs benefits**. Manage your configuration and optimize your storage policies. After your data is replicated, you can reduce costs by moving the data to the Archive tier by using lifecycle management policies.
-
-
+- **コスト面の利点を考慮する**: 構成を管理し、ストレージ ポリシーを最適化できます。データのレプリケート後、ライフサイクル管理ポリシーでデータをアーカイブ層に移せば、コストを削減できます。

@@ -1,26 +1,26 @@
-Understanding your access patterns and correlating them with your durability and availability needs helps you to best manage your Azure Blob Storage costs. The primary tool for estimating these costs is the Azure pricing calculator. The pricing tool can calculate migration, monthly estimates, and future pricing estimates based on the workload-driven input that you specify. In general, the cost of block blob storage depends on:
+自分のアクセス パターンを把握し、持続性と可用性のニーズと突き合わせることが、Azure Blob Storage のコストを最適に管理する近道です。これらのコストを見積もる主要なツールは Azure 料金計算ツールです。この価格ツールは、指定したワークロード ベースの入力に基づいて、移行費用、月次見積もり、将来の価格見積もりを計算できます。一般的に、ブロック BLOB ストレージのコストは次の要素で決まります。
 
-- Volume of data stored per month.
-- Quantity and types of operations performed, along with any data transfer costs.
-- Data redundancy option selected.
+- 月あたりの保存データ量。
+- 実行する操作の量と種類、およびデータ転送コスト。
+- 選択したデータ冗長性の選択肢。
 
-You can use the Azure Pricing Calculator to estimate your storage costs.
+Azure 料金計算ツールを使って、ストレージ コストを見積もれます。
 
-:::image type="content" source="../media/blob-pricing.png" alt-text="Screenshot of the Azure Pricing Calculator with storage highlighted." border="false":::
+:::image type="content" source="../media/blob-pricing.png" alt-text="ストレージが強調表示された Azure 料金計算ツールのスクリーンショット。" border="false":::
 
 
-### Things to know about pricing for Blob Storage
+### Blob Storage の価格について知っておくべきこと
 
-Review the following billing considerations for an Azure storage account and Blob Storage.
+Azure ストレージ アカウントと Blob Storage の課金に関する考慮事項を確認しましょう。
 
-- **Performance tiers**. The Blob Storage tier determines the amount of data stored and the cost for storing that data. As the performance tier gets cooler, the per-gigabyte cost decreases.
+- **パフォーマンス層**: Blob Storage の層によって、保存されるデータの量と、その保存コストが決まります。パフォーマンス層がコールドになるほど、GB あたりのコストは下がります。
 
-- **Data access costs**. Data access charges increase as the tier gets cooler. For data in the Cool, Cold, and Archive tiers, you're billed a per-gigabyte data access charge for read actions.
+- **データ アクセス コスト**: データ アクセスの料金は、層がコールドになるほど上がります。クール、コールド、アーカイブの各層のデータでは、読み取り操作に対して GB あたりのデータ アクセス料金が課金されます。
 
-- **Transaction costs**. There's a per-transaction charge for all tiers. The charge increases as the tier gets cooler.
+- **トランザクション コスト**: すべての層でトランザクションごとの料金がかかります。この料金は、層がコールドになるほど上がります。
 
-- **Geo-replication data transfer costs**. This charge only applies to accounts that have geo-replication configured. Geo-replication data transfer incurs a per-gigabyte charge.
+- **geo レプリケーションのデータ転送コスト**: この料金は、geo レプリケーションを構成したアカウントにのみ適用されます。geo レプリケーションのデータ転送には、GB あたりの料金がかかります。
 
-- **Outbound data transfer costs**. Outbound data transfers incur billing for bandwidth usage on a per-gigabyte basis. This billing is consistent with general-purpose Azure storage accounts.
+- **送信データ転送コスト**: 送信データ転送には、GB 単位の帯域幅使用料金がかかります。この課金は、汎用の Azure ストレージ アカウントと共通です。
 
-- **Changes to the storage tier**. If you change the account storage tier from Cool to Hot, you incur a charge equal to reading all the data existing in the storage account. Changing the account storage tier from Hot to Cool incurs a charge equal to writing all the data into the Cool tier (GPv2 accounts only).
+- **ストレージ層の変更**: アカウントのストレージ層をクールからホットに変更すると、ストレージ アカウント内の全データを読み取るのに相当する料金がかかります。ホットからクールへの変更では、全データをクール層に書き込むのに相当する料金がかかります (GPv2 アカウントのみ)。
