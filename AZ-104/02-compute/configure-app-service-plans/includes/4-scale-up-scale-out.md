@@ -1,34 +1,33 @@
-There are two methods for scaling your Azure App Service plan and applications: _scale up_ and _scale out_. You can scale your applications manually or automatically, which is referred to as _autoscale_.
+Azure App Service プランとアプリケーションのスケーリングには、「スケールアップ」と「スケールアウト」という 2 つの方法があります。アプリケーションのスケーリングは手動でも自動でも行え、自動で行うことを「自動スケール」と呼びます。
 
-Watch the following video about how to implement automatic scaling for your Azure App Service plan and applications. 
+Azure App Service プランとアプリケーションの自動スケーリングの実装方法について、次のビデオをご覧ください。
 
 > [!VIDEO https://www.youtube.com/embed/LS8ZPbQzRpc]
 
-### Things to know about Azure App Service scaling
+### Azure App Service のスケーリングについて知っておくべきこと
 
-Let's examine the details of scaling for your Azure App Service plan and App Service applications.
+Azure App Service プランと App Service アプリケーションのスケーリングの詳細を見ていきましょう。
 
-- The scale up method increases the amount of CPU, memory, and disk space. Scaling up gives you extra features like dedicated virtual machines, custom domains and certificates, staging slots, autoscaling, and more. You scale up by changing the pricing tier of the Azure App Service plan where your application is placed.
+- スケールアップは、CPU、メモリ、ディスク領域の量を増やす方法です。スケールアップすると、専用の仮想マシン、カスタム ドメインと証明書、ステージング スロット、自動スケールなどの追加機能も利用できるようになります。スケールアップは、アプリケーションが配置されている Azure App Service プランの価格レベルを変更することで行います。
 
-- The scale-out method increases the number of virtual machine instances that run your application. You can scale out to the maximum number of instances for your pricing tier. Take advantage of App Service Environments in the Isolated tier to further increase your scale-out count to 100 instances. The scale instance count can be configured manually or automatically (autoscale).
+- スケールアウトは、アプリケーションを実行する仮想マシン インスタンスの数を増やす方法です。価格レベルごとの最大インスタンス数までスケールアウトできます。Isolated レベルの App Service Environment を活用すれば、スケールアウト数をさらに 100 インスタンスまで増やせます。スケール インスタンス数は手動でも自動 (自動スケール) でも構成できます。
 
-- With autoscale, you can automatically increase the scale instance count for the scale-out method. Autoscale is based on predefined rules and schedules.
+- 自動スケールを使うと、スケールアウトのインスタンス数を自動的に増やせます。自動スケールは、あらかじめ定義したルールとスケジュールに基づいて動作します。
 
-- Your App Service plan can be scaled up and down at any time by changing the pricing tier of the plan. 
+- App Service プランは、プランの価格レベルを変更することで、いつでもスケールアップ・スケールダウンできます。
 
-### Things to consider when using Azure App Service scaling
+### Azure App Service のスケーリングで考慮すべきこと
 
-Review the following benefits of implementing scaling for your App Service plan and applications. Think about the scaling advantages for your hotel website.
+App Service プランとアプリケーションにスケーリングを実装する利点を確認しましょう。ホテルの Web サイトにとってのスケーリングの利点を考えてみてください。
 
-- **Consider manually adjusting plan tiers**. Start your plan at a lower pricing tier and scale up as needed to acquire more App Service features. Scale down when features are no longer needed, and control your overall costs.
+- **プラン レベルの手動調整を考慮する**: プランを低い価格レベルで開始し、より多くの App Service 機能が必要になったらスケールアップします。機能が不要になったらスケールダウンして、全体のコストを抑えます。
 
-   Consider a scenario where you start testing your web app by using the Azure App Service Free tier, where you pay nothing to use the service. After a while, you decide to add a custom DNS name to your web app, so you scale your plan up to the Shared tier. Next, you discover you need to create an SSL binding, so you scale your plan up to the Basic tier. Later, you determine a need for staging environments, so you scale up to the Standard tier. When you need more cores, memory, or storage, you can scale up to a bigger virtual machine size in the same tier.
+   Azure App Service の Free レベル (無料でサービスを利用可能) で Web アプリのテストを始めるシナリオを考えてみましょう。しばらくして、Web アプリにカスタム DNS 名を追加したくなったので、プランを Shared レベルにスケールアップします。次に、SSL バインドを作成する必要が出てきたので、Basic レベルにスケールアップします。その後、ステージング環境が必要だと分かったので、Standard レベルにスケールアップします。より多くのコア、メモリ、ストレージが必要になれば、同じレベル内でより大きな仮想マシン サイズにスケールアップできます。
 
-   The same scaling process works in reverse. If you decide you no longer need capabilities or features of a higher tier, scale your plan down to a lower tier and save money.
+   このスケーリングの流れは逆方向にも機能します。上位レベルの機能が不要になったと判断したら、プランを下位レベルにスケールダウンしてコストを節約できます。
 
-- **Consider autoscale to support users and reduce costs**. Keep serving your users when your application is experiencing high throughput. Implement autoscale to control how many features and support are offered at a given time based on your preference settings and rule conditions. Autoscale helps you save money when the load on your application decreases by automatically reducing your subscribed features.
+- **ユーザーを支えつつコストを抑えるために自動スケールを考慮する**: アプリケーションのスループットが高いときでも、ユーザーへのサービス提供を続けられます。自動スケールを実装すれば、好みの設定とルール条件に基づいて、その時々に提供する機能とキャパシティを制御できます。自動スケールは、アプリケーションへの負荷が下がったときに利用中の機能を自動的に縮小して、コスト節約にも役立ちます。
 
-- **Consider no redeployment**. When you change your scale settings, you don't need to change your code or redeploy your applications. Changing your plan scale settings takes only seconds to apply. Your changes affect all applications in your App Service plan.
+- **再デプロイが不要な点を考慮する**: スケール設定を変更しても、コードの変更やアプリケーションの再デプロイは必要ありません。プランのスケール設定の変更は数秒で反映されます。変更は、App Service プラン内のすべてのアプリケーションに影響します。
 
-- **Consider scaling for other Azure services**. If your App Service application depends on other Azure services, such as Azure SQL Database or Azure Storage, you can scale these resources separately. The App Service Plan doesn't manage these resources.
-
+- **他の Azure サービスのスケーリングを考慮する**: App Service アプリケーションが Azure SQL Database や Azure Storage など他の Azure サービスに依存している場合、それらのリソースは別途スケールできます。App Service プランはそれらのリソースを管理しません。

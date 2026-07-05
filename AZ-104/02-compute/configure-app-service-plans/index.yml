@@ -1,8 +1,8 @@
 ### YamlMime:Module
 uid: learn.wwl.configure-app-service-plans
 metadata:
-  title: Configure Azure App Service Plans
-  description: "Configure Azure App Service plans"
+  title: Azure App Service プランの構成
+  description: "Azure App Service プランを構成します"
   ms.date: 06/10/2026
   author: wwlpublish
   ms.author: robbarefoot
@@ -12,18 +12,18 @@ metadata:
   - N/A
   ms.service: azure-app-service
   ai-usage: ai-assisted
-title: Configure Azure App Service plans
-summary: Learn how to configure an Azure App Service plan, including pricing and scaling.
+title: Azure App Service プランの構成
+summary: 価格とスケーリングを含む、Azure App Service プランの構成方法を学びます。
 abstract: |
-  In this module, you learn how to:
+  このモジュールでは、次のことを学びます。
 
-  -   Select an appropriate Azure App Service plan pricing tier.
+  -   適切な Azure App Service プランの価格レベルを選択する。
 
-  -   Scale an Azure App Service plan.
+  -   Azure App Service プランをスケールする。
 prerequisites: |
-  -   Basic knowledge of scaling and performance concepts.
+  -   スケーリングとパフォーマンスの概念に関する基本知識。
 
-  -   Familiarity with the Azure portal so you can configure the correct App Service plan.
+  -   適切な App Service プランを構成できる程度の、Azure portal に関する基本知識。
 iconUrl: /training/achievements/azure-app-services-configure-service-plans.svg
 levels:
 - intermediate
