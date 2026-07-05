@@ -1,28 +1,27 @@
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=c27bf1d6-d1b6-410e-a271-e7ae999f2434]
 
-Azure is a continually expanding set of cloud services that help you meet current and future IT challenges. Azure gives you the freedom to build, manage, and deploy applications on a massive global network using your favorite tools and frameworks.
+Azure は、現在および将来の IT の課題への対応を支援する、拡大し続けるクラウド サービス群です。Azure を使えば、好きなツールやフレームワークを使って、巨大なグローバル ネットワーク上でアプリケーションを自由に構築、管理、デプロイできます。
 
-## What does Azure offer?
+## Azure は何を提供するのか?
 
-**Limitless innovation.** Build intelligent apps and solutions with advanced technology, tools, and services to take your operations to the next level. Seamlessly unify your technology to simplify platform management and deliver innovations efficiently and securely on a trusted cloud.
+**限りないイノベーション。** 高度なテクノロジ、ツール、サービスを使ってインテリジェントなアプリとソリューションを構築し、業務を次のレベルへ引き上げます。テクノロジをシームレスに統合してプラットフォーム管理を簡素化し、信頼できるクラウド上で効率的かつ安全にイノベーションを届けられます。
 
- -  **Bring ideas to life:** Build on a trusted platform to advance your team's capabilities with industry-leading AI and cloud services.
- -  **Seamlessly unify:** Efficiently manage all your infrastructure, data, analytics, and AI solutions across an integrated platform.
- -  **Innovate on trust:** Rely on trusted technology from a partner who's dedicated to security and responsibility.
+ -  **アイデアをかたちに:** 業界をリードする AI とクラウド サービスでチームの能力を高められる、信頼できるプラットフォーム上で構築します。
+ -  **シームレスに統合:** 統合されたプラットフォームで、インフラ、データ、分析、AI のすべてのソリューションを効率的に管理します。
+ -  **信頼の上でイノベーション:** セキュリティと責任に真摯に取り組むパートナーの、信頼できるテクノロジを活用します。
 
-## What can I do with Azure?
+## Azure で何ができるのか?
 
-Azure provides hundreds of services that enable you to do everything from running your existing applications on virtual machines to exploring new software paradigms, such as intelligent bots and generative AI.
+Azure には数百のサービスがあり、既存のアプリケーションを仮想マシンで動かすことから、インテリジェントなボットや生成 AI といった新しいソフトウェア パラダイムの探求まで、あらゆることができます。
 
-:::image type="content" source="../media/azure-service-categories.png" alt-text="Diagram showing ten Azure service categories: Compute, Networking, Storage, Databases, AI + ML, Identity + Security, DevOps + Management, IoT, Analytics, and Integration, each with representative services.":::
+:::image type="content" source="../media/azure-service-categories.png" alt-text="Azure のサービス カテゴリ 10 種類 (コンピューティング、ネットワーク、ストレージ、データベース、AI + ML、ID + セキュリティ、DevOps + 管理、IoT、分析、統合) を、それぞれの代表的なサービスとともに示す図。":::
 
-Many teams start exploring the cloud by moving their existing applications to virtual machines (VMs) that run in Azure. Migrating your existing apps to VMs is a good start, but the cloud is much more than a different place to run your VMs.
+多くのチームは、既存のアプリケーションを Azure で動作する仮想マシン (VM) に移すことからクラウドの活用を始めます。既存アプリの VM への移行は良い出発点ですが、クラウドは単に VM を動かす場所が変わるだけのものではありません。
 
-As your skills grow, you can modernize one workload at a time, such as moving from manually managed servers to managed databases, autoscaling web apps, or event-driven services.
+スキルが高まるにつれて、手動管理のサーバーからマネージド データベースへ、自動スケールする Web アプリへ、イベント ドリブンのサービスへ、というように、ワークロードを 1 つずつモダナイズしていけます。
 
-## Practical example
+## 実践的な例
 
-Suppose your organization runs an internal app with seasonal demand spikes. In Azure, you can host the app on virtual machines or managed app services, store data in managed databases, and monitor health from a centralized dashboard. As demand increases, you can scale resources up or out and then scale back when demand drops so you're not paying for unused capacity year-round.
+組織で、季節によって需要が急増する社内アプリを運用しているとしましょう。Azure では、そのアプリを仮想マシンまたはマネージドなアプリ サービスでホストし、データをマネージド データベースに保存し、正常性を一元的なダッシュボードで監視できます。需要が増えたらリソースをスケールアップまたはスケールアウトし、需要が落ち着いたらスケールを戻せるので、使わない容量に年間を通じて料金を払う必要がありません。
 
-For example, Azure provides Azure AI services and Azure OpenAI Service so you can add language, vision, speech, and generative AI capabilities to your applications. It also provides Azure Machine Learning, Internet of Things (IoT) services, and storage solutions that dynamically grow to accommodate massive amounts of data. Azure services enable solutions that aren't feasible without the power of the cloud.
-
+たとえば、Azure には Azure AI サービスと Azure OpenAI Service があり、言語、視覚、音声、生成 AI の機能をアプリケーションに追加できます。また、Azure Machine Learning、モノのインターネット (IoT) サービス、膨大な量のデータに合わせて動的に拡張するストレージ ソリューションも提供されています。Azure のサービスは、クラウドの力なしには実現できないソリューションを可能にします。

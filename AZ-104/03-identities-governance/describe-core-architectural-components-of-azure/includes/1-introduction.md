@@ -1,13 +1,13 @@
-In this module, you’ll be introduced to the core architectural components of Azure. You’ll learn about Azure's physical layout: datacenters, availability zones, and regions; and you’ll learn about Azure's management structure: resources and resource groups, subscriptions, and management groups.
+このモジュールでは、Azure の中核となるアーキテクチャ コンポーネントを紹介します。データセンター、可用性ゾーン、リージョンといった Azure の物理的な構成と、リソースとリソース グループ、サブスクリプション、管理グループといった Azure の管理構造について学びます。
 
-## Learning objectives
+## 学習の目標
 
-After completing this module, you’ll be able to:
+このモジュールを完了すると、次のことができるようになります。
 
- -  Describe Azure regions, region pairs, and sovereign regions.
- -  Describe Availability Zones.
- -  Describe Azure datacenters.
- -  Describe Azure resources and Resource Groups.
- -  Describe subscriptions.
- -  Describe management groups.
- -  Describe the hierarchy of resource groups, subscriptions, and management groups.
+ -  Azure のリージョン、リージョン ペア、ソブリン リージョンについて説明する。
+ -  可用性ゾーンについて説明する。
+ -  Azure のデータセンターについて説明する。
+ -  Azure のリソースとリソース グループについて説明する。
+ -  サブスクリプションについて説明する。
+ -  管理グループについて説明する。
+ -  リソース グループ、サブスクリプション、管理グループの階層について説明する。

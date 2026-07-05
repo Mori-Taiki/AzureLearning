@@ -1,2 +1,2 @@
 
-Choose the best response for each question.
+各質問に対して最も適切な回答を選んでください。

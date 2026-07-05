@@ -1,77 +1,76 @@
-Azure's core architectural components can be broken down into two main groupings: the physical infrastructure and the management infrastructure. This unit covers the physical side — how Azure organizes its datacenters, regions, and availability zones to deliver reliable services worldwide.
+Azure の中核となるアーキテクチャ コンポーネントは、物理インフラストラクチャと管理インフラストラクチャという 2 つの大きなグループに分けられます。このユニットでは物理面、つまり Azure が世界中で信頼性の高いサービスを提供するために、データセンター、リージョン、可用性ゾーンをどう編成しているかを扱います。
 
-## Physical infrastructure
+## 物理インフラストラクチャ
 
-The physical infrastructure for Azure starts with datacenters. These datacenters are facilities with servers arranged in racks, with dedicated power, cooling, and networking infrastructure — similar to an on-premises datacenter, but at a much larger scale.
+Azure の物理インフラストラクチャはデータセンターから始まります。データセンターは、ラックに並べられたサーバーと、専用の電源、冷却、ネットワークのインフラを備えた施設です。オンプレミスのデータセンターに似ていますが、はるかに大きな規模です。
 
-As a global cloud provider, Azure has datacenters around the world. However, you don't interact with individual datacenters directly. Instead, datacenters are grouped into Azure Regions and Azure Availability Zones that provide resiliency and reliability for your workloads.
+グローバルなクラウド プロバイダーとして、Azure は世界中にデータセンターを持っています。ただし、個々のデータセンターを直接操作することはありません。データセンターは、ワークロードに回復性と信頼性をもたらす Azure リージョンと Azure 可用性ゾーンにまとめられています。
 
-The [Global infrastructure](https://infrastructuremap.microsoft.com/) site gives you a chance to interactively explore the underlying Azure infrastructure.
+[グローバル インフラストラクチャ](https://infrastructuremap.microsoft.com/)のサイトでは、Azure の基盤インフラをインタラクティブに探索できます。
 
-:::image type="content" source="../media/azure-infrastructure-hierarchy.png" alt-text="Diagram showing Azure's physical infrastructure hierarchy from Geography to Region to Availability Zone to Datacenter.":::
+:::image type="content" source="../media/azure-infrastructure-hierarchy.png" alt-text="地域 (Geography) からリージョン、可用性ゾーン、データセンターへと続く Azure の物理インフラストラクチャの階層を示す図。":::
 
-### Regions
+### リージョン
 
-A region is a geographical area on the planet that contains at least one, but potentially multiple datacenters that are nearby and networked together with a low-latency network. Azure intelligently assigns and controls the resources within each region to ensure workloads are appropriately balanced.
+リージョンとは、少なくとも 1 つ、場合によっては複数の、近接して低遅延ネットワークで相互接続されたデータセンターを含む、地球上の地理的なエリアです。Azure は各リージョン内のリソースをインテリジェントに割り当て・制御し、ワークロードが適切にバランスされるようにしています。
 
-When you deploy a resource in Azure, you'll often need to choose the region where you want your resource deployed.
+Azure にリソースをデプロイする際には、多くの場合、リソースのデプロイ先リージョンを選ぶ必要があります。
 
 > [!NOTE]
-> Some services or virtual machine (VM) features are only available in certain regions, such as specific VM sizes or storage types. There are also some global Azure services that don't require you to select a particular region, such as Microsoft Entra ID, Azure Traffic Manager, and Azure DNS.
+> 特定の VM サイズやストレージの種類など、一部のサービスや仮想マシン (VM) の機能は、特定のリージョンでのみ利用できます。また、Microsoft Entra ID、Azure Traffic Manager、Azure DNS のように、特定のリージョンを選ぶ必要のないグローバルな Azure サービスもあります。
 
-### Availability Zones
+### 可用性ゾーン
 
-Availability zones are physically separate datacenters within an Azure region. Each availability zone is made up of one or more datacenters equipped with independent power, cooling, and networking. An availability zone is set up to be an isolation boundary. If one zone goes down, the other continues working. Availability zones are connected through high-speed, private fiber-optic networks.
+可用性ゾーンは、Azure リージョン内で物理的に分離されたデータセンターです。各可用性ゾーンは、独立した電源、冷却、ネットワークを備えた 1 つ以上のデータセンターで構成されます。可用性ゾーンは分離境界として設計されています。1 つのゾーンが停止しても、他のゾーンは動作し続けます。可用性ゾーンは、高速のプライベート光ファイバー ネットワークで接続されています。
 
-:::image type="content" source="../media/availability-zones.png" alt-text="Diagram showing three physically separate availability zones within an Azure region, each with independent power, cooling, and networking, connected by fiber-optic links.":::
+:::image type="content" source="../media/availability-zones.png" alt-text="Azure リージョン内で物理的に分離された 3 つの可用性ゾーンが、それぞれ独立した電源、冷却、ネットワークを備え、光ファイバー リンクで接続されている様子を示す図。":::
 
 
 > [!IMPORTANT]
-> To ensure resiliency, a minimum of three separate availability zones are present in all availability zone-enabled regions. However, not all Azure Regions currently support availability zones.
+> 回復性を確保するため、可用性ゾーンが有効なすべてのリージョンには、最低 3 つの独立した可用性ゾーンがあります。ただし、現在すべての Azure リージョンが可用性ゾーンをサポートしているわけではありません。
 
-#### Use availability zones for your workloads
+#### ワークロードに可用性ゾーンを使う
 
-When you run your own on-premises infrastructure, setting up redundancy means buying and maintaining duplicate hardware. With Azure, you can protect your workloads by spreading them across availability zones within a region.
+自前のオンプレミス インフラを運用する場合、冗長化のためには重複するハードウェアを購入して維持しなければなりません。Azure なら、リージョン内の可用性ゾーンにワークロードを分散させることで保護できます。
 
-You place your VMs, storage, databases, and other resources in one availability zone and replicate them to other zones within the same region. Keep in mind that there could be a cost to duplicating your services and transferring data between zones.
+VM、ストレージ、データベースなどのリソースを 1 つの可用性ゾーンに配置し、同じリージョン内の他のゾーンにレプリケートします。サービスの複製やゾーン間のデータ転送にはコストがかかる場合があることを覚えておいてください。
 
-Azure services that support availability zones fall into three categories:
+可用性ゾーンをサポートする Azure サービスは、3 つのカテゴリに分けられます。
 
- -  Zonal services: You pin the resource to a specific zone (for example, VMs, managed disks, IP addresses).
- -  Zone-redundant services: The platform replicates automatically across zones (for example, zone-redundant storage, SQL Database).
- -  Non-regional services: Services are always available from Azure geographies and are resilient to zone-wide outages as well as region-wide outages.
+ -  ゾーン サービス: リソースを特定のゾーンに固定します (例: VM、マネージド ディスク、IP アドレス)。
+ -  ゾーン冗長サービス: プラットフォームがゾーン間で自動的にレプリケートします (例: ゾーン冗長ストレージ、SQL Database)。
+ -  非リージョン サービス: Azure の地域から常に利用でき、ゾーン全体の障害にもリージョン全体の障害にも耐えられるサービスです。
 
-:::image type="content" source="../media/availability-zone-service-categories.png" alt-text="Diagram comparing three Azure availability zone service categories: Zonal, Zone-redundant, and Non-regional.":::
+:::image type="content" source="../media/availability-zone-service-categories.png" alt-text="Azure の可用性ゾーンのサービス カテゴリ 3 種類 (ゾーン、ゾーン冗長、非リージョン) を比較する図。":::
 
-Even with the additional resiliency that availability zones provide, it’s possible that an event could be so large that it impacts multiple availability zones in a single region. To provide even further resilience, Azure has Region Pairs.
+可用性ゾーンによる回復性の向上をもってしても、単一リージョン内の複数の可用性ゾーンに影響するほど大規模なイベントが起こる可能性はあります。さらなる回復性を提供するために、Azure にはリージョン ペアがあります。
 
-### Region pairs
+### リージョン ペア
 
-Most Azure regions are paired with another region within the same geography (such as US, Europe, or Asia) at least 300 miles away. This approach allows for the replication of resources across a geography that helps reduce the likelihood of interruptions because of events such as natural disasters, civil unrest, power outages, or physical network outages that affect an entire region. For example, if a region in a pair was affected by a natural disaster, services would automatically fail over to the other region in its region pair.
-
-> [!IMPORTANT]
-> Not all Azure services automatically replicate data or automatically fall back from a failed region to cross-replicate to another enabled region. In these scenarios, recovery and replication must be configured by the customer.
-
-Examples of region pairs in Azure are West US paired with East US and Southeast Asia paired with East Asia. Because the pair of regions is directly connected and far enough apart to be isolated from regional disasters, you can use them to provide reliable services and data redundancy.
-
-:::image type="content" source="../media/region-pairs.png" alt-text="Diagram showing two paired Azure regions within a geography, each containing availability zones, with bidirectional failover replication and region pair advantages.":::
-
-
-#### Additional advantages of region pairs:
-
- -  If an extensive Azure outage occurs, one region out of every pair is prioritized to make sure at least one is restored as quickly as possible for applications hosted in that region pair.
- -  Planned Azure updates are rolled out to paired regions one region at a time to minimize downtime and risk of application outage.
- -  Data continues to reside within the same geography as its pair (except for Brazil South) for data-residency and compliance purposes.
+ほとんどの Azure リージョンは、同じ地域 (米国、ヨーロッパ、アジアなど) 内で少なくとも 300 マイル離れた別のリージョンとペアになっています。このアプローチにより、地域内でリソースをレプリケートでき、自然災害、市民不安、停電、リージョン全体に影響する物理ネットワーク障害などのイベントによる中断の可能性を減らせます。たとえば、ペアの一方のリージョンが自然災害の影響を受けた場合、サービスは自動的にリージョン ペアのもう一方のリージョンへフェールオーバーします。
 
 > [!IMPORTANT]
-> Most regions are paired in two directions, meaning they are the backup for the region that provides a backup for them (West US and East US back each other up). However, some regions, such as Brazil South, are paired in only one direction. In a one-direction pairing, the Primary region does not provide backup for its secondary region. Brazil South is unique because it's paired with a region outside of its geography. Brazil South's secondary region is South Central US. The secondary region of South Central US isn't Brazil South. Additionally, some regions (such as Italy North, Poland Central, and Israel Central) don't have a traditional region pair and instead rely on availability zones and geo-redundant storage for resiliency.
+> すべての Azure サービスが自動的にデータをレプリケートしたり、障害が起きたリージョンから自動的に別の有効なリージョンへクロスレプリケートしたりするわけではありません。そうしたシナリオでは、復旧とレプリケーションを顧客側で構成する必要があります。
 
-### Sovereign Regions
+Azure のリージョン ペアの例には、米国西部と米国東部のペア、東南アジアと東アジアのペアがあります。ペアのリージョンは直接接続され、リージョン規模の災害から分離できるだけ十分に離れているため、信頼性の高いサービスとデータの冗長性の提供に活用できます。
 
-In addition to regular regions, Azure also has sovereign regions. Sovereign regions are instances of Azure that are isolated from the main instance of Azure. You may need to use a sovereign region for compliance or legal purposes.
+:::image type="content" source="../media/region-pairs.png" alt-text="地域内でペアになった 2 つの Azure リージョンを示す図。各リージョンには可用性ゾーンがあり、双方向のフェールオーバー レプリケーションとリージョン ペアの利点が示されています。":::
 
-Azure sovereign regions include:
 
- -  US DoD Central, US Gov Virginia, US Gov Arizona, and more: These regions are physical and logical network-isolated instances of Azure for U.S. government agencies and partners. These datacenters are operated by screened U.S. personnel and include additional compliance certifications.
- -  China East, China North, and more: These regions are available through a unique partnership between Microsoft and 21Vianet, whereby Microsoft doesn't directly maintain the datacenters.
+#### リージョン ペアのその他の利点:
 
+ -  Azure の大規模な障害が発生した場合、各ペアのうち一方のリージョンが優先され、そのリージョン ペアでホストされているアプリケーションのために、少なくとも一方ができるだけ早く復旧されます。
+ -  Azure の計画的な更新は、ダウンタイムとアプリケーション停止のリスクを最小限に抑えるため、ペアのリージョンに 1 リージョンずつ順番に展開されます。
+ -  データは (ブラジル南部を除き)、データ所在地とコンプライアンスの目的で、ペアと同じ地域内にとどまり続けます。
+
+> [!IMPORTANT]
+> ほとんどのリージョンは双方向でペアになっています。つまり、自分をバックアップしてくれるリージョンのバックアップにもなっています (米国西部と米国東部は互いにバックアップし合っています)。しかし、ブラジル南部のように、一方向でのみペアになっているリージョンもあります。一方向のペアでは、プライマリ リージョンはそのセカンダリ リージョンのバックアップを提供しません。ブラジル南部は、自身の地域外のリージョンとペアになっている点で特殊です。ブラジル南部のセカンダリ リージョンは米国中南部ですが、米国中南部のセカンダリ リージョンはブラジル南部ではありません。さらに、一部のリージョン (イタリア北部、ポーランド中部、イスラエル中部など) には従来型のリージョン ペアがなく、回復性を可用性ゾーンと geo 冗長ストレージに依存しています。
+
+### ソブリン リージョン
+
+通常のリージョンに加えて、Azure にはソブリン リージョンもあります。ソブリン リージョンとは、Azure のメイン インスタンスから分離された Azure のインスタンスです。コンプライアンスや法的な目的でソブリン リージョンの利用が必要になる場合があります。
+
+Azure のソブリン リージョンには、次のものがあります。
+
+ -  US DoD Central、US Gov Virginia、US Gov Arizona など: これらのリージョンは、米国政府機関とそのパートナー向けの、物理的・論理的にネットワーク分離された Azure のインスタンスです。これらのデータセンターは、審査を受けた米国の担当者によって運用され、追加のコンプライアンス認証を備えています。
+ -  中国東部、中国北部など: これらのリージョンは、Microsoft と 21Vianet の独自のパートナーシップを通じて提供されており、Microsoft はデータセンターを直接保守していません。

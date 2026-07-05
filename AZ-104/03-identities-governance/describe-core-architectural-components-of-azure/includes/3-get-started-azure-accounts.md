@@ -1,34 +1,33 @@
-To create and use Azure services, you need an Azure subscription. When you're working with your own applications and workloads, you create an Azure account, and a subscription is created for you. After you've created an Azure account, you're free to create additional subscriptions. For example, your team might use a single Azure account and separate subscriptions for development, testing, and production workloads. After you've created an Azure subscription, you can start creating Azure resources within each subscription.
+Azure のサービスを作成して使うには、Azure サブスクリプションが必要です。自分のアプリケーションやワークロードを扱う際には、Azure アカウントを作成すると、サブスクリプションが自動的に作成されます。Azure アカウントを作成した後は、追加のサブスクリプションを自由に作成できます。たとえば、チームで 1 つの Azure アカウントを使い、開発、テスト、運用の各ワークロード用に別々のサブスクリプションを使う、といったことができます。Azure サブスクリプションを作成したら、各サブスクリプション内で Azure リソースの作成を始められます。
 
-:::image type="content" source="../media/account-scope-levels.png" alt-text="Diagram showing four Azure account scope levels: an Azure Account at the top connects to three subscriptions (Dev/Test, Production, Sandbox), each containing resource groups (Web, Data, App, Network) that hold individual resources such as App Service, VM, SQL DB, Cosmos DB, Functions, API, VNet, and NSG.":::
+:::image type="content" source="../media/account-scope-levels.png" alt-text="Azure アカウントの 4 つのスコープ レベルを示す図。最上位の Azure アカウントが 3 つのサブスクリプション (開発/テスト、運用、サンドボックス) につながり、各サブスクリプションにはリソース グループ (Web、データ、アプリ、ネットワーク) があり、その中に App Service、VM、SQL DB、Cosmos DB、Functions、API、VNet、NSG などの個々のリソースが含まれています。":::
 
-If you're new to Azure, you can sign up for a free account on the Azure website to start exploring at no cost to you. When you're ready, you can choose to upgrade your free account. You can also create a new subscription that enables you to start paying for Azure services you need beyond the limits of a free account.
+Azure が初めての方は、Azure の Web サイトで無料アカウントに登録すれば、費用をかけずに使い始められます。準備ができたら、無料アカウントをアップグレードすることもできます。また、無料アカウントの制限を超えて必要な Azure サービスの利用料を支払える、新しいサブスクリプションを作成することもできます。
 
-## Create an Azure account
+## Azure アカウントを作成する
 
-You can purchase Azure access directly from Microsoft by signing up on the Azure website or through a Microsoft representative. You can also purchase Azure access through a Microsoft partner. Cloud Solution Provider partners offer a range of complete managed-cloud solutions for Azure.
+Azure の利用権は、Azure の Web サイトでの登録または Microsoft の担当者を通じて、Microsoft から直接購入できます。Microsoft パートナーを通じて購入することもできます。クラウド ソリューション プロバイダーのパートナーは、Azure 向けのさまざまな包括的マネージド クラウド ソリューションを提供しています。
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=ac3ad75e-6841-4b66-b3b2-19c85b0e36c3]
 
-### What is the Azure free account?
+### Azure 無料アカウントとは
 
-The Azure free account includes:
+Azure 無料アカウントには、次のものが含まれます。
 
- -  Free access to popular Azure products for 12 months.
- -  A credit to use for the first 30 days.
- -  Access to more than 65 services that are always free.
+ -  人気の Azure 製品への 12 か月間の無料アクセス。
+ -  最初の 30 日間に使えるクレジット。
+ -  常に無料の 65 を超えるサービスへのアクセス。
 
-The [Azure free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) is an excellent way for new users to get started and explore. To sign up, you need a phone number, a credit card, and a Microsoft or GitHub account. The credit card information is used for identity verification only. You won't be charged for any services until you upgrade to a paid subscription.
+[Azure 無料アカウント](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)は、新規ユーザーが使い始めて探索するのに最適な方法です。登録には、電話番号、クレジット カード、Microsoft または GitHub のアカウントが必要です。クレジット カードの情報は本人確認にのみ使われます。有料サブスクリプションにアップグレードするまで、サービスに対する課金は発生しません。
 
-### What is the Azure free student account?
+### Azure 学生向け無料アカウントとは
 
-The Azure free student account offer includes:
+Azure 学生向け無料アカウントのオファーには、次のものが含まれます。
 
- -  Free access to certain Azure services for 12 months.
- -  A credit to use in the first 12 months.
- -  Free access to certain software developer tools.
+ -  特定の Azure サービスへの 12 か月間の無料アクセス。
+ -  最初の 12 か月間に使えるクレジット。
+ -  特定のソフトウェア開発者ツールへの無料アクセス。
 
-The [Azure free student account](https://azure.microsoft.com/free/students/?cid=msft_learn) is an offer for students that gives $100 credit and free developer tools. Also, you can sign up without a credit card.
+[Azure 学生向け無料アカウント](https://azure.microsoft.com/free/students/?cid=msft_learn)は、100 ドルのクレジットと無料の開発者ツールが提供される学生向けのオファーです。しかも、クレジット カードなしで登録できます。
 
-If you're practicing by creating resources in Azure, monitor usage and remove resources you no longer need to avoid unexpected costs.
-
+Azure でリソースを作成して練習している場合は、予期しないコストを避けるために、使用量を監視し、不要になったリソースは削除してください。
