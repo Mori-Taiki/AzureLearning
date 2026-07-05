@@ -1,0 +1,76 @@
+### YamlMime:LearningPath
+uid: learn.az-104-manage-compute-resources
+metadata:
+  title: 'AZ-104: Azure コンピューティング リソースのデプロイと管理'
+  description: Azure で仮想マシン、コンテナー、Web アプリをデプロイして構成する方法を学びます。
+  ms.date: 06/23/2026
+  author: wwlpublish
+  ms.author: robbarefoot
+  ms.topic: learning-path
+title: 'AZ-104: Azure コンピューティング リソースのデプロイと管理'
+prerequisites: |
+  -   [Microsoft Azure Fundamentals: クラウドの概念について説明する](/training/paths/microsoft-azure-fundamentals-describe-cloud-concepts/)
+  -   [Azure Fundamentals: Azure のアーキテクチャとサービスについて説明する](/training/paths/azure-fundamentals-describe-azure-architecture-services/)
+  -   [Azure Fundamentals: Azure の管理とガバナンスについて説明する](/training/paths/describe-azure-management-governance/)
+  -   [AZ-104: Azure 管理者のための前提知識](/training/paths/az-104-administrator-prerequisites/)
+summary: |
+  Azure で仮想マシン、コンテナー、Web アプリをデプロイして構成する方法を学びます。
+  AZ-104 Azure Administrator シリーズのラーニング パスは次のとおりです。
+  :::row:::
+  :::column:::
+   <img src="/training/achievements/az-104-administrator-prerequisites.svg" width="84" height="70" alt="AZ-104: Azure 管理者のための前提知識ラーニング パスのトロフィー。" ></img>
+
+   [AZ-104: Azure 管理者のための前提知識](/learn/paths/az-104-administrator-prerequisites/)
+  :::column-end:::
+  :::column:::
+   <img src="/training/achievements/az-104-manage-identities-governance.svg" width="101" height="84" alt="AZ-104: Azure の ID とガバナンスの管理ラーニング パスのトロフィー。" ></img>
+
+
+   [AZ-104: Azure の ID とガバナンスの管理](/learn/paths/az-104-manage-identities-governance/)
+  :::column-end:::
+  :::column:::
+   <img src="/training/achievements/az-104-manage-storage.svg" width="113" height="84" alt="AZ-104: Azure のストレージの実装と管理ラーニング パスのトロフィー。" ></img>
+
+   [AZ-104: Azure のストレージの実装と管理](/learn/paths/az-104-manage-storage/)
+  :::column-end:::
+  :::row-end:::
+  :::row:::
+  :::column:::
+   <img src="/training/achievements/az-104-manage-compute-resources.svg" width="84" height="70" alt="AZ-104: Azure コンピューティング リソースのデプロイと管理ラーニング パスのトロフィー。" ></img>
+
+   AZ-104: Azure コンピューティング リソースのデプロイと管理
+  :::column-end:::
+  :::column:::
+   <img src="/training/achievements/az-104-manage-virtual-networks.svg" width="101" height="84" alt="AZ-104: Azure 管理者向けの仮想ネットワークの構成と管理ラーニング パスのトロフィー。" ></img>
+
+   [AZ-104: Azure 管理者向けの仮想ネットワークの構成と管理](/learn/paths/az-104-manage-virtual-networks/)
+  :::column-end:::
+  :::column:::
+  <img src="/training/achievements/az-104-monitor-backup-resources.svg" width="101" height="84" alt="AZ-104: Azure リソースの監視とバックアップ ラーニング パスのトロフィー。" ></img>
+
+   [AZ-104: Azure リソースの監視とバックアップ](/learn/paths/az-104-monitor-backup-resources/)
+  :::column-end:::
+  :::row-end:::
+iconUrl: /training/achievements/az-104-manage-compute-resources.svg
+levels:
+- beginner
+roles:
+- administrator
+products:
+- azure
+- azure-clis
+- azure-container-instances
+- azure-kubernetes-service
+- azure-resource-manager
+- azure-virtual-machines
+- azure-vm-scalesets
+subjects:
+- cloud-computing
+modules:
+- learn.introduction-to-azure-virtual-machines
+- learn.wwl.configure-virtual-machine-availability
+- learn.wwl.configure-app-service-plans
+- learn.wwl.configure-azure-app-services
+- learn.wwl.configure-azure-container-instances
+trophy:
+  uid: learn.az-104-manage-compute-resources.trophy

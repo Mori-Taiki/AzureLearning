@@ -1,0 +1,61 @@
+### YamlMime:Module
+uid: learn.wwl.configure-azure-app-services
+metadata:
+  adobe-target: true
+  prefetch-feature-rollout: true
+  title: Azure App Service の構成
+  description: "Azure App Service を構成します"
+  ms.date: 06/23/2026
+  author: wwlpublish
+  ms.author: cynthist
+  ms.topic: module
+  ms.collection: N/A
+  ms.custom:
+  - N/A
+  ms.service: azure-app-service
+  ai-usage: ai-assisted
+title: Azure App Service の構成
+summary: デプロイ スロットを含む、Azure App Service インスタンスの構成と監視の方法を学びます。
+abstract: |
+  このモジュールでは、次のことを学びます。
+
+  -   Azure App Service の機能と利用ケースを把握する。
+
+  -   Azure App Service でアプリを作成する。
+
+  -   デプロイ設定、特にデプロイ スロットを構成する。
+
+  -   Azure App Service アプリを保護する。
+
+  -   カスタム ドメイン名を構成する。
+
+  -   Azure App Service アプリをバックアップ・復元する。
+
+  -   Azure Application Insights を構成する。
+prerequisites: |
+  -   サービスを構成できる程度の、Azure portal の実務知識。
+
+  -   クラウドベースのサービス、特に Web ホスティング サービスに関する基本知識。
+iconUrl: /training/achievements/azure-app-services-configure.svg
+levels:
+- intermediate
+roles:
+- administrator
+products:
+- azure-app-service
+units:
+- learn.wwl.configure-azure-app-services.introduction
+- learn.wwl.configure-azure-app-services.implement
+- learn.wwl.configure-azure-app-services.create-app-service
+- learn.wwl.configure-azure-app-services.explore-continuous-integration-deployment
+- learn.wwl.configure-azure-app-services.create-deployment-slots
+- learn.wwl.configure-azure-app-services.add-deployment-slots
+- learn.wwl.configure-azure-app-services.secure-app-service
+- learn.wwl.configure-azure-app-services.create-custom-domain-names
+- learn.wwl.configure-azure-app-services.backup-app-service
+- learn.wwl.configure-azure-app-services.use-application-insights
+- learn.wwl.configure-azure-app-services.interactive-simulation-web-apps
+- learn.wwl.configure-azure-app-services.knowledge-check
+- learn.wwl.configure-azure-app-services.summary-resources
+badge:
+  uid: learn.wwl.configure-azure-app-services.badge

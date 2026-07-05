@@ -1,0 +1,45 @@
+### YamlMime:Module
+uid: learn.wwl.configure-app-service-plans
+metadata:
+  title: Azure App Service プランの構成
+  description: "Azure App Service プランを構成します"
+  ms.date: 06/10/2026
+  author: wwlpublish
+  ms.author: robbarefoot
+  ms.topic: module
+  ms.collection: N/A
+  ms.custom:
+  - N/A
+  ms.service: azure-app-service
+  ai-usage: ai-assisted
+title: Azure App Service プランの構成
+summary: 価格とスケーリングを含む、Azure App Service プランの構成方法を学びます。
+abstract: |
+  このモジュールでは、次のことを学びます。
+
+  -   適切な Azure App Service プランの価格レベルを選択する。
+
+  -   Azure App Service プランをスケールする。
+prerequisites: |
+  -   スケーリングとパフォーマンスの概念に関する基本知識。
+
+  -   適切な App Service プランを構成できる程度の、Azure portal に関する基本知識。
+iconUrl: /training/achievements/azure-app-services-configure-service-plans.svg
+levels:
+- intermediate
+roles:
+- administrator
+products:
+- azure-app-service
+subjects:
+- cloud-computing
+units:
+- learn.wwl.configure-app-service-plans.introduction
+- learn.wwl.configure-app-service-plans.implement-azure
+- learn.wwl.configure-app-service-plans.determine-plan-pricing
+- learn.wwl.configure-app-service-plans.scale-up-scale-out
+- learn.wwl.configure-app-service-plans.plan-scaling
+- learn.wwl.configure-app-service-plans.knowledge-check
+- learn.wwl.configure-app-service-plans.summary-resources
+badge:
+  uid: learn.wwl.configure-app-service-plans.badge

@@ -1,0 +1,52 @@
+### YamlMime:Module
+uid: learn.wwl.configure-storage-security
+metadata:
+  adobe-target: true
+  prefetch-feature-rollout: true
+  title: Azure Storage セキュリティの構成
+  description: "ストレージのアクセス署名など、Azure Storage の一般的なセキュリティ機能の構成方法を学びます。"
+  ms.date: 06/23/2026
+  author: wwlpublish
+  ms.author: robbarefoot
+  ms.topic: module
+  ms.collection: N/A
+  ms.custom:
+  - N/A
+  ms.service: azure-storage
+  ai-usage: ai-assisted
+title: Azure Storage セキュリティの構成
+summary: ストレージのアクセス署名など、Azure Storage の一般的なセキュリティ機能の構成方法を学びます。
+abstract: |
+  このモジュールでは、次のことを学びます。
+
+  -   URI (Uniform Resource Identifier) と SAS のパラメーターを含む、共有アクセス署名 (SAS) を構成する。
+
+  -   Azure Storage の暗号化を構成する。
+
+  -   カスタマー マネージド キーを実装する。
+
+  -   Azure Storage のセキュリティを改善する方法を提案する。
+prerequisites: なし
+iconUrl: /training/achievements/storage-security-configure.svg
+levels:
+- intermediate
+roles:
+- administrator
+products:
+- azure-storage
+subjects:
+- security
+- storage
+units:
+- learn.wwl.configure-storage-security.introduction
+- learn.wwl.configure-storage-security.review-strategies
+- learn.wwl.configure-storage-security.create-shared-access-signatures
+- learn.wwl.configure-storage-security.identify-uri-sas-parameters
+- learn.wwl.configure-storage-security.determine-storage-service-encryption
+- learn.wwl.configure-storage-security.create-customer-managed-keys
+- learn.wwl.configure-storage-security.apply-best-practices
+- learn.wwl.configure-storage-security.interactive-lab-simulation-storage
+- learn.wwl.configure-storage-security.knowledge-check
+- learn.wwl.configure-storage-security.summary-resources
+badge:
+  uid: learn.wwl.configure-storage-security.badge

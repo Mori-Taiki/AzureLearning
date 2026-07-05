@@ -1,0 +1,41 @@
+### YamlMime:Module
+uid: learn.azure.allow-users-to-reset-their-password
+metadata:
+  title: Microsoft Entra セルフサービス パスワード リセットでユーザーがパスワードをリセットできるようにする
+  description: Microsoft Entra セルフサービス パスワード リセットを使って、ユーザーが自分のパスワードをリセットできるようにする方法を学びます。
+  ms.date: 11/07/2024
+  author: Justinha
+  ms.author: justinha
+  ms.topic: module
+  ms.service: azure-active-directory
+title: Microsoft Entra セルフサービス パスワード リセットでユーザーがパスワードをリセットできるようにする
+summary: 組織のユーザーが自分のパスワードのリセットやアカウントのロック解除を行えるように、セルフサービス パスワード リセットを評価します。セルフサービス パスワード リセットのセットアップ、構成、テストを行います。
+abstract: |
+  このモジュールでは、次のことを行います。
+  - セルフサービス パスワード リセットを導入すべきかどうかを判断する。
+  - 要件を満たすようにセルフサービス パスワード リセットを実装する。
+  - 体験をカスタマイズするためにセルフサービス パスワード リセットを構成する。
+prerequisites: |
+  - Microsoft Entra ID の基本的な理解
+  - Microsoft Entra ID P1 を含むサブスクリプション パッケージを備えた、稼働中の Microsoft Entra テナント
+  - 少なくとも認証ポリシー管理者ロールを持つアカウント
+iconUrl: /training/achievements/allow-users-reset-their-password.svg
+levels:
+- beginner
+roles:
+- administrator
+- solution-architect
+products:
+- azure
+- entra-id
+subjects:
+- identity-access
+units:
+- learn.azure.allow-users-to-reset-their-password.introduction
+- learn.azure.allow-users-to-reset-their-password.what-is-self-service-password-reset
+- learn.azure.allow-users-to-reset-their-password.implement-azure-ad-self-service-password-reset
+- learn.azure.allow-users-to-reset-their-password.exercise-set-up-self-service-password-reset
+- learn.azure.allow-users-to-reset-their-password.exercise-customize-directory-branding
+- learn.azure.allow-users-to-reset-their-password.summary
+badge:
+  uid: learn.azure.allow-users-to-reset-their-password.badge

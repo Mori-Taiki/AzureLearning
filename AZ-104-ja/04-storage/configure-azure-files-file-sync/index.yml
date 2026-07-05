@@ -1,0 +1,49 @@
+### YamlMime:Module
+uid: learn.wwl.configure-azure-files-file-sync
+metadata:
+  adobe-target: true
+  prefetch-feature-rollout: true
+  title: Azure Files の構成
+  description: "クラウドのファイル共有のための Azure Files の構成方法を学びます。"
+  ms.date: 06/23/2026
+  author: wwlpublish
+  ms.author: robbarefoot
+  ms.topic: module
+  ms.collection: N/A
+  ms.custom:
+  - N/A
+  ms.service: azure-file-storage
+  ai-usage: ai-assisted
+title: Azure Files の構成
+summary: Azure Files と Azure File Sync の構成方法を学びます。
+abstract: |
+  このモジュールでは、次のことを学びます。
+
+  -   ファイル共有と BLOB データのそれぞれに適したストレージを特定する。
+
+  -   Azure ファイル共有とファイル共有スナップショットを構成する。
+
+  -   Azure File Sync の機能と利用ケースを把握する。
+prerequisites: なし
+iconUrl: /training/achievements/azure-file-sync-configure.svg
+levels:
+- intermediate
+roles:
+- administrator
+products:
+- azure
+- azure-files
+subjects:
+- cloud-computing
+units:
+- learn.wwl.configure-azure-files-file-sync.introduction
+- learn.wwl.configure-azure-files-file-sync.compare-files-to-blobs
+- learn.wwl.configure-azure-files-file-sync.manage-file-shares
+- learn.wwl.configure-azure-files-file-sync.create-file-share-snapshots
+- learn.wwl.configure-azure-files-file-sync.implement-soft-delete
+- learn.wwl.configure-storage-tools.use-storage-explorer1
+- learn.wwl.configure-azure-files-file-sync.setup
+- learn.wwl.configure-azure-files-file-sync.knowledge-check
+- learn.wwl.configure-azure-files-file-sync.summary-resources
+badge:
+  uid: learn.wwl.configure-azure-files-file-sync.badge

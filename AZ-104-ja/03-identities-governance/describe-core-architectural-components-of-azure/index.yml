@@ -1,0 +1,57 @@
+### YamlMime:Module
+uid: learn.wwl.describe-core-architectural-components-of-azure
+metadata:
+  title: Azure の中核となるアーキテクチャ コンポーネントについて説明する
+  description: "Azure の中核となるアーキテクチャ コンポーネントについて説明する"
+  ms.date: 02/03/2026
+  author: wwlpublish
+  ms.author: robbarefoot
+  ms.topic: module
+  ms.collection: N/A
+  ms.custom:
+  - N/A
+  ms.service: azure
+  ai-usage: ai-generated
+title: Azure の中核となるアーキテクチャ コンポーネントについて説明する
+summary: このモジュールでは、Microsoft Azure の基本的なインフラストラクチャ コンポーネントについて説明します。物理インフラストラクチャと、リソースがどのように管理されるかを学びます。
+abstract: |
+  このモジュールを完了すると、次のことができるようになります。
+
+  -   Azure のリージョン、リージョン ペア、ソブリン リージョンについて説明する
+
+  -   可用性ゾーンについて説明する
+
+  -   Azure のデータセンターについて説明する
+
+  -   Azure のリソースとリソース グループについて説明する
+
+  -   サブスクリプションについて説明する
+
+  -   管理グループについて説明する
+
+  -   リソース グループ、サブスクリプション、管理グループの階層について説明する
+prerequisites: '-   IT の用語と概念に関する基本知識'
+iconUrl: /training/achievements/describe-core-architectural-components-of-azure.svg
+levels:
+- beginner
+roles:
+- administrator
+- developer
+- devops-engineer
+- solution-architect
+products:
+- azure
+subjects:
+- architecture
+- cloud-computing
+- infrastructure
+units:
+- learn.wwl.describe-core-architectural-components-of-azure.introduction
+- learn.wwl.describe-core-architectural-components-of-azure.what-microsoft-azure
+- learn.wwl.describe-core-architectural-components-of-azure.get-started-azure-accounts
+- learn.wwl.describe-core-architectural-components-of-azure.describe-azure-physical-infrastructure
+- learn.wwl.describe-core-architectural-components-of-azure.describe-azure-management-infrastructure
+- learn.wwl.describe-core-architectural-components-of-azure.knowledge-check
+- learn.wwl.describe-core-architectural-components-of-azure.summary
+badge:
+  uid: learn.wwl.describe-core-architectural-components-of-azure.badge

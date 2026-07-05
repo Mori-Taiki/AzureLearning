@@ -1,0 +1,53 @@
+### YamlMime:Module
+uid: learn.wwl.configure-storage-accounts
+metadata:
+  adobe-target: true
+  prefetch-feature-rollout: true
+  title: ストレージ アカウントの構成
+  description: "レプリケーションとエンドポイントを含む、ストレージ アカウントの構成方法を学びます。"
+  ms.date: 06/23/2026
+  author: wwlpublish
+  ms.author: robbarefoot
+  ms.topic: module
+  ms.collection: N/A
+  ms.custom:
+  - N/A
+  ms.service: azure-storage
+  ai-usage: ai-assisted
+title: ストレージ アカウントの構成
+summary: レプリケーションとエンドポイントを含む、ストレージ アカウントの構成方法を学びます。
+abstract: |
+  このモジュールでは、次のことを学びます。
+
+  -   Azure ストレージ アカウントの機能と利用ケースを把握する。
+
+  -   Azure Storage のさまざまな種類から選択し、ストレージ アカウントを作成する。
+
+  -   ストレージのレプリケーション戦略を選択する。
+
+  -   ストレージ エンドポイントへの安全なネットワーク アクセスを構成する。
+prerequisites: |
+  -   Azure portal の使用経験。
+
+  -   さまざまな種類のデータ ストレージの管理に関する基本知識。
+iconUrl: /training/achievements/storage-accounts-configure.svg
+levels:
+- intermediate
+roles:
+- administrator
+products:
+- azure-storage-accounts
+subjects:
+- storage
+units:
+- learn.wwl.configure-storage-accounts.introduction
+- learn.wwl.configure-storage-accounts.implement-azure-storage
+- learn.wwl.configure-storage-accounts.explore-azure-storage-services
+- learn.wwl.configure-storage-accounts.determine-storage-account-kinds
+- learn.wwl.configure-storage-accounts.determine-replication-strategies
+- learn.wwl.configure-storage-accounts.access-storage
+- learn.wwl.configure-storage-accounts.secure-storage-endpoints
+- learn.wwl.configure-storage-accounts.knowledge-check
+- learn.wwl.configure-storage-accounts.summary-resources
+badge:
+  uid: learn.wwl.configure-storage-accounts.badge

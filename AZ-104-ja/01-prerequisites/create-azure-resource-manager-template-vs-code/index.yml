@@ -1,0 +1,48 @@
+### YamlMime:Module
+uid: learn.azure.create-resource-manager-template-vs-code
+metadata:
+  title: JSON ARM テンプレートを使用して Azure インフラストラクチャをデプロイする
+  description: Visual Studio Code を使用して JSON Azure Resource Manager テンプレートを作成し、インフラストラクチャを一貫性のある信頼できる方法で Azure にデプロイします。
+  ms.date: 10/20/2025
+  author: wwlpublish
+  ms.author: cynthist
+  ms.topic: module-standard-task-based
+  ms.service: azure-resource-manager
+title: JSON ARM テンプレートを使用して Azure インフラストラクチャをデプロイする
+summary: Visual Studio Code を使用して JSON Azure Resource Manager テンプレート (ARM テンプレート) を作成し、インフラストラクチャを一貫性のある信頼できる方法で Azure にデプロイします。
+abstract: |
+  このモジュールでは、次のことを行います。
+  - Visual Studio Code を使用して JSON ARM テンプレートを実装する。
+  - リソースを宣言し、リソース、パラメーター、出力を追加してテンプレートに柔軟性を持たせる。
+prerequisites: |
+  - Azure portal、サブスクリプション、リソース グループ、リソース定義など、Azure に関する基本知識
+  - Azure アカウント。無料アカウントは[こちら](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)から取得できます
+  - [Visual Studio Code](https://code.visualstudio.com?azure-portal=true) がローカルにインストールされていること
+  - 次のいずれか:
+    - 最新の [Azure CLI](/cli/azure/install-azure-cli?azure-portal=true) ツールがローカルにインストールされていること
+    - 最新の [Azure PowerShell](/powershell/azure/install-az-ps?azure-portal=true) がローカルにインストールされていること
+iconUrl: /training/achievements/create-azure-resource-manager-template-vs-code.svg
+ratingEnabled: true
+levels:
+- beginner
+roles:
+- administrator
+- developer
+- solution-architect
+products:
+- azure
+- vs-code
+- azure-resource-manager
+- azure-storage-accounts
+subjects:
+- infrastructure
+units:
+- learn.azure.create-resource-manager-template-vs-code.1-introduction
+- learn.azure.create-resource-manager-template-vs-code.2-explore-template-structure
+- learn.azure.create-resource-manager-template-vs-code.3-exercise-create-and-deploy-template
+- learn.azure.create-resource-manager-template-vs-code.4-add-flexibility-arm-template
+- learn.azure.create-resource-manager-template-vs-code.5-exercise-parameters-output
+- learn.azure.create-resource-manager-template-vs-code.6-knowledge-check
+- learn.azure.create-resource-manager-template-vs-code.7-summary
+badge:
+  uid: learn.azure.create-resource-manager-template-vs-code.badge
