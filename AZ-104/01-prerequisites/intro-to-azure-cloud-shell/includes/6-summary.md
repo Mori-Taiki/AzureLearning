@@ -1,11 +1,11 @@
-Azure Cloud Shell is a browser-accessible command-line experience for managing Azure resources. Rather than having to configure an Azure CLI or PowerShell session from your workstation, you can access Cloud Shell on any standard, compliant browser.
+Azure Cloud Shell は、Azure リソースを管理するための、ブラウザーからアクセスできるコマンドライン エクスペリエンスです。ワークステーション上で Azure CLI や PowerShell のセッションを構成しなくても、標準に準拠した任意のブラウザーから Cloud Shell にアクセスできます。
 
-Cloud Shell provides the flexibility of choosing the shell experience that best suits the way you work, allowing you to work either in Bash or PowerShell, right from the browser. Cloud Shell also provides you with the mechanisms to persist files between sessions, and provides access to a minimalist version of the Visual Studio Code editor for more complex operations.
+Cloud Shell では、自分の作業スタイルに最も合ったシェル エクスペリエンスを柔軟に選択でき、ブラウザーから直接 Bash でも PowerShell でも作業できます。また、Cloud Shell には、セッション間でファイルを保持する仕組みや、より複雑な操作のための最小構成版 Visual Studio Code エディターへのアクセスも用意されています。
 
-## Learn more
+## 詳細情報
 
-Check out these articles to learn more about Azure Cloud Shell.
+Azure Cloud Shell の詳細については、次の記事を参照してください。
 
-[Azure Cloud Shell Overview](/azure/cloud-shell/overview)
+[Azure Cloud Shell の概要](/azure/cloud-shell/overview)
 
-[Azure Cloud Shell – Browser-Based Command Line](https://azure.microsoft.com/features/cloud-shell/)
+[Azure Cloud Shell – ブラウザーベースのコマンド ライン](https://azure.microsoft.com/features/cloud-shell/)

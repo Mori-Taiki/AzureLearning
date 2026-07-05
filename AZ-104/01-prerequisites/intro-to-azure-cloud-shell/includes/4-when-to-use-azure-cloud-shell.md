@@ -1,17 +1,17 @@
-As an IT Admin for Contoso Corporation, you need alternatives to interact with Azure resources from the command line even when not using your default administrative device.
+Contoso Corporation の IT 管理者であるあなたには、普段使用している管理用デバイスが手元にないときでも、コマンドラインから Azure リソースを操作できる代替手段が必要です。
 
-You can use Azure Cloud Shell to:
+Azure Cloud Shell は次の用途に使用できます。
 
-- Open a secure command-line session from any browser-based device.
-- Interact with Azure resources without the need to install plug-ins or add-ons to your device.
-- Persist files between sessions for later use.
-- Use either Bash or PowerShell, whichever you prefer, to manage Azure resources.
-- Edit files (such as scripts) via the Cloud Shell editor.
+- ブラウザーを備えた任意のデバイスから、セキュリティで保護されたコマンドライン セッションを開く。
+- デバイスにプラグインやアドオンをインストールすることなく、Azure リソースを操作する。
+- 後で使用するために、セッション間でファイルを保持する。
+- Bash と PowerShell のうち好みのほうを使用して、Azure リソースを管理する。
+- Cloud Shell エディターでファイル (スクリプトなど) を編集する。
 
-You shouldn't use Azure Cloud Shell if:
+次のような場合には、Azure Cloud Shell を使用すべきではありません。
 
-- You intend to leave a session open for more than 20 minutes for long running scripts or activities. In these cases, your session is disconnected without warning, and the current state is lost.
-- You need admin permissions, such as sudo access, from within the Azure CLI or PowerShell environment.
-- You need to install tools that aren't supported in the limited Cloud Shell environment, but instead require an environment such as a custom virtual machine or container.
-- You need storage from different regions. You might need to back up and synchronize this content since only one region can have the storage allocated to Azure Cloud Shell.
-- You need to open multiple sessions at the same time. Azure Cloud Shell allows only one instance at time and isn't suitable for concurrent work across multiple subscriptions or tenants.
+- 長時間実行されるスクリプトや作業のために、セッションを 20 分を超えて開いたままにしたい場合。この場合、セッションは警告なしに切断され、現在の状態は失われます。
+- Azure CLI または PowerShell 環境の内部で、sudo アクセスなどの管理者権限が必要な場合。
+- 制限された Cloud Shell 環境ではサポートされないツールをインストールする必要があり、カスタム仮想マシンやコンテナーなどの環境が必要な場合。
+- 異なるリージョンのストレージが必要な場合。Azure Cloud Shell にストレージを割り当てられるリージョンは 1 つだけであるため、そのコンテンツのバックアップと同期が必要になることがあります。
+- 複数のセッションを同時に開く必要がある場合。Azure Cloud Shell で許可されるインスタンスは一度に 1 つだけであり、複数のサブスクリプションやテナントをまたいだ同時作業には適していません。

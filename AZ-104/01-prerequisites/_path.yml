@@ -1,53 +1,53 @@
 ### YamlMime:LearningPath
 uid: learn.az104-admin-prerequisites
 metadata:
-  title: 'AZ-104: Prerequisites for Azure administrators'
-  description: 'AZ-104: Prerequisites for Azure administrators'
+  title: 'AZ-104: Azure 管理者のための前提知識'
+  description: 'AZ-104: Azure 管理者のための前提知識'
   ms.date: 06/23/2026
   author: wwlpublish
   ms.author: robbarefoot
   ms.topic: learning-path
-title: 'AZ-104: Prerequisites for Azure administrators'
+title: 'AZ-104: Azure 管理者のための前提知識'
 prerequisites: |
-  -   [Microsoft Azure Fundamentals: Describe cloud concepts](/training/paths/microsoft-azure-fundamentals-describe-cloud-concepts/)
-  -   [Azure Fundamentals: Describe Azure architecture and services](/training/paths/azure-fundamentals-describe-azure-architecture-services/)
-  -   [Azure Fundamentals: Describe Azure management and governance](/training/paths/describe-azure-management-governance/)
+  -   [Microsoft Azure Fundamentals: クラウドの概念について説明する](/training/paths/microsoft-azure-fundamentals-describe-cloud-concepts/)
+  -   [Azure Fundamentals: Azure のアーキテクチャとサービスについて説明する](/training/paths/azure-fundamentals-describe-azure-architecture-services/)
+  -   [Azure Fundamentals: Azure の管理とガバナンスについて説明する](/training/paths/describe-azure-management-governance/)
 summary: |
-  Learn the basic Azure concepts you need to know as an Azure administrator.
-  Here are the learning paths in the AZ-104 Azure Administrator series:
+  Azure 管理者として知っておくべき Azure の基本的な概念を学習します。
+  AZ-104 Azure Administrator シリーズのラーニング パスは次のとおりです。
   :::row:::
   :::column:::
-   <img src="/training/achievements/az-104-administrator-prerequisites.svg" width="84" height="70" alt="The trophy for the AZ-104 Prerequisites for Azure administrators learning path." ></img>
+   <img src="/training/achievements/az-104-administrator-prerequisites.svg" width="84" height="70" alt="AZ-104: Azure 管理者のための前提知識ラーニング パスのトロフィー。" ></img>
 
-   AZ-104: Prerequisites for Azure administrators
+   AZ-104: Azure 管理者のための前提知識
   :::column-end:::
   :::column:::
-   <img src="/training/achievements/az-104-manage-identities-governance.svg" width="101" height="84" alt="The trophy for the AZ-104 Manage identities and governance in Azure learning path." ></img>
+   <img src="/training/achievements/az-104-manage-identities-governance.svg" width="101" height="84" alt="AZ-104: Azure の ID とガバナンスの管理ラーニング パスのトロフィー。" ></img>
 
-   
-   [AZ-104: Manage identities and governance in Azure](/training/paths/az-104-manage-identities-governance/)
+
+   [AZ-104: Azure の ID とガバナンスの管理](/training/paths/az-104-manage-identities-governance/)
   :::column-end:::
   :::column:::
-   <img src="/training/achievements/az-104-manage-storage.svg" width="113" height="84" alt="The trophy for the AZ-104 Implement and manage storage in Azure learning path." ></img>
+   <img src="/training/achievements/az-104-manage-storage.svg" width="113" height="84" alt="AZ-104: Azure のストレージの実装と管理ラーニング パスのトロフィー。" ></img>
 
-   [AZ-104: Implement and manage storage in Azure](/training/paths/az-104-manage-storage/)
+   [AZ-104: Azure のストレージの実装と管理](/training/paths/az-104-manage-storage/)
   :::column-end:::
   :::row-end:::
   :::row:::
   :::column:::
-   <img src="/training/achievements/az-104-manage-compute-resources.svg" width="84" height="70" alt="The trophy for the AZ-104 Deploy and manage Azure compute resources learning path." ></img>
-   
-   [AZ-104: Deploy and manage Azure compute resources](/training/paths/az-104-manage-compute-resources/)
+   <img src="/training/achievements/az-104-manage-compute-resources.svg" width="84" height="70" alt="AZ-104: Azure コンピューティング リソースのデプロイと管理ラーニング パスのトロフィー。" ></img>
+
+   [AZ-104: Azure コンピューティング リソースのデプロイと管理](/training/paths/az-104-manage-compute-resources/)
   :::column-end:::
   :::column:::
-   <img src="/training/achievements/az-104-manage-virtual-networks.svg" width="101" height="84" alt="The trophy for the AZ-104 Configure and manage virtual networks for Azure administrators learning path." ></img>
-   
-   [AZ-104: Configure and manage virtual networks for Azure administrators](/training/paths/az-104-manage-virtual-networks/)
+   <img src="/training/achievements/az-104-manage-virtual-networks.svg" width="101" height="84" alt="AZ-104: Azure 管理者向けの仮想ネットワークの構成と管理ラーニング パスのトロフィー。" ></img>
+
+   [AZ-104: Azure 管理者向けの仮想ネットワークの構成と管理](/training/paths/az-104-manage-virtual-networks/)
   :::column-end:::
   :::column:::
-   <img src="/training/achievements/az-104-monitor-backup-resources.svg" width="101" height="84" alt="The trophy for the AZ-104 Monitor and back up Azure resources learning path." ></img>
-   
-   [AZ-104: Monitor and backup Azure resources](/training/paths/az-104-monitor-backup-resources/)
+   <img src="/training/achievements/az-104-monitor-backup-resources.svg" width="101" height="84" alt="AZ-104: Azure リソースの監視とバックアップ ラーニング パスのトロフィー。" ></img>
+
+   [AZ-104: Azure リソースの監視とバックアップ](/training/paths/az-104-monitor-backup-resources/)
   :::column-end:::
   :::row-end:::
 iconUrl: /training/achievements/az-104-administrator-prerequisites.svg
