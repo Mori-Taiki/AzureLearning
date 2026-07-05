@@ -1,14 +1,14 @@
 
 
 
-Your organization has diverse requirements for the configuration and availability of their virtual machines. You're responsible for helping with the configuration to fulfill requests and resolve issues.
+あなたの組織では、仮想マシンの構成と可用性についてさまざまな要件があります。あなたは、要望への対応や問題の解決に向けた構成を支援する担当です。
 
-- The Admin team is testing an implementation of Azure Virtual Machine Scale Sets with five virtual machines. During testing, monitoring alerts show all virtual machines running at maximum capacity. However, you discover that when the CPU is fully consumed more virtual machines aren't deploying in the scale set. 
+- 管理チームは、5 台の仮想マシンによる Azure 仮想マシン スケール セットの実装をテストしています。テスト中、監視アラートはすべての仮想マシンが最大容量で動作していることを示しています。ところが、CPU が使い切られてもスケール セットに追加の仮想マシンがデプロイされないことが分かりました。
 
-- The DevOps team wants to configure Azure Virtual Machine Scale Sets for their production servers. Thursday evening is typically the busiest time in preparation for delivery to customers by COB on Friday. Conversely, early Monday is generally the quietest time. You need a plan to add more machines when the workload is high.
+- DevOps チームは、運用サーバー向けに Azure 仮想マシン スケール セットを構成したいと考えています。金曜の業務終了までの顧客への納品に備えるため、木曜の夜が通常最も忙しい時間帯です。逆に、月曜の早朝は概して最も静かな時間帯です。ワークロードが高いときにマシンを追加する計画が必要です。
 
-- As load increases on applications hosted in Azure Virtual Machine Scale Sets, you want to increase the CPU capacity of the existing instances rather than deploy more instances.
+- Azure 仮想マシン スケール セットでホストしているアプリケーションの負荷が増えたとき、インスタンスを追加でデプロイするのではなく、既存インスタンスの CPU 容量を増やしたいと考えています。
 
-### Answer the following questions
+### 次の質問に答えてください
 
-Choose the best response for each question.
+各質問に対して最も適切な回答を選んでください。

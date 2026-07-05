@@ -1,26 +1,26 @@
-Azure Virtual Machine Availability Sets implements two node concepts to help Azure maintain high availability and fault tolerance when deploying and upgrading applications: _update domains_ and _fault domains_. Each virtual machine in an availability set is placed in one update domain and one fault domain.
+Azure 仮想マシンの可用性セットには、アプリケーションのデプロイやアップグレード時に Azure が高可用性と耐障害性を維持できるようにする 2 つのノード概念、「更新ドメイン」と「障害ドメイン」が実装されています。可用性セット内の各仮想マシンは、1 つの更新ドメインと 1 つの障害ドメインに配置されます。
 
-### Things to know about update domains
+### 更新ドメインについて知っておくべきこと
 
-An update domain is a group of nodes that are upgraded together during the process of a service upgrade (or _roll out_). An update domain allows Azure to perform incremental or rolling upgrades across a deployment. Here are some other characteristics of update domains.
+更新ドメインとは、サービスのアップグレード (「ロールアウト」) の過程で一緒にアップグレードされるノードのグループです。更新ドメインがあることで、Azure はデプロイ全体に対して段階的な (ローリング) アップグレードを実行できます。更新ドメインには、ほかに次のような特徴があります。
 
-- Each update domain contains a set of virtual machines and associated physical hardware that can be updated and rebooted at the same time.
+- 各更新ドメインには、同時に更新・再起動できる仮想マシンとそれに関連する物理ハードウェアのセットが含まれます。
 
-- During planned maintenance, only one update domain is rebooted at a time.
+- 計画メンテナンス中に再起動されるのは、一度に 1 つの更新ドメインだけです。
 
-- You can specify between 1 and 20 update domains when creating an availability set.  If you don't specify a value, Azure defaults to five update domains.
-  
-- The update domain count is immutable after creation; to change it, you must delete and recreate the availability set.
+- 可用性セットの作成時に、更新ドメインは 1 〜 20 個の範囲で指定できます。値を指定しない場合、Azure の既定値は 5 個です。
+
+- 更新ドメイン数は作成後には変更できません。変更するには、可用性セットを削除して作り直す必要があります。
 
 
-### Things to know about fault domains
+### 障害ドメインについて知っておくべきこと
 
-A fault domain is a group of nodes that represent a physical unit of failure. Think of a fault domain as nodes that belong to the same physical rack.
+障害ドメインとは、物理的な障害の単位を表すノードのグループです。障害ドメインは、同じ物理ラックに属するノードの集まりだと考えてください。
 
-- A fault domain defines a group of virtual machines that share a common set of hardware (or _switches_) that share a single point of failure. An example is a server rack serviced by a set of power or networking switches.
+- 障害ドメインは、単一障害点を共有する共通のハードウェア (または「スイッチ」) 群を共有する仮想マシンのグループを定義します。一例は、一連の電源スイッチやネットワーク スイッチにつながっているサーバー ラックです。
 
-- Two fault domains work together to mitigate against hardware failures, network outages, power interruptions, or software updates. 
+- 2 つの障害ドメインが連携することで、ハードウェア障害、ネットワーク停止、電源の中断、ソフトウェア更新の影響を緩和します。
 
-Let's look at a scenario with two fault domains that have two virtual machines each. The virtual machines in each fault domain are contained in different availability sets. The web availability set contains two virtual machines with one machine from each fault domain. The SQL availability set contains two different virtual machines with one from each fault domain.
+それぞれ 2 台の仮想マシンを持つ 2 つの障害ドメインがあるシナリオを見てみましょう。各障害ドメイン内の仮想マシンは、異なる可用性セットに含まれています。Web の可用性セットには、各障害ドメインから 1 台ずつ、計 2 台の仮想マシンが含まれます。SQL の可用性セットには、各障害ドメインから 1 台ずつ、別の 2 台の仮想マシンが含まれます。
 
-:::image type="content" source="../media/update-fault-domains-c1ceee00.png" alt-text="Illustration that shows two fault domains with two virtual machines each. The virtual machines in each fault domain are contained in different availability sets." border="false":::
+:::image type="content" source="../media/update-fault-domains-c1ceee00.png" alt-text="それぞれ 2 台の仮想マシンを持つ 2 つの障害ドメインを示す図。各障害ドメイン内の仮想マシンは異なる可用性セットに含まれています。" border="false":::

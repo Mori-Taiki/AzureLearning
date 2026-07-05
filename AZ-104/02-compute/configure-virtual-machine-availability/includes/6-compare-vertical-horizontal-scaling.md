@@ -1,29 +1,29 @@
-A robust virtual machine configuration includes support for scalability. Scalability allows throughput for a virtual machine in proportion to the availability of the associated hardware resources. A scalable virtual machine can handle increases in requests without adversely affecting response time and throughput. For most scaling operations, there are two implementation options: _vertical_ and _horizontal_.
+堅牢な仮想マシン構成には、スケーラビリティへの対応が含まれます。スケーラビリティにより、関連するハードウェア リソースの利用可能量に応じた仮想マシンのスループットが得られます。スケーラブルな仮想マシンは、応答時間とスループットに悪影響を与えることなく、リクエストの増加に対応できます。ほとんどのスケーリング操作には、「垂直」と「水平」の 2 つの実装方法があります。
 
-### Things to know about vertical scaling
+### 垂直スケーリングについて知っておくべきこと
 
-Vertical scaling, also known as _scale up and scale down_, involves increasing or decreasing the virtual machine **size** in response to a workload. Vertical scaling makes a virtual machine more (scale up) or less (scale down) powerful.
+垂直スケーリングは「スケールアップとスケールダウン」とも呼ばれ、ワークロードに応じて仮想マシンの**サイズ**を増減させる方法です。垂直スケーリングでは、仮想マシンをより強力に (スケールアップ)、あるいはより小さく (スケールダウン) します。
 
-:::image type="content" source="../media/vertical-scaling-cdafa792.png" alt-text="Illustration that shows vertical scaling where a single virtual machine increases or decreases in size by scaling up or scaling down." border="false":::
+:::image type="content" source="../media/vertical-scaling-cdafa792.png" alt-text="単一の仮想マシンがスケールアップまたはスケールダウンによってサイズを増減させる垂直スケーリングを示す図。" border="false":::
 
-Here are some scenarios where using vertical scaling can be advantageous:
+垂直スケーリングが有利になるシナリオには、次のようなものがあります。
 
-- If you have a service built on a virtual machine that's under-utilized such as on the weekend, you can use vertical scaling to decrease the virtual machine size and reduce your monthly costs.
+- 週末などに使用率が低くなる仮想マシン上のサービスがある場合、垂直スケーリングで仮想マシンのサイズを小さくすれば、毎月のコストを削減できます。
 
-- You can implement vertical scaling to increase your virtual machine size to support larger demand without having to create extra virtual machines.
+- 仮想マシンを追加で作成することなく、仮想マシンのサイズを大きくして、より大きな需要に対応できます。
 
-### Things to know about horizontal scaling
+### 水平スケーリングについて知っておくべきこと
 
-Horizontal scaling, also referred to as _scale out and scale in_, is used to adjust the **number** of virtual machines in your configuration to support the changing workload. When you implement horizontal scaling, there's an increase (scale out) or decrease (scale in) in the number of virtual machine instances.
+水平スケーリングは「スケールアウトとスケールイン」とも呼ばれ、変化するワークロードに対応するために、構成内の仮想マシンの**数**を調整する方法です。水平スケーリングでは、仮想マシン インスタンスの数を増やしたり (スケールアウト)、減らしたり (スケールイン) します。
 
-:::image type="content" source="../media/horizontal-scaling-3e457e75.png" alt-text="Illustration that shows horizontal scaling where virtual machines are added to scale out the system to support the workload." border="false":::
+:::image type="content" source="../media/horizontal-scaling-3e457e75.png" alt-text="ワークロードに対応するために仮想マシンを追加してシステムをスケールアウトする水平スケーリングを示す図。" border="false":::
 
-### Things to consider when using vertical and horizontal scaling
+### 垂直・水平スケーリングを使う際に考慮すべきこと
 
-Review the following considerations regarding vertical and horizontal scaling. Think about which implementation might be required to support your company website.
+垂直スケーリングと水平スケーリングに関する次の考慮事項を確認してください。会社の Web サイトを支えるにはどちらの実装が必要になりそうか、考えてみましょう。
 
-- **Consider limitations**. Generally speaking, horizontal scaling has fewer limitations than vertical scaling. A vertical scaling implementation depends on the availability of larger hardware, which quickly hits an upper limit and can vary by region. Vertical scaling also usually requires a virtual machine to stop and restart, which can temporarily limit access to applications or data.
+- **制約を考慮する**: 一般的に、水平スケーリングは垂直スケーリングより制約が少なくなります。垂直スケーリングの実装はより大きなハードウェアが利用できるかどうかに依存し、すぐに上限に達するうえ、リージョンによっても異なります。また、垂直スケーリングでは通常、仮想マシンの停止と再起動が必要になり、アプリケーションやデータへのアクセスが一時的に制限されることがあります。
 
-- **Consider flexibility**. When operating in the cloud, horizontal scaling is more flexible. A horizontal scaling implementation allows you to run potentially thousands of virtual machines to manage changes in workload and throughput.
+- **柔軟性を考慮する**: クラウドで運用する場合、水平スケーリングのほうが柔軟です。水平スケーリングの実装なら、ワークロードとスループットの変化に対応するために、場合によっては数千台の仮想マシンを動かせます。
 
-- **Consider reprovisioning**. _Reprovisioning_ is the process of removing an existing virtual machine and replacing it with a new machine. A robust availability plan considers where reprovisioning might be required and plans for interruptions to service. If reprovisioning might be required, determine if any data needs to be maintained and migrated to the new machine.
+- **再プロビジョニングを考慮する**: 「再プロビジョニング」とは、既存の仮想マシンを取り除き、新しいマシンに置き換える処理のことです。堅牢な可用性計画では、どこで再プロビジョニングが必要になりうるかを考慮し、サービスの中断に備えます。再プロビジョニングが必要になりそうな場合は、維持して新しいマシンへ移行すべきデータがあるかどうかを確認してください。

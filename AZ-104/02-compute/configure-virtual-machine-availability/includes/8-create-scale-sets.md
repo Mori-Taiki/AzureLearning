@@ -1,18 +1,18 @@
-You can implement Azure Virtual Machine Scale Sets in the Azure portal. You specify the number of virtual machines and their sizes, and indicate preferences for using Azure Spot instances, Azure managed disks, and allocation policies.
+Azure 仮想マシン スケール セットは Azure portal で実装できます。仮想マシンの数とサイズを指定し、Azure スポット インスタンスや Azure マネージド ディスクの使用、割り当てポリシーに関する設定を指定します。
 
-In the Azure portal, there are several settings to configure to create an Azure Virtual Machine Scale Sets implementation.
+Azure portal では、Azure 仮想マシン スケール セットを作成するためにいくつかの設定を構成します。
 
-:::image type="content" source="../media/implement-scale-sets-61516afb.png" alt-text="Screenshot that shows how to create Virtual Machine Scale Sets in the Azure portal.":::
+:::image type="content" source="../media/implement-scale-sets-61516afb.png" alt-text="Azure portal で仮想マシン スケール セットを作成する方法を示すスクリーンショット。":::
 
 
-- [**Orchestration mode**](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes): Choose how the scale set manages the virtual machines. Flexible orchestration is the default and recommended mode for new deployments. For most new workloads, accept the Flexible default unless you have a specific requirement for identical instances.
+- [**オーケストレーション モード**](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes): スケール セットが仮想マシンをどう管理するかを選びます。Flexible オーケストレーションが既定で、新しいデプロイに推奨されるモードです。同一構成のインスタンスが特に必要という要件がない限り、ほとんどの新しいワークロードでは既定の Flexible をそのまま使ってください。
 
-- **Image**: Choose the base operating system or application for the VM.
+- **イメージ**: VM のベースとなるオペレーティング システムまたはアプリケーションを選びます。
 
-- **VM Architecture**: Azure provides a choice of x64 or Arm64-based virtual machines to run your applications. x64-based VMs provide the most software compatibility. Arm64-based VMs provide up to 50% better price-performance than comparable x64 VMs.
+- **VM アーキテクチャ**: Azure では、アプリケーションを実行する仮想マシンとして x64 ベースと Arm64 ベースを選択できます。x64 ベースの VM はソフトウェア互換性が最も高く、Arm64 ベースの VM は同等の x64 VM より最大 50% 優れた価格性能比を発揮します。
 
-- **Size**: Select a VM size to support the workload that you want to run. The size that you choose then determines factors such as processing power, memory, and storage capacity. Azure offers a wide variety of sizes to support many types of uses. Azure charges an hourly price based on the VM's size and operating system.
+- **サイズ**: 実行したいワークロードに見合った VM サイズを選択します。選んだサイズによって、処理能力、メモリ、ストレージ容量などが決まります。Azure には、多様な用途に対応する幅広いサイズが用意されています。Azure は、VM のサイズとオペレーティング システムに基づいて時間単価で課金します。
 
-Under the **Advanced** tab, you can also select the following: 
+**[詳細]** タブでは、次の設定も選択できます。
 
-- **Spreading algorithm**: The spreading algorithm determines how VMs in the scale set are balanced across fault domains. With max spreading, VMs are spread across as many fault domains as possible in each zone. With fixed spreading, VMs are always spread across exactly five fault domains. In the case where fewer than five fault domains are available, a scale set using "Max spreading" completes, while a scale set using "Fixed spreading" fails. For this reason, Microsoft recommends using **Max spreading** for your implementation. 
+- **分散アルゴリズム**: 分散アルゴリズムは、スケール セット内の VM を障害ドメイン間でどのように分散させるかを決めます。最大分散では、各ゾーン内でできるだけ多くの障害ドメインに VM を分散します。固定分散では、VM は常にちょうど 5 つの障害ドメインに分散されます。利用可能な障害ドメインが 5 つ未満の場合、「最大分散」を使うスケール セットは正常に完了しますが、「固定分散」を使うスケール セットは失敗します。このため、Microsoft は**最大分散**の使用を推奨しています。

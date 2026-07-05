@@ -1,22 +1,21 @@
-Azure Virtual Machine Scale Sets are an Azure Compute resource that you can use to deploy and manage a set of **identical** virtual machines. When you implement Virtual Machine Scale Sets and configure all your virtual machines in the same way, you gain true _autoscaling_. Virtual Machine Scale Sets automatically increases the number of your virtual machine instances as application demand increases, and reduces the number of machine instances as demand decreases.
+Azure 仮想マシン スケール セットは、**同一構成の**仮想マシンのセットをデプロイして管理するための Azure コンピューティング リソースです。仮想マシン スケール セットを実装してすべての仮想マシンを同じ構成にすると、真の「自動スケール」が実現します。仮想マシン スケール セットは、アプリケーションの需要が増えると仮想マシン インスタンスの数を自動的に増やし、需要が減るとインスタンスの数を減らします。
 
-With Virtual Machine Scale Sets, you don't need to pre-provision your virtual machines. It's easier to build large-scale services that target large compute, big data, and containerized workloads. As workloads increase, more virtual machine instances can be added. As workloads decrease, virtual machines instances can be removed. The process of adding and removing machines can be manual or automated, or a combination of both.
+仮想マシン スケール セットを使えば、仮想マシンを事前にプロビジョニングしておく必要はありません。大規模コンピューティング、ビッグ データ、コンテナー化されたワークロードを対象とする大規模サービスを構築しやすくなります。ワークロードが増えれば仮想マシン インスタンスを追加でき、ワークロードが減ればインスタンスを削除できます。マシンの追加と削除は、手動でも自動でも、その組み合わせでも行えます。
 
-### Increase app availability and scalability with Azure Virtual Machine Scale Sets
+### Azure 仮想マシン スケール セットでアプリの可用性とスケーラビリティを高める
 
 <iframe width="854" height="480" src="https://www.youtube.com/embed/lE2xJXYHnB8" title="Increase app availability and scalability | Azure Virtual Machine Scale Sets" frameborder="0" allowfullscreen></iframe>
 <br>
 
-### Things to know about Azure Virtual Machine Scale Sets 
+### Azure 仮想マシン スケール セットについて知っておくべきこと
 
-Review the following characteristics of Azure Virtual Machine Scale Sets.
+Azure 仮想マシン スケール セットの特徴を確認しましょう。
 
 
-- Virtual Machine Scale Sets support the use of Azure Load Balancer for basic layer-4 traffic distribution, and Azure Application Gateway for more advanced layer-7 traffic distribution and TLS/SSL termination.
+- 仮想マシン スケール セットは、基本的なレイヤー 4 のトラフィック分散には Azure Load Balancer を、より高度なレイヤー 7 のトラフィック分散と TLS/SSL 終端には Azure Application Gateway をサポートします。
 
-- You can use Virtual Machine Scale Sets to run multiple instances of your application. If one of the virtual machine instances has a problem, customers continue to access your application through another virtual machine instance with minimal interruption.
+- 仮想マシン スケール セットを使って、アプリケーションの複数のインスタンスを実行できます。ある仮想マシン インスタンスに問題が起きても、顧客は最小限の中断で、別の仮想マシン インスタンス経由でアプリケーションにアクセスし続けられます。
 
-- There are two types of orchestration modes available for Azure virtual machine scale sets: Uniform and Flexible. In **Uniform orchestration mode**, all virtual machine instances are created from the same base operating system image and configuration. In **Flexible orchestration mode**, VMs can use different images, sizes, or configurations within the same scale set. The orchestration mode must be chosen when the scale set is created.
+- Azure 仮想マシン スケール セットには、Uniform と Flexible という 2 種類のオーケストレーション モードがあります。**Uniform オーケストレーション モード**では、すべての仮想マシン インスタンスが同じベース オペレーティング システム イメージと構成から作成されます。**Flexible オーケストレーション モード**では、同じスケール セット内で VM ごとに異なるイメージ、サイズ、構成を使用できます。オーケストレーション モードは、スケール セットの作成時に選択しなければなりません。
 
-- Customer demand for your application might change throughout the day or week. To meet customer demand, Virtual Machine Scale Sets implements autoscaling to automatically increase and decrease the number of virtual machines.
-
+- アプリケーションに対する顧客の需要は、1 日や 1 週間の中で変化することがあります。顧客の需要に応えるために、仮想マシン スケール セットは自動スケールを実装しており、仮想マシンの数を自動的に増減させます。

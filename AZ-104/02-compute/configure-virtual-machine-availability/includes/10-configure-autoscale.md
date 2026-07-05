@@ -1,30 +1,29 @@
-When you create an Azure Virtual Machine Scale Sets implementation in the Azure portal, you can enable manual or autoscaling. For optimal performance, you should define a minimum, maximum, and default number of virtual machine instances to use.
+Azure portal で Azure 仮想マシン スケール セットを作成する際に、手動スケーリングまたは自動スケールを有効にできます。最適なパフォーマンスのためには、使用する仮想マシン インスタンスの最小数、最大数、既定数を定義しておくべきです。
 
-In the Azure portal, you can select the scaling mode.
+Azure portal では、スケーリング モードを選択できます。
 
-:::image type="content" source="../media/scale-methods.png" alt-text="Screenshot of the settings for selecting a scale method in the Azure portal.":::
+:::image type="content" source="../media/scale-methods.png" alt-text="Azure portal でスケール方法を選択する設定のスクリーンショット。":::
 
-**Scaling mode** 
+**スケーリング モード**
 
-- **Manually update the capacity**: Maintain a fixed instances count. Set the **Instance count** to the number of virtual machines in the scale set (0 - 1000). Configure the [**Scale-in policy**](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-scale-in-policy) which is the order virtual machines are selected for deletion. For example, you could balance across zones and then delete the virtual machine with the highest instance ID. 
+- **容量を手動で更新する**: インスタンス数を固定で維持します。**[インスタンス数]** に、スケール セット内の仮想マシンの数 (0 〜 1000) を設定します。[**スケールイン ポリシー**](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-scale-in-policy) では、削除対象の仮想マシンが選ばれる順序を構成します。たとえば、ゾーン間でバランスを取ったうえで、インスタンス ID が最も大きい仮想マシンを削除する、といった設定ができます。
 
-- **Autoscaling**: Scaling based on a CPU metric, or any schedule.
-  
-**Configure autoscaling**
+- **自動スケール**: CPU メトリックまたは任意のスケジュールに基づいてスケーリングします。
 
-Autoscaling is based on a scaling condition. 
+**自動スケールを構成する**
 
-:::image type="content" source="../media/implement-autoscale-74d25345.png" alt-text="Screenshot of the settings for configuring virtual machine instances and autoscale in the Azure portal.":::
+自動スケールは、スケーリング条件に基づいて動作します。
 
-- **Default instance count.** The initial number of virtual machines deployed in this scale set (0-1000).
+:::image type="content" source="../media/implement-autoscale-74d25345.png" alt-text="Azure portal で仮想マシン インスタンスと自動スケールを構成する設定のスクリーンショット。":::
 
-- **Instance limit.** The minimum instance count you want this condition to scale down to. The maximum instance count you want this condition to scale up to.
+- **既定のインスタンス数**: このスケール セットに最初にデプロイされる仮想マシンの数 (0 〜 1000)。
 
-- **Scale out.** The CPU usage percentage threshold for triggering the scale-out autoscale rule. The number of instances to scale out by.
+- **インスタンスの制限**: この条件でスケールダウンできる最小インスタンス数と、スケールアップできる最大インスタンス数。
 
-- **Scale in.** The CPU usage percentage threshold for triggering the scale-in autoscale rule. The number of instances to scale in by. 
+- **スケールアウト**: スケールアウトの自動スケール ルールをトリガーする CPU 使用率のしきい値と、スケールアウトするインスタンス数。
 
-- **Query duration**: This duration is the time the Autoscale engine looks back for the metric usage average. This look back is to allow your metric to stabilize.
+- **スケールイン**: スケールインの自動スケール ルールをトリガーする CPU 使用率のしきい値と、スケールインするインスタンス数。
 
-- **Schedule**: Specify the start and end dates. You can also repeat the schedule on specific days. 
+- **クエリ期間**: 自動スケール エンジンがメトリック使用量の平均を振り返って参照する期間です。この振り返りにより、メトリックが安定するのを待てます。
 
+- **スケジュール**: 開始日と終了日を指定します。特定の曜日にスケジュールを繰り返すこともできます。

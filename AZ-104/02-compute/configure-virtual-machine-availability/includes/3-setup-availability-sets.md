@@ -1,36 +1,36 @@
-An availability set is a logical feature you can use to ensure a group of related virtual machines are deployed together. The grouping helps to prevent a single point of failure from affecting all of your machines. The grouping ensures that not all of the machines are upgraded at the same time during a host operating system upgrade in the datacenter. 
+可用性セットは、関連する仮想マシンのグループをまとめてデプロイするための論理的な機能です。グループ化することで、単一障害点がすべてのマシンに影響するのを防ぎやすくなります。また、データセンターでホストのオペレーティング システムがアップグレードされる際に、すべてのマシンが同時にアップグレードされないことが保証されます。
 
-### Things to know about availability sets
+### 可用性セットについて知っておくべきこと
 
-Let's review some characteristics of availability sets.
+可用性セットの特徴をいくつか確認しましょう。
 
-- All virtual machines in an availability set should perform the identical set of functionalities.
+- 可用性セット内のすべての仮想マシンは、同一の機能セットを担うべきです。
 
-- All virtual machines in an availability set should have the same software installed.
+- 可用性セット内のすべての仮想マシンには、同じソフトウェアをインストールしておくべきです。
 
-- Azure ensures that virtual machines in an availability set run across multiple physical servers, compute racks, storage units, and network switches.
+- Azure は、可用性セット内の仮想マシンが複数の物理サーバー、コンピューティング ラック、ストレージ ユニット、ネットワーク スイッチにまたがって動作することを保証します。
 
-   If a hardware or Azure software failure occurs, only a subset of the virtual machines in the availability set are affected. Your application stays up and continues to be available to your customers.
+   ハードウェアまたは Azure ソフトウェアの障害が発生しても、影響を受けるのは可用性セット内の仮想マシンの一部だけです。アプリケーションは稼働し続け、顧客はサービスを利用し続けられます。
 
-- You can create a virtual machine and an availability set at the same time.
+- 仮想マシンと可用性セットは同時に作成できます。
 
-   A virtual machine can only be added to an availability set when the virtual machine is created. To change the availability set for a virtual machine, you need to delete and then recreate the virtual machine.
+   仮想マシンを可用性セットに追加できるのは、仮想マシンの作成時だけです。仮想マシンの可用性セットを変更するには、仮想マシンを削除して作り直す必要があります。
 
-- You can build availability sets by using the Azure portal, Azure Resource Manager (ARM) templates, scripting, or API tools.
+- 可用性セットは、Azure portal、Azure Resource Manager (ARM) テンプレート、スクリプト、API ツールで構築できます。
 
 
 
 > [!NOTE]
-> Adding your virtual machines to an availability set doesn't protect your applications from operating system or application-specific failures. You need to explore other disaster recovery and backup techniques to provide application-level protection.
+> 仮想マシンを可用性セットに追加しても、オペレーティング システムやアプリケーション固有の障害からアプリケーションが保護されるわけではありません。アプリケーション レベルの保護には、別の災害復旧・バックアップ手法を検討する必要があります。
 
-### Things to consider when using availability sets
+### 可用性セットを使う際に考慮すべきこと
 
-Availability sets are an essential capability when you want to build reliable cloud solutions. In your planning for availability sets, keep the following general principles in mind:
+可用性セットは、信頼性の高いクラウド ソリューションを構築するうえで欠かせない機能です。可用性セットの計画では、次の一般原則を念頭に置いてください。
 
-- **Consider redundancy**. To achieve redundancy in your configuration, place multiple virtual machines in an availability set.
+- **冗長性を考慮する**: 構成に冗長性を持たせるには、複数の仮想マシンを 1 つの可用性セットに配置します。
 
-- **Consider separation of application tiers**. Each application tier exercised in your configuration should be located in a separate availability set. The separation helps to mitigate single point of failure on all machines.
+- **アプリケーション層の分離を考慮する**: 構成内の各アプリケーション層は、それぞれ別の可用性セットに配置すべきです。分離することで、全マシンにまたがる単一障害点を緩和できます。
 
-- **Consider load balancing**. For high availability and network performance, create a load-balanced availability set by using Azure Load Balancer. Load Balancer distributes incoming traffic across working instances of services that are defined in your load-balanced availability set.
+- **負荷分散を考慮する**: 高可用性とネットワーク パフォーマンスのために、Azure Load Balancer を使って負荷分散された可用性セットを作成します。Load Balancer は、負荷分散された可用性セットに定義されたサービスの稼働中インスタンス間で、受信トラフィックを分散します。
 
-- **Consider managed disks**. You can use Azure managed disks with your Azure virtual machines in availability sets for block-level storage.
+- **マネージド ディスクを考慮する**: 可用性セット内の Azure 仮想マシンでは、ブロック レベルのストレージとして Azure マネージド ディスクを使用できます。
