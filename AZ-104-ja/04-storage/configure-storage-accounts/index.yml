@@ -3,8 +3,8 @@ uid: learn.wwl.configure-storage-accounts
 metadata:
   adobe-target: true
   prefetch-feature-rollout: true
-  title: Configure Storage Accounts
-  description: "Learn how to configure storage accounts, including replication and endpoints."
+  title: ストレージ アカウントの構成
+  description: "レプリケーションとエンドポイントを含む、ストレージ アカウントの構成方法を学びます。"
   ms.date: 06/23/2026
   author: wwlpublish
   ms.author: robbarefoot
@@ -14,22 +14,22 @@ metadata:
   - N/A
   ms.service: azure-storage
   ai-usage: ai-assisted
-title: Configure storage accounts
-summary: Learn how to configure storage accounts, including replication and endpoints.
+title: ストレージ アカウントの構成
+summary: レプリケーションとエンドポイントを含む、ストレージ アカウントの構成方法を学びます。
 abstract: |
-  In this module, you learn how to:
+  このモジュールでは、次のことを学びます。
 
-  -   Identify features and usage cases for Azure storage accounts.
+  -   Azure ストレージ アカウントの機能と利用ケースを把握する。
 
-  -   Select between different types of Azure Storage and create storage accounts.
+  -   Azure Storage のさまざまな種類から選択し、ストレージ アカウントを作成する。
 
-  -   Select a storage replication strategy.
+  -   ストレージのレプリケーション戦略を選択する。
 
-  -   Configure secure network access to storage endpoints.
+  -   ストレージ エンドポイントへの安全なネットワーク アクセスを構成する。
 prerequisites: |
-  -   Experience with the Azure portal.
+  -   Azure portal の使用経験。
 
-  -   Familiarity with managing different types of data storage.
+  -   さまざまな種類のデータ ストレージの管理に関する基本知識。
 iconUrl: /training/achievements/storage-accounts-configure.svg
 levels:
 - intermediate

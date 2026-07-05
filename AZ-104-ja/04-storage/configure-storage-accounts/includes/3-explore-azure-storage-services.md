@@ -1,52 +1,52 @@
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=cce31ece-07bd-4cba-b6e6-59af6a6ae1c0]
 
-Let's examine the details of these services.
+これらのサービスの詳細を見ていきましょう。
 
-:::image type="content" source="../media/explore-storage-services.png" alt-text="Diagram showing the four main types of Azure storage.":::
+:::image type="content" source="../media/explore-storage-services.png" alt-text="Azure ストレージの主要な 4 つの種類を示す図。":::
 
-### Azure Blob Storage 
+### Azure Blob Storage
 
-[Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview) is Microsoft's object storage solution for the cloud. Blob Storage is optimized for storing massive amounts of unstructured or _nonrelational_ data, such as text or binary data. Blob Storage is ideal for:
+[Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview) は、クラウド向けの Microsoft のオブジェクト ストレージ ソリューションです。Blob Storage は、テキストやバイナリ データなど、膨大な量の非構造化 (「非リレーショナル」) データの保存に最適化されています。Blob Storage は、次のような用途に最適です。
 
-- Serving images or documents directly to a browser.
-- Storing files for distributed access.
-- Streaming video and audio.
-- Storing data for backup and restore, disaster recovery, and archiving.
-- Storing data for analysis by an on-premises or Azure-hosted service.
+- 画像やドキュメントをブラウザーに直接配信する。
+- 分散アクセス用のファイルを保存する。
+- ビデオやオーディオをストリーミングする。
+- バックアップと復元、災害復旧、アーカイブのためのデータを保存する。
+- オンプレミスまたは Azure でホストされるサービスによる分析用のデータを保存する。
 
-Objects in Blob Storage can be accessed from anywhere in the world via HTTP or HTTPS. Users or client applications can access blobs via URLs, the Azure Storage REST API, Azure PowerShell, the Azure CLI, or an Azure Storage client library. The storage client libraries are available for multiple languages, including .NET, Java, Node.js, Python, PHP, and Ruby.
+Blob Storage 内のオブジェクトには、世界中のどこからでも HTTP または HTTPS でアクセスできます。ユーザーやクライアント アプリケーションは、URL、Azure Storage REST API、Azure PowerShell、Azure CLI、または Azure Storage クライアント ライブラリを使って BLOB にアクセスできます。ストレージ クライアント ライブラリは、.NET、Java、Node.js、Python、PHP、Ruby など複数の言語で利用できます。
 
 ### Azure Files
 
-[Azure Files](/azure/storage/files/storage-files-introduction) enables you to set up highly available network file shares. Shares can be accessed by using the Server Message Block (SMB) protocol and the Network File System (NFS) protocol. Multiple virtual machines can share the same files with both read and write access. You can also read the files by using the REST interface or the storage client libraries. 
+[Azure Files](/azure/storage/files/storage-files-introduction) を使うと、可用性の高いネットワーク ファイル共有をセットアップできます。共有には、サーバー メッセージ ブロック (SMB) プロトコルとネットワーク ファイル システム (NFS) プロトコルでアクセスできます。複数の仮想マシンが、読み取りと書き込みの両方のアクセスで同じファイルを共有できます。REST インターフェイスやストレージ クライアント ライブラリを使ってファイルを読み取ることもできます。
 
-File shares can be used for many common scenarios:
+ファイル共有は、多くの一般的なシナリオで使えます。
 
-- Many on-premises applications use file shares. This feature makes it easier to migrate those applications that share data to Azure. If you mount the file share to the same drive letter that the on-premises application uses, the part of your application that accesses the file share should work with minimal, if any, changes.
-- Configuration files can be stored on a file share and accessed from multiple virtual machines. Tools and utilities used by multiple developers in a group can be stored on a file share, ensuring that everybody can find them, and that they use the same version.
-- Diagnostic logs, metrics, and crash dumps are just three examples of data that can be written to a file share and processed or analyzed later.
+- オンプレミスのアプリケーションの多くはファイル共有を使っています。この機能により、データを共有するアプリケーションの Azure への移行が容易になります。オンプレミスのアプリケーションが使っているのと同じドライブ文字にファイル共有をマウントすれば、ファイル共有にアクセスするアプリケーションの部分は、ほとんど (あるいはまったく) 変更なしで動くはずです。
+- 構成ファイルをファイル共有に置いて、複数の仮想マシンからアクセスできます。グループ内の複数の開発者が使うツールやユーティリティをファイル共有に置けば、全員が見つけられて、同じバージョンを使えるようになります。
+- 診断ログ、メトリック、クラッシュ ダンプは、ファイル共有に書き込んで後から処理・分析できるデータのほんの一例です。
 
-The storage account credentials are used to provide authentication for access to the file share. All users who have the share mounted should have full read/write access to the share.
+ファイル共有へのアクセスの認証には、ストレージ アカウントの資格情報が使われます。共有をマウントしているすべてのユーザーは、共有への完全な読み取り/書き込みアクセス権を持つことになります。
 
 ### Azure Queue Storage
 
-[Azure Queue Storage](/azure/storage/queues/storage-queues-introduction) is used to store and retrieve messages. Queue messages can be up to 64 KB in size, and a queue can contain millions of messages. Queues are used to store lists of messages to be processed asynchronously.
+[Azure Queue Storage](/azure/storage/queues/storage-queues-introduction) は、メッセージの保存と取得に使います。キューのメッセージは最大 64 KB で、1 つのキューには数百万件のメッセージを格納できます。キューは、非同期に処理するメッセージのリストの保存に使われます。
 
-Consider a scenario where you want your customers to be able to upload pictures, and you want to create thumbnails for each picture. You could have your customer wait for you to create the thumbnails while uploading the pictures. An alternative is to use a queue. When the customer finishes the upload, you can write a message to the queue. Then you can use an Azure Function to retrieve the message from the queue and create the thumbnails. Each of the processing parts can be scaled separately, which gives you more control when tuning the configuration.
+顧客が画像をアップロードできるようにして、各画像のサムネイルを作成したいというシナリオを考えてみましょう。画像のアップロード時にサムネイルの作成が終わるまで顧客を待たせるという方法もありますが、代わりにキューを使えます。顧客がアップロードを終えたら、キューにメッセージを書き込みます。その後、Azure Functions でキューからメッセージを取り出してサムネイルを作成します。処理の各部分を個別にスケールできるため、構成のチューニングの自由度が上がります。
 
 ### Azure Table Storage
 
-[Azure Table storage](/azure/storage/tables/table-storage-overview) is a service that stores nonrelational structured data (also known as structured NoSQL data) in the cloud, providing a key/attribute store with a schemaless design. Because Table storage is schemaless, it's easy to adapt your data as the needs of your application evolve. Access to Table storage data is fast and cost-effective for many types of applications, and is typically lower in cost than traditional SQL for similar volumes of data.
-In addition to the existing Azure Table Storage service, there's a new Azure Cosmos DB Table API offering that provides throughput-optimized tables, global distribution, and automatic secondary indexes. 
+[Azure Table Storage](/azure/storage/tables/table-storage-overview) は、非リレーショナルの構造化データ (構造化 NoSQL データとも呼ばれます) をクラウドに保存するサービスで、スキーマレス設計のキー/属性ストアを提供します。Table Storage はスキーマレスなので、アプリケーションのニーズの変化に合わせてデータを簡単に適応させられます。Table Storage のデータへのアクセスは、多くの種類のアプリケーションにとって高速でコスト効率が良く、同程度のデータ量であれば従来の SQL より一般的に低コストです。
+既存の Azure Table Storage サービスに加えて、スループット最適化されたテーブル、グローバル分散、自動セカンダリ インデックスを提供する、新しい Azure Cosmos DB Table API も提供されています。
 
-### Things to consider when choosing Azure Storage services
+### Azure Storage のサービスを選ぶ際に考慮すべきこと
 
-As you think about your configuration plan for Azure Storage, consider the prominent features of the types of Azure Storage and which options support your application needs.
+Azure Storage の構成計画を考える際は、Azure Storage の各種類の主要な機能と、どの選択肢がアプリケーションのニーズを支えられるかを考慮してください。
 
-- **Consider storage optimization for massive data**. Azure Blob Storage is optimized for storing massive amounts of unstructured data. Objects in Blob Storage can be accessed from anywhere in the world via HTTP or HTTPS. Blob Storage is ideal for serving data directly to a browser, streaming data, and storing data for backup and restore.
+- **大量データ向けのストレージ最適化を考慮する**: Azure Blob Storage は、膨大な量の非構造化データの保存に最適化されています。Blob Storage 内のオブジェクトには、世界中のどこからでも HTTP または HTTPS でアクセスできます。Blob Storage は、ブラウザーへの直接のデータ配信、データのストリーミング、バックアップと復元のためのデータ保存に最適です。
 
-- **Consider storage with high availability**. Azure Files supports highly available network file shares. On-premises apps use file shares for easy migration. By using Azure Files, all users can access shared data and tools. Storage account credentials provide file share authentication to ensure all users who have the file share mounted have the correct read/write access.
+- **高可用性のストレージを考慮する**: Azure Files は、可用性の高いネットワーク ファイル共有をサポートします。オンプレミスのアプリはファイル共有を使っているため、移行が容易です。Azure Files を使えば、すべてのユーザーが共有のデータとツールにアクセスできます。ストレージ アカウントの資格情報がファイル共有の認証を提供し、共有をマウントしたすべてのユーザーが適切な読み取り/書き込みアクセスを持てるようにします。
 
-- **Consider storage for messages**. Use Azure Queue Storage to store large numbers of messages. Queue Storage is commonly used to create a backlog of work to process asynchronously.
+- **メッセージ用のストレージを考慮する**: 大量のメッセージの保存には Azure Queue Storage を使います。Queue Storage は、非同期に処理する作業のバックログを作るのによく使われます。
 
-- **Consider storage for structured data**. Azure Table Storage is ideal for storing structured, nonrelational data. It provides throughput-optimized tables, global distribution, and automatic secondary indexes. B
+- **構造化データ用のストレージを考慮する**: Azure Table Storage は、構造化された非リレーショナル データの保存に最適です。スループット最適化されたテーブル、グローバル分散、自動セカンダリ インデックスを提供します。

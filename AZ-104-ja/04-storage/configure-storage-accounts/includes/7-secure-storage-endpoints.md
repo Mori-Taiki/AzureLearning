@@ -1,40 +1,40 @@
-In the Azure portal, each Azure service requires certain steps to configure the service endpoints and restrict network access.
+Azure portal では、サービス エンドポイントを構成してネットワーク アクセスを制限するために、Azure サービスごとに所定の手順が必要です。
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=a877ed25-bfb0-4552-a35a-563cb7a67061]
 
-To access these settings for your storage account, you use the **Firewalls and virtual networks** settings. You add the virtual networks that should have access to the service for the account. - This setting restricts access to your storage account from specific subnets on virtual networks or public IPs.
+ストレージ アカウントのこれらの設定にアクセスするには、**[ファイアウォールと仮想ネットワーク]** の設定を使います。アカウントのサービスへのアクセスを許可すべき仮想ネットワークを追加します。この設定により、仮想ネットワーク上の特定のサブネットまたはパブリック IP からのアクセスだけにストレージ アカウントを制限できます。
 
-:::image type="content" source="../media/secure-storage-access-d32868ef.png" alt-text="Screenshot of the Storage Account Firewalls and virtual networks settings in the Azure portal.":::
+:::image type="content" source="../media/secure-storage-access-d32868ef.png" alt-text="Azure portal のストレージ アカウントの [ファイアウォールと仮想ネットワーク] 設定のスクリーンショット。":::
 
-The service endpoints for a storage account provide the base URL for any blob, queue, table, or file object in Azure Storage. Use this base URL to construct the address for any given resource.
+ストレージ アカウントのサービス エンドポイントは、Azure Storage 内のあらゆる BLOB、キュー、テーブル、ファイルのオブジェクトのベース URL を提供します。このベース URL を使って、任意のリソースのアドレスを組み立てます。
 
-:::image type="content" source="../media/service-endpoints-portal-lrg.png" alt-text="Screenshot of the service endpoint URLs in the Azure portal.":::
+:::image type="content" source="../media/service-endpoints-portal-lrg.png" alt-text="Azure portal のサービス エンドポイント URL のスクリーンショット。":::
 
 
-### Things to know about configuring service endpoints
+### サービス エンドポイントの構成について知っておくべきこと
 
-Here are some points to consider about configuring service access settings:
+サービス アクセス設定の構成について、いくつか考慮すべき点があります。
 
-- You can configure the service to allow access to one or more public IP ranges.
+- 1 つ以上のパブリック IP 範囲へのアクセスを許可するようにサービスを構成できます。
 
-- Subnets and virtual networks must exist in the same Azure region or region pair as your storage account.
+- サブネットと仮想ネットワークは、ストレージ アカウントと同じ Azure リージョンまたはリージョン ペア内に存在する必要があります。
 
 > [!Important]
-> Be sure to test the service endpoint and verify the endpoint limits access as expected.
+> サービス エンドポイントは必ずテストして、エンドポイントが想定どおりにアクセスを制限していることを確認してください。
 
-### Things to know about configuring private endpoints
+### プライベート エンドポイントの構成について知っておくべきこと
 
-In addition to service endpoints, Azure Storage supports private endpoints for enhanced security and network isolation. Private endpoints are the recommended approach for production workloads requiring secure access.
+サービス エンドポイントに加えて、Azure Storage はセキュリティとネットワーク分離を強化するプライベート エンドポイントもサポートしています。安全なアクセスを必要とする運用ワークロードには、プライベート エンドポイントが推奨されるアプローチです。
 
-A private endpoint uses a private IP address from your virtual network to bring the Azure Storage service into your VNet. All traffic between your VNet and the storage service goes over the Microsoft backbone network, eliminating exposure to the public internet.
+プライベート エンドポイントは、仮想ネットワークのプライベート IP アドレスを使って、Azure Storage サービスを VNet の中に取り込みます。VNet とストレージ サービスの間のすべてのトラフィックは Microsoft のバックボーン ネットワークを通るため、パブリック インターネットへの露出がなくなります。
 
-**Key differences from service endpoints**
+**サービス エンドポイントとの主な違い**
 
-- Private endpoints assign a private IP from your VNet to the storage account, keeping all traffic within the Microsoft backbone. Use private endpoints for production workloads requiring complete network isolation and compliance requirements
-  
-- Service endpoints keep the storage account on its public endpoint but restrict access to specific VNets and subnets. Use service endpoints for development scenarios or when you need simpler configuration with some public internet access
+- プライベート エンドポイントは、VNet のプライベート IP をストレージ アカウントに割り当て、すべてのトラフィックを Microsoft のバックボーン内に保ちます。完全なネットワーク分離とコンプライアンス要件が求められる運用ワークロードには、プライベート エンドポイントを使ってください。
+
+- サービス エンドポイントは、ストレージ アカウントをパブリック エンドポイント上に保ちながら、特定の VNet とサブネットからのアクセスだけに制限します。開発シナリオや、ある程度パブリック インターネットへのアクセスを残したままシンプルに構成したい場合には、サービス エンドポイントを使ってください。
 
 
 
 > [!TIP]
-> Learn more with the [*Secure and isolate access to Azure resources by using network security groups and service endpoints*](/training/modules/secure-and-isolate-with-nsg-and-service-endpoints/) training module. This module has a sandbox where you can restrict access to Azure Storage by using service endpoints.
+> 「[*ネットワーク セキュリティ グループとサービス エンドポイントを使用して Azure リソースへのアクセスをセキュリティで保護して分離する*](/training/modules/secure-and-isolate-with-nsg-and-service-endpoints/)」トレーニング モジュールでさらに学べます。このモジュールには、サービス エンドポイントを使って Azure Storage へのアクセスを制限できるサンドボックスがあります。

@@ -1,25 +1,25 @@
-Azure Storage is Microsoft's cloud storage solution for modern data storage scenarios. 
+Azure Storage は、現代のデータ ストレージのシナリオに応える Microsoft のクラウド ストレージ ソリューションです。
 
-Suppose you work for a large e-commerce company that needs to store and serve a vast number of product images to its customers. The company wants a scalable and reliable solution that can handle high traffic and ensure data durability. They want to quickly restore data if there's an outage.  
+あなたは、膨大な数の商品画像を保存して顧客に配信する必要がある、大手 e コマース企業に勤めているとしましょう。会社は、高いトラフィックに対応でき、データの持続性を保証する、スケーラブルで信頼性の高いソリューションを求めています。障害が起きた場合には、データを素早く復元したいと考えています。
 
-In this module, you learn how to configure storage accounts and select appropriate storage types in Azure. The module covers topics such as implementing replication strategies, and configuring secure access to storage. 
+このモジュールでは、Azure でストレージ アカウントを構成し、適切なストレージの種類を選択する方法を学びます。レプリケーション戦略の実装や、ストレージへの安全なアクセスの構成といったトピックを扱います。
 
-The goal of this module is to provide Azure Administrators with the knowledge and skills to effectively configure and manage Azure storage accounts.
+このモジュールの目標は、Azure 管理者が Azure ストレージ アカウントを効果的に構成・管理するための知識とスキルを身につけることです。
 
-## Learning objectives
+## 学習の目標
 
-In this module, you learn how to:
+このモジュールでは、次のことを学びます。
 
-- Identify features and usage cases for Azure storage accounts.
-- Select between different types of Azure Storage and create storage accounts.
-- Select a storage replication strategy.
-- Configure secure network access to storage endpoints.
+- Azure ストレージ アカウントの機能と利用ケースを把握する。
+- Azure Storage のさまざまな種類から選択し、ストレージ アカウントを作成する。
+- ストレージのレプリケーション戦略を選択する。
+- ストレージ エンドポイントへの安全なネットワーク アクセスを構成する。
 
-## Skills measured
+## 評価されるスキル
 
-The content in the module helps you prepare for [Exam AZ-104: Microsoft Azure Administrator](/credentials/certifications/resources/study-guides/az-104). 
+このモジュールの内容は、[試験 AZ-104: Microsoft Azure Administrator](/credentials/certifications/resources/study-guides/az-104) の準備に役立ちます。
 
-## Prerequisites
+## 前提条件
 
-- Experience with the Azure portal.
-- Familiarity with managing different types of data storage. 
+- Azure portal の使用経験。
+- さまざまな種類のデータ ストレージの管理に関する基本知識。

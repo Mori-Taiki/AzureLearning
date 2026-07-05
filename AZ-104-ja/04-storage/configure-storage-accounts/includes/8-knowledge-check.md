@@ -1,10 +1,10 @@
 
-An organization has diverse requirements for their cloud-hosted data. They need to configure secure storage access.
+ある組織では、クラウドでホストするデータについて多様な要件があります。安全なストレージ アクセスを構成する必要があります。
 
-- The admin team requests help implementing a storage replication strategy. They have questions about how to configure storage accounts. 
+- 管理チームから、ストレージのレプリケーション戦略の実装について支援を求められています。ストレージ アカウントの構成方法について質問があります。
 
-- The manufacturing division has sensors that record time-relative data. Only the most recent data is useful. The company wants the lowest cost storage solution for this data.
+- 製造部門には、時系列データを記録するセンサーがあります。有用なのは最新のデータだけです。会社は、このデータのために最も低コストのストレージ ソリューションを求めています。
 
-### Answer the following questions
+### 次の質問に答えてください
 
-Choose the best response for each question.
+各質問に対して最も適切な回答を選んでください。

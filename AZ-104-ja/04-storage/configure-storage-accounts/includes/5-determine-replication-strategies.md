@@ -1,55 +1,55 @@
-The data in your Azure storage account is always replicated to ensure durability and high availability. [Azure Storage replication](/azure/storage/common/storage-redundancy) copies your data to protect from planned and unplanned events. These events range from transient hardware failures, network or power outages, massive natural disasters, and so on. You can choose to replicate your data within the same data center, across zonal data centers within the same region, and even across regions. Replication ensures your storage account meets the Service-Level Agreement (SLA) for Azure Storage even if there are failures.
+Azure ストレージ アカウント内のデータは、持続性と高可用性を確保するために常にレプリケートされます。[Azure Storage のレプリケーション](/azure/storage/common/storage-redundancy)は、計画的・非計画的なイベントから保護するためにデータをコピーします。イベントには、一時的なハードウェア障害、ネットワークや電源の停止、大規模な自然災害などが含まれます。データのレプリケートは、同じデータセンター内、同じリージョン内のゾーン別データセンター間、さらにはリージョン間から選べます。レプリケーションにより、障害が起きてもストレージ アカウントは Azure Storage のサービス レベル アグリーメント (SLA) を満たせます。
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=0268948e-6253-402a-8b32-7c3f899df811]
 
-### Locally redundant storage
+### ローカル冗長ストレージ
 
-:::image type="content" source="../media/locally-redundant-storage.png" alt-text="Diagram of LRS storage with three copies.":::
+:::image type="content" source="../media/locally-redundant-storage.png" alt-text="3 つのコピーを持つ LRS ストレージの図。":::
 
-Locally redundant storage is the lowest-cost replication option and offers the least durability compared to other strategies. If a data center-level disaster occurs, such as fire or flooding, all replicas might be lost or unrecoverable. Despite its limitations, LRS can be appropriate in several scenarios:
+ローカル冗長ストレージは、最も低コストのレプリケーションの選択肢であり、他の戦略と比べて持続性は最も低くなります。火災や洪水などデータセンター レベルの災害が起きた場合、すべてのレプリカが失われたり復旧不能になったりするおそれがあります。制約はあるものの、LRS は次のようなシナリオでは適切な選択肢になり得ます。
 
-- Your application stores data that can be easily reconstructed if data loss occurs.
-- Your data is constantly changing like in a live feed, and storing the data isn't essential.
-- Your application is restricted to replicating data only within a location due to data governance requirements.
+- データが失われても簡単に再構築できるデータをアプリケーションが保存している場合。
+- ライブ フィードのようにデータが絶えず変化しており、データの保存が必須ではない場合。
+- データ ガバナンスの要件により、アプリケーションが 1 つの場所内でのみデータをレプリケートするよう制限されている場合。
 
-### Zone redundant storage
+### ゾーン冗長ストレージ
 
-:::image type="content" source="../media/zone-redundant-storage.png" alt-text="Diagram of ZRS storage with three datacenters.":::
+:::image type="content" source="../media/zone-redundant-storage.png" alt-text="3 つのデータセンターを持つ ZRS ストレージの図。":::
 
-Zone redundant storage synchronously replicates your data across three storage clusters in a single region. Each storage cluster is physically separated from the others and resides in its own availability zone. Each availability zone, and the ZRS cluster within it, is autonomous, and has separate utilities and networking capabilities. Storing your data in a ZRS account ensures you can access and manage your data if a zone becomes unavailable. ZRS provides excellent performance and low latency.
+ゾーン冗長ストレージは、単一リージョン内の 3 つのストレージ クラスターにデータを同期的にレプリケートします。各ストレージ クラスターは互いに物理的に分離されており、それぞれ独自の可用性ゾーンにあります。各可用性ゾーンと、その中の ZRS クラスターは自律的で、独立したユーティリティとネットワーク機能を備えています。ZRS アカウントにデータを保存しておけば、あるゾーンが利用できなくなってもデータへのアクセスと管理を続けられます。ZRS は優れたパフォーマンスと低遅延を提供します。
 
-- ZRS isn't currently available in all regions.
-- Changing to ZRS from another data replication option requires the physical data movement from a single storage stamp to multiple stamps within a region.
+- ZRS は現在、すべてのリージョンで利用できるわけではありません。
+- 他のデータ レプリケーションの選択肢から ZRS に変更するには、単一のストレージ スタンプからリージョン内の複数のスタンプへの物理的なデータ移動が必要です。
 
-### Geo-redundant storage
+### geo 冗長ストレージ
 
-:::image type="content" source="../media/geo-redundant-storage.png" alt-text="Diagram of GRS storage with two datacenters.":::
+:::image type="content" source="../media/geo-redundant-storage.png" alt-text="2 つのデータセンターを持つ GRS ストレージの図。":::
 
-Geo-redundant storage replicates your data to a secondary region (hundreds of miles away from the primary location of the source data). GRS provides a higher level of durability even during a regional outage. GRS is designed to provide at least 99.99999999999999% **(16 9's) durability**. When your storage account has GRS enabled, your data is durable even when there's a complete regional outage or a disaster where the primary region isn't recoverable.
+geo 冗長ストレージは、データをセカンダリ リージョン (ソース データのプライマリの場所から数百マイル離れた場所) にレプリケートします。GRS は、リージョン規模の障害の間も、より高いレベルの持続性を提供します。GRS は、少なくとも 99.99999999999999% **(16 個の 9) の持続性**を提供するよう設計されています。ストレージ アカウントで GRS が有効になっていれば、リージョン全体の完全な障害や、プライマリ リージョンが復旧不能になる災害が起きても、データは失われません。
 
-If you implement GRS, you have two related options to choose from:
+GRS を実装する場合、関連する 2 つの選択肢から選べます。
 
-- **GRS** replicates your data to another data center in a secondary region. The data is available to be read only if Microsoft initiates a failover from the primary to secondary region.
+- **GRS** は、セカンダリ リージョンの別のデータセンターにデータをレプリケートします。データを読み取れるのは、Microsoft がプライマリからセカンダリ リージョンへのフェールオーバーを開始した場合に限られます。
 
-- **Read-access geo-redundant storage** (RA-GRS) is based on GRS. RA-GRS replicates your data to another data center in a secondary region, and also provides you with the option to read from the secondary region. With RA-GRS, you can read from the secondary region regardless of whether Microsoft initiates a failover from the primary to the secondary.
+- **読み取りアクセス geo 冗長ストレージ** (RA-GRS) は GRS を基にしています。RA-GRS はセカンダリ リージョンの別のデータセンターにデータをレプリケートし、さらにセカンダリ リージョンから読み取る選択肢も提供します。RA-GRS なら、Microsoft がプライマリからセカンダリへのフェールオーバーを開始したかどうかにかかわらず、セカンダリ リージョンから読み取れます。
 
-For a storage account with GRS or RA-GRS enabled, all data is first replicated with locally redundant storage. An update is first committed to the primary location and replicated by using LRS. The update is then replicated asynchronously to the secondary region by using GRS. Data in the secondary region uses LRS. Both the primary and secondary regions manage replicas across separate fault domains and upgrade domains within a storage scale unit. The storage scale unit is the basic replication unit within the datacenter. Replication at this level is provided by LRS.
+GRS または RA-GRS が有効なストレージ アカウントでは、すべてのデータがまずローカル冗長ストレージでレプリケートされます。更新はまずプライマリの場所にコミットされ、LRS でレプリケートされます。その後、更新は GRS により非同期でセカンダリ リージョンにレプリケートされます。セカンダリ リージョンのデータも LRS を使います。プライマリとセカンダリの両方のリージョンで、ストレージ スケール ユニット内の別々の障害ドメインとアップグレード ドメインにまたがってレプリカが管理されます。ストレージ スケール ユニットは、データセンター内の基本的なレプリケーション単位です。このレベルのレプリケーションは LRS によって提供されます。
 
-### Geo-zone redundant storage
+### geo ゾーン冗長ストレージ
 
-:::image type="content" source="../media/geo-zone-redundant-storage.png" alt-text="Diagram of RA-GRS storage with two datacenters.":::
+:::image type="content" source="../media/geo-zone-redundant-storage.png" alt-text="2 つのデータセンターを持つ RA-GRS ストレージの図。":::
 
-Geo-zone-redundant storage combines the high availability of zone-redundant storage with protection from regional outages as provided by geo-redundant storage. Data in a GZRS storage account is replicated across three Azure availability zones in the primary region, and also replicated to a secondary geographic region for protection from regional disasters. Each Azure region is paired with another region within the same geography, together making a regional pair.
+geo ゾーン冗長ストレージは、ゾーン冗長ストレージの高可用性と、geo 冗長ストレージが提供するリージョン障害からの保護を組み合わせたものです。GZRS ストレージ アカウントのデータは、プライマリ リージョン内の 3 つの Azure 可用性ゾーンにレプリケートされ、さらにリージョン規模の災害から保護するためにセカンダリの地理的リージョンにもレプリケートされます。各 Azure リージョンは、同じ地域内の別のリージョンとペアになっており、リージョン ペアを構成しています。
 
-With a GZRS storage account, you can continue to read and write data if an availability zone becomes unavailable or is unrecoverable. Additionally, your data is also durable during a complete regional outage or during a disaster in which the primary region isn't recoverable. GZRS is designed to provide at least 99.99999999999999% (16 9's) durability of objects over a given year. GZRS also offers the same scalability targets as LRS, ZRS, GRS, or RA-GRS. You can optionally enable read access to data in the secondary region with read-access geo-zone-redundant storage (RA-GZRS).
+GZRS ストレージ アカウントなら、可用性ゾーンが利用できなくなったり復旧不能になったりしても、データの読み取りと書き込みを続けられます。さらに、リージョン全体の完全な障害や、プライマリ リージョンが復旧不能になる災害の間もデータは失われません。GZRS は、1 年間でオブジェクトの少なくとも 99.99999999999999% (16 個の 9) の持続性を提供するよう設計されています。GZRS は、LRS、ZRS、GRS、RA-GRS と同じスケーラビリティ ターゲットも提供します。読み取りアクセス geo ゾーン冗長ストレージ (RA-GZRS) を使って、セカンダリ リージョンのデータへの読み取りアクセスを任意で有効にできます。
 
 > [!Tip]
-> Microsoft recommends using GZRS for applications that require consistency, durability, high availability, excellent performance, and resilience for disaster recovery. Enable RA-GZRS for read access to a secondary region when there's a regional disaster.
+> Microsoft は、一貫性、持続性、高可用性、優れたパフォーマンス、災害復旧の回復性を必要とするアプリケーションには GZRS の使用を推奨しています。リージョン規模の災害時にセカンダリ リージョンへの読み取りアクセスが必要な場合は、RA-GZRS を有効にしてください。
 
-### Things to consider when choosing replication strategies
+### レプリケーション戦略を選ぶ際に考慮すべきこと
 
-Let's examine the scope of durability and availability for the different replication strategies. The following table describes several key factors during the replication process, including node unavailability within a data center, and whether the entire data center (zonal or nonzonal) becomes unavailable. The table identifies read access to data in a remote, geo-replicated region during region-wide unavailability, and the supported Azure storage account types.
+各レプリケーション戦略の持続性と可用性の範囲を見てみましょう。次の表は、データセンター内のノードが利用できなくなる場合、データセンター全体 (ゾーンの有無を問わず) が利用できなくなる場合など、レプリケーションに関するいくつかの重要な要素を示しています。リージョン全体が利用できないときの、遠隔の geo レプリケート済みリージョンのデータへの読み取りアクセスと、サポートされる Azure ストレージ アカウントの種類も示しています。
 
-| Node in data center unavailable | Entire data center unavailable | Region-wide outage | Read access during region-wide outage | 
-| --- | --- | --- | --- |  
+| データセンター内のノードが利用不可 | データセンター全体が利用不可 | リージョン全体の障害 | リージョン全体の障害時の読み取りアクセス |
+| --- | --- | --- | --- |
 | - **LRS** <br> - **ZRS** <br> - **GRS** <br> - **RA-GRS** <br> - **GZRS** <br> - **RA-GZRS** | - **ZRS** <br> - **GRS** <br> - **RA-GRS** <br> - **GZRS** <br> - **RA-GZRS** | - **GRS** <br> - **RA-GRS** <br> - **GZRS** <br> - **RA-GZRS** | - **RA-GRS** <br> - **RA-GZRS** |

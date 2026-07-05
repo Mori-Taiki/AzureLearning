@@ -1,31 +1,28 @@
-Every object you store in Azure Storage has a unique URL address. Your storage account name forms the _subdomain_ portion of the URL address. The combination of the subdomain and the domain name, which is specific to each service, forms an endpoint for your storage account. 
+Azure Storage に保存するすべてのオブジェクトには、一意の URL アドレスがあります。ストレージ アカウント名は、URL アドレスの「サブドメイン」部分になります。このサブドメインと、サービスごとに固有のドメイン名の組み合わせが、ストレージ アカウントのエンドポイントを形成します。
 
-Let's look at an example. If your storage account name is *mystorageaccount*, default endpoints for your storage account are formed for the Azure services as shown in the following table:
+例を見てみましょう。ストレージ アカウント名が *mystorageaccount* の場合、ストレージ アカウントの既定のエンドポイントは、次の表のように Azure の各サービスに対して形成されます。
 
-| Service | Default endpoint |
+| サービス | 既定のエンドポイント |
 | --- | --- |
-| **Container service** | `//`**`mystorageaccount`**`.blob.core.windows.net` |
-| **Table service** | `//`**`mystorageaccount`**`.table.core.windows.net` |
-| **Queue service** | `//`**`mystorageaccount`**`.queue.core.windows.net` |
-| **File service** | `//`**`mystorageaccount`**`.file.core.windows.net` |
+| **コンテナー サービス** | `//`**`mystorageaccount`**`.blob.core.windows.net` |
+| **テーブル サービス** | `//`**`mystorageaccount`**`.table.core.windows.net` |
+| **キュー サービス** | `//`**`mystorageaccount`**`.queue.core.windows.net` |
+| **ファイル サービス** | `//`**`mystorageaccount`**`.file.core.windows.net` |
 
-We create the URL to access an object in your storage account by appending the object's location in the storage account to the endpoint.
+ストレージ アカウント内のオブジェクトにアクセスするための URL は、エンドポイントにオブジェクトの場所を付け足して作られます。
 
-For example, to access the *myblob* data in the *mycontainer* location in your storage account, we use the following URL address:
+たとえば、ストレージ アカウントの *mycontainer* にある *myblob* データにアクセスするには、次の URL アドレスを使います。
 
 `//`**`mystorageaccount`**`.blob.core.windows.net/`**`mycontainer`**`/`**`myblob`**.
 
-## Configure custom domains
+## カスタム ドメインを構成する
 
-You can configure a [custom domain](/azure/storage/blobs/storage-custom-domain-name) to access blob data in your Azure storage account. As we reviewed, the default endpoint for Azure Blob Storage is `\<storage-account-name>.blob.core.windows.net`. If you map a custom domain and subdomain, such as `www.contoso.com`, to the blob or web endpoint for your storage account, your users can use that domain to access blob data in your storage account.
+Azure ストレージ アカウント内の BLOB データへのアクセスには、[カスタム ドメイン](/azure/storage/blobs/storage-custom-domain-name)を構成できます。確認したとおり、Azure Blob Storage の既定のエンドポイントは `\<storage-account-name>.blob.core.windows.net` です。`www.contoso.com` のようなカスタム ドメインとサブドメインを、ストレージ アカウントの BLOB または Web のエンドポイントにマップすれば、ユーザーはそのドメインを使ってストレージ アカウント内の BLOB データにアクセスできます。
 
-**Direct mapping** lets you enable a custom domain for a subdomain to an Azure storage account. For this approach, you create a `CNAME` record that points from the subdomain to the Azure storage account.
+**直接マッピング**では、サブドメインに対するカスタム ドメインを Azure ストレージ アカウントに対して有効にできます。この方法では、サブドメインから Azure ストレージ アカウントを指す `CNAME` レコードを作成します。
 
-   The following example shows how a subdomain is mapped to an Azure storage account to create a `CNAME` record in the domain name system (DNS):
+   次の例は、ドメイン ネーム システム (DNS) に `CNAME` レコードを作成して、サブドメインを Azure ストレージ アカウントにマップする方法を示しています。
 
-   - Subdomain: `blobs.contoso.com`
-   - Azure storage account: `\<storage account>\.blob.core.windows.net`
-   - Direct `CNAME` record: `contosoblobs.blob.core.windows.net`
-
-
-
+   - サブドメイン: `blobs.contoso.com`
+   - Azure ストレージ アカウント: `\<storage account>\.blob.core.windows.net`
+   - 直接の `CNAME` レコード: `contosoblobs.blob.core.windows.net`
